@@ -1,11 +1,13 @@
 import React from 'react';
-import { Hello } from './Hello.jsx';
-import { Info } from './Info.jsx';
+import  AdministradorTab  from './tabs/AdministradorTab.jsx';
+import TablaPacientes from './tablasInformacion/TablaPacientes.jsx';
 
-export const App = () => (
+export default function App() {
+  
+  return(
   <div>
-    <h1>Welcome to Meteor!</h1>
-    <Hello/>
-    <Info/>
+    <AdministradorTab />
+    <TablaPacientes/>
   </div>
 );
+}
