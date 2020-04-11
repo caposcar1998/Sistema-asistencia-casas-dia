@@ -1,10 +1,10 @@
 import React from 'react';
-
+import Button from '@material-ui/core/Button';
 
 
 export default function AdministradorTab (){
 
     return (
-        <h1>HOla</h1>
+        <Button>Hola</Button>
     );
 }
