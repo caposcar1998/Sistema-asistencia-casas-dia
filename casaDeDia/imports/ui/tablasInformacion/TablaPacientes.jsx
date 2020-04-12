@@ -9,7 +9,16 @@ function TablaPacientes({pacientes}) {
 
 
     function addPaciente() {
-        Meteor.call("crearPaciente", "Manuel", "Ortiz", new Date(), "Valle", "56554627", false);
+        Meteor.call("crearPaciente",
+            "manuel", "ortiz", new Date(), "Valle", 5655, false,
+         (err, res) => {
+             if (err) {
+                 console.log(err)
+             } else {
+                    console.log(res)
+                    }
+                });
+        
      };
     function editPaciente() {
         console.log("editar");
