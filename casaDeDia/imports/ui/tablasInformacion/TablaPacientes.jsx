@@ -1,31 +1,40 @@
-import React, { useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import MaterialTable from 'material-table';
+import { withTracker } from 'meteor/react-meteor-data';
+import { tableIcons } from "../../utilities/TableIcons";
+import { Pacientes } from "../../api/pacientes/pacientes"
 
-export default function TablaPacientes() {
+function TablaPacientes({pacientes}) {
     const [getPacientes, setPacientes] = useState();
 
 
-    function addPaciente() { };
-    function editPaciente() { };
-    function borrarPaciente() { };
+    function addPaciente() {
+        Meteor.call("crearPaciente", "Manuel", "Ortiz", new Date(), "Valle", "56554627", false);
+     };
+    function editPaciente() {
+        console.log("editar");
+     };
+    function borrarPaciente() {
+        console.log("borrar");
+     };
 
 
     return (
 
         <MaterialTable
             title="Pacientes"
+            icons={tableIcons}
             columns={
                 [
                     { title: "Nombre", field: "nombre" },
                     { title: "Apellido", field: "apellido" },
-                    { title: "fecha de nacimiento", field: "fechaNacimiento" },
                     { title: "direccion", field: "direccion" },
                     { title: "telefono", field: "telefono" },
                     { title: "telefono Inteligente", field: "telefonoInteligente" },
                     
                 ]
             }
-            data={getPacientes}
+            data={pacientes}
             editable={{
                 onRowAdd: addPaciente,
                 onRowUpdate: editPaciente,
@@ -35,3 +44,9 @@ export default function TablaPacientes() {
 
     );
 }
+
+export default withTracker(() => {
+    return {
+        pacientes: Pacientes.find({}).fetch(),
+    };
+})(TablaPacientes);

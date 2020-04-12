@@ -1,6 +1,6 @@
 import SimpleSchema from "simpl-schema";
 
-export const Pacientes = new.Mongo.Collection("actividades");
+export const Pacientes = new Mongo.Collection("actividades");
 
 let Schema = new SimpleSchema({
     nombre: { type: String },
