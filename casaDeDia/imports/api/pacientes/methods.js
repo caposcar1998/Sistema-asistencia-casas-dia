@@ -18,9 +18,21 @@ Meteor.methods({
         ); 
      },
 
-    
-    "editarPaciente"(nombre, apellido, fechaNacimiento, direccion, telefono, telefonoInteligente) { 
-
+    "editarPaciente"(idPaciente, nombre, apellido, fechaNacimiento, direccion, telefono, telefonoInteligente) { 
+        Pacientes.update(
+            { _id: idPaciente },
+            {
+                $set:
+                {
+                    nombre: nombre,
+                    apellido: apellido,
+                    fechaNacimiento: fechaNacimiento,
+                    direccion: direccion,
+                    telefono: telefono,
+                    telefonoInteligente: telefonoInteligente
+                }
+            }
+        )
     },
 
     "borrarPaciente"(idPaciente) {
@@ -32,7 +44,9 @@ Meteor.methods({
     },
 
     "leerPacientes"() {
-
+        return {
+            pacientes: Pacientes.find({}).fetch(),
+        };
     }
     
     

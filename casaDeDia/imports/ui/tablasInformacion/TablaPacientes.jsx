@@ -5,9 +5,8 @@ import { tableIcons } from "../../utilities/TableIcons";
 import { Pacientes } from "../../api/pacientes/pacientes"
 
 function TablaPacientes({pacientes}) {
-    const [getPacientes, setPacientes] = useState();
-
-
+    
+    
     function addPaciente(newData) {
         Meteor.call("crearPaciente",
             newData.nombre, newData.apellido, new Date(), newData.direccion, newData.telefono, newData.telefonoInteligente,
@@ -20,9 +19,18 @@ function TablaPacientes({pacientes}) {
                 });
         
      };
-    function editPaciente() {
-        console.log("editar");
-     };
+    function editPaciente(newData) {
+        Meteor.call("editarPaciente",
+            newData._id, newData.nombre, newData.apellido, new Date(), newData.direccion, newData.telefono, newData.telefonoInteligente,
+            (err, res) => {
+                if (err) {
+                    alert("Error al editar al paciente")
+                } else {
+                    alert("Se edito el paciente correctamente")
+                }
+            });
+    };
+    
     function borrarPaciente(data) {
         Meteor.call("borrarPaciente",
            data._id,
