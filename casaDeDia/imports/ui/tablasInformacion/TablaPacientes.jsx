@@ -8,14 +8,14 @@ function TablaPacientes({pacientes}) {
     const [getPacientes, setPacientes] = useState();
 
 
-    function addPaciente() {
+    function addPaciente(newData) {
         Meteor.call("crearPaciente",
-            "manuel", "ortiz", new Date(), "Valle", 5655, false,
+            newData.nombre, newData.apellido, new Date(), newData.direccion, newData.telefono, newData.telefonoInteligente,
          (err, res) => {
              if (err) {
-                 console.log(err)
+                 alert("Error al crear al paciente")
              } else {
-                    console.log(res)
+                 alert("Se creo el paciente correctamente")
                     }
                 });
         
@@ -23,8 +23,16 @@ function TablaPacientes({pacientes}) {
     function editPaciente() {
         console.log("editar");
      };
-    function borrarPaciente() {
-        console.log("borrar");
+    function borrarPaciente(data) {
+        Meteor.call("borrarPaciente",
+           data._id,
+            (err, res) => {
+                if (err) {
+                    alert("Error al borrar al paciente")
+                } else {
+                    alert("Se borro el paciente correctamente")
+                }
+            });
      };
 
 
