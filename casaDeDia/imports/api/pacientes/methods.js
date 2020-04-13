@@ -15,7 +15,7 @@ Meteor.methods({
                 telefonoInteligente: telefonoInteligente
             }
 
-        ); 
+        ) 
      },
 
     "editarPaciente"(idPaciente, nombre, apellido, fechaNacimiento, direccion, telefono, telefonoInteligente) { 
@@ -44,9 +44,7 @@ Meteor.methods({
     },
 
     "leerPacientes"() {
-        return {
-            pacientes: Pacientes.find({}).fetch(),
-        };
+            return Pacientes.find().fetch();
     }
     
     

@@ -38,9 +38,11 @@ function TablaPacientes({pacientes}) {
                 if (err) {
                     alert("Error al borrar al paciente")
                 } else {
-                    alert("Se borro el paciente correctamente")
+                    alert(res)
                 }
             });
+        
+
      };
 
 
