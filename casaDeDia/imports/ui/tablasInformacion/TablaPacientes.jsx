@@ -8,40 +8,61 @@ function TablaPacientes({pacientes}) {
     
     
     function addPaciente(newData) {
-        Meteor.call("crearPaciente",
-            newData.nombre, newData.apellido, new Date(), newData.direccion, newData.telefono, newData.telefonoInteligente,
-         (err, res) => {
-             if (err) {
-                 alert("Error al crear al paciente")
-             } else {
-                 alert("Se creo el paciente correctamente")
-                    }
-                });
+        return new Promise(
+            (resolve, reject) => {
+                Meteor.call("crearPaciente",
+                   newData.nombre, newData.apellido, new Date(), newData.direccion, newData.telefono, newData.telefonoInteligente,
+                    (err, res) => {
+                        if (err) {
+                            alert("Error al crear al paciente")
+                            reject()
+                        } else {
+                            alert("Se creo el paciente correctamente")
+                            resolve()
+                        }
+                    });
+                
+            }
+        
+          )
         
      };
     function editPaciente(newData) {
+        return new Promise(
+            (resolve, reject) => {
         Meteor.call("editarPaciente",
             newData._id, newData.nombre, newData.apellido, new Date(), newData.direccion, newData.telefono, newData.telefonoInteligente,
             (err, res) => {
                 if (err) {
                     alert("Error al editar al paciente")
+                    reject()
                 } else {
                     alert("Se edito el paciente correctamente")
+                    resolve()
                 }
             });
+            }
+
+        )
     };
     
-    function borrarPaciente(data) {
+        function borrarPaciente(data) {
+            return new Promise(
+                (resolve, reject) => {
         Meteor.call("borrarPaciente",
            data._id,
             (err, res) => {
                 if (err) {
                     alert("Error al borrar al paciente")
+                    reject()
                 } else {
-                    alert(res)
+                    alert("Se borro al paciente con exito")
+                    resolve()
                 }
             });
-        
+                }
+
+            )
 
      };
 
