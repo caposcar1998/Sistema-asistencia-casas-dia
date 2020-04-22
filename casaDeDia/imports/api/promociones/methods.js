@@ -4,7 +4,7 @@ import { Promociones } from "../promociones/promociones";
 Meteor.methods({
 
 
-    "crearPromocion"(nombre,fechaInicio,fechaFinal,descripcion,direccion,telefono,acumulable,restricciones) {
+    "crearPromocion"(nombre, fechaInicio, fechaFinal, descripcion, direccion, telefono, acumulable, restricciones, caducidad) {
         Promociones.insert(
             {
                 nombre: nombre,
@@ -14,13 +14,14 @@ Meteor.methods({
                 direccion: direccion,
                 telefono: telefono,
                 acumulable: acumulable,
-                restricciones: restricciones
+                restricciones: restricciones,
+                caducidad: caducidad
             }
 
         )
     },
 
-    "editarPromocion"(idPromocion, nombre, fechaInicio, fechaFinal, descripcion, direccion, telefono, acumulable, restricciones) {
+    "editarPromocion"(idPromocion, nombre, fechaInicio, fechaFinal, descripcion, direccion, telefono, acumulable, restricciones, caducidad) {
         Promociones.update(
             { _id: idPromocion },
             {
@@ -33,7 +34,8 @@ Meteor.methods({
                     direccion: direccion,
                     telefono: telefono,
                     acumulable: acumulable,
-                    restricciones: restricciones
+                    restricciones: restricciones,
+                    caducidad:caducidad
                 }
             }
         )
