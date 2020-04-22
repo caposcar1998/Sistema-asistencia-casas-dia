@@ -11,5 +11,6 @@ let Schema = new SimpleSchema({
     direccion: { type: String },
     telefono: { type: String },
     acumulable: { type: Boolean, defaultValue: false, optional: true },
-    restricciones: {type: String}
+    restricciones: { type: String },
+    caducidad: {type: Boolean}
 })

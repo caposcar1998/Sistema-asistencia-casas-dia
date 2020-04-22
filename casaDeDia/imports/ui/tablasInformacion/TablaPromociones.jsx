@@ -71,12 +71,15 @@ function TablaPromociones({ promociones }) {
             icons={tableIcons}
             columns={
                 [
-                    { title: "Nombre", field: "nombre" },
-                    { title: "telefono", field: "telefono" },
+                    { title: "Establecimiento", field: "nombre" },
+                    { title: "Telefono", field: "telefono"},
                     { title: "Descripcion", field: "descripcion" },
                     { title: "Direccion", field: "direccion" },
-                    { title: "Acumulable", field: "acumulable" },
                     { title: "Restricciones", field: "restricciones" },
+                    { title: "Fecha Inicio", field: "fechaInicio", type: "date" },
+                    { title: "Fecha Final", field: "fechaFinal", type: "date" },
+                    { title: "Acumulable", field: "acumulable", type: "boolean" },
+                    { title: "Caduca", field: "caducidad", type: "boolean" },
 
                 ]
             }

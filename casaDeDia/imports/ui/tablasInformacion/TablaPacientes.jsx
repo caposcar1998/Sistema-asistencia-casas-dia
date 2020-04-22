@@ -78,7 +78,7 @@ function TablaPacientes({pacientes}) {
                     { title: "Apellido", field: "apellido" },
                     { title: "direccion", field: "direccion" },
                     { title: "telefono", field: "telefono" },
-                    { title: "telefono Inteligente", field: "telefonoInteligente" },
+                    { title: "telefono Inteligente", field: "telefonoInteligente", type: "boolean" },
                     
                 ]
             }
