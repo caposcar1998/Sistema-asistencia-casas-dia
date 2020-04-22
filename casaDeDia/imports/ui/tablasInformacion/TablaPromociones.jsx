@@ -14,7 +14,7 @@ function TablaPromociones({ promociones }) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("crearPromocion",
-                    newData.nombre, new Date(), new Date(), newData.descripcion, newData.direccion, newData.telefono, newData.acumulable, newData.restricciones,
+                    newData.nombre, newData.fechaInicio, newData.fechaFinal, newData.descripcion, newData.direccion, newData.telefono, newData.acumulable, newData.restricciones, newData.caducidad,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -32,7 +32,7 @@ function TablaPromociones({ promociones }) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("editarPromocion",
-                    newData._id, newData.nombre, new Date(), new Date(), newData.descripcion, newData.direccion, newData.telefono, newData.acumulable, newData.restricciones,
+                    newData._id, newData.nombre, newData.fechaInicio, newData.fechaFinal, newData.descripcion, newData.direccion, newData.telefono, newData.acumulable, newData.restricciones, newData.caducidad,
                     (err, res) => {
                         if (err) {
                             reject()
