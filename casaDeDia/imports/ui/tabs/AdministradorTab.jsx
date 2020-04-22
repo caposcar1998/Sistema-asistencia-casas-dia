@@ -11,6 +11,8 @@ import TablaPromociones from '../tablasInformacion/TablaPromociones';
 import CrearEvento from "../crearCosas/CrearEvento";
 import CrearActividad from "../crearCosas/CrearActividad";
 
+
+
 export function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -46,6 +48,12 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         backgroundColor: theme.palette.background.paper,
     },
+    title: {
+        flexGrow: 1
+    },
+    appBar: {
+        backgroundColor: "#006400"
+    }
 }));
 
 export default function AdministradorTab() {
@@ -58,11 +66,11 @@ export default function AdministradorTab() {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static">
+            <AppBar position="static" className={classes.appBar}>
                 <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
                     <Tab label="Registrar paciente" {...a11yProps(0)} />
                     <Tab label="Registrar evento" {...a11yProps(1)} />
-                    <Tab label="Registrar promocion" {...a11yProps(2)} />
+                    <Tab label="Registrar beneficio" {...a11yProps(2)} />
                     <Tab label="Registrar actividad" {...a11yProps(3)} />
 
                 </Tabs>
@@ -78,7 +86,7 @@ export default function AdministradorTab() {
       </TabPanel>
             <TabPanel value={value} index={3}>
                 <CrearActividad/>
-      </TabPanel>
+            </TabPanel>
         </div>
     );
 }

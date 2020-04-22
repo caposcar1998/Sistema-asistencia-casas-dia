@@ -67,7 +67,7 @@ function TablaPromociones({ promociones }) {
     return (
 
         <MaterialTable
-            title="Promociones"
+            title="Beneficios"
             icons={tableIcons}
             columns={
                 [
