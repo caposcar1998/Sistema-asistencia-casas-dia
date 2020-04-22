@@ -11,7 +11,7 @@ function TablaPacientes({pacientes}) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("crearPaciente",
-                   newData.nombre, newData.apellido, new Date(), newData.direccion, newData.telefono, newData.telefonoInteligente,
+                    newData.nombre, newData.apellido, newData.fechaNacimiento, newData.direccion, newData.telefono, newData.telefonoInteligente,
                     (err, res) => {
                         if (err) {
                             alert("Error al crear al paciente")
@@ -31,7 +31,7 @@ function TablaPacientes({pacientes}) {
         return new Promise(
             (resolve, reject) => {
         Meteor.call("editarPaciente",
-            newData._id, newData.nombre, newData.apellido, new Date(), newData.direccion, newData.telefono, newData.telefonoInteligente,
+            newData._id, newData.nombre, newData.apellido, newData.fechaNacimiento, newData.direccion, newData.telefono, newData.telefonoInteligente,
             (err, res) => {
                 if (err) {
                     alert("Error al editar al paciente")
@@ -76,6 +76,7 @@ function TablaPacientes({pacientes}) {
                 [
                     { title: "Nombre", field: "nombre" },
                     { title: "Apellido", field: "apellido" },
+                    { title: "FechaNacimiento", field: "fechaNacimiento", type: "date" },
                     { title: "direccion", field: "direccion" },
                     { title: "telefono", field: "telefono" },
                     { title: "telefono Inteligente", field: "telefonoInteligente", type: "boolean" },
