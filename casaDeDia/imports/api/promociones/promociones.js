@@ -1,7 +1,7 @@
 
 import SimpleSchema from "simpl-schema";
 
-export const Pacientes = new Mongo.Collection("promociones");
+export const Promociones = new Mongo.Collection("promociones");
 
 let Schema = new SimpleSchema({
     nombre: { type: String },
@@ -10,5 +10,6 @@ let Schema = new SimpleSchema({
     descripcion: { type: String },
     direccion: { type: String },
     telefono: { type: String },
-    acumulable: {type, Boolean, defaultValue: false, optional: true}
+    acumulable: { type: Boolean, defaultValue: false, optional: true },
+    restricciones: {type: String}
 })
