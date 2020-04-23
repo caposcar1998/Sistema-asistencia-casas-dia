@@ -1,10 +1,11 @@
 import React from 'react';
 import  AdministradorTab  from './tabs/AdministradorTab.jsx';
 import { makeStyles } from '@material-ui/core/styles';
+import Login from './tabs/Login.jsx';
 
 const useStyles = makeStyles((theme) => ({
   fondoPagina: {
-    backgroundColor: "#006400"
+    backgroundColor: "white"
   }
 }));
 
@@ -15,7 +16,11 @@ export default function App() {
 
   return(
     <div className={classes.fondoPagina}>
-    <AdministradorTab />
+      <Login />
+      {
+        //<AdministradorTab />
+      }
+    
   </div>
 );
 }
