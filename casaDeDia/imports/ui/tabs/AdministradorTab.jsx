@@ -8,10 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import TablaPacientes from '../tablasInformacion/TablaPacientes';
 import TablaPromociones from '../tablasInformacion/TablaPromociones';
-import CrearEvento from "../crearCosas/CrearEvento";
-import CrearActividad from "../crearCosas/CrearActividad";
-
-
+import TablaTarjeta from '../tablasInformacion/TablaTarjeta';
+import TablaAsilo from '../tablasInformacion/TablaAsilo';
+import TablaCasaDeDia from '../tablasInformacion/TablaCasaDeDia';
+import TablaAdministrador from '../tablasInformacion/TablaAdministrador'
 
 export function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -69,9 +69,11 @@ export default function AdministradorTab() {
             <AppBar position="static" className={classes.appBar}>
                 <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
                     <Tab label="Registrar paciente" {...a11yProps(0)} />
-                    <Tab label="Registrar evento" {...a11yProps(1)} />
-                    <Tab label="Registrar beneficio" {...a11yProps(2)} />
-                    <Tab label="Registrar actividad" {...a11yProps(3)} />
+                    <Tab label="Registrar beneficio" {...a11yProps(1)} />
+                    <Tab label="Registrar Tarjeta" {...a11yProps(2)} />
+                    <Tab label="Registrar Asilo" {...a11yProps(3)} />
+                    <Tab label="Registrar casa de dia" {...a11yProps(4)} />
+                    <Tab label="Registrar administrador" {...a11yProps(5)} />
 
                 </Tabs>
             </AppBar>
@@ -79,13 +81,19 @@ export default function AdministradorTab() {
                 <TablaPacientes/>
       </TabPanel>
             <TabPanel value={value} index={1}>
-                <CrearEvento/>
-      </TabPanel>
-            <TabPanel value={value} index={2}>
                 <TablaPromociones />
       </TabPanel>
+            <TabPanel value={value} index={2}>
+                <TablaTarjeta/>
+            </TabPanel>
             <TabPanel value={value} index={3}>
-                <CrearActividad/>
+                <TablaAsilo/>
+            </TabPanel>
+            <TabPanel value={value} index={4}>
+                <TablaCasaDeDia />
+            </TabPanel>
+            <TabPanel value={value} index={5}>
+                <TablaAdministrador />
             </TabPanel>
         </div>
     );

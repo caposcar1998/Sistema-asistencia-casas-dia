@@ -5,9 +5,10 @@ export const Usuarios = new Mongo.Collection("usuarios");
 
 let Schema = new SimpleSchema({
     nombre: { type: String },
-    contrasena: {type: String},
-    descripcion: { type: String },
-    direccion: { type: String },
-    telefono: { type: String },
-    puesto: {type: String},
+    usuario: {type: String},
+    contrasena: { type: String },
+    correo: { type: String },
+    permisos: { type: String }
 })
+
+
