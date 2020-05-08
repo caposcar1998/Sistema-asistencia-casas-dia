@@ -31,3 +31,9 @@ Librerias
 	https://material-ui.com/
 	https://www.npmjs.com/
 
+
+Generalidades
+
+1) Si se quiere generar un dato manualmente en la base de datos
+realizar querry dentro de startup en el archivo main.js
+
