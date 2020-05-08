@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
     const classes = useStyles();
+    const [usuario, setUsuario] = useState();
+    const [contrasena, setContrasena] = useState();
+
 
   return(
 
