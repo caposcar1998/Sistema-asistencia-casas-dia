@@ -8,6 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import { Paper, Button } from '@material-ui/core';
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 import { withHistory } from 'react-router-dom';
+import AdministradorPage from '../layoutsGenerales/AdministradorGeneralMenu';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,7 +45,7 @@ export default function Login() {
                         } else {
                             resolve()
                             alert("bn") 
-                            FlowRouter.go("AdministradorPage")
+                            FlowRouter.go('administrador')
                         }
                     });
 

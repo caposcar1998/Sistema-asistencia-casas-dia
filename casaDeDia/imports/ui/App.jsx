@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Login from './tabs/Login.jsx';
-import AdministradorPage from './layoutsGenerales/AdministradorPage.jsx';
+import AdministradorPage from './layoutsGenerales/AdministradorGeneralMenu.jsx';
 
 const useStyles = makeStyles((theme) => ({
   fondoPagina: {
@@ -9,21 +9,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function App() {
+export default function App(props) {
   const classes = useStyles();
 
   
 
   return(
-    <div className={classes.fondoPagina}>
-      
-      
-      
-        {  //<Login />
-        }
-        <AdministradorPage/>
-      
-    
-  </div>
+      props.content
 );
 }

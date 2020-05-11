@@ -8,8 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+
 
 const useStyles = makeStyles({
     list: {
@@ -47,8 +46,14 @@ export default function AdministradorPage() {
             onKeyDown={toggleDrawer(anchor, false)}
         >
             <List>
+                <ListItem>
+                    <ListItemText primary={"Usuarios"} />
+                </ListItem>
+            </List>
+            <Divider />
+            <List>
                 <ListItem button key={"Asilos"}>
-                    <ListItemText primary={"Asilos"} />
+                    <ListItemText primary={"Asilos"}  />
                 </ListItem>
                 <ListItem button key={"Casas de dia"}>
                     <ListItemText primary={"Casas de dia"} />
@@ -64,6 +69,12 @@ export default function AdministradorPage() {
             <List>
                 <ListItem button key={"Tarjetas"}>
                     <ListItemText primary={"Tarjetas"} />
+                </ListItem>
+            </List>
+            <Divider />
+            <List>
+                <ListItem button key={"Voluntarios"}>
+                    <ListItemText primary={"Voluntarios"} />
                 </ListItem>
             </List>
         </div>
