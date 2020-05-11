@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState} from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -6,7 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Paper, Button } from '@material-ui/core';
-
+import { FlowRouter } from "meteor/ostrio:flow-router-extra";
+import { withHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,6 +32,28 @@ export default function Login() {
     const [contrasena, setContrasena] = useState();
 
 
+    function ingresarSistema() {
+        return new Promise(
+            (resolve, reject) => {
+                Meteor.call("encontrarAdministrador",
+                    usuario, contrasena,
+                    (err, res) => {
+                        if (err) {
+                            reject()
+                            alert("usuario no registrado")
+                        } else {
+                            resolve()
+                            alert("bn") 
+                            FlowRouter.go("AdministradorPage")
+                        }
+                    });
+
+            }
+
+        )
+     }
+
+
   return(
 
       <React.Fragment>
@@ -52,12 +75,12 @@ export default function Login() {
                   </Grid>
                   <Grid item xs={12}>
                       <form className={classes.root} noValidate autoComplete="off">
-                          <TextField id="usuario" label="Usuario" />
-                          <TextField id="contrasena" label="Contrasena" type="password" />
+                              <TextField id="usuario" label="Usuario" value={usuario} onChange={(e) => setUsuario(e.target.value)} />
+                              <TextField id="contrasena" label="Contrasena" type="password" onChange={(e) => setContrasena(e.target.value)}/>
                       </form>
                       </Grid>
                       <Grid item xs={12}>
-                          <Button variant="contained" color="primary">Ingresar</Button>
+                          <Button onClick={ingresarSistema} variant="contained" color="primary">Ingresar</Button>
                       </Grid>
                   </Paper>
                   
