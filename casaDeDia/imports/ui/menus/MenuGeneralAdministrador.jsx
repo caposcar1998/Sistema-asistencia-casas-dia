@@ -77,14 +77,20 @@ export default function MenuGeneralAdministrador() {
                     <ListItemText primary={"Voluntarios"} />
                 </ListItem>
             </List>
+            <Divider />
+            <List>
+                <ListItem button key={"Administrador"}>
+                    <ListItemText primary={"Adminsitrador"} />
+                </ListItem>
+            </List>
         </div>
     );
 
     return (
         <div>
-            {['left'].map((anchor) => (
+            {['menu'].map((anchor) => (
                 <React.Fragment key={anchor}>
-                    <Button onClick={toggleDrawer('left', true)}>{anchor}</Button>
+                    <Button onClick={toggleDrawer('menu', true)}>{anchor}</Button>
                     <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
                         {list(anchor)}
                     </Drawer>
