@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function AdministradorPage() {
+export default function MenuGeneralAdministrador() {
     const classes = useStyles();
     const [state, setState] = React.useState({
         top: false,
@@ -53,7 +53,7 @@ export default function AdministradorPage() {
             <Divider />
             <List>
                 <ListItem button key={"Asilos"}>
-                    <ListItemText primary={"Asilos"}  />
+                    <ListItemText primary={"Asilos"} />
                 </ListItem>
                 <ListItem button key={"Casas de dia"}>
                     <ListItemText primary={"Casas de dia"} />

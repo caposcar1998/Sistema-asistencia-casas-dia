@@ -4,7 +4,7 @@ import { mount } from 'react-mounter'
 
 //Layouts and Pages
 
-import AdministradorPage from "../../ui/layoutsGenerales/AdministradorGeneralMenu"
+import AdministradorPage from "../../ui/layoutsGenerales/AdministradorPage"
 import App from '../../ui/App'
 import Login from '../../ui/tabs/Login'
 

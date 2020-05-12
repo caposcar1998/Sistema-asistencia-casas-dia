@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import { Paper, Button } from '@material-ui/core';
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 import { withHistory } from 'react-router-dom';
-import AdministradorPage from '../layoutsGenerales/AdministradorGeneralMenu';
+import AdministradorPage from '../layoutsGenerales/AdministradorPage';
 
 const useStyles = makeStyles((theme) => ({
     root: {
