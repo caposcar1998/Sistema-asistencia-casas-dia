@@ -14,7 +14,12 @@ export default function App(props) {
 
   
 
-  return(
-      props.content
+  return (
+    <div>
+
+      {props.content }
+
+      </div>
+    
 );
 }
