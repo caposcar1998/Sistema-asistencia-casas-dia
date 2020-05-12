@@ -4,9 +4,10 @@ import { mount } from 'react-mounter'
 
 //Layouts and Pages
 
-import AdministradorPage from "../../ui/layoutsGenerales/AdministradorPage"
 import App from '../../ui/App'
 import Login from '../../ui/tabs/Login'
+import BeneficiosTab from '../../ui/tabs/BeneficiosTab'
+import AdministradorPage from '../../ui/layoutsGenerales/AdministradorPage'
 
 
 FlowRouter.route('/', {
@@ -22,8 +23,8 @@ FlowRouter.route('/', {
 FlowRouter.route('/administrador', {
     name: 'administrador',
     action() {
-        mount(App, {
-            content: <AdministradorPage />
+        mount(AdministradorPage, {
+            content: <BeneficiosTab />
         })
     }
 })

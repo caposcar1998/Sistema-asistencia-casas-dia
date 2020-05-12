@@ -10,7 +10,6 @@ export default function AdministradorPage(props) {
     return (
         <div>
             <MenuGeneralAdministrador />
-            <BeneficiosTab/>
             {props.content}
         </div>
     );

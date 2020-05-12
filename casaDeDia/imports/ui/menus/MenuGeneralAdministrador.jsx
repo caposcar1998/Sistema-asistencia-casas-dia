@@ -52,14 +52,11 @@ export default function MenuGeneralAdministrador() {
             </List>
             <Divider />
             <List>
-                <ListItem button key={"Asilos"}>
+                <ListItem button key={"Asilos"} >
                     <ListItemText primary={"Asilos"} />
                 </ListItem>
                 <ListItem button key={"Casas de dia"}>
                     <ListItemText primary={"Casas de dia"} />
-                </ListItem>
-                <ListItem button key={"Asilos"}>
-                    <ListItemText primary={"Asilos"} />
                 </ListItem>
                 <ListItem button key={"Clubes"}>
                     <ListItemText primary={"Clubes"} />
@@ -81,6 +78,12 @@ export default function MenuGeneralAdministrador() {
             <List>
                 <ListItem button key={"Administrador"}>
                     <ListItemText primary={"Adminsitrador"} />
+                </ListItem>
+            </List>
+            <Divider />
+            <List>
+                <ListItem button key={"Beneficios"}>
+                    <ListItemText primary={"Beneficios"} />
                 </ListItem>
             </List>
         </div>

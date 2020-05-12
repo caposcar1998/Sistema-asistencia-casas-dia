@@ -8,7 +8,7 @@ Meteor.startup(() => {
 
     Usuarios.insert({
         nombre: "admin",
-        ususario: "admin",
+        usuario: "admin",
         contrasena: "admin",
         correo: "admin@admin.com",
         permisos: "todos"
