@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -27,6 +27,8 @@ export default function MenuGeneralAdministrador() {
         bottom: false,
         right: false,
     });
+
+    const [pagina, setPagina] = useState("administrador")
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -60,6 +62,10 @@ export default function MenuGeneralAdministrador() {
         FlowRouter.go("casasDeDia");
     }
 
+    function clubesPage() {
+        FlowRouter.go("clubes");
+    }
+
     const list = (anchor) => (
         <div
             className={clsx(classes.list, {
@@ -82,7 +88,7 @@ export default function MenuGeneralAdministrador() {
                 <ListItem button key={"Casas de dia"} onClick={casasDeDiaPage}>
                     <ListItemText primary={"Casas de dia"} />
                 </ListItem>
-                <ListItem button key={"Clubes"}>
+                <ListItem button key={"Clubes"} onClick={clubesPage}>
                     <ListItemText primary={"Clubes"} />
                 </ListItem>
             </List>

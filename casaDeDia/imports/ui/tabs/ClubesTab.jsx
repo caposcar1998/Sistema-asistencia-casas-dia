@@ -6,7 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import TablaAsilo from '../tablasInformacion/TablaAsilo';
+import TablaClubes from '../tablasInformacion/TablaClubes';
 
 export function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -63,11 +63,11 @@ export default function BeneficiosTab() {
         <div className={classes.root}>
             <AppBar position="static" className={classes.appBar}>
                 <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                    <Tab label="Registrar Asilo" {...a11yProps(0)} />
+                    <Tab label="Registrar Club" {...a11yProps(0)} />
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-                <TablaAsilo />
+                <TablaClubes />
             </TabPanel>
         </div>
     );

@@ -13,6 +13,7 @@ import TarjetasTab from "../../ui/tabs/TarjetasTab"
 import AdministradoresTab from "../../ui/tabs/AdministradoresTab"
 import AsilosTab from "../../ui/tabs/AsilosTab"
 import CasasDeDiaTab from "../../ui/tabs/CasasDeDiaTab"
+import ClubesTab from "../../ui/tabs/ClubesTab"
 
 FlowRouter.route('/', {
     name: 'login',
@@ -75,6 +76,15 @@ FlowRouter.route('/administrador/casasDeDia', {
     action() {
         mount(AdministradorPage, {
             content: <CasasDeDiaTab />
+        })
+    }
+})
+
+FlowRouter.route('/administrador/clubes', {
+    name: 'clubes',
+    action() {
+        mount(AdministradorPage, {
+            content: <ClubesTab />
         })
     }
 })
