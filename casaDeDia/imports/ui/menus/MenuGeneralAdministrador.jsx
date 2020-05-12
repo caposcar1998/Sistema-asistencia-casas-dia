@@ -36,8 +36,28 @@ export default function MenuGeneralAdministrador() {
         setState({ ...state, [anchor]: open });
     };
 
-    function hola() {
-        console.log("cambio asilos");
+    function usuariosPage() {
+        FlowRouter.go("administrador");
+    }
+
+    function beneficiosPage() {
+        FlowRouter.go("beneficios");
+    }
+
+    function tarjetasPage() {
+        FlowRouter.go("tarjetas");
+    }
+
+    function administradorPage() {
+        FlowRouter.go("administradores");
+    }
+
+    function asilosPage() {
+        FlowRouter.go("asilos");
+    }
+
+    function casasDeDiaPage() {
+        FlowRouter.go("casasDeDia");
     }
 
     const list = (anchor) => (
@@ -50,16 +70,16 @@ export default function MenuGeneralAdministrador() {
             onKeyDown={toggleDrawer(anchor, false)}
         >
             <List>
-                <ListItem>
+                <ListItem button key={"Usuarios"} onClick={usuariosPage} >
                     <ListItemText primary={"Usuarios"} />
                 </ListItem>
             </List>
             <Divider />
             <List>
-                <ListItem button key={"Asilos"} >
-                    <ListItemText primary={"Asilos"} onClick={hola}  />
+                <ListItem button key={"Asilos"} onClick={asilosPage} >
+                    <ListItemText primary={"Asilos"} />
                 </ListItem>
-                <ListItem button key={"Casas de dia"}>
+                <ListItem button key={"Casas de dia"} onClick={casasDeDiaPage}>
                     <ListItemText primary={"Casas de dia"} />
                 </ListItem>
                 <ListItem button key={"Clubes"}>
@@ -68,7 +88,7 @@ export default function MenuGeneralAdministrador() {
             </List>
             <Divider />
             <List>
-                <ListItem button key={"Tarjetas"}>
+                <ListItem button key={"Tarjetas"} onClick={tarjetasPage}>
                     <ListItemText primary={"Tarjetas"} />
                 </ListItem>
             </List>
@@ -80,13 +100,13 @@ export default function MenuGeneralAdministrador() {
             </List>
             <Divider />
             <List>
-                <ListItem button key={"Administrador"}>
+                <ListItem button key={"Administrador"} onClick={administradorPage}>
                     <ListItemText primary={"Adminsitrador"} />
                 </ListItem>
             </List>
             <Divider />
             <List>
-                <ListItem button key={"Bemeficios"}>
+                <ListItem button key={"Bemeficios"} onClick={beneficiosPage}>
                     <ListItemText primary={"Bemeficios"} />
                 </ListItem>
             </List>

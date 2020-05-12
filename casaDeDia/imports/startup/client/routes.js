@@ -8,7 +8,11 @@ import App from '../../ui/App'
 import Login from '../../ui/tabs/Login'
 import BeneficiosTab from '../../ui/tabs/BeneficiosTab'
 import AdministradorPage from '../../ui/layoutsGenerales/AdministradorPage'
-
+import UsuariosTab from "../../ui/tabs/UsuariosTab"
+import TarjetasTab from "../../ui/tabs/TarjetasTab"
+import AdministradoresTab from "../../ui/tabs/AdministradoresTab"
+import AsilosTab from "../../ui/tabs/AsilosTab"
+import CasasDeDiaTab from "../../ui/tabs/CasasDeDiaTab"
 
 FlowRouter.route('/', {
     name: 'login',
@@ -24,7 +28,54 @@ FlowRouter.route('/administrador', {
     name: 'administrador',
     action() {
         mount(AdministradorPage, {
+            content: <UsuariosTab />
+        })
+    }
+})
+
+FlowRouter.route('/administrador/beneficios', {
+    name: 'beneficios',
+    action() {
+        mount(AdministradorPage, {
             content: <BeneficiosTab />
         })
     }
 })
+
+
+FlowRouter.route('/administrador/tarjetas', {
+    name: 'tarjetas',
+    action() {
+        mount(AdministradorPage, {
+            content: <TarjetasTab />
+        })
+    }
+})
+
+FlowRouter.route('/administrador/administradores', {
+    name: 'administradores',
+    action() {
+        mount(AdministradorPage, {
+            content: <AdministradoresTab />
+        })
+    }
+})
+
+FlowRouter.route('/administrador/asilos', {
+    name: 'asilos',
+    action() {
+        mount(AdministradorPage, {
+            content: <AsilosTab />
+        })
+    }
+})
+
+FlowRouter.route('/administrador/casasDeDia', {
+    name: 'casasDeDia',
+    action() {
+        mount(AdministradorPage, {
+            content: <CasasDeDiaTab />
+        })
+    }
+})
+
