@@ -36,6 +36,10 @@ export default function MenuGeneralAdministrador() {
         setState({ ...state, [anchor]: open });
     };
 
+    function hola() {
+        console.log("cambio asilos");
+    }
+
     const list = (anchor) => (
         <div
             className={clsx(classes.list, {
@@ -53,7 +57,7 @@ export default function MenuGeneralAdministrador() {
             <Divider />
             <List>
                 <ListItem button key={"Asilos"} >
-                    <ListItemText primary={"Asilos"} />
+                    <ListItemText primary={"Asilos"} onClick={hola}  />
                 </ListItem>
                 <ListItem button key={"Casas de dia"}>
                     <ListItemText primary={"Casas de dia"} />
@@ -82,8 +86,8 @@ export default function MenuGeneralAdministrador() {
             </List>
             <Divider />
             <List>
-                <ListItem button key={"Beneficios"}>
-                    <ListItemText primary={"Beneficios"} />
+                <ListItem button key={"Bemeficios"}>
+                    <ListItemText primary={"Bemeficios"} />
                 </ListItem>
             </List>
         </div>
