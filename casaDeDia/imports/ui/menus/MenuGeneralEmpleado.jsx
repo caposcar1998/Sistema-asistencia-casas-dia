@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function MenuGeneralAdministrador() {
+export default function MenuGeneralEmpleado() {
     const classes = useStyles();
     const [state, setState] = React.useState({
         top: false,
@@ -29,7 +29,7 @@ export default function MenuGeneralAdministrador() {
         right: false,
     });
 
-    const [pagina, setPagina] = useState("administrador")
+    const [pagina, setPagina] = useState("empleado")
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -40,51 +40,51 @@ export default function MenuGeneralAdministrador() {
     };
 
     function usuariosPage() {
-        FlowRouter.go("administrador");
+        FlowRouter.go("administradorE");
     }
 
     function beneficiosPage() {
-        FlowRouter.go("beneficios");
+        FlowRouter.go("beneficiosE");
     }
 
     function tarjetasPage() {
-        FlowRouter.go("tarjetas");
+        FlowRouter.go("tarjetasE");
     }
 
     function administradorPage() {
-        FlowRouter.go("administradores");
+        FlowRouter.go("administradoresE");
     }
 
     function asilosPage() {
-        FlowRouter.go("asilos");
+        FlowRouter.go("asilosE");
     }
 
     function casasDeDiaPage() {
-        FlowRouter.go("casasDeDia");
+        FlowRouter.go("casasDeDiaE");
     }
 
     function clubesPage() {
-        FlowRouter.go("clubes");
+        FlowRouter.go("clubesE");
     }
 
     function adultosMayoresPage() {
-        FlowRouter.go("adultosMayores");
+        FlowRouter.go("adultosMayoresE");
     }
 
     function serviciosPage() {
-        FlowRouter.go("servicios");
+        FlowRouter.go("serviciosE");
     }
 
     function voluntariosPage() {
-        FlowRouter.go("voluntarios");
+        FlowRouter.go("voluntariosE");
     }
 
     function instructoresPage() {
-        FlowRouter.go("instructores");
+        FlowRouter.go("instructoresE");
     }
 
     function empleadosPage() {
-        FlowRouter.go("empleados");
+        FlowRouter.go("empleadosE");
     }
 
     const list = (anchor) => (
@@ -100,7 +100,7 @@ export default function MenuGeneralAdministrador() {
                 //aria-labelledby="nested-list-subheader"
                 subheader={
                     <ListSubheader component="div">
-                        Bienvenido (Administrador)
+                        Bienvenido (Empleado)
                     </ListSubheader>
                 }
             >

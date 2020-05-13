@@ -10,7 +10,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 
-
 const useStyles = makeStyles({
     list: {
         width: 250,
@@ -20,7 +19,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function MenuGeneralAdministrador() {
+export default function MenuGeneralVoluntario() {
     const classes = useStyles();
     const [state, setState] = React.useState({
         top: false,
@@ -29,7 +28,7 @@ export default function MenuGeneralAdministrador() {
         right: false,
     });
 
-    const [pagina, setPagina] = useState("administrador")
+    const [pagina, setPagina] = useState("voluntario")
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -39,9 +38,6 @@ export default function MenuGeneralAdministrador() {
         setState({ ...state, [anchor]: open });
     };
 
-    function usuariosPage() {
-        FlowRouter.go("administrador");
-    }
 
     function beneficiosPage() {
         FlowRouter.go("beneficios");
@@ -51,9 +47,6 @@ export default function MenuGeneralAdministrador() {
         FlowRouter.go("tarjetas");
     }
 
-    function administradorPage() {
-        FlowRouter.go("administradores");
-    }
 
     function asilosPage() {
         FlowRouter.go("asilos");
@@ -75,17 +68,6 @@ export default function MenuGeneralAdministrador() {
         FlowRouter.go("servicios");
     }
 
-    function voluntariosPage() {
-        FlowRouter.go("voluntarios");
-    }
-
-    function instructoresPage() {
-        FlowRouter.go("instructores");
-    }
-
-    function empleadosPage() {
-        FlowRouter.go("empleados");
-    }
 
     const list = (anchor) => (
         <div
@@ -96,23 +78,15 @@ export default function MenuGeneralAdministrador() {
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
         >
+            
             <List component="nav"
                 //aria-labelledby="nested-list-subheader"
                 subheader={
                     <ListSubheader component="div">
-                        Bienvenido (Administrador)
+                        Bienvenido (Voluntario)
                     </ListSubheader>
                 }
             >
-                <ListItem button key={"Usuarios"} onClick={usuariosPage} >
-                    <ListItemText primary={"Usuarios"} />
-                </ListItem>
-                <ListItem button key={"Adultos Mayores"} onClick={adultosMayoresPage} >
-                    <ListItemText primary={"Adultos Mayores"} />
-                </ListItem>
-            </List>
-            <Divider />
-            <List>
                 <ListItem button key={"Asilos"} onClick={asilosPage} >
                     <ListItemText primary={"Asilos"} />
                 </ListItem>
@@ -130,21 +104,6 @@ export default function MenuGeneralAdministrador() {
             <List>
                 <ListItem button key={"Tarjetas"} onClick={tarjetasPage}>
                     <ListItemText primary={"Tarjetas"} />
-                </ListItem>
-            </List>
-            <Divider />
-            <List>
-                <ListItem button key={"Administrador"} onClick={administradorPage}>
-                    <ListItemText primary={"Adminsitrador"} />
-                </ListItem>
-                <ListItem button key={"Empleados"} onClick={empleadosPage} >
-                    <ListItemText primary={"Empleados"} />
-                </ListItem>
-                <ListItem button key={"Voluntarios"} onClick={voluntariosPage} >
-                    <ListItemText primary={"Voluntarios"} />
-                </ListItem>
-                <ListItem button key={"Instructores"} onClick={instructoresPage} >
-                    <ListItemText primary={"Instructores"} />
                 </ListItem>
             </List>
             <Divider />
