@@ -11,21 +11,21 @@ import InstructorPage from '../../ui/layoutsGenerales/InstructorPage';
 import AdministradorPage from '../../ui/layoutsGenerales/AdministradorPage';
 import EmpleadoPage from '../../ui/layoutsGenerales/EmpleadoPage';
 
-import Login from '../../ui/tabs/Login'
-import BeneficiosTab from '../../ui/tabs/BeneficiosTab'
-import UsuariosTab from "../../ui/tabs/UsuariosTab"
-import TarjetasTab from "../../ui/tabs/TarjetasTab"
-import AdministradoresTab from "../../ui/tabs/AdministradoresTab"
-import AsilosTab from "../../ui/tabs/AsilosTab"
-import CasasDeDiaTab from "../../ui/tabs/CasasDeDiaTab"
-import ClubesTab from "../../ui/tabs/ClubesTab"
+import Login from '../../ui/tabs/Login';
+import BeneficiosTab from '../../ui/tabs/BeneficiosTab';
+import UsuariosTab from "../../ui/tabs/UsuariosTab";
+import TarjetasTab from "../../ui/tabs/TarjetasTab";
+import AdministradoresTab from "../../ui/tabs/AdministradoresTab";
+import AsilosTab from "../../ui/tabs/AsilosTab";
+import CasasDeDiaTab from "../../ui/tabs/CasasDeDiaTab";
+import ClubesTab from "../../ui/tabs/ClubesTab";
 
-import AdultosMayoresTab from "../../ui/tabs/AdultosMayoresTab"
-import ServiciosTab from "../../ui/tabs/ServiciosTab"
+import AdultosMayoresTab from "../../ui/tabs/AdultosMayoresTab";
+import ServiciosTab from "../../ui/tabs/ServiciosTab";
 import VoluntariosTab from "../../ui/tabs/VoluntariosTab";
 import InstructoresTab from "../../ui/tabs/InstructoresTab";
 import EmpleadosTab from "../../ui/tabs/EmpleadosTab";
-import ActividadesTab from "../../ui/tabs/ActividadesTab"
+import ActividadesTab from "../../ui/tabs/ActividadesTab";
 
 
 FlowRouter.route('/', {
@@ -125,6 +125,9 @@ FlowRouter.route('/administrador/AdultosMayores', {
     action() {
         mount(AdministradorPage, {
             content: <AdultosMayoresTab />
+        })
+    }
+})
 
 FlowRouter.route('/administrador/actividades', {
     name: 'actividades',
@@ -281,5 +284,3 @@ FlowRouter.route('/empleado/Empleados', {
         })
     }
 })
-
-

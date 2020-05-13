@@ -86,7 +86,7 @@ export default function MenuGeneralAdministrador() {
 
     function empleadosPage() {
         FlowRouter.go("empleados");
-
+    }
     function actividadesPage() {
         FlowRouter.go("actividades");
 
@@ -130,10 +130,9 @@ export default function MenuGeneralAdministrador() {
 
                 <ListItem button key={"Servicios"} onClick={serviciosPage}>
                     <ListItemText primary={"Servicios"} />
-
+                </ListItem>
                 <ListItem button key={"Actividades"} onClick={actividadesPage}>
                     <ListItemText primary={"Actividades"} />
-
                 </ListItem>
             </List>
             <Divider />
