@@ -14,6 +14,7 @@ import AdministradoresTab from "../../ui/tabs/AdministradoresTab"
 import AsilosTab from "../../ui/tabs/AsilosTab"
 import CasasDeDiaTab from "../../ui/tabs/CasasDeDiaTab"
 import ClubesTab from "../../ui/tabs/ClubesTab"
+import AdultosMayoresTab from "../../ui/tabs/AdultosMayoresTab"
 
 FlowRouter.route('/', {
     name: 'login',
@@ -85,6 +86,15 @@ FlowRouter.route('/administrador/clubes', {
     action() {
         mount(AdministradorPage, {
             content: <ClubesTab />
+        })
+    }
+})
+
+FlowRouter.route('/administrador/AdultosMayores', {
+    name: 'adultosMayores',
+    action() {
+        mount(AdministradorPage, {
+            content: <AdultosMayoresTab />
         })
     }
 })
