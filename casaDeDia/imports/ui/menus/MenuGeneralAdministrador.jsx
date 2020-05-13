@@ -66,6 +66,10 @@ export default function MenuGeneralAdministrador() {
         FlowRouter.go("clubes");
     }
 
+    function actividadesPage() {
+        FlowRouter.go("actividades");
+    }
+
     const list = (anchor) => (
         <div
             className={clsx(classes.list, {
@@ -90,6 +94,9 @@ export default function MenuGeneralAdministrador() {
                 </ListItem>
                 <ListItem button key={"Clubes"} onClick={clubesPage}>
                     <ListItemText primary={"Clubes"} />
+                </ListItem>
+                <ListItem button key={"Actividades"} onClick={actividadesPage}>
+                    <ListItemText primary={"Actividades"} />
                 </ListItem>
             </List>
             <Divider />

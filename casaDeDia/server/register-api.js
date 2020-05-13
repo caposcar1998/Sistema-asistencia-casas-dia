@@ -7,6 +7,7 @@ import "../imports/api/asilos/methods";
 import "../imports/api/casasDeDia/methods";
 import "../imports/api/usuarios/methods";
 import "../imports/api/clubes/methods";
+import "../imports/api/actividades/methods";
 
 //Funciones
 
