@@ -19,12 +19,13 @@ import AdministradoresTab from "../../ui/tabs/AdministradoresTab"
 import AsilosTab from "../../ui/tabs/AsilosTab"
 import CasasDeDiaTab from "../../ui/tabs/CasasDeDiaTab"
 import ClubesTab from "../../ui/tabs/ClubesTab"
+
 import AdultosMayoresTab from "../../ui/tabs/AdultosMayoresTab"
 import ServiciosTab from "../../ui/tabs/ServiciosTab"
 import VoluntariosTab from "../../ui/tabs/VoluntariosTab";
 import InstructoresTab from "../../ui/tabs/InstructoresTab";
 import EmpleadosTab from "../../ui/tabs/EmpleadosTab";
-
+import ActividadesTab from "../../ui/tabs/ActividadesTab"
 
 
 FlowRouter.route('/', {
@@ -118,14 +119,23 @@ FlowRouter.route('/administrador/clubes', {
     }
 })
 
+
 FlowRouter.route('/administrador/AdultosMayores', {
     name: 'adultosMayores',
     action() {
         mount(AdministradorPage, {
             content: <AdultosMayoresTab />
+
+FlowRouter.route('/administrador/actividades', {
+    name: 'actividades',
+    action() {
+        mount(AdministradorPage, {
+            content: <ActividadesTab />
+
         })
     }
 })
+
 
 FlowRouter.route('/administrador/Servicios', {
     name: 'servicios',
@@ -271,6 +281,5 @@ FlowRouter.route('/empleado/Empleados', {
         })
     }
 })
-
 
 

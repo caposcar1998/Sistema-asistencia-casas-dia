@@ -67,6 +67,7 @@ export default function MenuGeneralAdministrador() {
         FlowRouter.go("clubes");
     }
 
+
     function adultosMayoresPage() {
         FlowRouter.go("adultosMayores");
     }
@@ -85,6 +86,10 @@ export default function MenuGeneralAdministrador() {
 
     function empleadosPage() {
         FlowRouter.go("empleados");
+
+    function actividadesPage() {
+        FlowRouter.go("actividades");
+
     }
 
     const list = (anchor) => (
@@ -122,8 +127,13 @@ export default function MenuGeneralAdministrador() {
                 <ListItem button key={"Clubes"} onClick={clubesPage}>
                     <ListItemText primary={"Clubes"} />
                 </ListItem>
+
                 <ListItem button key={"Servicios"} onClick={serviciosPage}>
                     <ListItemText primary={"Servicios"} />
+
+                <ListItem button key={"Actividades"} onClick={actividadesPage}>
+                    <ListItemText primary={"Actividades"} />
+
                 </ListItem>
             </List>
             <Divider />
