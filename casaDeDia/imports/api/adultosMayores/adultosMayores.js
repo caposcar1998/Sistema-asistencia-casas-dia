@@ -9,5 +9,7 @@ let Schema = new SimpleSchema({
     sexo: {type: String},
     edad: { type: Number },
     grupoSanguineo: { type: String },
-    direccion: { type: String }
+    direccion: { type: String },
+    apodo: {type: String},
+    contrasena: {type: String}
 })

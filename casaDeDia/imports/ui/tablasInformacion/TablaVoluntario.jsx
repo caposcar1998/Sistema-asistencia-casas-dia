@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import MaterialTable from 'material-table';
 import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
-import { AdultosMayores } from "../../api/adultosMayores/adultosMayores";
+import { Voluntarios } from "../../api/voluntarios/voluntarios";
 
 
-function TablaAdultoMayor({adultosMayores}) {
+function TablaVoluntario({voluntarios}) {
 
 
-    function addAdultoMayor(newData) {
+    function addVoluntario(newData) {
         return new Promise(
             (resolve, reject) => {
-                Meteor.call("crearAdultoMayor",
-                    newData.nombre,newData.apellidos,newData.curp,newData.sexo,newData.edad, newData.grupoSanguineo, newData.direccion,newData.apodo, newData.contrasena,
+                Meteor.call("crearVoluntario",
+                    newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -26,11 +26,11 @@ function TablaAdultoMayor({adultosMayores}) {
         )
 
     };
-    function editAdultoMayor(newData) {
+    function editVoluntario(newData) {
         return new Promise(
             (resolve, reject) => {
-                Meteor.call("editarAdultoMayor",
-                    newData._id, newData.nombre,newData.apellidos,newData.curp,newData.sexo,newData.edad, newData.grupoSanguineo, newData.direccion,newData.apodo, newData.contrasena,
+                Meteor.call("editarVoluntario",
+                    newData._id, newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -43,10 +43,10 @@ function TablaAdultoMayor({adultosMayores}) {
         )
     };
 
-    function borrarAdultoMayor(data) {
+    function borrarVoluntario(data) {
         return new Promise(
             (resolve, reject) => {
-                Meteor.call("borrarAdultoMayor",
+                Meteor.call("borrarVoluntario",
                     data._id,
                     (err, res) => {
                         if (err) {
@@ -62,27 +62,22 @@ function TablaAdultoMayor({adultosMayores}) {
     return (
 
         <MaterialTable
-            title="AdultosMayores"
+            title="Voluntarios"
             icons={tableIcons}
             columns={
                 [
-                    { title: "Nombre Completo", field: "nombre" },
+                    { title: "Nombre", field: "nombre" },
                     { title: "Apellidos", field: "apellidos" },
-                    { title: "CURP", field: "curp" },
-                    { title: "Sexo", field: "sexo" },
-                    { title: "Edad", field: "edad", type:"numeric" },
-                    { title: "Grupo Sanguineo", field: "grupoSanguineo" },
-                    { title: "Dirección", field: "direccion" },
-                    { title: "apodo", field: "apodo"},
-                    { title: "contrasena", field: "contrasena"}
-
+                    { title: "Apodo", field: "apodo" },
+                    { title: "Contrasena", field: "contrasena" },
+                    { title: "Email", field: "email"}
                 ]
             }
-            data={adultosMayores}
+            data={voluntarios}
             editable={{
-                onRowAdd: addAdultoMayor,
-                onRowUpdate: editAdultoMayor,
-                onRowDelete: borrarAdultoMayor
+                onRowAdd: addVoluntario,
+                onRowUpdate: editVoluntario,
+                onRowDelete: borrarVoluntario
             }}
         />
     );
@@ -91,6 +86,6 @@ function TablaAdultoMayor({adultosMayores}) {
 
 export default withTracker(() => {
     return {
-        adultosMayores: AdultosMayores.find({}).fetch(),
+        voluntarios: Voluntarios.find({}).fetch(),
     };
-})(TablaAdultoMayor);
+})(TablaVoluntario);

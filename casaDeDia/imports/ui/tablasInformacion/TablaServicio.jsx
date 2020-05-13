@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import MaterialTable from 'material-table';
 import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
-import { AdultosMayores } from "../../api/adultosMayores/adultosMayores";
+import { Servicios } from "../../api/servicios/servicios";
 
 
-function TablaAdultoMayor({adultosMayores}) {
+function TablaServicio({servicios}) {
 
 
-    function addAdultoMayor(newData) {
+    function addServicio(newData) {
         return new Promise(
             (resolve, reject) => {
-                Meteor.call("crearAdultoMayor",
-                    newData.nombre,newData.apellidos,newData.curp,newData.sexo,newData.edad, newData.grupoSanguineo, newData.direccion,newData.apodo, newData.contrasena,
+                Meteor.call("crearServicio",
+                    newData.nombre,newData.tipoServicio,newData.telefono,newData.direccion,newData.vigente, newData.redSocial1, newData.redSocial2,newData.redSocial3,newData.fechaRegistro,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -26,11 +26,11 @@ function TablaAdultoMayor({adultosMayores}) {
         )
 
     };
-    function editAdultoMayor(newData) {
+    function editServicio(newData) {
         return new Promise(
             (resolve, reject) => {
-                Meteor.call("editarAdultoMayor",
-                    newData._id, newData.nombre,newData.apellidos,newData.curp,newData.sexo,newData.edad, newData.grupoSanguineo, newData.direccion,newData.apodo, newData.contrasena,
+                Meteor.call("editarServicio",
+                    newData._id, newData.nombre,newData.tipoServicio,newData.telefono,newData.direccion,newData.vigente, newData.redSocial1, newData.redSocial2,newData.redSocial3,newData.fechaRegistro,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -43,10 +43,10 @@ function TablaAdultoMayor({adultosMayores}) {
         )
     };
 
-    function borrarAdultoMayor(data) {
+    function borrarServicio(data) {
         return new Promise(
             (resolve, reject) => {
-                Meteor.call("borrarAdultoMayor",
+                Meteor.call("borrarServicio",
                     data._id,
                     (err, res) => {
                         if (err) {
@@ -62,27 +62,26 @@ function TablaAdultoMayor({adultosMayores}) {
     return (
 
         <MaterialTable
-            title="AdultosMayores"
+            title="Servicios"
             icons={tableIcons}
             columns={
                 [
-                    { title: "Nombre Completo", field: "nombre" },
-                    { title: "Apellidos", field: "apellidos" },
-                    { title: "CURP", field: "curp" },
-                    { title: "Sexo", field: "sexo" },
-                    { title: "Edad", field: "edad", type:"numeric" },
-                    { title: "Grupo Sanguineo", field: "grupoSanguineo" },
+                    { title: "Tipo de Servicio", field: "tipoServicio" },
+                    { title: "Nombre", field: "nombre" },
+                    { title: "Telefono", field: "telefono" },
                     { title: "Dirección", field: "direccion" },
-                    { title: "apodo", field: "apodo"},
-                    { title: "contrasena", field: "contrasena"}
-
+                    { title: "Fecha de Registro", field: "fechaRegistro", type:"datetime" },
+                    { title: "Vigente", field: "vigente" },
+                    { title: "Red Social 1", field: "redSocial1" },
+                    { title: "Red Social 2", field: "redSocial2" },
+                    { title: "Red Social 3", field: "redSocial3" }
                 ]
             }
-            data={adultosMayores}
+            data={servicios}
             editable={{
-                onRowAdd: addAdultoMayor,
-                onRowUpdate: editAdultoMayor,
-                onRowDelete: borrarAdultoMayor
+                onRowAdd: addServicio,
+                onRowUpdate: editServicio,
+                onRowDelete: borrarServicio
             }}
         />
     );
@@ -91,6 +90,6 @@ function TablaAdultoMayor({adultosMayores}) {
 
 export default withTracker(() => {
     return {
-        adultosMayores: AdultosMayores.find({}).fetch(),
+        servicios: Servicios.find({}).fetch(),
     };
-})(TablaAdultoMayor);
+})(TablaServicio);
