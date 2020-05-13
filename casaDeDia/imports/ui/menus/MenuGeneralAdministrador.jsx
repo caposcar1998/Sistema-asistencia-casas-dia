@@ -8,7 +8,6 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
 
 
 const useStyles = makeStyles({
@@ -67,29 +66,8 @@ export default function MenuGeneralAdministrador() {
         FlowRouter.go("clubes");
     }
 
-
-    function adultosMayoresPage() {
-        FlowRouter.go("adultosMayores");
-    }
-
-    function serviciosPage() {
-        FlowRouter.go("servicios");
-    }
-
-    function voluntariosPage() {
-        FlowRouter.go("voluntarios");
-    }
-
-    function instructoresPage() {
-        FlowRouter.go("instructores");
-    }
-
-    function empleadosPage() {
-        FlowRouter.go("empleados");
-
     function actividadesPage() {
         FlowRouter.go("actividades");
-
     }
 
     const list = (anchor) => (
@@ -101,19 +79,9 @@ export default function MenuGeneralAdministrador() {
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
         >
-            <List component="nav"
-                //aria-labelledby="nested-list-subheader"
-                subheader={
-                    <ListSubheader component="div">
-                        Bienvenido (Administrador)
-                    </ListSubheader>
-                }
-            >
+            <List>
                 <ListItem button key={"Usuarios"} onClick={usuariosPage} >
                     <ListItemText primary={"Usuarios"} />
-                </ListItem>
-                <ListItem button key={"Adultos Mayores"} onClick={adultosMayoresPage} >
-                    <ListItemText primary={"Adultos Mayores"} />
                 </ListItem>
             </List>
             <Divider />
@@ -127,13 +95,8 @@ export default function MenuGeneralAdministrador() {
                 <ListItem button key={"Clubes"} onClick={clubesPage}>
                     <ListItemText primary={"Clubes"} />
                 </ListItem>
-
-                <ListItem button key={"Servicios"} onClick={serviciosPage}>
-                    <ListItemText primary={"Servicios"} />
-
                 <ListItem button key={"Actividades"} onClick={actividadesPage}>
                     <ListItemText primary={"Actividades"} />
-
                 </ListItem>
             </List>
             <Divider />
@@ -144,23 +107,20 @@ export default function MenuGeneralAdministrador() {
             </List>
             <Divider />
             <List>
-                <ListItem button key={"Administrador"} onClick={administradorPage}>
-                    <ListItemText primary={"Adminsitrador"} />
-                </ListItem>
-                <ListItem button key={"Empleados"} onClick={empleadosPage} >
-                    <ListItemText primary={"Empleados"} />
-                </ListItem>
-                <ListItem button key={"Voluntarios"} onClick={voluntariosPage} >
+                <ListItem button key={"Voluntarios"}>
                     <ListItemText primary={"Voluntarios"} />
-                </ListItem>
-                <ListItem button key={"Instructores"} onClick={instructoresPage} >
-                    <ListItemText primary={"Instructores"} />
                 </ListItem>
             </List>
             <Divider />
             <List>
-                <ListItem button key={"Beneficios"} onClick={beneficiosPage}>
-                    <ListItemText primary={"Beneficios"} />
+                <ListItem button key={"Administrador"} onClick={administradorPage}>
+                    <ListItemText primary={"Adminsitrador"} />
+                </ListItem>
+            </List>
+            <Divider />
+            <List>
+                <ListItem button key={"Bemeficios"} onClick={beneficiosPage}>
+                    <ListItemText primary={"Bemeficios"} />
                 </ListItem>
             </List>
         </div>
