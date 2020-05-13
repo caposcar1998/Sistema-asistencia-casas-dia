@@ -78,6 +78,14 @@ export default function MenuGeneralAdministrador() {
         FlowRouter.go("voluntarios");
     }
 
+    function instructoresPage() {
+        FlowRouter.go("instructores");
+    }
+
+    function empleadosPage() {
+        FlowRouter.go("empleados");
+    }
+
     const list = (anchor) => (
         <div
             className={clsx(classes.list, {
@@ -118,14 +126,17 @@ export default function MenuGeneralAdministrador() {
             </List>
             <Divider />
             <List>
+                <ListItem button key={"Administrador"} onClick={administradorPage}>
+                    <ListItemText primary={"Adminsitrador"} />
+                </ListItem>
+                <ListItem button key={"Empleados"} onClick={empleadosPage} >
+                    <ListItemText primary={"Empleados"} />
+                </ListItem>
                 <ListItem button key={"Voluntarios"} onClick={voluntariosPage} >
                     <ListItemText primary={"Voluntarios"} />
                 </ListItem>
-            </List>
-            <Divider />
-            <List>
-                <ListItem button key={"Administrador"} onClick={administradorPage}>
-                    <ListItemText primary={"Adminsitrador"} />
+                <ListItem button key={"Instructores"} onClick={instructoresPage} >
+                    <ListItemText primary={"Instructores"} />
                 </ListItem>
             </List>
             <Divider />
