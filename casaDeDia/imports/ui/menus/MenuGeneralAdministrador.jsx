@@ -9,7 +9,19 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
-
+import DeckIcon from '@material-ui/icons/Deck';
+import HouseIcon from '@material-ui/icons/House';
+import GolfCourseIcon from '@material-ui/icons/GolfCourse';
+import StyleIcon from '@material-ui/icons/Style';
+import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
+import PeopleIcon from '@material-ui/icons/People';
+import GradeIcon from '@material-ui/icons/Grade';
+import WorkIcon from '@material-ui/icons/Work';
+import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
+import DirectionsWalkIcon from '@material-ui/icons/DirectionsWalk';
+import RoomServiceIcon from '@material-ui/icons/RoomService';
+import LocalActivityIcon from '@material-ui/icons/LocalActivity';
+import EventSeatIcon from '@material-ui/icons/EventSeat';
 
 const useStyles = makeStyles({
     list: {
@@ -110,55 +122,68 @@ export default function MenuGeneralAdministrador() {
                 }
             >
                 <ListItem button key={"Usuarios"} onClick={usuariosPage} >
+                    <ListItemIcon><PeopleIcon /></ListItemIcon>
                     <ListItemText primary={"Usuarios"} />
                 </ListItem>
                 <ListItem button key={"Adultos Mayores"} onClick={adultosMayoresPage} >
+                    <ListItemIcon><DirectionsWalkIcon /></ListItemIcon>
                     <ListItemText primary={"Adultos Mayores"} />
                 </ListItem>
             </List>
             <Divider />
             <List>
                 <ListItem button key={"Asilos"} onClick={asilosPage} >
+                    <ListItemIcon><DeckIcon /></ListItemIcon>
                     <ListItemText primary={"Asilos"} />
                 </ListItem>
                 <ListItem button key={"Casas de dia"} onClick={casasDeDiaPage}>
+                    <ListItemIcon><HouseIcon /></ListItemIcon>
                     <ListItemText primary={"Casas de dia"} />
                 </ListItem>
                 <ListItem button key={"Clubes"} onClick={clubesPage}>
+                    <ListItemIcon><GolfCourseIcon /></ListItemIcon>
                     <ListItemText primary={"Clubes"} />
                 </ListItem>
 
                 <ListItem button key={"Servicios"} onClick={serviciosPage}>
+                    <ListItemIcon><RoomServiceIcon /></ListItemIcon>
                     <ListItemText primary={"Servicios"} />
                 </ListItem>
                 <ListItem button key={"Actividades"} onClick={actividadesPage}>
+                    <ListItemIcon><LocalActivityIcon /></ListItemIcon>
                     <ListItemText primary={"Actividades"} />
                 </ListItem>
             </List>
             <Divider />
             <List>
                 <ListItem button key={"Tarjetas"} onClick={tarjetasPage}>
+                    <ListItemIcon><StyleIcon /></ListItemIcon>
                     <ListItemText primary={"Tarjetas"} />
                 </ListItem>
             </List>
             <Divider />
             <List>
                 <ListItem button key={"Administrador"} onClick={administradorPage}>
+                    <ListItemIcon><GradeIcon /></ListItemIcon>
                     <ListItemText primary={"Adminsitrador"} />
                 </ListItem>
                 <ListItem button key={"Empleados"} onClick={empleadosPage} >
+                    <ListItemIcon><WorkIcon /></ListItemIcon>
                     <ListItemText primary={"Empleados"} />
                 </ListItem>
                 <ListItem button key={"Voluntarios"} onClick={voluntariosPage} >
+                    <ListItemIcon><EmojiPeopleIcon /></ListItemIcon>
                     <ListItemText primary={"Voluntarios"} />
                 </ListItem>
                 <ListItem button key={"Instructores"} onClick={instructoresPage} >
+                    <ListItemIcon><LocalLibraryIcon /></ListItemIcon>
                     <ListItemText primary={"Instructores"} />
                 </ListItem>
             </List>
             <Divider />
             <List>
                 <ListItem button key={"Beneficios"} onClick={beneficiosPage}>
+                    <ListItemIcon><EventSeatIcon /></ListItemIcon>
                     <ListItemText primary={"Beneficios"} />
                 </ListItem>
             </List>
