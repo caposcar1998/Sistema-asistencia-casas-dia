@@ -6,9 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import TablaPacientes from '../tablasInformacion/TablaPacientes';
 import TablaPromociones from '../tablasInformacion/TablaPromociones';
-import TablaTarjeta from '../tablasInformacion/TablaTarjeta';
 import TablaAsilo from '../tablasInformacion/TablaAsilo';
 import TablaCasaDeDia from '../tablasInformacion/TablaCasaDeDia';
 import TablaAdministrador from '../tablasInformacion/TablaAdministrador'
@@ -68,33 +66,12 @@ export default function BeneficiosTab() {
         <div className={classes.root}>
             <AppBar position="static" className={classes.appBar}>
                 <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                    <Tab label="Registrar paciente" {...a11yProps(0)} />
-                    <Tab label="Registrar beneficio" {...a11yProps(1)} />
-                    <Tab label="Registrar Tarjeta" {...a11yProps(2)} />
-                    <Tab label="Registrar Asilo" {...a11yProps(3)} />
-                    <Tab label="Registrar casa de dia" {...a11yProps(4)} />
-                    <Tab label="Registrar administrador" {...a11yProps(5)} />
-
+                    <Tab label="Registrar beneficio" {...a11yProps(0)} />
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-                <TablaPacientes/>
-      </TabPanel>
-            <TabPanel value={value} index={1}>
                 <TablaPromociones />
       </TabPanel>
-            <TabPanel value={value} index={2}>
-                <TablaTarjeta/>
-            </TabPanel>
-            <TabPanel value={value} index={3}>
-                <TablaAsilo/>
-            </TabPanel>
-            <TabPanel value={value} index={4}>
-                <TablaCasaDeDia />
-            </TabPanel>
-            <TabPanel value={value} index={5}>
-                <TablaAdministrador />
-            </TabPanel>
         </div>
     );
 }

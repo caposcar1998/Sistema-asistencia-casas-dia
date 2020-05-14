@@ -12,6 +12,7 @@ import { withHistory } from 'react-router-dom';
 import AdministradorPage from '../layoutsGenerales/AdministradorPage';
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
