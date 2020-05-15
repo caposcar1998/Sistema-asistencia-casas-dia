@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Paper, TextField, Select, MenuItem, Button, Checkbox, ListItemText,Input  } from '@material-ui/core';
+import {listaRestricciones} from "../../utilities/tablasEstaticas/restricciones";
 
 export default function AnadirCasasDia() {
         const [nombre, setNombre] = React.useState('');
@@ -33,20 +34,6 @@ export default function AnadirCasasDia() {
                         },
                 },
         };
-
-
-        const names = [
-                'Oliver Hansen',
-                'Van Henry',
-                'April Tucker',
-                'Ralph Hubbard',
-                'Omar Alexander',
-                'Carlos Abbott',
-                'Miriam Wagner',
-                'Bradley Wilkerson',
-                'Virginia Andrews',
-                'Kelly Snyder',
-        ];
 
         const handleChangeRestricciones = (event) => {
                 setRestricciones(event.target.value);
@@ -95,8 +82,8 @@ return (
                                         
 
                 <Select
-                        labelId="demo-mutiple-checkbox-label"
-                        id="demo-mutiple-checkbox"
+                        labelId="restricciones"
+                        id="restricciones"
                         multiple
                         value={restricciones}
                         onChange={handleChangeRestricciones}
@@ -104,10 +91,10 @@ return (
                         renderValue={(selected) => selected.join(', ')}
                         MenuProps={MenuProps}
                 >
-                        {names.map((name) => (
-                                <MenuItem key={name} value={name}>
+                        {listaRestricciones.map((restriccion) => (
+                                <MenuItem key={restriccion} value={restriccion}>
                                         <Checkbox checked={restricciones.indexOf(name) > -1} />
-                                        <ListItemText primary={name} />
+                                        <ListItemText primary={restriccion} />
                                 </MenuItem>
                         ))}
                 </Select>
