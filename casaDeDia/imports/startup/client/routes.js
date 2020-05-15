@@ -27,6 +27,12 @@ import InstructoresTab from "../../ui/tabs/InstructoresTab";
 import EmpleadosTab from "../../ui/tabs/EmpleadosTab";
 import ActividadesTab from "../../ui/tabs/ActividadesTab";
 
+import TutorTab from "../../ui/tabs/TutoresTab";
+import TalleresTab from "../../ui/tabs/TalleresTab";
+import ColectivosTab from "../../ui/tabs/ColectivosTab";
+import ConvocatoriasTab from "../../ui/tabs/ConvocatoriasTab";
+
+import CentrosTab from "../../ui/tabs/CentrosTab"
 
 FlowRouter.route('/', {
     name: 'login',
@@ -281,6 +287,52 @@ FlowRouter.route('/empleado/Empleados', {
     action() {
         mount(EmpleadoPage, {
             content: <EmpleadosTab />
+        })
+    }
+})
+
+
+
+FlowRouter.route('/administrador/tutores', {
+    name: 'tutores',
+    action() {
+        mount(AdministradorPage, {
+            content: <TutorTab />
+        })
+    }
+})
+
+FlowRouter.route('/administrador/talleres', {
+    name: 'talleres',
+    action() {
+        mount(AdministradorPage, {
+            content: <TalleresTab />
+        })
+    }
+})
+
+FlowRouter.route('/administrador/colectivos', {
+    name: 'colectivos',
+    action() {
+        mount(AdministradorPage, {
+            content: <ColectivosTab />
+        })
+    }
+})
+FlowRouter.route('/administrador/convocatorias', {
+    name: 'convocatorias',
+    action() {
+          mount(AdministradorPage, {
+               content: <ConvocatoriasTab />
+         })
+    }
+})
+
+FlowRouter.route('/administrador/centros', {
+    name: 'centros',
+    action() {
+        mount(AdministradorPage, {
+            content: <CentrosTab />
         })
     }
 })
