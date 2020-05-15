@@ -4,15 +4,15 @@ import { CasasDeDia } from "../casasDeDia/casasDeDia";
 Meteor.methods({
 
 
-    "crearCasaDeDia"(nombre, direccion, actividades, restricciones, horario, horarioAtencion, cupoLimite) {
+    "crearCasaDeDia"(nombre, direccion, actividades, restricciones, horarioApertura, horarioCierre, cupoLimite) {
         CasasDeDia.insert(
             {
                 nombre: nombre,
                 direccion: direccion,
                 actividades: actividades,
                 restricciones: restricciones,
-                horario: horario,
-                horarioAtencion: horarioAtencion,
+                horarioApertura: horarioApertura,
+                horarioCierre: horarioCierre,
                 cupoLimite: cupoLimite
             }
 

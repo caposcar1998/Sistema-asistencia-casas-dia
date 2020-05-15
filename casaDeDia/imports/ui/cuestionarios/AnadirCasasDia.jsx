@@ -75,8 +75,23 @@ export default function AnadirCasasDia() {
                                                 }
                                         });
                         }
-
                 )
+        }
+
+        function crearCasaDeDia() {
+                return new Promise(
+                        (resolve, reject) => {
+                                Meteor.call("crearCasaDeDia",
+                                        nombre, direccion, actividades, restricciones, horarioApertura, horarioCierre, cupoLimite,
+                                        (err, res) => {
+                                                if (err) {
+                                                        reject()
+                                                } else {
+                                                        resolve()
+                                                }
+                                        });
+                        }
+                )        
         }
 
 return (
@@ -194,7 +209,7 @@ return (
         </Grid>
         <Grid item xs={4} />
         <Grid item xs={4}>
-                <Button variant="contained" onClick={actividadesServidor} color="primary">Crear</Button>                        
+                <Button variant="contained" onClick={crearCasaDeDia} color="primary">Crear</Button>                        
         </Grid>
                         
         </Grid>

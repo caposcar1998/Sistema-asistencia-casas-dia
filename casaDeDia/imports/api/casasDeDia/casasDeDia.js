@@ -10,8 +10,8 @@ let Schema = new SimpleSchema({
     direccion: { type: String },
     "restricciones.$": { type: Restricciones },
     restricciones: { type: Array, defaultValue: [], optional: true },
-    horario: { type: Date },
-    horarioAtencion: { type: Date },
+    horarioApertura: { type: Date },
+    horarioCierre: { type: Date },
     cupoLimite: { type: Number },
     "actividades.$": { type: Actividades },
     actividades: { type: Array, defaultValue: [], optional: true }
