@@ -27,6 +27,8 @@ import InstructoresTab from "../../ui/tabs/InstructoresTab";
 import EmpleadosTab from "../../ui/tabs/EmpleadosTab";
 import ActividadesTab from "../../ui/tabs/ActividadesTab";
 
+import TutorColectivoTab from "../../ui/tabs/TutoresColectivoTab"
+
 
 FlowRouter.route('/', {
     name: 'login',
@@ -281,6 +283,15 @@ FlowRouter.route('/empleado/Empleados', {
     action() {
         mount(EmpleadoPage, {
             content: <EmpleadosTab />
+        })
+    }
+})
+
+FlowRouter.route('/administrador/tutoresColectivo', {
+    name: 'tutoresColectivo',
+    action() {
+        mount(AdministradorPage, {
+            content: <TutorColectivoTab />
         })
     }
 })

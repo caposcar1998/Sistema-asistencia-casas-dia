@@ -22,6 +22,7 @@ import DirectionsWalkIcon from '@material-ui/icons/DirectionsWalk';
 import RoomServiceIcon from '@material-ui/icons/RoomService';
 import LocalActivityIcon from '@material-ui/icons/LocalActivity';
 import EventSeatIcon from '@material-ui/icons/EventSeat';
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 
 const useStyles = makeStyles({
     list: {
@@ -102,6 +103,9 @@ export default function MenuGeneralAdministrador() {
     function actividadesPage() {
         FlowRouter.go("actividades");
 
+    }
+    function tutoresPage() {
+        FlowRouter.go("tutoresColectivo");
     }
 
     const list = (anchor) => (
@@ -185,6 +189,13 @@ export default function MenuGeneralAdministrador() {
                 <ListItem button key={"Beneficios"} onClick={beneficiosPage}>
                     <ListItemIcon><EventSeatIcon /></ListItemIcon>
                     <ListItemText primary={"Beneficios"} />
+                </ListItem>
+            </List>
+            <Divider />
+            <List>
+                <ListItem button key={"Tutores Colectivo"} onClick={tutoresPage}>
+                <ListItemIcon><AssignmentIndIcon /></ListItemIcon>
+                    <ListItemText primary={"Tutores Colectivo"} />
                 </ListItem>
             </List>
         </div>
