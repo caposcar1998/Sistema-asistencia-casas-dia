@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect } from 'react';
 import { Grid, Paper, TextField, Select, MenuItem, Button, Checkbox, ListItemText,Input  } from '@material-ui/core';
 import {listaRestricciones} from "../../utilities/tablasEstaticas/restricciones";
 
@@ -12,6 +12,11 @@ export default function AnadirCasasDia() {
         const [cupoLimite, setCupoLimite] = React.useState('');
         const [open, setOpen] = React.useState(false);
         const [actividadesDisponibles, setActividadesDisponible] = React.useState([]);
+
+
+        useEffect(() => {
+                actividadesServidor();
+        }, []);
 
 
         const handleChangeCupoLimite = (event) => {
@@ -53,7 +58,7 @@ export default function AnadirCasasDia() {
         };
 
         const handleChangeActividades = (event) => {
-                setRestricciones(event.target.value);
+                setActividades(event.target.value);
         };
 
 
@@ -73,7 +78,6 @@ export default function AnadirCasasDia() {
 
                 )
         }
-
 
 return (
         
@@ -109,7 +113,7 @@ return (
                         >
                                 {actividadesDisponibles.map((actividad) => (
                                         <MenuItem key={actividad.nombre} value={actividad.nombre}>
-                                                <Checkbox checked={actividades.indexOf(name) > -1} />
+                                                <Checkbox checked={actividades.indexOf(actividad.nombre) > -1} />
                                                 <ListItemText primary={actividad.nombre} />
                                         </MenuItem>
                                 ))}
@@ -132,7 +136,7 @@ return (
                 >
                         {listaRestricciones.map((restriccion) => (
                                 <MenuItem key={restriccion} value={restriccion}>
-                                        <Checkbox checked={restricciones.indexOf(name) > -1} />
+                                        <Checkbox checked={restricciones.indexOf(restriccion) > -1} />
                                         <ListItemText primary={restriccion} />
                                 </MenuItem>
                         ))}
