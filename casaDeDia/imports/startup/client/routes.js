@@ -27,8 +27,10 @@ import InstructoresTab from "../../ui/tabs/InstructoresTab";
 import EmpleadosTab from "../../ui/tabs/EmpleadosTab";
 import ActividadesTab from "../../ui/tabs/ActividadesTab";
 
-import TutorColectivoTab from "../../ui/tabs/TutoresColectivoTab"
-
+import TutorTab from "../../ui/tabs/TutoresTab";
+import TalleresTab from "../../ui/tabs/TalleresTab";
+import ColectivosTab from "../../ui/tabs/ColectivosTab";
+import ConvocatoriasTab from "../../ui/tabs/ConvocatoriasTab";
 
 FlowRouter.route('/', {
     name: 'login',
@@ -287,11 +289,39 @@ FlowRouter.route('/empleado/Empleados', {
     }
 })
 
-FlowRouter.route('/administrador/tutoresColectivo', {
-    name: 'tutoresColectivo',
+
+
+FlowRouter.route('/administrador/tutores', {
+    name: 'tutores',
     action() {
         mount(AdministradorPage, {
-            content: <TutorColectivoTab />
+            content: <TutorTab />
         })
+    }
+})
+
+FlowRouter.route('/administrador/talleres', {
+    name: 'talleres',
+    action() {
+        mount(AdministradorPage, {
+            content: <TalleresTab />
+        })
+    }
+})
+
+FlowRouter.route('/administrador/colectivos', {
+    name: 'colectivos',
+    action() {
+        mount(AdministradorPage, {
+            content: <ColectivosTab />
+        })
+    }
+})
+FlowRouter.route('/administrador/convocatorias', {
+    name: 'convocatorias',
+    action() {
+          mount(AdministradorPage, {
+               content: <ConvocatoriasTab />
+         })
     }
 })

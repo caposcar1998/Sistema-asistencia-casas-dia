@@ -2,22 +2,24 @@ import React, { useEffect, useState } from 'react';
 import MaterialTable from 'material-table';
 import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
-import { Instructores } from "../../api/instructores/instructores";
+import { Talleres } from "../../api/talleres/talleres";
 
 
-function TablaInstructor({instructores}) {
+function TablaTaller({talleres}) {
 
 
-    function addInstructor(newData) {
+    function addTaller(newData) {
         return new Promise(
             (resolve, reject) => {
-                Meteor.call("crearInstructor",
-                newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,
+                Meteor.call("crearTaller",
+                    newData.cupo,newData.nombre,newData.instructor,newData.colectivo,
                     (err, res) => {
                         if (err) {
-                            reject()
+                            alert("Error al crear taller, instructor erroneo")
+                            reject()                           
                         } else {
-                            resolve()
+                            alert("Exito crear taller")
+                            resolve()    
                         }
                     });
 
@@ -26,15 +28,17 @@ function TablaInstructor({instructores}) {
         )
 
     };
-    function editInstructor(newData) {
+    function editTaller(newData) {
         return new Promise(
             (resolve, reject) => {
-                Meteor.call("editarInstructor",
-                    newData._id, newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,
+                Meteor.call("editarTaller",
+                    newData._id, newData.cupo,newData.nombre,newData.instructor,newData.colectivo,
                     (err, res) => {
                         if (err) {
+                            alert("Error al editar taller")
                             reject()
                         } else {
+                            alert("Exito editar taller")
                             resolve()
                         }
                     });
@@ -43,10 +47,10 @@ function TablaInstructor({instructores}) {
         )
     };
 
-    function borrarInstructor(data) {
+    function borrarTaller(data) {
         return new Promise(
             (resolve, reject) => {
-                Meteor.call("borrarInstructor",
+                Meteor.call("borrarTaller",
                     data._id,
                     (err, res) => {
                         if (err) {
@@ -62,24 +66,23 @@ function TablaInstructor({instructores}) {
     return (
 
         <MaterialTable
-            title="Instructores"
+            title="Talleres"
             icons={tableIcons}
             columns={
                 [
-                    { title: "ID", field: "_id" },
+                    
+                    { title: "Cupo en el Taller", field: "cupo" },
                     { title: "Nombre", field: "nombre" },
-                    { title: "Apellidos", field: "apellidos" },
-                    { title: "Apodo", field: "apodo" },
-                    { title: "Contrasena", field: "contrasena" },
-                    { title: "Email", field: "email"}
-
+                    { title: "ID Instructor encargado", field: "instructor" },
+                    { title: "ID Colectivo", field: "colectivo" },
+                    
                 ]
             }
-            data={instructores}
+            data={talleres}
             editable={{
-                onRowAdd: addInstructor,
-                onRowUpdate: editInstructor,
-                onRowDelete: borrarInstructor
+                onRowAdd: addTaller,
+                onRowUpdate: editTaller,
+                onRowDelete: borrarTaller
             }}
         />
     );
@@ -88,6 +91,6 @@ function TablaInstructor({instructores}) {
 
 export default withTracker(() => {
     return {
-        instructores: Instructores.find({}).fetch(),
+        talleres: Talleres.find({}).fetch(),
     };
-})(TablaInstructor);
+})(TablaTaller);

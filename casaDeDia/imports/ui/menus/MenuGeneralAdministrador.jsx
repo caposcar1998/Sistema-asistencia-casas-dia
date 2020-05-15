@@ -23,6 +23,9 @@ import RoomServiceIcon from '@material-ui/icons/RoomService';
 import LocalActivityIcon from '@material-ui/icons/LocalActivity';
 import EventSeatIcon from '@material-ui/icons/EventSeat';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import RowingIcon from '@material-ui/icons/Rowing';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 
 const useStyles = makeStyles({
     list: {
@@ -105,7 +108,19 @@ export default function MenuGeneralAdministrador() {
 
     }
     function tutoresPage() {
-        FlowRouter.go("tutoresColectivo");
+        FlowRouter.go("tutores");
+    }
+
+    function talleresPage() {
+        FlowRouter.go("talleres");
+    }
+
+    function colectivosPage() {
+        FlowRouter.go("colectivos");
+    }
+
+    function convocatoriasPage() {
+        FlowRouter.go("convocatorias");
     }
 
     const list = (anchor) => (
@@ -193,9 +208,27 @@ export default function MenuGeneralAdministrador() {
             </List>
             <Divider />
             <List>
-                <ListItem button key={"Tutores Colectivo"} onClick={tutoresPage}>
+                <ListItem button key={"Tutores"} onClick={tutoresPage}>
                 <ListItemIcon><AssignmentIndIcon /></ListItemIcon>
                     <ListItemText primary={"Tutores Colectivo"} />
+                </ListItem>
+            </List>
+            <List>
+                <ListItem button key={"Talleres"} onClick={talleresPage}>
+                    <ListItemIcon><RowingIcon /></ListItemIcon>
+                    <ListItemText primary={"Talleres"} />
+                </ListItem>
+            </List>
+            <List>
+                <ListItem button key={"Colectivos"} onClick={colectivosPage}>
+                    <ListItemIcon><FavoriteIcon /></ListItemIcon>
+                    <ListItemText primary={"Colectivos"} />
+                </ListItem>
+            </List>
+            <List>
+                <ListItem button key={"Convocatorias"} onClick={convocatoriasPage}>
+                    <ListItemIcon><LibraryBooksIcon /></ListItemIcon>
+                    <ListItemText primary={"Convocatorias"} />
                 </ListItem>
             </List>
         </div>
