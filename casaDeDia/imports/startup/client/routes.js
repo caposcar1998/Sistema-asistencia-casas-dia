@@ -32,6 +32,8 @@ import TalleresTab from "../../ui/tabs/TalleresTab";
 import ColectivosTab from "../../ui/tabs/ColectivosTab";
 import ConvocatoriasTab from "../../ui/tabs/ConvocatoriasTab";
 
+import CentrosTab from "../../ui/tabs/CentrosTab"
+
 FlowRouter.route('/', {
     name: 'login',
     action() {
@@ -323,5 +325,14 @@ FlowRouter.route('/administrador/convocatorias', {
           mount(AdministradorPage, {
                content: <ConvocatoriasTab />
          })
+    }
+})
+
+FlowRouter.route('/administrador/centros', {
+    name: 'centros',
+    action() {
+        mount(AdministradorPage, {
+            content: <CentrosTab />
+        })
     }
 })

@@ -20,6 +20,7 @@ import "../imports/api/tutores/methods";
 import "../imports/api/talleres/methods";
 import "../imports/api/colectivos/methods";
 import "../imports/api/convocatorias/methods";
+import "../imports/api/centros/methods";
 
 
 //Funciones

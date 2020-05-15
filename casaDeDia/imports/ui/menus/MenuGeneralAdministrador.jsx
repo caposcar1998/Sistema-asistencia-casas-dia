@@ -26,6 +26,7 @@ import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import RowingIcon from '@material-ui/icons/Rowing';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import ExploreIcon from '@material-ui/icons/Explore';
 
 const useStyles = makeStyles({
     list: {
@@ -121,6 +122,10 @@ export default function MenuGeneralAdministrador() {
 
     function convocatoriasPage() {
         FlowRouter.go("convocatorias");
+    }
+
+    function centrosPage(){
+        FlowRouter.go("centros");
     }
 
     const list = (anchor) => (
@@ -229,6 +234,12 @@ export default function MenuGeneralAdministrador() {
                 <ListItem button key={"Convocatorias"} onClick={convocatoriasPage}>
                     <ListItemIcon><LibraryBooksIcon /></ListItemIcon>
                     <ListItemText primary={"Convocatorias"} />
+                </ListItem>
+            </List>
+            <List>
+                <ListItem button key={"Centros"} onClick={centrosPage}>
+                    <ListItemIcon><ExploreIcon /></ListItemIcon>
+                    <ListItemText primary={"Centros"} />
                 </ListItem>
             </List>
         </div>

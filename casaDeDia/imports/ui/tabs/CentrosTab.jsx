@@ -6,8 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-
-import TablaTaller from '../tablasInformacion/TablaTaller';
+import TablaCentros from '../tablasInformacion/TablaCentros';
 
 
 export function TabPanel(props) {
@@ -26,8 +25,6 @@ export function TabPanel(props) {
         </Typography>
     );
 }
-
-
 
 TabPanel.propTypes = {
     children: PropTypes.node,
@@ -67,11 +64,13 @@ export default function BeneficiosTab() {
         <div className={classes.root}>
             <AppBar position="static" className={classes.appBar}>
                 <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                    <Tab label="Talleres" {...a11yProps(0)} />
+                    <Tab label="Registrar Centro" {...a11yProps(0)} />
+                   
+
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-                <TablaTaller />
+                <TablaCentros />
             </TabPanel>
         </div>
     );
