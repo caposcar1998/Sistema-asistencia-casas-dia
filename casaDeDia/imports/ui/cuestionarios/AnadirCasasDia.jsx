@@ -11,6 +11,8 @@ export default function AnadirCasasDia() {
         const [horarioCierre, setHorarioCierre] = React.useState('');
         const [cupoLimite, setCupoLimite] = React.useState('');
         const [open, setOpen] = React.useState(false);
+        const [actividadesDisponibles, setActividadesDisponible] = React.useState([]);
+
 
         const handleChangeCupoLimite = (event) => {
                 setCupoLimite(event.target.value);
@@ -50,6 +52,27 @@ export default function AnadirCasasDia() {
                 setRestricciones(value);
         };
 
+        const handleChangeActividades = (event) => {
+                setRestricciones(event.target.value);
+        };
+
+
+        function actividadesServidor() { 
+                return new Promise(
+                        (resolve, reject) => {
+                                Meteor.call("leerActividad",
+                                        (err, res) => {
+                                                if (err) {
+                                                        reject()
+                                                } else {
+                                                        setActividadesDisponible(res)
+                                                        resolve()
+                                                }
+                                        });
+                        }
+
+                )
+        }
 
 
 return (
@@ -73,14 +96,30 @@ return (
                 <Grid item xs={4}>
                         <Grid item xs={12}>Actividades</Grid>
                 <Grid item xs={12}>
-                        <TextField />
+                        
+                        <Select
+                                labelId="actividades"
+                                id="actividades"
+                                multiple
+                                value={actividades}
+                                onChange={handleChangeActividades}
+                                input={<Input />}
+                                renderValue={(selected) => selected.join(', ')}
+                                MenuProps={MenuProps}
+                        >
+                                {actividadesDisponibles.map((actividad) => (
+                                        <MenuItem key={actividad.nombre} value={actividad.nombre}>
+                                                <Checkbox checked={actividades.indexOf(name) > -1} />
+                                                <ListItemText primary={actividad.nombre} />
+                                        </MenuItem>
+                                ))}
+                        </Select>
+
                 </Grid>
         </Grid>
                 <Grid item xs={4}>
                         <Grid item xs={12}>Restricciones</Grid>
                                 <Grid item xs={12}>
-                                        
-
                 <Select
                         labelId="restricciones"
                         id="restricciones"
@@ -151,7 +190,7 @@ return (
         </Grid>
         <Grid item xs={4} />
         <Grid item xs={4}>
-                <Button variant="contained" color="primary">Crear</Button>                        
+                <Button variant="contained" onClick={actividadesServidor} color="primary">Crear</Button>                        
         </Grid>
                         
         </Grid>
