@@ -19,7 +19,7 @@
     "react-dom": "^16.13.0",
     "react-mounter": "^1.2.0",
     "react-router-dom": "^5.1.2",
-    "simpl-schema": "^1.5.7"
+    "simpl-schema": "^1.7.1"
   },
   "meteor": {
     "mainModule": {
