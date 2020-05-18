@@ -13,6 +13,7 @@ let Schema = new SimpleSchema({
     horarioApertura: { type: Date },
     horarioCierre: { type: Date },
     cupoLimite: { type: Number },
+    codigoPostal: { type: Number },
     "actividades.$": { type: Actividades },
     actividades: { type: Array, defaultValue: [], optional: true }
 })

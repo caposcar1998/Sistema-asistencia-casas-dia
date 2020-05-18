@@ -10,6 +10,7 @@ export default function AnadirCasasDia() {
         const [horarioApertura, setHorarioApertura] = React.useState('');
         const [horarioCierre, setHorarioCierre] = React.useState('');
         const [cupoLimite, setCupoLimite] = React.useState('');
+        const [codigoPostal, setCodigoPostal] = React.useState('');
         const [open, setOpen] = React.useState(false);
         const [actividadesDisponibles, setActividadesDisponible] = React.useState([]);
 
@@ -82,7 +83,7 @@ export default function AnadirCasasDia() {
                 return new Promise(
                         (resolve, reject) => {
                                 Meteor.call("crearCasaDeDia",
-                                        nombre, direccion, actividades, restricciones, horarioApertura, horarioCierre, cupoLimite,
+                                        nombre, direccion, actividades, restricciones, horarioApertura, horarioCierre, cupoLimite,codigoPostal,
                                         (err, res) => {
                                                 if (err) {
                                                         reject()
@@ -182,7 +183,18 @@ return (
                                 onChange={(e) => setHorarioCierre(e.target.value)} 
                         />
                 </Grid>
-        </Grid>                                         
+        </Grid>
+        <Grid item xs={4}>
+                <Grid item xs={12}>Codigo postal</Grid>
+                <Grid item xs={12}>
+                        <TextField
+                                id="codigo"
+                                type="number"
+                                value={codigoPostal}
+                                onChange={(e) => setCodigoPostal(e.target.value)}
+                        />
+                </Grid>
+        </Grid>                   
         <Grid item xs={4}>
                 <Grid item xs={12}>Cupo limite</Grid>
                 <Grid item xs={12}>
