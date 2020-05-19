@@ -3,8 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { List,ListItem,Grid, Paper, Button, Typography, Card, CardContent, CardActions, CardMedia, CardHeader, Collapse} from '@material-ui/core';
 import ModalCrearCasaDeDia from '../modales/ModaCrearCasaDeDia';
 import IconButton from '@material-ui/core/IconButton';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import DeleteIcon from '@material-ui/icons/Delete';
