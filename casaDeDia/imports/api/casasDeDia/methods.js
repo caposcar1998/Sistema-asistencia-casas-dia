@@ -45,7 +45,7 @@ Meteor.methods({
         )
     },
 
-    "leerCasasDeDIa"() {
+    "leerCasasDeDia"() {
         return CasasDeDia.find().fetch();
     }
 
