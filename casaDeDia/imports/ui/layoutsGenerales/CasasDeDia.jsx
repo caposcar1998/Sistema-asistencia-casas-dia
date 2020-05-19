@@ -14,20 +14,30 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CasasDeDia() { 
     const classes = useStyles();
+    const [openModal, setOpenModal] = React.useState(false);
 
+    const handleOpenModal = () => {
+        setOpenModal(true);
+    };
 
-    function abrirModalNuevaCasa() { }
+    const handleCloseModal = () => {
+        setOpenModal(false);
+    };
+
 
     return (
         <Grid container className={classes.fondo}>
             <Grid item xs={12} className={classes.cajas}>
                 <Paper>
-                    <Button onClick={abrirModalNuevaCasa}>Nueva casa de dia</Button>
+                    <Button onClick={handleOpenModal}>Nueva casa de dia</Button>
                 </Paper>
             </Grid>
             <Grid item xs={12} className={classes.cajas}>
                 <Paper>
-                    <ModalCrearCasaDeDia/>
+                    <ModalCrearCasaDeDia
+                        handleCloseModal={handleCloseModal}
+                        openModal={openModal}
+                    />
                 </Paper>
             </Grid>
         </Grid>

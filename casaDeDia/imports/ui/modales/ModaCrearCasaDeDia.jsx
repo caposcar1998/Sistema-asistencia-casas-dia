@@ -5,7 +5,6 @@ import AnadirCasasDia from '../cuestionarios/AnadirCasasDia';
 import { Modal } from '@material-ui/core';
 
 
-
 const useStyles = makeStyles((theme) => ({
 
     posicionModal: {
@@ -15,25 +14,11 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function ModalCrearCasaDeDia() {
+export default function ModalCrearCasaDeDia({ handleCloseModal, openModal }) {
     const classes = useStyles();
-
-    const [openModal, setOpenModal] = React.useState(false);
-
-    const handleOpenModal = () => {
-        setOpenModal(true);
-    };
-
-    const handleCloseModal = () => {
-        setOpenModal(false);
-    };
 
 
     return (
-        <>
-            <button type="button" onClick={handleOpenModal}>
-            Open Modal
-      </button>
             <Modal
             className={classes.posicionModal}
             open={openModal}
@@ -42,6 +27,6 @@ export default function ModalCrearCasaDeDia() {
         >
             <AnadirCasasDia/>
         </Modal>
-        </>
     )
- }
+}
+ 
