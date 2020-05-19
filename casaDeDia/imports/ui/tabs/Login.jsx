@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { withHistory } from 'react-router-dom';
 import AdministradorPage from '../layoutsGenerales/AdministradorPage';
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
+import AddImage from '../../utilities/AddImage';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,13 +36,12 @@ export default function Login() {
     const classes = useStyles();
     const [usuario, setUsuario] = useState();
     const [contrasena, setContrasena] = useState(); 
-    const [alert, setAlert] = useState(); 
-    const [state, setState] = useState(); 
-    const [message, setMessage] = useState(); 
-
+    const [alertMessage, setAlertMessage] = useState({
+        type: '',
+        message: '',
+    });
     function ingresarSistema() {
-        setAlert(null)
-        setState(false)
+        setAlertMessage(null)
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("encontrarAdministrador",
@@ -49,14 +49,16 @@ export default function Login() {
                     (err, res) => {
                         if (err) {
                             reject()
-                            setAlert("error")
-                            setState(true)
-                            setMessage("Error al ingresar")
+                            setAlertMessage({
+                                type: 'error',
+                                message: 'Error'
+                            })
                         } else {
                             resolve()
-                            setAlert("success")
-                            setState(true)
-                            setMessage("Éxito")
+                            setAlertMessage({
+                                type: 'success',
+                                message: 'Success'
+                            })
                             FlowRouter.go('administrador')  
                         }
                     });
@@ -100,9 +102,15 @@ export default function Login() {
                             
                         </Grid>
                   </Paper>
-                  {state &&
-                  <CustomSnackbars type={alert} state={state} message={message}/>
+                  {alertMessage &&
+                    <CustomSnackbars 
+                        autoHideDuration={4000} 
+                        severityOfAlert={alertMessage.type}
+                        message={alertMessage.message}
+                    >   
+                    </CustomSnackbars>
                   }
+                  
                 </Grid>
                 
           </Container>
