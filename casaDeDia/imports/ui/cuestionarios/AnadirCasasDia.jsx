@@ -1,18 +1,22 @@
-import React, {useEffect } from 'react';
+import React, {useEffect, useState } from 'react';
 import { Grid, Paper, TextField, Select, MenuItem, Button, Checkbox, ListItemText,Input  } from '@material-ui/core';
 import {listaRestricciones} from "../../utilities/tablasEstaticas/restricciones";
+import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 
 export default function AnadirCasasDia() {
-        const [nombre, setNombre] = React.useState('');
-        const [direccion, setDireccion] = React.useState('');
-        const [actividades, setActividades] = React.useState([]);
-        const [restricciones, setRestricciones] = React.useState([]);
-        const [horarioApertura, setHorarioApertura] = React.useState('');
-        const [horarioCierre, setHorarioCierre] = React.useState('');
-        const [cupoLimite, setCupoLimite] = React.useState('');
-        const [codigoPostal, setCodigoPostal] = React.useState('');
-        const [open, setOpen] = React.useState(false);
-        const [actividadesDisponibles, setActividadesDisponible] = React.useState([]);
+        const [nombre, setNombre] = useState('');
+        const [direccion, setDireccion] = useState('');
+        const [actividades, setActividades] = useState([]);
+        const [restricciones, setRestricciones] = useState([]);
+        const [horarioApertura, setHorarioApertura] = useState('');
+        const [horarioCierre, setHorarioCierre] = useState('');
+        const [cupoLimite, setCupoLimite] = useState('');
+        const [codigoPostal, setCodigoPostal] = useState('');
+        const [alert, setAlert] = useState();
+        const [snackBarState, setSnackBarState] = useState(); 
+        const [open, setOpen] = useState(false);
+        const [actividadesDisponibles, setActividadesDisponible] = useState([]);
+        const [message, setMessage] = useState(); 
 
 
         useEffect(() => {
@@ -86,8 +90,14 @@ export default function AnadirCasasDia() {
                                         nombre, direccion, actividades, restricciones, horarioApertura, horarioCierre, cupoLimite,codigoPostal,
                                         (err, res) => {
                                                 if (err) {
+                                                        setAlert("error")
+                                                        setSnackBarState(true)
+                                                        setMessage("Error al crear casa de dia")
                                                         reject()
                                                 } else {
+                                                        setAlert("success")
+                                                        setSnackBarState(true)
+                                                        setMessage("Registro correcto")
                                                         resolve()
                                                 }
                                         });
@@ -136,7 +146,7 @@ return (
                         </Select>
 
                 </Grid>
-        </Grid>
+       </Grid> 
                 <Grid item xs={4}>
                         <Grid item xs={12}>Restricciones</Grid>
                                 <Grid item xs={12}>
@@ -225,8 +235,11 @@ return (
         </Grid>
                         
         </Grid>
-                                                                
+                {snackBarState &&
+                        <CustomSnackbars type={alert} state={snackBarState} message={message} />
+                }                                                      
 </Paper>
 
+        
 )
  }
