@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Button} from '@material-ui/core';
 import ModalCrearCasaDeDia from '../modales/ModaCrearCasaDeDia';
 import TarjetasCasasDeDia from '../casasDeDia/TarjetasCasasDeDia';
+import BorrarCasaDia from '../casasDeDia/BorrarCasaDia';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -85,7 +86,8 @@ export default function CasasDeDia() {
                                 />
                     ))}
                         </Grid>  
-            </Grid>
+                    </Grid>
+                    <BorrarCasaDia/>
                 </Paper>
         </Grid>
             <ModalCrearCasaDeDia
