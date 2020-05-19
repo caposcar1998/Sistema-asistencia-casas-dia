@@ -6,10 +6,7 @@ import { mount } from 'react-mounter'
 
 import App from '../../ui/App';
 
-import VoluntarioPage from '../../ui/layoutsGenerales/VoluntarioPage';
-import InstructorPage from '../../ui/layoutsGenerales/InstructorPage';
 import AdministradorPage from '../../ui/layoutsGenerales/AdministradorPage';
-import EmpleadoPage from '../../ui/layoutsGenerales/EmpleadoPage';
 
 import Login from '../../ui/tabs/Login';
 import BeneficiosTab from '../../ui/tabs/BeneficiosTab';
@@ -43,23 +40,6 @@ FlowRouter.route('/', {
     }
 })
 
-FlowRouter.route('/voluntario', {
-    name: 'voluntario',
-    action() {
-        mount(VoluntarioPage, {
-            content: <AsilosTab />
-        })
-    }
-})
-
-FlowRouter.route('/instructor', {
-    name: 'instructor',
-    action() {
-        mount(InstructorPage, {
-            content: <AsilosTab />
-        })
-    }
-})
 
 FlowRouter.route('/administrador', {
     name: 'administrador',
@@ -181,116 +161,6 @@ FlowRouter.route('/administrador/Empleados', {
         })
     }
 })
-
-FlowRouter.route('/empleado', {
-    name: 'empleado',
-    action() {
-        mount(EmpleadoPage, {
-            content: <UsuariosTab />
-        })
-    }
-})
-
-FlowRouter.route('/empleado/beneficios', {
-    name: 'beneficiosE',
-    action() {
-        mount(EmpleadoPage, {
-            content: <BeneficiosTab />
-        })
-    }
-})
-
-
-FlowRouter.route('/empleado/tarjetas', {
-    name: 'tarjetasE',
-    action() {
-        mount(EmpleadoPage, {
-            content: <TarjetasTab />
-        })
-    }
-})
-
-FlowRouter.route('/empleado/administradores', {
-    name: 'administradoresE',
-    action() {
-        mount(EmpleadoPage, {
-            content: <AdministradoresTab />
-        })
-    }
-})
-
-FlowRouter.route('/empleado/asilos', {
-    name: 'asilosE',
-    action() {
-        mount(EmpleadoPage, {
-            content: <AsilosTab />
-        })
-    }
-})
-
-FlowRouter.route('/empleado/casasDeDia', {
-    name: 'casasDeDiaE',
-    action() {
-        mount(EmpleadoPage, {
-            content: <CasasDeDiaTab />
-        })
-    }
-})
-
-FlowRouter.route('/empleado/clubes', {
-    name: 'clubesE',
-    action() {
-        mount(EmpleadoPage, {
-            content: <ClubesTab />
-        })
-    }
-})
-
-FlowRouter.route('/empleado/AdultosMayores', {
-    name: 'adultosMayoresE',
-    action() {
-        mount(EmpleadoPage, {
-            content: <AdultosMayoresTab />
-        })
-    }
-})
-
-FlowRouter.route('/empleado/Servicios', {
-    name: 'serviciosE',
-    action() {
-        mount(EmpleadoPage, {
-            content: <ServiciosTab />
-        })
-    }
-})
-
-FlowRouter.route('/empleado/Voluntarios', {
-    name: 'voluntariosE',
-    action() {
-        mount(EmpleadoPage, {
-            content: <VoluntariosTab />
-        })
-    }
-})
-
-FlowRouter.route('/empleado/Instructores', {
-    name: 'instructoresE',
-    action() {
-        mount(EmpleadoPage, {
-            content: <InstructoresTab />
-        })
-    }
-})
-
-FlowRouter.route('/empleado/Empleados', {
-    name: 'empleadosE',
-    action() {
-        mount(EmpleadoPage, {
-            content: <EmpleadosTab />
-        })
-    }
-})
-
 
 
 FlowRouter.route('/administrador/tutores', {

@@ -66,7 +66,6 @@ function TablaInstructor({instructores}) {
             icons={tableIcons}
             columns={
                 [
-                    { title: "ID", field: "_id" },
                     { title: "Nombre", field: "nombre" },
                     { title: "Apellidos", field: "apellidos" },
                     { title: "Apodo", field: "apodo" },

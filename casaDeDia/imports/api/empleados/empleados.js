@@ -8,8 +8,6 @@ let Schema = new SimpleSchema({
     apodo: { type: String },
     contrasena: {type: String},
     email: { type: String },
-    editarAm: { type: String },
-    email: { type: String },
     visualizarAdultoMayor: { type: String },
     editarAdultoMayor: { type: String },
     visualizarVoluntario: { type: String },

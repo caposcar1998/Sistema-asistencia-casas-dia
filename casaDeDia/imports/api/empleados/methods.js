@@ -4,7 +4,7 @@ import { Empleados } from "../empleados/empleados";
 Meteor.methods({
 
 
-    "crearEmpleado"(nombre,apellidos,apodo,contrasena,email) {
+    "crearEmpleado"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor ) {
         Empleados.insert(
             {
                 nombre: nombre,
@@ -22,7 +22,7 @@ Meteor.methods({
         )
     },
 
-    "editarEmpleado"(idVoluntario,nombre,apellidos,apodo,contrasena,email) {
+    "editarEmpleado"(idEmpleado,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor) {
         Empleados.update(
             { _id: idEmpleado },
             {
