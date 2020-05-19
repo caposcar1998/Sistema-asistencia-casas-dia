@@ -4,12 +4,9 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import Snackbar from '@material-ui/core/Snackbar';
 import { Paper, Button } from '@material-ui/core';
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 import { makeStyles } from '@material-ui/core/styles';
-import { withHistory } from 'react-router-dom';
-import AdministradorPage from '../layoutsGenerales/AdministradorPage';
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 import AddImage from '../../utilities/AddImage';
 
@@ -70,7 +67,7 @@ export default function Login() {
 
   return(
 
-      <React.Fragment>
+      <>
           <CssBaseline />
           <Container maxWidth="sm">
               <Grid container
@@ -114,7 +111,7 @@ export default function Login() {
                 </Grid>
                 
           </Container>
-      </React.Fragment>
+      </>
       
 
       
