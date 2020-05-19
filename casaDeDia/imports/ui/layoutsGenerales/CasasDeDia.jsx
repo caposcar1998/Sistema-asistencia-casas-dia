@@ -36,6 +36,7 @@ export default function CasasDeDia() {
     const [openModal, setOpenModal] = useState(false);
     const [casasDeDia, setCasasDeDia] = useState([])
     const [expanded, setExpanded] = React.useState(false);
+    const [opcionSeleccionada, setOpcionSeleccionada] = useState();
 
     useEffect(() => {
         casasDeDiaServidor();
@@ -76,8 +77,7 @@ export default function CasasDeDia() {
             <Grid container className={classes.fondo}>
             <Paper>
             <Grid item xs={12}>
-
-                    <Button onClick={handleOpenModal}>Nueva casa de dia</Button>
+                <Button onClick={handleOpenModal} variant="contained" color="primary">Nueva casa de dia</Button>
             </Grid>
         
                     <Grid item xs={12}>
