@@ -1,7 +1,8 @@
 import React, {useEffect, useState } from 'react';
-import { Grid, Paper, TextField, Select, MenuItem, Button, Checkbox, ListItemText,Input  } from '@material-ui/core';
+import { Grid, Paper, TextField, Select, MenuItem, Button, Checkbox, ListItemText, Input, LinearProgress  } from '@material-ui/core';
 import {listaRestricciones} from "../../utilities/tablasEstaticas/restricciones";
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
+
 
 export default function AnadirCasasDia() {
         const [nombre, setNombre] = useState('');
@@ -249,19 +250,21 @@ return (
                         </Select>
                 </Grid>
                         </Grid>
+                <Grid item xs={4}>
                 <Grid item xs={12}>Seleccionar foto</Grid>
                 <Grid item xs={12}>
-                <input
-                        type="file"
-                        name="file"
-                        placeholder="Upload an image"
-                        onChange={uploadImage}
-                />
+                        <Input
+                                type="file"
+                                name="file"
+                                onChange={uploadImage}
+                                color="primary"                                
+                        />
                 {loading ? (
-                        <h3>...</h3>
+                        <LinearProgress />
                 ) : (
                                 <img src={image} style={{ width: '300px' }} />
                         )}
+                </Grid>
                 </Grid>
         <Grid item xs={4} />
         <Grid item xs={4}>
