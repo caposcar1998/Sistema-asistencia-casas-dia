@@ -17,12 +17,32 @@ export default function AnadirCasasDia() {
         const [open, setOpen] = useState(false);
         const [actividadesDisponibles, setActividadesDisponible] = useState([]);
         const [message, setMessage] = useState(); 
-
+        const [image, setImage] = useState('')
+        const [loading, setLoading] = useState(false)
 
         useEffect(() => {
                 actividadesServidor();
         }, []);
 
+
+        const uploadImage = async e => {
+                const files = e.target.files
+                const data = new FormData()
+                data.append('file', files[0])
+                data.append('upload_preset', 'prueba_image')
+                setLoading(true)
+                const res = await fetch(
+                        'https://api.cloudinary.com/v1_1/dzue2mlpl/image/upload',
+                        {
+                                method: 'POST',
+                                body: data
+                        }
+                )
+                const file = await res.json()
+
+                setImage(file.secure_url) //URL de la imagen para agregarla a Mongo de ser necesario
+                setLoading(false)
+        }
 
         const handleChangeCupoLimite = (event) => {
                 setCupoLimite(event.target.value);
@@ -87,7 +107,7 @@ export default function AnadirCasasDia() {
                 return new Promise(
                         (resolve, reject) => {
                                 Meteor.call("crearCasaDeDia",
-                                        nombre, direccion, actividades, restricciones, horarioApertura, horarioCierre, cupoLimite,codigoPostal,
+                                        nombre, direccion, actividades, restricciones, horarioApertura, horarioCierre, cupoLimite,codigoPostal,image,
                                         (err, res) => {
                                                 if (err) {
                                                         setAlert("error")
@@ -228,7 +248,21 @@ return (
                                 <MenuItem value={30}>30</MenuItem>
                         </Select>
                 </Grid>
-        </Grid>
+                        </Grid>
+                <Grid item xs={12}>Seleccionar foto</Grid>
+                <Grid item xs={12}>
+                <input
+                        type="file"
+                        name="file"
+                        placeholder="Upload an image"
+                        onChange={uploadImage}
+                />
+                {loading ? (
+                        <h3>...</h3>
+                ) : (
+                                <img src={image} style={{ width: '300px' }} />
+                        )}
+                </Grid>
         <Grid item xs={4} />
         <Grid item xs={4}>
                 <Button variant="contained" onClick={crearCasaDeDia} color="primary">Crear</Button>                        

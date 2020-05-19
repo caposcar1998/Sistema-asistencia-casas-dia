@@ -91,8 +91,8 @@ export default function CasasDeDia() {
                                     />
                                     <CardMedia
                                         className={classes.media}
-                                        image= "https://res.cloudinary.com/dzue2mlpl/image/upload/v1589854903/prueba_image/zkbe4qr01kywgb0fvlmw.jpg"
-                                        title=" Foto"
+                                        image={casa.foto}
+                                        title={casa.nombre}
                                     />
                                     <CardContent>
                                         <Typography variant="body2" color="textSecondary" component="p">

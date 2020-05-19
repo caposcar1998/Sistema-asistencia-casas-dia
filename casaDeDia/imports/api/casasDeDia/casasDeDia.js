@@ -15,7 +15,8 @@ let Schema = new SimpleSchema({
     cupoLimite: { type: Number },
     codigoPostal: { type: Number },
     "actividades.$": { type: Actividades },
-    actividades: { type: Array, defaultValue: [], optional: true }
+    actividades: { type: Array, defaultValue: [], optional: true },
+    foto: {type: String}
 })
 
 
