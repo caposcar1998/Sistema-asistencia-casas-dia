@@ -9,35 +9,38 @@ const useStyles = makeStyles((theme) => ({
     fondo: {
         backgroundColor: "#006400"
     },
-    root: {
-        maxWidth: 345,
-    },
-    media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
-    },
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-    },
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },
+   
 }));
 
 export default function CasasDeDia() { 
     const classes = useStyles();
     const [openModal, setOpenModal] = useState(false);
     const [casasDeDia, setCasasDeDia] = useState([])
-
+    const [borrarCasaDia, setBorrarCasaDia] = useState(false);
+    const [editarCasaDIa, setEditarCasaDia] = useState(false);
 
     useEffect(() => {
         casasDeDiaServidor();
     }, []);
 
+
+    const handleAbrirBorrarCasaDia = () => {
+        console.log("abrir cerrar");
+        setBorrarCasaDia(true);
+    }
+
+    const handleCerrarBorrarCasaDia =() => { 
+        setBorrarCasaDia(false);
+    } 
+
+    const handleAbrirEditarCasaDia = () => {
+        console.log("Abrir editar");
+        setEditarCasaDia(true);
+    }
+
+    const handleCerrarEditarCasaDia = () => {
+        setEditarCasaDia(false);
+    } 
 
     const handleOpenModal = () => {
         setOpenModal(true);
@@ -75,7 +78,11 @@ export default function CasasDeDia() {
                     <Grid item xs={12}>
                         <Grid container spacing={3}>
                         {casasDeDia.map((casa) => (
-                            <TarjetasCasasDeDia casa={casa} classes={classes}/>
+                            <TarjetasCasasDeDia
+                                casa={casa}
+                                handleAbrirBorrarCasaDia={handleAbrirBorrarCasaDia}
+                                handleAbrirEditarCasaDia={handleAbrirEditarCasaDia}
+                                />
                     ))}
                         </Grid>  
             </Grid>

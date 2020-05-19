@@ -5,9 +5,33 @@ import clsx from 'clsx';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { List, ListItem, Grid, Typography, Card, CardContent, CardActions, CardMedia, CardHeader, Collapse } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-export default function TarjetasCasasDeDia({casa, classes }) {
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        maxWidth: 345,
+    },
+    media: {
+        height: 0,
+        paddingTop: '56.25%', // 16:9
+    },
+    expand: {
+        transform: 'rotate(0deg)',
+        marginLeft: 'auto',
+        transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+        }),
+    },
+    expandOpen: {
+        transform: 'rotate(180deg)',
+    },
+}));
+
+
+
+export default function TarjetasCasasDeDia({ casa, handleAbrirBorrarCasaDia, handleAbrirEditarCasaDia }) {
+    const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
 
     const handleExpandClick = () => {
@@ -34,10 +58,10 @@ export default function TarjetasCasasDeDia({casa, classes }) {
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton aria-label="editar">
+                    <IconButton aria-label="editar" onClick={handleAbrirBorrarCasaDia}>
                         <DeleteIcon />
                     </IconButton>
-                    <IconButton aria-label="eliminar">
+                    <IconButton aria-label="eliminar" onClick={handleAbrirEditarCasaDia}>
                         <EditIcon />
                     </IconButton>
                     <IconButton
