@@ -16,7 +16,7 @@ Meteor.methods({
         )
     },
 
-    "editarInstructor"(idVoluntario,nombre,apellidos,apodo,contrasena,email) {
+    "editarInstructor"(idInstructor,nombre,apellidos,apodo,contrasena,email) {
         Instructores.update(
             { _id: idInstructor },
             {
