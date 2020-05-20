@@ -34,22 +34,14 @@ export default function CasasDeDia() {
     }, []);
 
 
-    const handleAbrirBorrarCasaDia = () => {
-        console.log("abrir cerrar");
-        setBorrarCasaDia(true);
-    }
 
     const handleCerrarBorrarCasaDia =() => { 
-        setBorrarCasaDia(false);
+        setOpenBorrarCasaDia(false);
     } 
 
-    const handleAbrirEditarCasaDia = () => {
-        console.log("Abrir editar");
-        setEditarCasaDia(true);
-    }
 
     const handleCerrarEditarCasaDia = () => {
-        setEditarCasaDia(false);
+        setOpenEditarCasaDia(false);
     } 
 
     const handleOpenModal = () => {
@@ -101,9 +93,11 @@ export default function CasasDeDia() {
             </Grid>
             <BorrarCasaDia
                 openBorrarCasaDia={openBorrarCasaDia}
+                handleCerrarBorrarCasaDia={handleCerrarBorrarCasaDia}
             />
             <EditarCasaDia
                 openEditarCasaDia={openEditarCasaDia}
+                handleCerrarEditarCasaDia={handleCerrarEditarCasaDia}
             />
             <ModalCrearCasaDeDia
                 handleCloseModal={handleCloseModal}
