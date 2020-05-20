@@ -14,4 +14,4 @@ export const restriccionesActividades = [
     "Mantener una buena higiéne",
     "Vestir ropa cómoda de tipo deportiva",
     "Contar con toalla deportiva",
-];
+ ];
