@@ -100,6 +100,7 @@ export default function CasasDeDia() {
                 handleCerrarBorrarCasaDia={handleCerrarBorrarCasaDia}
             />
             <EditarCasaDia
+                casaSeleccionada={casaSeleccionada}
                 openEditarCasaDia={openEditarCasaDia}
                 handleCerrarEditarCasaDia={handleCerrarEditarCasaDia}
             />
