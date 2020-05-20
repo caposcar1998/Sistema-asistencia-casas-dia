@@ -36,7 +36,7 @@ export default function BorrarCasaDia({ openBorrarCasaDia, handleCerrarBorrarCas
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState(); 
     const [message, setMessage] = useState();
-    
+
     function borrarCasaDeDia() { 
         const { _id } = casaSeleccionada;
         return new Promise(
@@ -45,14 +45,16 @@ export default function BorrarCasaDia({ openBorrarCasaDia, handleCerrarBorrarCas
                     _id,
                     (err, res) => {
                         if (err) {
-                        setAlert("error")
-                        setSnackBarState(true)
-                        setMessage("Error al borrar la casa de dia")
+                            setAlert("error")
+                            setSnackBarState(true)
+                            setMessage("Error al borrar la casa de dia")
+                            handleCerrarBorrarCasaDia()    
                             reject()
                         } else {
                             setAlert("success")
-                        setSnackBarState(true)
-                        setMessage("Casa de dia eliminada")
+                            setSnackBarState(true)
+                            setMessage("Casa de dia eliminada")
+                            handleCerrarBorrarCasaDia()
                             resolve()
                         }
                     });
@@ -73,7 +75,7 @@ export default function BorrarCasaDia({ openBorrarCasaDia, handleCerrarBorrarCas
                 <p id="simple-modal-description">
                     Seguro deseas borrar esta casa de dia?
                 </p>
-                <Button variant="contained" color="secondary" >Cancelar</Button>
+                <Button variant="contained" color="secondary" onClick={handleCerrarBorrarCasaDia}>Cancelar</Button>
                 <Button variant="contained" color="primary" onClick={borrarCasaDeDia}>Borrar</Button>
             </div>
             </Modal>

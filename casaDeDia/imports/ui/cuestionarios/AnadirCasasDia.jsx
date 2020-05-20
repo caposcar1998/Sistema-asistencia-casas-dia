@@ -4,7 +4,7 @@ import {listaRestricciones} from "../../utilities/tablasEstaticas/restricciones"
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 
 
-export default function AnadirCasasDia() {
+export default function AnadirCasasDia({ handleCloseModal}) {
         const [nombre, setNombre] = useState('');
         const [direccion, setDireccion] = useState('');
         const [actividades, setActividades] = useState([]);
@@ -72,16 +72,7 @@ export default function AnadirCasasDia() {
                 setRestricciones(event.target.value);
         };
 
-        const handleChangeMultiple = (event) => {
-                const { options } = event.target;
-                const value = [];
-                for (let i = 0, l = options.length; i < l; i += 1) {
-                        if (options[i].selected) {
-                                value.push(options[i].value);
-                        }
-                }
-                setRestricciones(value);
-        };
+        
 
         const handleChangeActividades = (event) => {
                 setActividades(event.target.value);
@@ -114,11 +105,13 @@ export default function AnadirCasasDia() {
                                                         setAlert("error")
                                                         setSnackBarState(true)
                                                         setMessage("Error al crear casa de dia")
+                                                        handleCloseModal()
                                                         reject()
                                                 } else {
                                                         setAlert("success")
                                                         setSnackBarState(true)
                                                         setMessage("Registro correcto")
+                                                        handleCloseModal()
                                                         resolve()
                                                 }
                                         });

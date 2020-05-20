@@ -40,7 +40,7 @@ export default function ModalCrearCasaDeDia({ handleCloseModal, openModal }) {
             
         >
             <div style={modalStyle} className={classes.paper} >
-                <AnadirCasasDia />
+                <AnadirCasasDia handleCloseModal={handleCloseModal} />
             </div>
         </Modal>
     )
