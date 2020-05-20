@@ -1,31 +1,47 @@
 
-import React from 'react';
+import React, { useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AnadirCasasDia from '../cuestionarios/AnadirCasasDia';
 import { Modal } from '@material-ui/core';
 
 
+function getModalStyle() {
+    const top = 50
+    const left = 50
+
+    return {
+        top: `${top}%`,
+        left: `${left}%`,
+        transform: `translate(-${top}%, -${left}%)`,
+    };
+}
+
+
 const useStyles = makeStyles((theme) => ({
-
-    posicionModal: {
-        top: "50%",
-        margin: 'auto'
-    }
-
+    paper: {
+        position: 'absolute',
+        width: 400,
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+    },
 }));
 
 export default function ModalCrearCasaDeDia({ handleCloseModal, openModal }) {
     const classes = useStyles();
-
+    const [modalStyle] = useState(getModalStyle);
 
     return (
             <Modal
-            className={classes.posicionModal}
+
             open={openModal}
             onClose={handleCloseModal}
             
         >
-            <AnadirCasasDia/>
+            <div style={modalStyle} className={classes.paper} >
+                <AnadirCasasDia />
+            </div>
         </Modal>
     )
 }

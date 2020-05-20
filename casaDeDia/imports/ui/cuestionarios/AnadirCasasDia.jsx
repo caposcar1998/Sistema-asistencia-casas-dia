@@ -128,7 +128,7 @@ export default function AnadirCasasDia() {
 
 return (
         
-<Paper elevation={3}>                    
+<>                    
 
         <Grid container>                            
                 <Grid item xs={4}>
@@ -275,8 +275,7 @@ return (
                 {snackBarState &&
                         <CustomSnackbars type={alert} state={snackBarState} message={message} />
                 }                                                      
-</Paper>
-
+</>
         
 )
  }
