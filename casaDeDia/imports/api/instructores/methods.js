@@ -4,19 +4,25 @@ import { Instructores } from "../instructores/instructores";
 Meteor.methods({
 
 
-    "crearInstructor"(nombre,apellidos,apodo,contrasena,email) {
+    "crearInstructor"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor) {
         Instructores.insert(
             {
                 nombre: nombre,
                 apellidos: apellidos,
                 apodo: apodo,
                 contrasena: contrasena,
-                email: email
+                email: email,
+                visualizarAdultoMayor: visualizarAdultoMayor,
+                editarAdultoMayor: editarAdultoMayor,
+                visualizarVoluntario: visualizarVoluntario,
+                editarVoluntario: editarVoluntario,
+                visualizarInstructor: visualizarInstructor,
+                editarInstructor: editarInstructor
             }
         )
     },
 
-    "editarInstructor"(idInstructor,nombre,apellidos,apodo,contrasena,email) {
+    "editarInstructor"(idInstructor,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor) {
         Instructores.update(
             { _id: idInstructor },
             {
@@ -26,7 +32,13 @@ Meteor.methods({
                     apellidos: apellidos,
                     apodo: apodo,
                     contrasena: contrasena,
-                    email: email
+                    email: email,
+                    visualizarAdultoMayor: visualizarAdultoMayor,
+                    editarAdultoMayor: editarAdultoMayor,
+                    visualizarVoluntario: visualizarVoluntario,
+                    editarVoluntario: editarVoluntario,
+                    visualizarInstructor: visualizarInstructor,
+                    editarInstructor: editarInstructor
                 }
             }
         )

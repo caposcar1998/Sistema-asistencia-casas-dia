@@ -9,6 +9,7 @@ import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 import { makeStyles } from '@material-ui/core/styles';
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 import AddImage from '../../utilities/AddImage';
+import { Accounts } from "meteor/accounts-base";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -31,13 +32,26 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
     const classes = useStyles();
-    const [usuario, setUsuario] = useState();
-    const [contrasena, setContrasena] = useState(); 
+    const [username, setUsername] = useState();
+    const [password, setPassword] = useState(); 
     const [alertMessage, setAlertMessage] = useState({
         type: '',
         message: '',
     });
-    function ingresarSistema() {
+
+    function ingresarSistema(){
+        Meteor.loginWithPassword(username, password, function(err){
+            if(err){
+                console.log(err.reason);
+            }else{
+                FlowRouter.go('administrador')
+
+            }
+        });
+    }
+    
+
+    /*function ingresarSistema() {
         setAlertMessage(null)
         return new Promise(
             (resolve, reject) => {
@@ -56,14 +70,15 @@ export default function Login() {
                                 type: 'success',
                                 message: 'Success'
                             })
-                            FlowRouter.go('administrador')  
+                            
+                            //FlowRouter.go('administrador') 
                         }
                     });
 
             }
 
         )
-    }
+    }*/
 
   return(
 
@@ -90,8 +105,8 @@ export default function Login() {
                     </Grid>
                     <Grid item xs={12}>
                         <form className={classes.root} noValidate autoComplete="off">
-                                <TextField id="usuario" label="Usuario" value={usuario} onChange={(e) => setUsuario(e.target.value)} />
-                                <TextField id="contrasena" label="Contrasena" type="password" onChange={(e) => setContrasena(e.target.value)}/>
+                                <TextField id="usuario" label="Usuario" value={username} onChange={(e) => setUsername(e.target.value)} />
+                                <TextField id="contrasena" label="Contrasena" type="password" onChange={(e) => setPassword(e.target.value)}/>
                         </form>
                         </Grid>
                         <Grid item xs={12}>

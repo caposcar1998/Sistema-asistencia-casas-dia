@@ -27,6 +27,7 @@ import RowingIcon from '@material-ui/icons/Rowing';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import ExploreIcon from '@material-ui/icons/Explore';
+import { Accounts } from "meteor/accounts-base";
 
 const useStyles = makeStyles({
   list: {
@@ -36,6 +37,7 @@ const useStyles = makeStyles({
     width: "auto",
   },
 });
+
 
 export default function MenuGeneralAdministrador() {
   const classes = useStyles();

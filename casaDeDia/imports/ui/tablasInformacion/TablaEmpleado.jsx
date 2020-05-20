@@ -71,12 +71,12 @@ function TablaEmpleado({empleados}) {
                     { title: "Apodo", field: "apodo" },
                     { title: "Contrasena", field: "contrasena" },
                     { title: "Email", field: "email"},
-                    { title: "Visualizar Adulto Mayor", field: "visualizarAdultoMayor"},
-                    { title: "Editar Adulto Mayor", field: "editarAdultoMayor"},
-                    { title: "Visualizar Voluntario", field: "visualizarVoluntario"},
-                    { title: "Editar Voluntario", field: "editarVoluntario"},
-                    { title: "Visualizar Instructor", field: "visualizarInstructor"},
-                    { title: "Editar Instructor", field: "editarInstructor"}
+                    { title: "Visualizar Adulto Mayor", field: "visualizarAdultoMayor", type:'boolean'},
+                    { title: "Editar Adulto Mayor", field: "editarAdultoMayor", type:'boolean'},
+                    { title: "Visualizar Voluntario", field: "visualizarVoluntario", type:'boolean'},
+                    { title: "Editar Voluntario", field: "editarVoluntario", type:'boolean'},
+                    { title: "Visualizar Instructor", field: "visualizarInstructor", type:'boolean'},
+                    { title: "Editar Instructor", field: "editarInstructor", type:'boolean'}
 
                 ]
             }

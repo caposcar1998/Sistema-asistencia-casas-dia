@@ -7,5 +7,11 @@ let Schema = new SimpleSchema({
     apellidos: { type: String },
     apodo: { type: String },
     contrasena: {type: String},
-    email: { type: String }
+    email: { type: String },
+    visualizarAdultoMayor: { type: Boolean },
+    editarAdultoMayor: { type: Boolean },
+    visualizarVoluntario: { type: Boolean },
+    editarVoluntario: { type: Boolean },
+    visualizarInstructor: { type: Boolean },
+    editarInstructor: { type: Boolean }
 })
