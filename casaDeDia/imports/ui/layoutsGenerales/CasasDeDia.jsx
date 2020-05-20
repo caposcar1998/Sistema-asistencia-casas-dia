@@ -20,12 +20,15 @@ export default function CasasDeDia() {
     const [casasDeDia, setCasasDeDia] = useState([])
     const [openEditarCasaDia, setOpenEditarCasaDia] = useState(false);
     const [openBorrarCasaDia, setOpenBorrarCasaDia] = useState(false);
+    const [casaSeleccionada, setCasaSeleccionada] = useState();
 
-    const handleOpenBorrarCasaDia = () => {
+    const handleOpenBorrarCasaDia = (casa) => {
+        setCasaSeleccionada(casa)
         setOpenBorrarCasaDia(true);
     };
 
-    const handleOpenEditarCasaDia = () => {
+    const handleOpenEditarCasaDia = (casa) => {
+        setCasaSeleccionada(casa)
         setOpenEditarCasaDia(true);
     };
 
@@ -92,6 +95,7 @@ export default function CasasDeDia() {
                 </Paper>
             </Grid>
             <BorrarCasaDia
+                casaSeleccionada={casaSeleccionada}
                 openBorrarCasaDia={openBorrarCasaDia}
                 handleCerrarBorrarCasaDia={handleCerrarBorrarCasaDia}
             />

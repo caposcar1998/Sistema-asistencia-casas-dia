@@ -38,7 +38,16 @@ export default function TarjetasCasasDeDia({ casa, handleOpenBorrarCasaDia, hand
         setExpanded(!expanded);
     };
 
+    const getCasaDeDiaABorrar = () => {
 
+        handleOpenBorrarCasaDia(casa)
+     }
+
+    const getCasaDiaAEditar = () => {
+
+        handleOpenEditarCasaDia(casa)
+    }
+    
     return (
 
         <Grid item>
@@ -58,10 +67,10 @@ export default function TarjetasCasasDeDia({ casa, handleOpenBorrarCasaDia, hand
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton aria-label="editar" onClick={handleOpenBorrarCasaDia}>
+                    <IconButton aria-label="editar" onClick={getCasaDeDiaABorrar}>
                         <DeleteIcon />
                     </IconButton>
-                    <IconButton aria-label="eliminar" onClick={handleOpenEditarCasaDia}>
+                    <IconButton aria-label="eliminar" onClick={getCasaDiaAEditar}>
                         <EditIcon />
                     </IconButton>
                     <IconButton

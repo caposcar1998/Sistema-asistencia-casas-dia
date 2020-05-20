@@ -29,10 +29,27 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function BorrarCasaDia({ openBorrarCasaDia, handleCerrarBorrarCasaDia }) {
+export default function BorrarCasaDia({ openBorrarCasaDia, handleCerrarBorrarCasaDia, casaSeleccionada}) {
     const classes = useStyles();
     const [modalStyle] = useState(getModalStyle);
 
+
+    function borrarCasaDeDia() { 
+        const { _id } = casaSeleccionada;
+        return new Promise(
+            (resolve, reject) => {
+                Meteor.call("borrarCasaDeDia",
+                    _id,
+                    (err, res) => {
+                        if (err) {
+                            reject()
+                        } else {
+                            resolve()
+                        }
+                    });
+            }
+        )
+    }
 
     return (
         <Modal
@@ -47,7 +64,7 @@ export default function BorrarCasaDia({ openBorrarCasaDia, handleCerrarBorrarCas
                     Seguro deseas borrar esta casa de dia?
                 </p>
                 <Button variant="contained" color="secondary" >Cancelar</Button>
-                <Button variant="contained" color="primary">Borrar</Button>
+                <Button variant="contained" color="primary" onClick={borrarCasaDeDia}>Borrar</Button>
             </div>
                  
         </Modal>
