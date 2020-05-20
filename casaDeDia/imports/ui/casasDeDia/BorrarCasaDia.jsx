@@ -2,6 +2,7 @@
 import React, {useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Modal, Button } from '@material-ui/core';
+import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 
 
 function getModalStyle() {
@@ -32,8 +33,10 @@ const useStyles = makeStyles((theme) => ({
 export default function BorrarCasaDia({ openBorrarCasaDia, handleCerrarBorrarCasaDia, casaSeleccionada}) {
     const classes = useStyles();
     const [modalStyle] = useState(getModalStyle);
-
-
+    const [alert, setAlert] = useState();
+    const [snackBarState, setSnackBarState] = useState(); 
+    const [message, setMessage] = useState();
+    
     function borrarCasaDeDia() { 
         const { _id } = casaSeleccionada;
         return new Promise(
@@ -42,8 +45,14 @@ export default function BorrarCasaDia({ openBorrarCasaDia, handleCerrarBorrarCas
                     _id,
                     (err, res) => {
                         if (err) {
+                        setAlert("error")
+                        setSnackBarState(true)
+                        setMessage("Error al borrar la casa de dia")
                             reject()
                         } else {
+                            setAlert("success")
+                        setSnackBarState(true)
+                        setMessage("Casa de dia eliminada")
                             resolve()
                         }
                     });
@@ -52,6 +61,7 @@ export default function BorrarCasaDia({ openBorrarCasaDia, handleCerrarBorrarCas
     }
 
     return (
+        <>
         <Modal
             className={classes.posicionModal}
             open={openBorrarCasaDia}
@@ -66,7 +76,10 @@ export default function BorrarCasaDia({ openBorrarCasaDia, handleCerrarBorrarCas
                 <Button variant="contained" color="secondary" >Cancelar</Button>
                 <Button variant="contained" color="primary" onClick={borrarCasaDeDia}>Borrar</Button>
             </div>
-                 
-        </Modal>
+            </Modal>
+            {snackBarState &&
+                <CustomSnackbars type={alert} state={snackBarState} message={message} />
+            } 
+            </>
     )
 }
