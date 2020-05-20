@@ -5,6 +5,11 @@ Meteor.methods({
 
 
     "crearVoluntario"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor) {
+        idUsuario = Accounts.createUser({
+            username: apodo,
+            password: contrasena
+        }),
+        
         Voluntarios.insert(
             {
                 nombre: nombre,
@@ -17,13 +22,25 @@ Meteor.methods({
                 visualizarVoluntario: visualizarVoluntario,
                 editarVoluntario: editarVoluntario,
                 visualizarInstructor: visualizarInstructor,
-                editarInstructor: editarInstructor
+                editarInstructor: editarInstructor,
+                idUsuario: idUsuario
             }
 
         )
     },
 
-    "editarVoluntario"(idVoluntario,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor) {
+    "editarVoluntario"(idVoluntario,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor,idUsuario) {
+        Meteor.users.update(idUsuario,{
+            $set:{
+                username: apodo,
+                
+            }
+        });
+
+        if(contrasena != 'the same'){
+            Accounts.setPassword(idUsuario, contrasena)
+        }
+        
         Voluntarios.update(
             { _id: idVoluntario },
             {
@@ -45,7 +62,9 @@ Meteor.methods({
         )
     },
 
-    "borrarVoluntario"(idVoluntario) {
+    "borrarVoluntario"(idVoluntario,idUsuario) {
+        Meteor.users.remove(idUsuario);
+        
         Voluntarios.remove(
             {
                 "_id": idVoluntario

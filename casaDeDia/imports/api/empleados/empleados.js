@@ -13,5 +13,6 @@ let Schema = new SimpleSchema({
     visualizarVoluntario: { type: String },
     editarVoluntario: { type: String },
     visualizarInstructor: { type: String },
-    editarInstructor: { type: String }
+    editarInstructor: { type: String },
+    idUsuario: { type: String }
 })

@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import "./register-api";
 import { Usuarios } from '../imports/api/usuarios/usuarios';
-//import { Accounts } from "meteor/accounts-base";
+import { Accounts } from "meteor/accounts-base";
 Meteor.startup(() => {
  
 

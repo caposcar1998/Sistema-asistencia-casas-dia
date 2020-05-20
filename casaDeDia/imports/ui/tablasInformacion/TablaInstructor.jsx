@@ -30,7 +30,7 @@ function TablaInstructor({instructores}) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("editarInstructor",
-                    newData._id, newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,
+                    newData._id, newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,newData.idUsuario,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -47,7 +47,7 @@ function TablaInstructor({instructores}) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("borrarInstructor",
-                    data._id,
+                    data._id, data.idUsuario,
                     (err, res) => {
                         if (err) {
                             reject()
