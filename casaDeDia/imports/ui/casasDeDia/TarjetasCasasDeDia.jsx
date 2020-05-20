@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function TarjetasCasasDeDia({ casa, handleOpenBorrarCasaDia, handleAbrirEditarCasaDia }) {
+export default function TarjetasCasasDeDia({ casa, handleOpenBorrarCasaDia, handleOpenEditarCasaDia }) {
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
 
@@ -61,7 +61,7 @@ export default function TarjetasCasasDeDia({ casa, handleOpenBorrarCasaDia, hand
                     <IconButton aria-label="editar" onClick={handleOpenBorrarCasaDia}>
                         <DeleteIcon />
                     </IconButton>
-                    <IconButton aria-label="eliminar" onClick={handleAbrirEditarCasaDia}>
+                    <IconButton aria-label="eliminar" onClick={handleOpenEditarCasaDia}>
                         <EditIcon />
                     </IconButton>
                     <IconButton

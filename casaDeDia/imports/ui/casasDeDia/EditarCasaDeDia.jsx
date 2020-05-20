@@ -13,23 +13,23 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function BorrarCasaDia({ openBorrarCasaDia }) {
+export default function EditarCasaDia({ openEditarCasaDia }) {
     const classes = useStyles();
 
 
-    const handleCloseBorrarCasaDia = () => {
-        setOpenBorrarCasaDia(false);
+    const handleCloseEditarCasaDia = () => {
+        setOpenEditarCasaDia(false);
     };
 
     return (
         <Modal
             className={classes.posicionModal}
-            open={openBorrarCasaDia}
-                onClose={handleCloseBorrarCasaDia}
+            open={openEditarCasaDia}
+            onClose={handleCloseEditarCasaDia}
 
         >
-                <div><h1>Borrar casa de dia</h1></div>
-                 
+            <div><h1>Editar casa de dia</h1></div>
+
         </Modal>
     )
 }

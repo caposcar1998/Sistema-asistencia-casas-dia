@@ -4,6 +4,7 @@ import { Grid, Paper, Button} from '@material-ui/core';
 import ModalCrearCasaDeDia from '../modales/ModaCrearCasaDeDia';
 import TarjetasCasasDeDia from '../casasDeDia/TarjetasCasasDeDia';
 import BorrarCasaDia from '../casasDeDia/BorrarCasaDia';
+import EditarCasaDia from '../casasDeDia/EditarCasaDeDia';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -17,12 +18,17 @@ export default function CasasDeDia() {
     const classes = useStyles();
     const [openModal, setOpenModal] = useState(false);
     const [casasDeDia, setCasasDeDia] = useState([])
-    const [editarCasaDIa, setEditarCasaDia] = useState(false);
+    const [openEditarCasaDia, setOpenEditarCasaDia] = useState(false);
     const [openBorrarCasaDia, setOpenBorrarCasaDia] = useState(false);
 
     const handleOpenBorrarCasaDia = () => {
         setOpenBorrarCasaDia(true);
     };
+
+    const handleOpenEditarCasaDia = () => {
+        setOpenEditarCasaDia(true);
+    };
+
     useEffect(() => {
         casasDeDiaServidor();
     }, []);
@@ -85,7 +91,7 @@ export default function CasasDeDia() {
                             <TarjetasCasasDeDia
                                 casa={casa}
                                 handleOpenBorrarCasaDia={handleOpenBorrarCasaDia}
-                                handleAbrirEditarCasaDia={handleAbrirEditarCasaDia}
+                                handleOpenEditarCasaDia={handleOpenEditarCasaDia}
                                 />
                     ))}
                         </Grid>  
@@ -95,7 +101,9 @@ export default function CasasDeDia() {
             </Grid>
             <BorrarCasaDia
                 openBorrarCasaDia={openBorrarCasaDia}
-                
+            />
+            <EditarCasaDia
+                openEditarCasaDia={openEditarCasaDia}
             />
             <ModalCrearCasaDeDia
                 handleCloseModal={handleCloseModal}
