@@ -17,9 +17,12 @@ export default function CasasDeDia() {
     const classes = useStyles();
     const [openModal, setOpenModal] = useState(false);
     const [casasDeDia, setCasasDeDia] = useState([])
-    const [borrarCasaDia, setBorrarCasaDia] = useState(false);
     const [editarCasaDIa, setEditarCasaDia] = useState(false);
+    const [openBorrarCasaDia, setOpenBorrarCasaDia] = useState(false);
 
+    const handleOpenBorrarCasaDia = () => {
+        setOpenBorrarCasaDia(true);
+    };
     useEffect(() => {
         casasDeDiaServidor();
     }, []);
@@ -81,15 +84,19 @@ export default function CasasDeDia() {
                         {casasDeDia.map((casa) => (
                             <TarjetasCasasDeDia
                                 casa={casa}
-                                handleAbrirBorrarCasaDia={handleAbrirBorrarCasaDia}
+                                handleOpenBorrarCasaDia={handleOpenBorrarCasaDia}
                                 handleAbrirEditarCasaDia={handleAbrirEditarCasaDia}
                                 />
                     ))}
                         </Grid>  
                     </Grid>
-                    <BorrarCasaDia/>
+                    
                 </Paper>
-        </Grid>
+            </Grid>
+            <BorrarCasaDia
+                openBorrarCasaDia={openBorrarCasaDia}
+                
+            />
             <ModalCrearCasaDeDia
                 handleCloseModal={handleCloseModal}
                 openModal={openModal}

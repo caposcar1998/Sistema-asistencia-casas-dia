@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function TarjetasCasasDeDia({ casa, handleAbrirBorrarCasaDia, handleAbrirEditarCasaDia }) {
+export default function TarjetasCasasDeDia({ casa, handleOpenBorrarCasaDia, handleAbrirEditarCasaDia }) {
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
 
@@ -58,7 +58,7 @@ export default function TarjetasCasasDeDia({ casa, handleAbrirBorrarCasaDia, han
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton aria-label="editar" onClick={handleAbrirBorrarCasaDia}>
+                    <IconButton aria-label="editar" onClick={handleOpenBorrarCasaDia}>
                         <DeleteIcon />
                     </IconButton>
                     <IconButton aria-label="eliminar" onClick={handleAbrirEditarCasaDia}>

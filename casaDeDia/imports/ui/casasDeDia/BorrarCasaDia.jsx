@@ -14,23 +14,15 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function BorrarCasaDia() {
+export default function BorrarCasaDia({ openBorrarCasaDia }) {
     const classes = useStyles();
-    const [openBorrarCasaDia, setOpenBorrarCasaDia] = React.useState(false);
 
-    const handleOpenBorrarCasaDia = () => {
-        setOpenBorrarCasaDia(true);
-    };
 
     const handleCloseBorrarCasaDia = () => {
         setOpenBorrarCasaDia(false);
     };
 
     return (
-        <>
-            <button type="button" onClick={handleOpenBorrarCasaDia}>
-            Open Modal
-      </button>
         <Modal
             className={classes.posicionModal}
             open={openBorrarCasaDia}
@@ -40,6 +32,5 @@ export default function BorrarCasaDia() {
                 <div><h1>Borrar casa de dia</h1></div>
                  
         </Modal>
-            </>
     )
 }
