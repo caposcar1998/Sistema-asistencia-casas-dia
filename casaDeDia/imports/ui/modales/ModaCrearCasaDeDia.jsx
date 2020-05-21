@@ -1,7 +1,7 @@
 
 import React, { useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AnadirCasasDia from '../cuestionarios/AnadirCasasDia';
+import AnadirCasasDia from '../casasDeDia/AnadirCasasDia';
 import { Modal } from '@material-ui/core';
 
 

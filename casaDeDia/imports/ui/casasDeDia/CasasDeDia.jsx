@@ -2,9 +2,9 @@ import React, {useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Button} from '@material-ui/core';
 import ModalCrearCasaDeDia from '../modales/ModaCrearCasaDeDia';
-import TarjetasCasasDeDia from '../casasDeDia/TarjetasCasasDeDia';
-import BorrarCasaDia from '../casasDeDia/BorrarCasaDia';
-import EditarCasaDia from '../casasDeDia/EditarCasaDeDia';
+import TarjetasCasasDeDia from './TarjetasCasasDeDia';
+import BorrarCasaDia from './BorrarCasaDia';
+import EditarCasaDia from './EditarCasaDeDia';
 
 
 const useStyles = makeStyles((theme) => ({
