@@ -6,7 +6,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import CasasDeDia from '../layoutsGenerales/CasasDeDia';
+import CasasDeDia from '../casasDeDia/CasasDeDia';
+
 
 export function TabPanel(props) {
     const { children, value, index, ...other } = props;

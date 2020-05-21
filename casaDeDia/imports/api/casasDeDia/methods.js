@@ -4,7 +4,7 @@ import { CasasDeDia } from "../casasDeDia/casasDeDia";
 Meteor.methods({
 
 
-    "crearCasaDeDia"(nombre, direccion, actividades, restricciones, horarioApertura, horarioCierre, cupoLimite) {
+    "crearCasaDeDia"(nombre, direccion, actividades, restricciones, horarioApertura, horarioCierre, cupoLimite, codigoPostal ,foto) {
         CasasDeDia.insert(
             {
                 nombre: nombre,
@@ -13,13 +13,15 @@ Meteor.methods({
                 restricciones: restricciones,
                 horarioApertura: horarioApertura,
                 horarioCierre: horarioCierre,
-                cupoLimite: cupoLimite
+                cupoLimite: cupoLimite,
+                codigoPostal: codigoPostal,
+                foto: foto
             }
 
         )
     },
 
-    "editarCasaDeDia"(idCasaDeDia, nombre, direccion, actividades, restricciones, horario, horarioAtencion, cupoLimite) {
+    "editarCasaDeDia"(idCasaDeDia, nombre, direccion, actividades, restricciones, horario, horarioAtencion, cupoLimite, codigoPostal ,foto) {
         CasasDeDia.update(
             { _id: idCasaDeDia },
             {
@@ -31,7 +33,9 @@ Meteor.methods({
                     restricciones: restricciones,
                     horario: horario,
                     horarioAtencion: horarioAtencion,
-                    cupoLimite: cupoLimite
+                    cupoLimite: cupoLimite,
+                    codigoPostal: codigoPostal,
+                    foto: foto
                 }
             }
         )

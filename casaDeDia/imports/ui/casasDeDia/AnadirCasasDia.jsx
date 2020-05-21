@@ -1,9 +1,10 @@
 import React, {useEffect, useState } from 'react';
-import { Grid, Paper, TextField, Select, MenuItem, Button, Checkbox, ListItemText,Input  } from '@material-ui/core';
+import { Grid, Paper, TextField, Select, MenuItem, Button, Checkbox, ListItemText, Input, LinearProgress  } from '@material-ui/core';
 import {listaRestricciones} from "../../utilities/tablasEstaticas/restricciones";
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 
-export default function AnadirCasasDia() {
+
+export default function AnadirCasasDia({ casasDeDiaServidor,handleCloseModal}) {
         const [nombre, setNombre] = useState('');
         const [direccion, setDireccion] = useState('');
         const [actividades, setActividades] = useState([]);
@@ -17,12 +18,32 @@ export default function AnadirCasasDia() {
         const [open, setOpen] = useState(false);
         const [actividadesDisponibles, setActividadesDisponible] = useState([]);
         const [message, setMessage] = useState(); 
-
+        const [image, setImage] = useState('')
+        const [loading, setLoading] = useState(false)
 
         useEffect(() => {
                 actividadesServidor();
         }, []);
 
+
+        const uploadImage = async e => {
+                const files = e.target.files
+                const data = new FormData()
+                data.append('file', files[0])
+                data.append('upload_preset', 'prueba_image')
+                setLoading(true)
+                const res = await fetch(
+                        'https://api.cloudinary.com/v1_1/dzue2mlpl/image/upload',
+                        {
+                                method: 'POST',
+                                body: data
+                        }
+                )
+                const file = await res.json()
+
+                setImage(file.secure_url) //URL de la imagen para agregarla a Mongo de ser necesario
+                setLoading(false)
+        }
 
         const handleChangeCupoLimite = (event) => {
                 setCupoLimite(event.target.value);
@@ -51,16 +72,7 @@ export default function AnadirCasasDia() {
                 setRestricciones(event.target.value);
         };
 
-        const handleChangeMultiple = (event) => {
-                const { options } = event.target;
-                const value = [];
-                for (let i = 0, l = options.length; i < l; i += 1) {
-                        if (options[i].selected) {
-                                value.push(options[i].value);
-                        }
-                }
-                setRestricciones(value);
-        };
+        
 
         const handleChangeActividades = (event) => {
                 setActividades(event.target.value);
@@ -87,17 +99,20 @@ export default function AnadirCasasDia() {
                 return new Promise(
                         (resolve, reject) => {
                                 Meteor.call("crearCasaDeDia",
-                                        nombre, direccion, actividades, restricciones, horarioApertura, horarioCierre, cupoLimite,codigoPostal,
+                                        nombre, direccion, actividades, restricciones, horarioApertura, horarioCierre, cupoLimite,codigoPostal,image,
                                         (err, res) => {
                                                 if (err) {
                                                         setAlert("error")
                                                         setSnackBarState(true)
                                                         setMessage("Error al crear casa de dia")
+                                                        handleCloseModal()
                                                         reject()
                                                 } else {
                                                         setAlert("success")
                                                         setSnackBarState(true)
                                                         setMessage("Registro correcto")
+                                                        handleCloseModal()
+                                                        casasDeDiaServidor()
                                                         resolve()
                                                 }
                                         });
@@ -107,7 +122,7 @@ export default function AnadirCasasDia() {
 
 return (
         
-<Paper elevation={3}>                    
+<>                    
 
         <Grid container>                            
                 <Grid item xs={4}>
@@ -228,7 +243,23 @@ return (
                                 <MenuItem value={30}>30</MenuItem>
                         </Select>
                 </Grid>
-        </Grid>
+                        </Grid>
+                <Grid item xs={4}>
+                <Grid item xs={12}>Seleccionar foto</Grid>
+                <Grid item xs={12}>
+                        <Input
+                                type="file"
+                                name="file"
+                                onChange={uploadImage}
+                                color="primary"                                
+                        />
+                {loading ? (
+                        <LinearProgress />
+                ) : (
+                                <img src={image} style={{ width: '300px' }} />
+                        )}
+                </Grid>
+                </Grid>
         <Grid item xs={4} />
         <Grid item xs={4}>
                 <Button variant="contained" onClick={crearCasaDeDia} color="primary">Crear</Button>                        
@@ -238,8 +269,7 @@ return (
                 {snackBarState &&
                         <CustomSnackbars type={alert} state={snackBarState} message={message} />
                 }                                                      
-</Paper>
-
+</>
         
 )
  }
