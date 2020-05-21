@@ -90,6 +90,10 @@ export default function TarjetasCasasDeDia({ casa, handleOpenBorrarCasaDia, hand
                         <Typography paragraph>
                             {casa.direccion}
                         </Typography>
+                        <Typography paragraph>Codigo:</Typography>
+                        <Typography paragraph>
+                            {casa.codigoPostal}
+                        </Typography>
                         <Typography paragraph>Restricciones:</Typography>
                         <Typography paragraph>
                             <List>
@@ -112,6 +116,7 @@ export default function TarjetasCasasDeDia({ casa, handleOpenBorrarCasaDia, hand
                         <Typography paragraph>Actividades:</Typography>
                         <List>
                             {
+                                //funciona pero aun no recibe un objeto
                                 (casa.actividades).map((actividad) => (
                                     <ListItem>
                                         <Typography>
