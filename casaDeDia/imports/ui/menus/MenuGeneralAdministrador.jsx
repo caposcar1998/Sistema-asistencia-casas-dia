@@ -27,6 +27,7 @@ import RowingIcon from '@material-ui/icons/Rowing';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import ExploreIcon from '@material-ui/icons/Explore';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Accounts } from "meteor/accounts-base";
 
 const useStyles = makeStyles({
@@ -129,6 +130,11 @@ export default function MenuGeneralAdministrador() {
 
   function centrosPage() {
     FlowRouter.go("centros");
+  }
+
+  function cerrarSesion(){
+    Meteor.logout();
+    FlowRouter.go("login");
   }
 
   const list = (anchor) => (
@@ -281,6 +287,15 @@ export default function MenuGeneralAdministrador() {
             <ExploreIcon />
           </ListItemIcon>
           <ListItemText primary={"Centros"} />
+        </ListItem>
+      </List>
+      <Divider />
+      <List>
+        <ListItem button key={"Cerrar Sesion"} onClick={cerrarSesion}>
+          <ListItemIcon>
+            <ExitToAppIcon />
+          </ListItemIcon>
+          <ListItemText primary={"Cerrar Sesion"} />
         </ListItem>
       </List>
     </div>

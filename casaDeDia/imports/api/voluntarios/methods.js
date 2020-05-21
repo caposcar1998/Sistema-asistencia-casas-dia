@@ -7,7 +7,10 @@ Meteor.methods({
     "crearVoluntario"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor) {
         idUsuario = Accounts.createUser({
             username: apodo,
-            password: contrasena
+            password: contrasena,
+            profile:{
+                role: 'voluntario'
+            }
         }),
         
         Voluntarios.insert(

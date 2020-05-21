@@ -7,7 +7,10 @@ Meteor.methods({
     "crearEmpleado"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor ) {
         idUsuario = Accounts.createUser({
             username: apodo,
-            password: contrasena
+            password: contrasena,
+            profile:{
+                role: 'empleado'
+            }
         }),
         
         Empleados.insert(
