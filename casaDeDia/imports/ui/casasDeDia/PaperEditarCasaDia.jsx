@@ -4,7 +4,7 @@ import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 import { listaRestricciones } from '../../utilities/tablasEstaticas/restricciones';
 
 
-export default function PaperEditarCasaDIa({ casaSeleccionada }) {
+export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada, handleCerrarEditarCasaDia }) {
     const [nombre, setNombre]  = useState('');
     const [direccion, setDireccion] = useState('');
     const [actividades, setActividades] = useState([]);
@@ -114,11 +114,14 @@ export default function PaperEditarCasaDIa({ casaSeleccionada }) {
                             setAlert("error")
                             setSnackBarState(true)
                             setMessage("Error al crear casa de dia")
+                            handleCerrarEditarCasaDia()
                             reject()
                         } else {
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Registro correcto")
+                            handleCerrarEditarCasaDia()
+                            casasDeDiaServidor()
                             resolve()
                         }
                     });

@@ -98,15 +98,18 @@ export default function CasasDeDia() {
                 casaSeleccionada={casaSeleccionada}
                 openBorrarCasaDia={openBorrarCasaDia}
                 handleCerrarBorrarCasaDia={handleCerrarBorrarCasaDia}
+                casasDeDiaServidor={casasDeDiaServidor}
             />
             <EditarCasaDia
                 casaSeleccionada={casaSeleccionada}
                 openEditarCasaDia={openEditarCasaDia}
                 handleCerrarEditarCasaDia={handleCerrarEditarCasaDia}
+                casasDeDiaServidor={casasDeDiaServidor}
             />
             <ModalCrearCasaDeDia
                 handleCloseModal={handleCloseModal}
                 openModal={openModal}
+                casasDeDiaServidor={casasDeDiaServidor}
             />
         </>
     )

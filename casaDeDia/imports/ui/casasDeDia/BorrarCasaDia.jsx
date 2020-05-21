@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function BorrarCasaDia({ openBorrarCasaDia, handleCerrarBorrarCasaDia, casaSeleccionada}) {
+export default function BorrarCasaDia({ casasDeDiaServidor,openBorrarCasaDia, handleCerrarBorrarCasaDia, casaSeleccionada}) {
     const classes = useStyles();
     const [modalStyle] = useState(getModalStyle);
     const [alert, setAlert] = useState();
@@ -55,6 +55,7 @@ export default function BorrarCasaDia({ openBorrarCasaDia, handleCerrarBorrarCas
                             setSnackBarState(true)
                             setMessage("Casa de dia eliminada")
                             handleCerrarBorrarCasaDia()
+                            casasDeDiaServidor()
                             resolve()
                         }
                     });

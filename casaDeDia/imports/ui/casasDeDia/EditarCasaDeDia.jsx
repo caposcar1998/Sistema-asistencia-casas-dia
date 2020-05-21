@@ -30,13 +30,9 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function EditarCasaDia({ casaSeleccionada,openEditarCasaDia, handleCerrarEditarCasaDia }) {
+export default function EditarCasaDia({ casasDeDiaServidor,casaSeleccionada,openEditarCasaDia, handleCerrarEditarCasaDia }) {
     const classes = useStyles();
     const [modalStyle] = useState(getModalStyle);
-    const [alert, setAlert] = useState();
-    const [snackBarState, setSnackBarState] = useState();
-    const [message, setMessage] = useState();
-
 
     return (
         <Modal
@@ -46,7 +42,10 @@ export default function EditarCasaDia({ casaSeleccionada,openEditarCasaDia, hand
 
         >
                 <div style={modalStyle} className={classes.paper}>
-                    <PaperEditarCasaDia casaSeleccionada={casaSeleccionada}/>
+                <PaperEditarCasaDia
+                    handleCerrarEditarCasaDia={handleCerrarEditarCasaDia}
+                    casaSeleccionada={casaSeleccionada}
+                    casasDeDiaServidor={casasDeDiaServidor}/>
             </div>
         </Modal>
     )

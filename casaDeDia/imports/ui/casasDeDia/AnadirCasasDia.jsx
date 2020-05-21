@@ -4,7 +4,7 @@ import {listaRestricciones} from "../../utilities/tablasEstaticas/restricciones"
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 
 
-export default function AnadirCasasDia({ handleCloseModal}) {
+export default function AnadirCasasDia({ casasDeDiaServidor,handleCloseModal}) {
         const [nombre, setNombre] = useState('');
         const [direccion, setDireccion] = useState('');
         const [actividades, setActividades] = useState([]);
@@ -112,6 +112,7 @@ export default function AnadirCasasDia({ handleCloseModal}) {
                                                         setSnackBarState(true)
                                                         setMessage("Registro correcto")
                                                         handleCloseModal()
+                                                        casasDeDiaServidor()
                                                         resolve()
                                                 }
                                         });
