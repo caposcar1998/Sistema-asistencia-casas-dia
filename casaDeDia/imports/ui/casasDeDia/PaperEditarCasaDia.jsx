@@ -5,7 +5,7 @@ import { listaRestricciones } from '../../utilities/tablasEstaticas/restriccione
 
 
 export default function PaperEditarCasaDIa({ casaSeleccionada }) {
-    const [nombre, setNombre] = useState('');
+    const [nombre, setNombre]  = useState('');
     const [direccion, setDireccion] = useState('');
     const [actividades, setActividades] = useState([]);
     const [restricciones, setRestricciones] = useState([]);
@@ -23,6 +23,15 @@ export default function PaperEditarCasaDIa({ casaSeleccionada }) {
 
     useEffect(() => {
         actividadesServidor();
+        setNombre(casaSeleccionada.nombre);
+        setDireccion(casaSeleccionada.direccion);
+        setActividades(casaSeleccionada.actividades);
+        setRestricciones(casaSeleccionada.restricciones);
+        setHorarioApertura(casaSeleccionada.horarioApertura);
+        setHorarioCierre(casaSeleccionada.horarioCierre);
+        setCupoLimite(casaSeleccionada.cupoLimite);
+        setCodigoPostal(casaSeleccionada.codigoPostal);
+        setImage(casaSeleccionada.foto);
     }, []);
 
 
@@ -125,14 +134,14 @@ export default function PaperEditarCasaDIa({ casaSeleccionada }) {
                 <Grid item xs={4}>
                     <Grid item xs={12}>Nombre</Grid>
                     <Grid item xs={12}>
-                        <TextField id="nombre" label={casaSeleccionada.nombre} value={nombre} onChange={(e) => setNombre(e.target.value)} />
+                        <TextField id="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
                     </Grid>
                 </Grid>
 
                 <Grid item xs={4}>
                     <Grid item xs={12}>Direccion</Grid>
                     <Grid item xs={12}>
-                        <TextField id="direccion" label={casaSeleccionada.direccion}  value={direccion} onChange={(e) => setDireccion(e.target.value)} />
+                        <TextField id="direccion" value={direccion} onChange={(e) => setDireccion(e.target.value)} />
                     </Grid>
                 </Grid>
                 <Grid item xs={4}>
@@ -188,8 +197,6 @@ export default function PaperEditarCasaDIa({ casaSeleccionada }) {
                         <TextField
                             id="apertura"
                             type="time"
-                            label={casaSeleccionada.horarioApertura}
-                            defaultValue="07:30"
                             value={horarioApertura}
                             onChange={(e) => setHorarioApertura(e.target.value)}
                         />
@@ -201,8 +208,6 @@ export default function PaperEditarCasaDIa({ casaSeleccionada }) {
                         <TextField
                             id="cierre"
                             type="time"
-                            defaultValue="17:00"
-                            label={casaSeleccionada.horarioCierre}
                             value={horarioCierre}
                             onChange={(e) => setHorarioCierre(e.target.value)}
                         />
@@ -214,7 +219,6 @@ export default function PaperEditarCasaDIa({ casaSeleccionada }) {
                         <TextField
                             id="codigo"
                             type="number"
-                            label={casaSeleccionada.codigoPostal}
                             value={codigoPostal}
                             onChange={(e) => setCodigoPostal(e.target.value)}
                         />

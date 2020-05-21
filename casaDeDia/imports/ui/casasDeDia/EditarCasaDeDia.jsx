@@ -1,8 +1,7 @@
 
 import React, {useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Modal, Button } from '@material-ui/core';
-import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
+import { Modal } from '@material-ui/core';
 import PaperEditarCasaDia from './PaperEditarCasaDia';
 
 
