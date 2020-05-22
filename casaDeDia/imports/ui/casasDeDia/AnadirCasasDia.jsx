@@ -153,8 +153,8 @@ return (
                                 MenuProps={MenuProps}
                         >
                                 {actividadesDisponibles.map((actividad) => (
-                                        <MenuItem key={actividad} value={actividad}>
-                                                <Checkbox checked={actividades.indexOf(actividad.nombre) > -1} />
+                                        <MenuItem key={actividad.nombre} value={actividad}>
+                                                <Checkbox checked={actividades.indexOf(actividad) > -1} />
                                                 <ListItemText primary={actividad.nombre} />
                                         </MenuItem>
                                 ))}
@@ -241,6 +241,7 @@ return (
                                 <MenuItem value={20}>20</MenuItem>
                                 <MenuItem value={25}>25</MenuItem>
                                 <MenuItem value={30}>30</MenuItem>
+                                <MenuItem value={50}>40+</MenuItem>
                         </Select>
                 </Grid>
                         </Grid>
