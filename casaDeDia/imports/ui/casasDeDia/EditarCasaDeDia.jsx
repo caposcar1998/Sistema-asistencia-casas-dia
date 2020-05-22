@@ -45,7 +45,7 @@ export default function EditarCasaDia({ casasDeDiaServidor,casaSeleccionada,open
                 <PaperEditarCasaDia
                     handleCerrarEditarCasaDia={handleCerrarEditarCasaDia}
                     casaSeleccionada={casaSeleccionada}
-                    casasDeDiaServidor={casasDeDiaServidor}/>
+                    casasDeDiaServidor={casasDeDiaServidor} />
             </div>
         </Modal>
     )
