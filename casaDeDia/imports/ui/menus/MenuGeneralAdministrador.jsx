@@ -9,24 +9,24 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
-import DeckIcon from '@material-ui/icons/Deck';
-import HouseIcon from '@material-ui/icons/House';
-import GolfCourseIcon from '@material-ui/icons/GolfCourse';
-import StyleIcon from '@material-ui/icons/Style';
-import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
-import PeopleIcon from '@material-ui/icons/People';
-import GradeIcon from '@material-ui/icons/Grade';
-import WorkIcon from '@material-ui/icons/Work';
-import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
-import DirectionsWalkIcon from '@material-ui/icons/DirectionsWalk';
-import RoomServiceIcon from '@material-ui/icons/RoomService';
-import LocalActivityIcon from '@material-ui/icons/LocalActivity';
-import EventSeatIcon from '@material-ui/icons/EventSeat'
-import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
-import RowingIcon from '@material-ui/icons/Rowing';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
-import ExploreIcon from '@material-ui/icons/Explore';
+import DeckIcon from "@material-ui/icons/Deck";
+import HouseIcon from "@material-ui/icons/House";
+import GolfCourseIcon from "@material-ui/icons/GolfCourse";
+import StyleIcon from "@material-ui/icons/Style";
+import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
+import PeopleIcon from "@material-ui/icons/People";
+import GradeIcon from "@material-ui/icons/Grade";
+import WorkIcon from "@material-ui/icons/Work";
+import LocalLibraryIcon from "@material-ui/icons/LocalLibrary";
+import DirectionsWalkIcon from "@material-ui/icons/DirectionsWalk";
+import RoomServiceIcon from "@material-ui/icons/RoomService";
+import LocalActivityIcon from "@material-ui/icons/LocalActivity";
+import EventSeatIcon from "@material-ui/icons/EventSeat";
+import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
+import RowingIcon from "@material-ui/icons/Rowing";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
+import ExploreIcon from "@material-ui/icons/Explore";
 
 const useStyles = makeStyles({
   list: {
@@ -286,9 +286,9 @@ export default function MenuGeneralAdministrador() {
 
   return (
     <div>
-      {["menu"].map((anchor) => (
+      {["left"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onMouseEnter={toggleDrawer("menu", true)}>{anchor}</Button>
+          <Button onMouseEnter={toggleDrawer("left", true)}>{"menu"}</Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}
