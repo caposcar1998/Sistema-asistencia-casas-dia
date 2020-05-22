@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Actividades } from '../actividades/actividades';
-
+import { CasasDeDia } from "../casasDeDia/casasDeDia";
 Meteor.methods({
 
 
@@ -36,11 +36,28 @@ Meteor.methods({
     },
 
     "borrarActividad"(Actividad) {
+        //Hacer esto en cada lugar que se usen las actividades
+        const eliminarDeCasasDeDia = CasasDeDia.find
+            (
+                { "actividades": { $elemMatch: { "_id": Actividad } } }
+        ).fetch()
+        
+        //Borrar actividad de activiades, Actividades es el _id se necesita cambiar
         Actividades.remove(
             {
                 "_id": Actividad
             }
-        )
+        ),
+        CasasDeDia.update
+            (
+                { "actividades": { $elemMatch: { "_id": Actividad } } },
+                { $pull: { "actividades": { "_id": Actividad } }},
+                false,
+                true
+            )
+
+
+
     },
 
     "leerActividad"() {

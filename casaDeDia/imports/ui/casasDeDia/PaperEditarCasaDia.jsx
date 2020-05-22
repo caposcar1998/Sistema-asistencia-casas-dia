@@ -162,7 +162,7 @@ export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada
                             MenuProps={MenuProps}
                         >
                             {actividadesDisponibles.map((actividad) => (
-                                <MenuItem key={actividad.nombre} value={actividad.nombre}>
+                                <MenuItem key={actividad.nombre} value={actividad}>
                                     <Checkbox checked={actividades.indexOf(actividad.nombre) > -1} />
                                     <ListItemText primary={actividad.nombre} />
                                 </MenuItem>
