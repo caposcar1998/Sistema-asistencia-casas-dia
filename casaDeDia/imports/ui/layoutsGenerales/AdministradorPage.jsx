@@ -4,7 +4,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     fondo: {
-        backgroundColor: "LightGray"
+        backgroundColor: "#cfd8dc",
+        display: "flex",
+        direction: "column",
+        height: "auto",
     }
 })); 
 

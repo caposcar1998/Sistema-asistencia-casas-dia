@@ -286,9 +286,9 @@ export default function MenuGeneralAdministrador() {
 
   return (
     <div>
-      {["menu"].map((anchor) => (
+      {["left"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onMouseEnter={toggleDrawer("menu", true)}>{anchor}</Button>
+          <Button onMouseEnter={toggleDrawer("left", true)}>{anchor}</Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}
