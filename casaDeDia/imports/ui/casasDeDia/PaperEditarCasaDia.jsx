@@ -185,9 +185,9 @@ export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada
                             MenuProps={MenuProps}
                         >
                             {listaRestricciones.map((restriccion) => (
-                                <MenuItem key={restriccion} value={restriccion}>
+                                <MenuItem key={restriccion.nombre} value={restriccion}>
                                     <Checkbox checked={restricciones.indexOf(restriccion) > -1} />
-                                    <ListItemText primary={restriccion} />
+                                    <ListItemText primary={restriccion.nombre} />
                                 </MenuItem>
                             ))}
                         </Select>
@@ -268,8 +268,9 @@ export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada
                     </Grid>
                 </Grid>
                 <Grid item xs={4} />
-                <Grid item xs={4}>
-                    <Button variant="contained" onClick={editarCasaDeDia} color="primary">Crear</Button>
+                <Grid item xs={8}>
+                    <Button variant="contained" onClick={handleCerrarEditarCasaDia} color="secondary">Cancelar</Button>
+                    <Button variant="contained" onClick={editarCasaDeDia} color="primary">Editar</Button>
                 </Grid>
 
             </Grid>
