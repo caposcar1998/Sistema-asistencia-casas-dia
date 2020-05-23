@@ -1,8 +1,8 @@
 
-import React, { useState} from 'react';
+import React, {useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AnadirCasasDia from '../casasDeDia/AnadirCasasDia';
 import { Modal } from '@material-ui/core';
+import PaperEditarCasaDia from './PaperEditarCasaDia';
 
 
 function getModalStyle() {
@@ -18,6 +18,7 @@ function getModalStyle() {
 
 
 const useStyles = makeStyles((theme) => ({
+
     paper: {
         position: 'absolute',
         width: 400,
@@ -26,23 +27,26 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
     },
+
 }));
 
-export default function ModalCrearCasaDeDia({ handleCloseModal, openModal, casasDeDiaServidor }) {
+export default function EditarCasaDia({ casasDeDiaServidor,casaSeleccionada,openEditarCasaDia, handleCerrarEditarCasaDia }) {
     const classes = useStyles();
     const [modalStyle] = useState(getModalStyle);
 
     return (
-            <Modal
+        <Modal
+            className={classes.posicionModal}
+            open={openEditarCasaDia}
+            onClose={handleCerrarEditarCasaDia}
 
-            open={openModal}
-            onClose={handleCloseModal}
-            
         >
-            <div style={modalStyle} className={classes.paper} >
-                <AnadirCasasDia handleCloseModal={handleCloseModal} casasDeDiaServidor={casasDeDiaServidor} />
+                <div style={modalStyle} className={classes.paper}>
+                <PaperEditarCasaDia
+                    handleCerrarEditarCasaDia={handleCerrarEditarCasaDia}
+                    casaSeleccionada={casaSeleccionada}
+                    casasDeDiaServidor={casasDeDiaServidor} />
             </div>
         </Modal>
     )
 }
- 
