@@ -25,6 +25,8 @@ import RowingIcon from "@material-ui/icons/Rowing";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import ExploreIcon from "@material-ui/icons/Explore";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { Meteor } from 'meteor/meteor';
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -62,6 +64,11 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
     const cambioRuta = ruta => {
         handleCambioPagina(ruta)
      }
+
+    function cerrarSesion(){
+        Meteor.logout();
+        cambioRuta("login");
+    }
 
     const list = (anchor) => (
         <div
@@ -213,6 +220,15 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                         <ExploreIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Centros"} />
+                </ListItem>
+            </List>
+            <Divider />
+            <List>
+                <ListItem button key={"Cerrar Sesión"} onClick={() => cerrarSesion()}>
+                    <ListItemIcon>
+                        <ExitToAppIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Cerrar Sesión"} />
                 </ListItem>
             </List>
         </div>
