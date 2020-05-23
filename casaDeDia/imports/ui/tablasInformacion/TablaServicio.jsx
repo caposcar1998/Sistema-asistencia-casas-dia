@@ -71,7 +71,7 @@ function TablaServicio({servicios}) {
                     { title: "Telefono", field: "telefono" },
                     { title: "Dirección", field: "direccion" },
                     { title: "Fecha de Registro", field: "fechaRegistro", type:"datetime" },
-                    { title: "Vigente", field: "vigente" },
+                    { title: "Vigente", field: "vigente", type:"boolean" },
                     { title: "Red Social 1", field: "redSocial1" },
                     { title: "Red Social 2", field: "redSocial2" },
                     { title: "Red Social 3", field: "redSocial3" }

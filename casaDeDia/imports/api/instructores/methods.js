@@ -1,22 +1,50 @@
 import { Meteor } from 'meteor/meteor';
 import { Instructores } from "../instructores/instructores";
+import { Accounts } from "meteor/accounts-base";
 
 Meteor.methods({
 
 
-    "crearInstructor"(nombre,apellidos,apodo,contrasena,email) {
+    "crearInstructor"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor) {
+        idUsuario = Accounts.createUser({
+            username: apodo,
+            password: contrasena,
+            profile:{
+                role: 'instructores'
+            }
+        }),
+
         Instructores.insert(
             {
                 nombre: nombre,
                 apellidos: apellidos,
                 apodo: apodo,
                 contrasena: contrasena,
-                email: email
+                email: email,
+                visualizarAdultoMayor: visualizarAdultoMayor,
+                editarAdultoMayor: editarAdultoMayor,
+                visualizarVoluntario: visualizarVoluntario,
+                editarVoluntario: editarVoluntario,
+                visualizarInstructor: visualizarInstructor,
+                editarInstructor: editarInstructor,
+                idUsuario: idUsuario
             }
         )
+
     },
 
-    "editarInstructor"(idInstructor,nombre,apellidos,apodo,contrasena,email) {
+    "editarInstructor"(idInstructor,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor,idUsuario) {
+        Meteor.users.update(idUsuario,{
+            $set:{
+                username: apodo,
+                
+            }
+        });
+
+        if(contrasena != 'the same'){
+            Accounts.setPassword(idUsuario, contrasena)
+        }
+        
         Instructores.update(
             { _id: idInstructor },
             {
@@ -26,13 +54,21 @@ Meteor.methods({
                     apellidos: apellidos,
                     apodo: apodo,
                     contrasena: contrasena,
-                    email: email
+                    email: email,
+                    visualizarAdultoMayor: visualizarAdultoMayor,
+                    editarAdultoMayor: editarAdultoMayor,
+                    visualizarVoluntario: visualizarVoluntario,
+                    editarVoluntario: editarVoluntario,
+                    visualizarInstructor: visualizarInstructor,
+                    editarInstructor: editarInstructor
                 }
             }
         )
     },
 
-    "borrarInstructor"(idInstructor) {
+    "borrarInstructor"(idInstructor,idUsuario) {
+        Meteor.users.remove(idUsuario);
+
         Instructores.remove(
             {
                 "_id": idInstructor

@@ -5,6 +5,14 @@ Meteor.methods({
 
 
     "crearEmpleado"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor ) {
+        idUsuario = Accounts.createUser({
+            username: apodo,
+            password: contrasena,
+            profile:{
+                role: 'empleados'
+            }
+        }),
+        
         Empleados.insert(
             {
                 nombre: nombre,
@@ -17,12 +25,24 @@ Meteor.methods({
                 visualizarVoluntario: visualizarVoluntario,
                 editarVoluntario: editarVoluntario,
                 visualizarInstructor: visualizarInstructor,
-                editarInstructor: editarInstructor
+                editarInstructor: editarInstructor,
+                idUsuario: idUsuario
             }
         )
     },
 
-    "editarEmpleado"(idEmpleado,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor) {
+    "editarEmpleado"(idEmpleado,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor, idUsuario) {
+        Meteor.users.update(idUsuario,{
+            $set:{
+                username: apodo,
+                
+            }
+        });
+
+        if(contrasena != 'the same'){
+            Accounts.setPassword(idUsuario, contrasena)
+        }
+        
         Empleados.update(
             { _id: idEmpleado },
             {
@@ -44,7 +64,9 @@ Meteor.methods({
         )
     },
 
-    "borrarEmpleado"(idEmpleado) {
+    "borrarEmpleado"(idEmpleado,idUsuario) {
+        Meteor.users.remove(idUsuario);
+
         Empleados.remove(
             {
                 "_id": idEmpleado

@@ -12,7 +12,7 @@ function TablaAdultoMayor({adultosMayores}) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("crearAdultoMayor",
-                    newData.nombre,newData.apellidos,newData.curp,newData.sexo,newData.edad, newData.grupoSanguineo, newData.direccion,newData.apodo, newData.contrasena,
+                    newData.nombre,newData.apellidos,newData.curp,newData.sexo,newData.edad, newData.grupoSanguineo, newData.direccion,newData.codigoPostal,newData.apodo, newData.contrasena,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -30,7 +30,7 @@ function TablaAdultoMayor({adultosMayores}) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("editarAdultoMayor",
-                    newData._id, newData.nombre,newData.apellidos,newData.curp,newData.sexo,newData.edad, newData.grupoSanguineo, newData.direccion,newData.apodo, newData.contrasena,
+                    newData._id, newData.nombre,newData.apellidos,newData.curp,newData.sexo,newData.edad, newData.grupoSanguineo, newData.direccion,newData.codigoPostal,newData.apodo, newData.contrasena,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -73,6 +73,7 @@ function TablaAdultoMayor({adultosMayores}) {
                     { title: "Edad", field: "edad", type:"numeric" },
                     { title: "Grupo Sanguineo", field: "grupoSanguineo" },
                     { title: "Dirección", field: "direccion" },
+                    { title: "C.P.", field: "codigoPostal" },
                     { title: "apodo", field: "apodo"},
                     { title: "contrasena", field: "contrasena"}
 
