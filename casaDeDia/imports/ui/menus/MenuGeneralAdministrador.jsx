@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Meteor } from 'meteor/meteor';
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -29,6 +30,10 @@ import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import ExploreIcon from '@material-ui/icons/Explore';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Accounts } from "meteor/accounts-base";
+import { Empleados } from "../../api/empleados/empleados";
+import { Instructores } from "../../api/instructores/instructores";
+import { Voluntarios } from "../../api/voluntarios/voluntarios";
+
 
 const useStyles = makeStyles({
   list: {
@@ -138,6 +143,7 @@ export default function MenuGeneralAdministrador() {
   }
 
   const list = (anchor) => (
+    
     <div
       className={clsx(classes.list, {
         [classes.fullList]: anchor === "top" || anchor === "bottom",
@@ -152,7 +158,7 @@ export default function MenuGeneralAdministrador() {
         //aria-labelledby="nested-list-subheader"
         subheader={
           <ListSubheader component="div">
-            Bienvenido (Administrador)
+            Bienvenido
           </ListSubheader>
         }
       >

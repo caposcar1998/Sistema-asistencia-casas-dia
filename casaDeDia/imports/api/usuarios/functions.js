@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { Usuarios } from "../usuarios/usuarios";
-//import { Accounts } from "meteor/accounts-base";
 
 Meteor.methods({
 
@@ -15,12 +14,6 @@ Meteor.methods({
             throw new Meteor.Error(administrador);
         }
 
-        /*Meteor.loginWithPassword(username, password, function(err){
-            if(err){
-                console.log(reason);
-                throw new Meteor.Error(administrador);
-            }
-        })*/
     }
 
 

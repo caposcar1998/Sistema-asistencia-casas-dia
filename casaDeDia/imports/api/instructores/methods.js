@@ -10,7 +10,7 @@ Meteor.methods({
             username: apodo,
             password: contrasena,
             profile:{
-                role: 'instructor'
+                role: 'instructores'
             }
         }),
 
