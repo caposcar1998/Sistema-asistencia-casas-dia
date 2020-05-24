@@ -29,6 +29,10 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Meteor } from 'meteor/meteor';
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
+//import { Voluntarios } from "../../api/voluntarios/voluntarios";
+//import { Empleados } from "../../api/empleados/empleados";
+//import { Instructores } from "../../api/instructores/instructores";
+import { ReactiveVar } from 'meteor/reactive-var'
 
 const useStyles = makeStyles({
     list: {
@@ -39,6 +43,8 @@ const useStyles = makeStyles({
     },
 });
 
+
+
 export default function ContenidoMenuGeneral({handleCambioPagina}) {
     const classes = useStyles();
     const [state, setState] = React.useState({
@@ -47,6 +53,10 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
         bottom: false,
         right: false,
     });
+
+    
+
+    const usuarioLogeado = Meteor.userId();
 
     const [pagina, setPagina] = useState("administrador");
 
@@ -70,7 +80,38 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
         cambioRuta("login");
     }
 
-    const list = (anchor) => (
+    /*function username(){
+        Meteor.call("getUsuarioActual", 
+        (err, res) => {
+            if (err) {
+                alert(err);
+            } else {
+                
+                console.log(res.apodo);
+                us = new ReactiveVar(res.apodo);
+                //us.set(res.apodo);
+                console.log('react us '+us.get());
+                //const usuarioActual = res;
+            }
+            });
+            
+        //console.log(usuarioActual)
+    }*/
+
+    
+    /*console.log(us); 
+    us.set('todos');
+    console.log(us);*/
+
+    /*const InformacionUsuario = withTracker(() => {
+        return {
+            voluntarios: Voluntarios.find({}).fetch(),
+            empleados: Empleados.find({}).fetch(),
+            instructores: Instructores.find({}).fetch(),
+        };
+    })(permisos);*/
+
+    const list = (anchor) =>(
         <div
             className={clsx(classes.list, {
                 [classes.fullList]: anchor === "top" || anchor === "bottom",
@@ -85,10 +126,11 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                 //aria-labelledby="nested-list-subheader"
                 subheader={
                     <ListSubheader component="div">
-                        Bienvenido (Administrador)
+                        Bienvenido
           </ListSubheader>
                 }
             >
+                
                 <ListItem button key={"Usuarios"} onClick={() =>cambioRuta("administrador")}>
                     <ListItemIcon>
                         <PeopleIcon />
@@ -100,7 +142,8 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                         <DirectionsWalkIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Adultos Mayores"} />
-                </ListItem>
+            </ListItem>
+                
             </List>
             <Divider />
             <List>
@@ -233,21 +276,28 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
             </List>
         </div>
     );
+    
 
-    return (
-        <div>
-            {["left"].map((anchor) => (
-                <React.Fragment key={anchor}>
-                    <Button onMouseEnter={toggleDrawer("left", true)}>{"menu"}</Button>
-                    <Drawer
-                        anchor={anchor}
-                        open={state[anchor]}
-                        onClose={toggleDrawer(anchor, false)}
-                    >
-                        {list(anchor)}
-                    </Drawer>
-                </React.Fragment>
-            ))}
-        </div>
-    );
+    if(usuarioLogeado !== null){
+        return (
+            <div>
+                {["left"].map((anchor) => (
+                    <React.Fragment key={anchor}>
+                        <Button onMouseEnter={toggleDrawer("left", true)}>{"menu"}</Button>
+                        <Drawer
+                            anchor={anchor}
+                            open={state[anchor]}
+                            onClose={toggleDrawer(anchor, false)}
+                        >
+                            {list(anchor)}
+                        </Drawer>
+                    </React.Fragment>
+                ))}
+            </div>
+        );
+    }else{
+
+        return(cambioRuta('login'));
+
+    }
 }
