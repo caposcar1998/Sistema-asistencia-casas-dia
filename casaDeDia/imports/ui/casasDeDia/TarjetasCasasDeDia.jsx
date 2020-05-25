@@ -4,6 +4,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import { List, ListItem, Grid, Typography, Card, CardContent, CardActions, CardMedia, CardHeader, Collapse } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -47,6 +49,12 @@ export default function TarjetasCasasDeDia({ casa, handleOpenBorrarCasaDia, hand
 
         handleOpenEditarCasaDia(casa)
     }
+
+    const anadirPersonasMayores = () => {
+        console.log(casa)
+     }
+
+    const anadirPersonal = () => { }
     
     return (
 
@@ -72,6 +80,12 @@ export default function TarjetasCasasDeDia({ casa, handleOpenBorrarCasaDia, hand
                     </IconButton>
                     <IconButton aria-label="eliminar" onClick={getCasaDiaAEditar}>
                         <EditIcon />
+                    </IconButton>
+                    <IconButton aria-label="editar" onClick={anadirPersonal}>
+                        <PersonAddIcon/>
+                    </IconButton>
+                    <IconButton aria-label="editar" onClick={anadirPersonasMayores}>
+                        <GroupAddIcon />
                     </IconButton>
                     <IconButton
                         className={clsx(classes.expand, {

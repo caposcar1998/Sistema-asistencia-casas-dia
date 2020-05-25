@@ -2,6 +2,8 @@
 import SimpleSchema from "simpl-schema";
 import Actividades from "../actividades/actividades";
 import Restricciones from "../restricciones/restricciones";
+import { AdultosMayores } from "../adultosMayores/adultosMayores";
+import { Empleados } from "../empleados/empleados";
 
 export const CasasDeDia = new Mongo.Collection("casasDeDia");
 
@@ -16,7 +18,11 @@ let Schema = new SimpleSchema({
     codigoPostal: { type: Number },
     "actividades.$": { type: Actividades },
     actividades: { type: Array, defaultValue: [], optional: true },
-    foto: {type: String}
+    foto: { type: String },
+    "adultosMayores.$": { type: AdultosMayores },
+    adultosMayores: { type: Array, defaultValue: [], optional: true },
+    "empleados.$": { type: Empleados },
+    empleados: { type: Array, defaultValue: [], optional: true }
 })
 
 
