@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function TarjetasCasasDeDia({ casa, handleOpenBorrarCasaDia, handleOpenEditarCasaDia }) {
+export default function TarjetasCasasDeDia({ casa, handleOpenAnadirUsuario,handleOpenAnadirEmpleado,handleOpenBorrarCasaDia, handleOpenEditarCasaDia }) {
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
 
@@ -51,10 +51,12 @@ export default function TarjetasCasasDeDia({ casa, handleOpenBorrarCasaDia, hand
     }
 
     const anadirPersonasMayores = () => {
-        console.log(casa)
+        handleOpenAnadirUsuario(casa)
      }
 
-    const anadirPersonal = () => { }
+    const anadirPersonal = () => {
+        handleOpenAnadirEmpleado(casa)
+     }
     
     return (
 
