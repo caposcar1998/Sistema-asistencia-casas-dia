@@ -7,40 +7,72 @@ import { Empleados } from "../../api/empleados/empleados";
 
 function TablaEmpleado({empleados}) {
 
-
     function addEmpleado(newData) {
-        return new Promise(
-            (resolve, reject) => {
-                Meteor.call("crearEmpleado",
-                newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,
-                    (err, res) => {
-                        if (err) {
-                            reject()
-                        } else {
-                            resolve()
-                        }
-                    });
+        val = validations(newData);
 
-            }
+        if(val == true) {
+            return new Promise(
+                (resolve, reject) => {
+                    Meteor.call("crearEmpleado",
+                    newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,
+                        (err, res) => {
+                            if (err) {
+                                reject()
+                            } else {
+                                resolve()
+                            }
+                        });
 
-        )
+                }
+
+            )
+        }else {
+            location.reload();
+        }
 
     };
-    function editEmpleado(newData) {
-        return new Promise(
-            (resolve, reject) => {
-                Meteor.call("editarEmpleado",
-                    newData._id, newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,newData.idUsuario,
-                    (err, res) => {
-                        if (err) {
-                            reject()
-                        } else {
-                            resolve()
-                        }
-                    });
-            }
 
-        )
+    function validations(newData) {
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        var letters = /^[A-Za-záéíóú]+$/;
+        
+        if (newData.nombre == null || newData.apellidos == null || newData.contrasena == null || newData.email == null || newData.apodo == null) {
+            window.alert("No se llenaron todos los campos, intete de nuevo.");
+            return validation = false;
+        }else if(reg.test(newData.email) == false) {
+            window.alert("No se ingresó un correo válido, intente de nuevo.");
+            return validation = false;
+        }else if(letters.test(newData.nombre)== false || letters.test(newData.apellido)== false) {
+            window.alert("El nombre y/o apellidos no deben de contener números, intente de nuevo.");
+            return validation = false;
+        }
+        else {
+            window.alert("¡Nuevo empleado registrado!");
+            return validation = true;
+        }
+    
+}
+    function editEmpleado(newData) {
+        val = validations(newData);
+
+        if(val == true) {
+            return new Promise(
+                (resolve, reject) => {
+                    Meteor.call("editarEmpleado",
+                        newData._id, newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,newData.idUsuario,
+                        (err, res) => {
+                            if (err) {
+                                reject()
+                            } else {
+                                resolve()
+                            }
+                        });
+                }
+
+            )
+        }else {
+            location.reload();
+        }
     };
 
     function borrarEmpleado(data) {
@@ -66,11 +98,12 @@ function TablaEmpleado({empleados}) {
             icons={tableIcons}
             columns={
                 [
+                    
                     { title: "Nombre", field: "nombre" },
                     { title: "Apellidos", field: "apellidos" },
                     { title: "Apodo", field: "apodo" },
                     { title: "Contrasena", field: "contrasena" },
-                    { title: "Email", field: "email"},
+                    { title: "Email", field: "email", type:'email'},
                     { title: "Visualizar Adulto Mayor", field: "visualizarAdultoMayor", type:'boolean'},
                     { title: "Editar Adulto Mayor", field: "editarAdultoMayor", type:'boolean'},
                     { title: "Visualizar Voluntario", field: "visualizarVoluntario", type:'boolean'},
@@ -89,7 +122,6 @@ function TablaEmpleado({empleados}) {
         />
     );
 }
-
 
 export default withTracker(() => {
     return {

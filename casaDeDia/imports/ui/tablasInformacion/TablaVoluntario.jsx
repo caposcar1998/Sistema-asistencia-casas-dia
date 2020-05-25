@@ -9,23 +9,52 @@ function TablaVoluntario({voluntarios}) {
 
 
     function addVoluntario(newData) {
-        return new Promise(
-            (resolve, reject) => {
-                Meteor.call("crearVoluntario",
-                    newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,
-                    (err, res) => {
-                        if (err) {
-                            reject()
-                        } else {
-                            resolve()
-                        }
-                    });
+        val = validations(newData);
 
-            }
+        if(val == true) {
+            return new Promise(
+                (resolve, reject) => {
+                    Meteor.call("crearVoluntario",
+                        newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,
+                        (err, res) => {
+                            if (err) {
+                                reject()
+                            } else {
+                                resolve()
+                            }
+                        });
 
-        )
+                }
+
+            )
+        }else {
+            location.reload();
+        }
 
     };
+
+    function validations(newData) {
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        var letters = /^[A-Za-záéíóú]+$/;
+        
+        if (newData.nombre == null || newData.apellidos == null || newData.contrasena == null || newData.email == null || newData.apodo == null) {
+            window.alert("No se llenaron todos los campos, intete de nuevo.");
+            return validation = false;
+        }else if(reg.test(newData.email) == false) {
+            window.alert("No se ingresó un correo válido, intente de nuevo.");
+            return validation = false;
+        }else if(letters.test(newData.nombre)== false || letters.test(newData.apellido)== false) {
+            window.alert("El nombre y/o apellidos no deben de contener números, intente de nuevo.");
+            return validation = false;
+        }
+        else {
+            window.alert("¡Nuevo voluntario registrado!");
+            return validation = true;
+        }
+    
+}
+
+
     function editVoluntario(newData) {
         return new Promise(
             (resolve, reject) => {
