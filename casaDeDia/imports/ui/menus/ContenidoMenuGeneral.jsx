@@ -278,7 +278,7 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
     );
     
 
-    if(usuarioLogeado !== null){
+    //if(usuarioLogeado !== null){
         return (
             <div>
                 {["left"].map((anchor) => (
@@ -295,9 +295,9 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                 ))}
             </div>
         );
-    }else{
+    /*}else{
 
         return(cambioRuta('login'));
 
-    }
+    }*/
 }
