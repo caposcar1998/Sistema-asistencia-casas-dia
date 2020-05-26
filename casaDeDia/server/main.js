@@ -8,8 +8,11 @@ Meteor.startup(() => {
     //Querry para crear el admin
     if(Meteor.users.find().count() === 0){
         Accounts.createUser({
-            username: "admin",
-            password: "admin"
+            username: 'admin',
+            password: 'admin',
+            profile:{
+                role: 'voluntarios'
+            }
         });
     }
    
