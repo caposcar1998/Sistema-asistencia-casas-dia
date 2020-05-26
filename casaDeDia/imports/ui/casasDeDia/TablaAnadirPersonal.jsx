@@ -29,8 +29,7 @@ const useStyles = makeStyles((theme) => ({
 export default function TablaAnadirPersonal({ casaSeleccionada }) {
     const classes = useStyles();
 
-    function crearUsuarioNuevo() {
-    }
+
 
 
     return (
@@ -40,7 +39,7 @@ export default function TablaAnadirPersonal({ casaSeleccionada }) {
                     <Typography variant="h6" className={classes.title}>
                         {casaSeleccionada.nombre}
           </Typography>
-                    <Button color="inherit" onClick={crearUsuarioNuevo}>Anadir</Button>
+                    <Button color="inherit" >Anadir</Button>
                 </Toolbar>
             </AppBar>
         
@@ -56,7 +55,7 @@ export default function TablaAnadirPersonal({ casaSeleccionada }) {
                 </TableHead>
                 <TableBody>
                     {casaSeleccionada.empleados.map((empleado) => (
-                        <TableRow key={row.nombre}>
+                        <TableRow key={empleado.nombre}>
                             <TableCell>
                                 <IconButton>
                                     <DeleteIcon />
@@ -68,7 +67,7 @@ export default function TablaAnadirPersonal({ casaSeleccionada }) {
                                 </IconButton>
                             </TableCell>
                             <TableCell align="right">{empleado.nombre}</TableCell>
-                            <TableCell align="right">{empleado.funcion}</TableCell>
+                            <TableCell align="right">{empleado.puesto}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
@@ -84,7 +83,10 @@ function CrearNuevoUsuario({ casaSeleccionada }) {
     const [personal, setPersonal] = useState([]);
     const [personaSeleccionada, setPersonaSeleccionada] = useState();
     const [puesto, setPuesto] = useState();
-
+    const [alert, setAlert] = useState();
+    const [snackBarState, setSnackBarState] = useState();
+    const [message, setMessage] = useState();
+    
     function traerPersonalServidor() {
         return new Promise(
             (resolve, reject) => {
@@ -108,8 +110,14 @@ function CrearNuevoUsuario({ casaSeleccionada }) {
                     casaSeleccionada._id,personaSeleccionada._id, personaSeleccionada.nombre, puesto,
                     (err, res) => {
                         if (err) {
+                            setAlert("success")
+                            setSnackBarState(true)
+                            setMessage("Error al crear el usuario")
                             reject()
                         } else {
+                            setAlert("error")
+                            setSnackBarState(true)
+                            setMessage("Exito al crear el usuario")
                             resolve()
                         }
                     });
@@ -122,6 +130,7 @@ function CrearNuevoUsuario({ casaSeleccionada }) {
     }, []);
 
     return (
+        <>
         <Paper>
             <Grid container>
 
@@ -152,6 +161,11 @@ function CrearNuevoUsuario({ casaSeleccionada }) {
                 <Grid item xs={6}><Button>Cancelar</Button></Grid>
             </Grid>
         </Paper>
+        {
+        snackBarState &&
+        <CustomSnackbars type={alert} state={snackBarState} message={message} />
+            }
+            </>
     )
  }
 
