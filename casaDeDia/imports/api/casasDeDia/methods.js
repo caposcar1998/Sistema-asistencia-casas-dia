@@ -15,7 +15,8 @@ Meteor.methods({
                 horarioCierre: horarioCierre,
                 cupoLimite: cupoLimite,
                 codigoPostal: codigoPostal,
-                foto: foto
+                foto: foto,
+                empleados: []
             }
 
         )
@@ -51,8 +52,22 @@ Meteor.methods({
 
     "leerCasasDeDia"() {
         return CasasDeDia.find().fetch();
-    }
+    },
 
+    "anadirUsuario"(idCasaDeDia,idUsuario, nombre, puesto) {
+        CasasDeDia.update(
+            { _id: idCasaDeDia },
+            {
+                $push: {
+                    "empleados": {
+                        idReferencia: idUsuario,
+                        nombre: nombre,
+                        puesto: puesto
+                    }
+                 } 
+            }
+        )
+     }
 
 });
 

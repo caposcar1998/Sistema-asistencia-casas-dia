@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Modal } from '@material-ui/core';
+import TablaAnadirPersonal from './TablaAnadirPersonal';
 
 
 
@@ -21,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
     paper: {
         position: 'absolute',
-        width: 400,
+        width: "auto",
         backgroundColor: theme.palette.background.paper,
         border: '2px solid #000',
         boxShadow: theme.shadows[5],
@@ -43,7 +44,9 @@ export default function ModalAnadirPersonal({ openAnadirEmpleado,casaSeleccionad
 
         >
             <div style={modalStyle} className={classes.paper}>
-                anadirPersonal
+                <TablaAnadirPersonal
+                    casaSeleccionada={casaSeleccionada}
+                />
             </div>
         </Modal>
     )

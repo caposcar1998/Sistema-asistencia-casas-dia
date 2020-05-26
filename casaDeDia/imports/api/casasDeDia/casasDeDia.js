@@ -7,6 +7,12 @@ import { Empleados } from "../empleados/empleados";
 
 export const CasasDeDia = new Mongo.Collection("casasDeDia");
 
+let EmpleadosCasaDia = new SimpleSchema({
+    idReferencia: { type: String },
+    nombre: { type: String },
+    puesto: { type: String }
+})
+
 let Schema = new SimpleSchema({
     nombre: { type: String },
     direccion: { type: String },
@@ -21,9 +27,11 @@ let Schema = new SimpleSchema({
     foto: { type: String },
     "adultosMayores.$": { type: AdultosMayores },
     adultosMayores: { type: Array, defaultValue: [], optional: true },
-    "empleados.$": { type: Empleados },
+    "empleados.$": { type: EmpleadosCasaDia },
     empleados: { type: Array, defaultValue: [], optional: true }
 })
+
+
 
 
 
