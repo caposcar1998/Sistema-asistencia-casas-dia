@@ -3,11 +3,10 @@ import MaterialTable from 'material-table';
 import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { Empleados } from "../../api/empleados/empleados";
+import { Meteor } from 'meteor/meteor';
 
 
 function TablaEmpleado({empleados}) {
-
-
     function addEmpleado(newData) {
         return new Promise(
             (resolve, reject) => {
@@ -92,6 +91,7 @@ function TablaEmpleado({empleados}) {
 
 
 export default withTracker(() => {
+    Meteor.subscribe("empleados");
     return {
         empleados: Empleados.find({}).fetch(),
     };

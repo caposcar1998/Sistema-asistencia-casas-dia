@@ -3,6 +3,7 @@ import MaterialTable from 'material-table';
 import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { Instructores } from "../../api/instructores/instructores";
+import { Meteor } from 'meteor/meteor';
 
 
 function TablaInstructor({instructores}) {
@@ -92,6 +93,7 @@ function TablaInstructor({instructores}) {
 
 
 export default withTracker(() => {
+    Meteor.subscribe("instructores");
     return {
         instructores: Instructores.find({}).fetch(),
     };

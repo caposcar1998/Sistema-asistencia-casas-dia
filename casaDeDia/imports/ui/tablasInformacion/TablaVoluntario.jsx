@@ -3,6 +3,7 @@ import MaterialTable from 'material-table';
 import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { Voluntarios } from "../../api/voluntarios/voluntarios";
+import { Meteor } from 'meteor/meteor';
 
 
 function TablaVoluntario({voluntarios}) {
@@ -91,6 +92,7 @@ function TablaVoluntario({voluntarios}) {
 
 
 export default withTracker(() => {
+    Meteor.subscribe("voluntarios");
     return {
         voluntarios: Voluntarios.find({}).fetch(),
     };
