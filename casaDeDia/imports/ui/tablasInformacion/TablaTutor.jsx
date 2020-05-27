@@ -2,7 +2,9 @@ import React, {useEffect, useState} from 'react';
 import MaterialTable from 'material-table';
 import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
-import { Tutores } from "../../api/tutores/tutores"
+import { Tutores } from "../../api/tutores/tutores";
+
+import { Meteor } from 'meteor/meteor';
 
 function TablaTutor({tutores}) {
         function addTutor(newData) {
@@ -86,6 +88,7 @@ function TablaTutor({tutores}) {
 }
 
 export default withTracker(() => {
+    Meteor.subscribe("tutores");
     return {
         tutores: Tutores.find({}).fetch(),
     };

@@ -3,6 +3,7 @@ import MaterialTable from 'material-table';
 import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { Centros } from "../../api/centros/centros"
+import { Meteor } from 'meteor/meteor';
 
 function TablaCentros({centros}) {
     
@@ -92,6 +93,7 @@ function TablaCentros({centros}) {
 }
 
 export default withTracker(() => {
+    Meteor.subscribe("centros");
     return {
         centros: Centros.find({}).fetch(),
     };

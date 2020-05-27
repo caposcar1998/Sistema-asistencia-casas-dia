@@ -4,13 +4,10 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { Empleados } from "../../api/empleados/empleados";
 import { Meteor } from 'meteor/meteor';
-import { Tracker } from 'meteor/tracker'
-
-Tracker.autorun(()=>{
-
-
 
 function TablaEmpleado({empleados}) {
+
+
     function addEmpleado(newData) {
         return new Promise(
             (resolve, reject) => {
@@ -60,35 +57,10 @@ function TablaEmpleado({empleados}) {
                     });
             }
         )
-    }; 
-    const u = Meteor.user() && Meteor.user().profile.editarAdultoMayor;
-
-    if(Meteor.user()){
-        if(Meteor.user() && Meteor.user().profile.editarAdultoMayor !== true){
-            return(
-                
-                    <MaterialTable
-                        title="Empleados"
-                        icons={tableIcons}
-                        columns={
-                            [
-                                { title: "Nombre", field: "nombre" },
-                                { title: "Apellidos", field: "apellidos" },
-                                { title: "Apodo", field: "apodo" },
-                                { title: "Contrasena", field: "contrasena" },
-                                { title: "Email", field: "email"},
-            
-                            ]
-                        }
-                        data={empleados}
-                    />
-                
-
-            )
-        }
-    }
+    };
 
     return (
+
         <MaterialTable
             title="Empleados"
             icons={tableIcons}
@@ -116,7 +88,6 @@ function TablaEmpleado({empleados}) {
             }}
         />
     );
-        
 }
 
 
@@ -126,4 +97,3 @@ export default withTracker(() => {
         empleados: Empleados.find({}).fetch(),
     };
 })(TablaEmpleado);
-});

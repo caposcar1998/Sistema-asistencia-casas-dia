@@ -1,5 +1,16 @@
 import SimpleSchema from "simpl-schema";
+import { Meteor } from 'meteor/meteor';
+
 export const Tutores = new Mongo.Collection("tutores");
+
+if (Meteor.isServer) {
+    // This code only runs on the server
+    // Only publish tasks that are public or belong to the current user
+    Meteor.publish("tutores", function(){
+        return Tutores.find();
+    });
+}
+
 
 let Schema = new SimpleSchema({
     nombre: { type: String },
