@@ -29,7 +29,7 @@ import TalleresTab from "../../ui/tabs/TalleresTab";
 import ColectivosTab from "../../ui/tabs/ColectivosTab";
 import ConvocatoriasTab from "../../ui/tabs/ConvocatoriasTab";
 
-import CentrosTab from "../../ui/tabs/CentrosTab"
+import CentrosTab from "../../ui/tabs/CentrosTab";
 
 FlowRouter.route('/', {
     name: 'login',

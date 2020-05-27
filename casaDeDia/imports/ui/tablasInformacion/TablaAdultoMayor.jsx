@@ -3,6 +3,7 @@ import MaterialTable from 'material-table';
 import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { AdultosMayores } from "../../api/adultosMayores/adultosMayores";
+import { Meteor } from 'meteor/meteor';
 
 
 function TablaAdultoMayor({adultosMayores}) {
@@ -91,6 +92,7 @@ function TablaAdultoMayor({adultosMayores}) {
 
 
 export default withTracker(() => {
+    Meteor.subscribe("adultosMayores");
     return {
         adultosMayores: AdultosMayores.find({}).fetch(),
     };

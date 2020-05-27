@@ -11,7 +11,13 @@ Meteor.startup(() => {
             username: 'admin',
             password: 'admin',
             profile:{
-                role: 'voluntarios'
+                role: 'voluntarios',
+                visualizarAdultoMayor: true,
+                editarAdultoMayor: true,
+                visualizarVoluntario: true,
+                editarVoluntario: true,
+                visualizarInstructor: true,
+                editarInstructor: true
             }
         });
     }

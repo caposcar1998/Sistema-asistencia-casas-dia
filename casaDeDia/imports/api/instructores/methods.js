@@ -10,7 +10,13 @@ Meteor.methods({
             username: apodo,
             password: contrasena,
             profile:{
-                role: 'instructores'
+                role: 'instructores',
+                visualizarAdultoMayor: visualizarAdultoMayor,
+                editarAdultoMayor: editarAdultoMayor,
+                visualizarVoluntario: visualizarVoluntario,
+                editarVoluntario: editarVoluntario,
+                visualizarInstructor: visualizarInstructor,
+                editarInstructor: editarInstructor,
             }
         }),
 
@@ -37,6 +43,15 @@ Meteor.methods({
         Meteor.users.update(idUsuario,{
             $set:{
                 username: apodo,
+                profile:{
+                    role: 'instructores',
+                    visualizarAdultoMayor: visualizarAdultoMayor,
+                    editarAdultoMayor: editarAdultoMayor,
+                    visualizarVoluntario: visualizarVoluntario,
+                    editarVoluntario: editarVoluntario,
+                    visualizarInstructor: visualizarInstructor,
+                    editarInstructor: editarInstructor
+                }
                 
             }
         });

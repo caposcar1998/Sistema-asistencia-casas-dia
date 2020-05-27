@@ -29,10 +29,14 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Meteor } from 'meteor/meteor';
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-//import { Voluntarios } from "../../api/voluntarios/voluntarios";
-//import { Empleados } from "../../api/empleados/empleados";
-//import { Instructores } from "../../api/instructores/instructores";
-import { ReactiveVar } from 'meteor/reactive-var'
+
+import { Voluntarios } from "../../api/voluntarios/voluntarios";
+import { Empleados } from "../../api/empleados/empleados";
+import { Instructores } from "../../api/instructores/instructores";
+
+import { Tracker } from 'meteor/tracker'
+
+Tracker.autorun(()=>{
 
 const useStyles = makeStyles({
     list: {
@@ -44,7 +48,6 @@ const useStyles = makeStyles({
 });
 
 
-
 export default function ContenidoMenuGeneral({handleCambioPagina}) {
     const classes = useStyles();
     const [state, setState] = React.useState({
@@ -54,7 +57,8 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
         right: false,
     });
 
-    
+
+    const usuario = Meteor.user() && Meteor.user().profile.visualizarAdultoMayor;
 
     const usuarioLogeado = Meteor.userId();
 
@@ -80,36 +84,6 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
         cambioRuta("login");
     }
 
-    /*function username(){
-        Meteor.call("getUsuarioActual", 
-        (err, res) => {
-            if (err) {
-                alert(err);
-            } else {
-                
-                console.log(res.apodo);
-                us = new ReactiveVar(res.apodo);
-                //us.set(res.apodo);
-                console.log('react us '+us.get());
-                //const usuarioActual = res;
-            }
-            });
-            
-        //console.log(usuarioActual)
-    }*/
-
-    
-    /*console.log(us); 
-    us.set('todos');
-    console.log(us);*/
-
-    /*const InformacionUsuario = withTracker(() => {
-        return {
-            voluntarios: Voluntarios.find({}).fetch(),
-            empleados: Empleados.find({}).fetch(),
-            instructores: Instructores.find({}).fetch(),
-        };
-    })(permisos);*/
 
     const list = (anchor) =>(
         <div
@@ -196,24 +170,25 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                     </ListItemIcon>
                     <ListItemText primary={"Adminsitrador"} />
                 </ListItem>
-                <ListItem button key={"Empleados"} onClick={() => cambioRuta('empleados')}>
+                {((Meteor.user() && Meteor.user().profile.visualizarVoluntario) === true) ? (<ListItem button key={"Empleados"} onClick={() => cambioRuta('empleados')}>
                     <ListItemIcon>
                         <WorkIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Empleados"} />
-                </ListItem>
-                <ListItem button key={"Voluntarios"} onClick={() => cambioRuta('voluntarios')}>
+                </ListItem>):''}
+                {((Meteor.user() && Meteor.user().profile.visualizarVoluntario) === true) ? (<ListItem button key={"Voluntarios"} onClick={() => cambioRuta('voluntarios')}>
                     <ListItemIcon>
                         <EmojiPeopleIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Voluntarios"} />
-                </ListItem>
-                <ListItem button key={"Instructores"} onClick={() => cambioRuta('instructores')}>
+                </ListItem>):''}
+                
+                {((Meteor.user() && Meteor.user().profile.visualizarInstructor) === true) ? (<ListItem button key={"Instructores"} onClick={() => cambioRuta('instructores')}>
                     <ListItemIcon>
                         <LocalLibraryIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Instructores"} />
-                </ListItem>
+                </ListItem>):''}
             </List>
             <Divider />
             <List>
@@ -278,7 +253,10 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
     );
     
 
-    //if(usuarioLogeado !== null){
+    
+
+    
+    if(usuarioLogeado !== null){
         return (
             <div>
                 {["left"].map((anchor) => (
@@ -295,9 +273,13 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                 ))}
             </div>
         );
-    /*}else{
+    }else{
 
         return(cambioRuta('login'));
 
-    }*/
+    }
 }
+
+});
+
+
