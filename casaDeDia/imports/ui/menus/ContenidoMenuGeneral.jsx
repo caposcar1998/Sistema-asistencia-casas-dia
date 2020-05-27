@@ -164,12 +164,12 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
             </List>
             <Divider />
             <List>
-                <ListItem button key={"Administrador"} onClick={() => cambioRuta('administrador')}>
+                {/*<ListItem button key={"Administrador"} onClick={() => cambioRuta('administrador')}>
                     <ListItemIcon>
                         <GradeIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Adminsitrador"} />
-                </ListItem>
+                </ListItem>*/}
                 {((Meteor.user() && Meteor.user().profile.visualizarVoluntario) === true) ? (<ListItem button key={"Empleados"} onClick={() => cambioRuta('empleados')}>
                     <ListItemIcon>
                         <WorkIcon />
