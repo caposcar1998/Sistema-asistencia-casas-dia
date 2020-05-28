@@ -29,7 +29,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TablaAnadirPersonal({ casaSeleccionada, handleCerrarAnadirEmpleado }) {
     const classes = useStyles();
-
+    const [alert, setAlert] = useState();
+    const [snackBarState, setSnackBarState] = useState();
+    const [open, setOpen] = useState(false);
+    const [message, setMessage] = useState(); 
 
     useEffect(() => {
         casaSeleccionada
@@ -42,8 +45,14 @@ export default function TablaAnadirPersonal({ casaSeleccionada, handleCerrarAnad
                     idEliminar, puesto,
                     (err, res) => {
                         if (err) {
+                            setAlert("error")
+                            setSnackBarState(true)
+                            setMessage("Error al eliminar empleados")
                             reject()
                         } else {
+                            setAlert("success")
+                            setSnackBarState(true)
+                            setMessage("Empleado eliminado")
                             resolve()
                         }
                     });
@@ -96,6 +105,9 @@ export default function TablaAnadirPersonal({ casaSeleccionada, handleCerrarAnad
             <CrearNuevoUsuario casaSeleccionada={casaSeleccionada}
                 handleCerrarAnadirEmpleado={handleCerrarAnadirEmpleado}
             />
+            {snackBarState &&
+                <CustomSnackbars type={alert} state={snackBarState} message={message} />
+            } 
             </>
     );
 }
