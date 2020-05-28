@@ -17,7 +17,21 @@ Meteor.startup(() => {
                 visualizarVoluntario: true,
                 editarVoluntario: true,
                 visualizarInstructor: true,
-                editarInstructor: true
+                editarInstructor: true,
+                visualizarAsilo: true,
+                visualizarCasasDeDia: true,
+                visualizarClubes:true,
+                visualizarServicios:true,
+                visualizarActividades:true,
+                visualizarTarjetas:true,
+                visualizarEmpleados:true,
+                editarEmpleados:true,
+                visualizarBeneficios:true,
+                visualizarTutores:true,
+                editarTutores:true,
+                visualizarTalleres:true,
+                visualizarConvocatorias:true,
+                visualizarCentros:true
             }
         });
     }
