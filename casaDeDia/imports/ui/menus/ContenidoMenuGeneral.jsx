@@ -30,10 +30,6 @@ import { Meteor } from 'meteor/meteor';
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { Voluntarios } from "../../api/voluntarios/voluntarios";
-import { Empleados } from "../../api/empleados/empleados";
-import { Instructores } from "../../api/instructores/instructores";
-
 import { Tracker } from 'meteor/tracker'
 
 Tracker.autorun(()=>{
@@ -105,18 +101,18 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                 }
             >
                 
-                <ListItem button key={"Usuarios"} onClick={() =>cambioRuta("administrador")}>
+                {/*<ListItem button key={"Usuarios"} onClick={() =>cambioRuta("administrador")}>
                     <ListItemIcon>
                         <PeopleIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Usuarios"} />
-                </ListItem>
-                <ListItem button key={"Adultos Mayores"} onClick={() => cambioRuta("adultosMayores")}>
+            </ListItem>*/}
+                {((Meteor.user() && Meteor.user().profile.visualizarAdultoMayor) === true) ? (<ListItem button key={"Adultos Mayores"} onClick={() => cambioRuta("adultosMayores")}>
                     <ListItemIcon>
                         <DirectionsWalkIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Adultos Mayores"} />
-            </ListItem>
+            </ListItem>):''}
                 
             </List>
             <Divider />
@@ -162,7 +158,10 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                     <ListItemText primary={"Tarjetas"} />
                 </ListItem>
             </List>
-            <Divider />
+            {(((Meteor.user() && Meteor.user().profile.visualizarVoluntario) !== true) && 
+            ((Meteor.user() && Meteor.user().profile.visualizarVoluntario) !== true) && 
+            ((Meteor.user() && Meteor.user().profile.visualizarInstructor) !== true)) ? '': (<Divider />)} 
+            
             <List>
                 {/*<ListItem button key={"Administrador"} onClick={() => cambioRuta('administrador')}>
                     <ListItemIcon>

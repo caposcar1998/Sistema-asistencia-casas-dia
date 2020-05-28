@@ -5,21 +5,35 @@ import { Accounts } from "meteor/accounts-base";
 Meteor.methods({
 
 
-    "crearInstructor"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor) {
+    "crearInstructor"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor, idUsuario,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros) {
         idUsuario = Accounts.createUser({
             username: apodo,
             password: contrasena,
             profile:{
-                role: 'instructores',
+                role: 'instructor',
                 visualizarAdultoMayor: visualizarAdultoMayor,
                 editarAdultoMayor: editarAdultoMayor,
                 visualizarVoluntario: visualizarVoluntario,
                 editarVoluntario: editarVoluntario,
                 visualizarInstructor: visualizarInstructor,
                 editarInstructor: editarInstructor,
+                visualizarAsilo: visualizarAsilo,
+                visualizarCasasDeDia: visualizarCasasDeDia,
+                visualizarClubes:visualizarClubes,
+                visualizarServicios:visualizarServicios,
+                visualizarActividades:visualizarActividades,
+                visualizarTarjetas:visualizarTarjetas,
+                visualizarEmpleados:visualizarEmpleados,
+                editarEmpleados:editarEmpleados,
+                visualizarBeneficios:visualizarBeneficios,
+                visualizarTutores:visualizarTutores,
+                editarTutores:editarTutores,
+                visualizarTalleres:visualizarTalleres,
+                visualizarConvocatorias:visualizarConvocatorias,
+                visualizarCentros:visualizarCentros
             }
         }),
-
+        
         Instructores.insert(
             {
                 nombre: nombre,
@@ -33,13 +47,26 @@ Meteor.methods({
                 editarVoluntario: editarVoluntario,
                 visualizarInstructor: visualizarInstructor,
                 editarInstructor: editarInstructor,
-                idUsuario: idUsuario
+                idUsuario: idUsuario,
+                visualizarAsilo: visualizarAsilo,
+                visualizarCasasDeDia: visualizarCasasDeDia,
+                visualizarClubes:visualizarClubes,
+                visualizarServicios:visualizarServicios,
+                visualizarActividades:visualizarActividades,
+                visualizarTarjetas:visualizarTarjetas,
+                visualizarEmpleados:visualizarEmpleados,
+                editarEmpleados:editarEmpleados,
+                visualizarBeneficios:visualizarBeneficios,
+                visualizarTutores:visualizarTutores,
+                editarTutores:editarTutores,
+                visualizarTalleres:visualizarTalleres,
+                visualizarConvocatorias:visualizarConvocatorias,
+                visualizarCentros:visualizarCentros
             }
         )
-
     },
 
-    "editarInstructor"(idInstructor,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor,idUsuario) {
+    "editarInstructor"(idInstructor,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor,idUsuario, visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros) {
         Meteor.users.update(idUsuario,{
             $set:{
                 username: apodo,
@@ -50,8 +77,23 @@ Meteor.methods({
                     visualizarVoluntario: visualizarVoluntario,
                     editarVoluntario: editarVoluntario,
                     visualizarInstructor: visualizarInstructor,
-                    editarInstructor: editarInstructor
+                    editarInstructor: editarInstructor,
+                    visualizarAsilo: visualizarAsilo,
+                    visualizarCasasDeDia: visualizarCasasDeDia,
+                    visualizarClubes:visualizarClubes,
+                    visualizarServicios:visualizarServicios,
+                    visualizarActividades:visualizarActividades,
+                    visualizarTarjetas:visualizarTarjetas,
+                    visualizarEmpleados:visualizarEmpleados,
+                    editarEmpleados:editarEmpleados,
+                    visualizarBeneficios:visualizarBeneficios,
+                    visualizarTutores:visualizarTutores,
+                    editarTutores:editarTutores,
+                    visualizarTalleres:visualizarTalleres,
+                    visualizarConvocatorias:visualizarConvocatorias,
+                    visualizarCentros:visualizarCentros
                 }
+                
                 
             }
         });
@@ -75,7 +117,21 @@ Meteor.methods({
                     visualizarVoluntario: visualizarVoluntario,
                     editarVoluntario: editarVoluntario,
                     visualizarInstructor: visualizarInstructor,
-                    editarInstructor: editarInstructor
+                    editarInstructor: editarInstructor,
+                    visualizarAsilo: visualizarAsilo,
+                    visualizarCasasDeDia: visualizarCasasDeDia,
+                    visualizarClubes:visualizarClubes,
+                    visualizarServicios:visualizarServicios,
+                    visualizarActividades:visualizarActividades,
+                    visualizarTarjetas:visualizarTarjetas,
+                    visualizarEmpleados:visualizarEmpleados,
+                    editarEmpleados:editarEmpleados,
+                    visualizarBeneficios:visualizarBeneficios,
+                    visualizarTutores:visualizarTutores,
+                    editarTutores:editarTutores,
+                    visualizarTalleres:visualizarTalleres,
+                    visualizarConvocatorias:visualizarConvocatorias,
+                    visualizarCentros:visualizarCentros
                 }
             }
         )

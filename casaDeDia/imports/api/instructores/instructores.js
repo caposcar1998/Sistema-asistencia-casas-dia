@@ -25,8 +25,7 @@ if (Meteor.isServer) {
     });*/
 
     Meteor.publish("instructores", function(){
-        const user = getUser();
-        if(user.visualizarInstructor == true){
+        if(Meteor.user().profile.visualizarInstructor === true){
             return Instructores.find();
         }
     });
@@ -44,5 +43,19 @@ let Schema = new SimpleSchema({
     editarVoluntario: { type: Boolean },
     visualizarInstructor: { type: Boolean },
     editarInstructor: { type: Boolean },
-    idUsuario: { type: String }
+    idUsuario: { type: String },
+    visualizarAsilo: {type: String},
+    visualizarCasasDeDia: {type:String},
+    visualizarClubes:{type:String},
+    visualizarServicios:{type:String},
+    visualizarActividades:{type:String},
+    visualizarTarjetas:{type:String},
+    visualizarEmpleados:{type:String},
+    editarEmpleados:{type:String},
+    visualizarBeneficios:{type:String},
+    visualizarTutores:{type:String},
+    editarTutores:{type:String},
+    visualizarTalleres:{type:String},
+    visualizarConvocatorias:{type:String},
+    visualizarCentros:{type:String}
 })
