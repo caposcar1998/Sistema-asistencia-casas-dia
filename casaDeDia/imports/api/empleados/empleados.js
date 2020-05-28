@@ -24,7 +24,7 @@ if (Meteor.isServer) {
     });
 
     /*Meteor.publish("empleados", function(){
-        if(Meteor.user().profile.visualizarAdultoMayor === true){
+        if(Meteor.user().profile.visualizarEmpleado === true){
             return Empleados.find();
         }
     });*/

@@ -116,51 +116,57 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                 
             </List>
             <Divider />
+            
             <List>
-                <ListItem button key={"Asilos"} onClick={() => cambioRuta('asilos')}>
+            {((Meteor.user() && Meteor.user().profile.visualizarAsilo) === true) ? (
+            <ListItem button key={"Asilos"} onClick={() => cambioRuta('asilos')}>
                     <ListItemIcon>
                         <DeckIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Asilos"} />
-                </ListItem>
-                <ListItem button key={"Casas de dia"} onClick={() => cambioRuta('casasDeDia')}>
+                </ListItem>):''}
+
+                {((Meteor.user() && Meteor.user().profile.visualizarCasasDeDia) === true) ?(<ListItem button key={"Casas de dia"} onClick={() => cambioRuta('casasDeDia')}>
                     <ListItemIcon>
                         <HouseIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Casas de dia"} />
-                </ListItem>
-                <ListItem button key={"Clubes"} onClick={() => cambioRuta('clubes')}>
+                </ListItem>):''}
+                {((Meteor.user() && Meteor.user().profile.visualizarClubes) === true) ? (<ListItem button key={"Clubes"} onClick={() => cambioRuta('clubes')}>
                     <ListItemIcon>
                         <GolfCourseIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Clubes"} />
-                </ListItem>
+                </ListItem>):''}
 
-                <ListItem button key={"Servicios"} onClick={() => cambioRuta('servicios')}>
+                {((Meteor.user() && Meteor.user().profile.visualizarServicios) === true) ? (<ListItem button key={"Servicios"} onClick={() => cambioRuta('servicios')}>
                     <ListItemIcon>
                         <RoomServiceIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Servicios"} />
-                </ListItem>
-                <ListItem button key={"Actividades"} onClick={() => cambioRuta('actividades')}>
+                </ListItem>):''}
+                {((Meteor.user() && Meteor.user().profile.visualizarActividades) === true) ? (<ListItem button key={"Actividades"} onClick={() => cambioRuta('actividades')}>
                     <ListItemIcon>
                         <LocalActivityIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Actividades"} />
-                </ListItem>
+                </ListItem>):''}
             </List>
-            <Divider />
+            {(((Meteor.user() && Meteor.user().profile.visualizarTarjetas) !== true)) ? '': (<Divider />)}
             <List>
-                <ListItem button key={"Tarjetas"} onClick={() => cambioRuta('tarjetas')}>
+            {((Meteor.user() && Meteor.user().profile.visualizarTarjetas) === true) ? (<ListItem button key={"Tarjetas"} onClick={() => cambioRuta('tarjetas')}>
                     <ListItemIcon>
                         <StyleIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Tarjetas"} />
-                </ListItem>
+                </ListItem>):''}
             </List>
-            {(((Meteor.user() && Meteor.user().profile.visualizarVoluntario) !== true) && 
-            ((Meteor.user() && Meteor.user().profile.visualizarVoluntario) !== true) && 
-            ((Meteor.user() && Meteor.user().profile.visualizarInstructor) !== true)) ? '': (<Divider />)} 
+            {(((Meteor.user() && Meteor.user().profile.visualizarAsilo) !== true) && 
+            ((Meteor.user() && Meteor.user().profile.visualizarCasasDeDia) !== true) && 
+            ((Meteor.user() && Meteor.user().profile.visualizarClues) !== true) &&
+            ((Meteor.user() && Meteor.user().profile.visualizarServicios) !== true) &&
+            ((Meteor.user() && Meteor.user().profile.visualizarActividades) !== true)) ? '': (<Divider />)}
+            
             
             <List>
                 {/*<ListItem button key={"Administrador"} onClick={() => cambioRuta('administrador')}>
@@ -169,7 +175,7 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                     </ListItemIcon>
                     <ListItemText primary={"Adminsitrador"} />
                 </ListItem>*/}
-                {((Meteor.user() && Meteor.user().profile.visualizarVoluntario) === true) ? (<ListItem button key={"Empleados"} onClick={() => cambioRuta('empleados')}>
+                {((Meteor.user() && Meteor.user().profile.visualizarEmpleados) === true) ? (<ListItem button key={"Empleados"} onClick={() => cambioRuta('empleados')}>
                     <ListItemIcon>
                         <WorkIcon />
                     </ListItemIcon>
@@ -189,55 +195,59 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                     <ListItemText primary={"Instructores"} />
                 </ListItem>):''}
             </List>
-            <Divider />
+            {(((Meteor.user() && Meteor.user().profile.visualizarVoluntario) !== true) && 
+            ((Meteor.user() && Meteor.user().profile.visualizarVoluntario) !== true) && 
+            ((Meteor.user() && Meteor.user().profile.visualizarInstructor) !== true)) ? '': (<Divider />)} 
+            
             <List>
-                <ListItem button key={"Beneficios"} onClick={() => cambioRuta('beneficios')}>
+                {((Meteor.user() && Meteor.user().profile.visualizarBeneficios) === true) ? (<ListItem button key={"Beneficios"} onClick={() => cambioRuta('beneficios')}>
                     <ListItemIcon>
                         <EventSeatIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Beneficios"} />
-                </ListItem>
+                </ListItem>):''}
             </List>
-            <Divider />
+            
+            {(((Meteor.user() && Meteor.user().profile.visualizarBeneficios) !== true)) ? '': (<Divider />)}
             <List>
-                <ListItem button key={"Tutores"} onClick={() => cambioRuta('tutores')}>
+                {((Meteor.user() && Meteor.user().profile.visualizarTutores) === true) ? (<ListItem button key={"Tutores"} onClick={() => cambioRuta('tutores')}>
                     <ListItemIcon>
                         <AssignmentIndIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Tutores Colectivo"} />
-                </ListItem>
+                </ListItem>):''}
             </List>
             <List>
-                <ListItem button key={"Talleres"} onClick={() => cambioRuta('talleres')}>
+                {((Meteor.user() && Meteor.user().profile.visualizarTalleres) === true) ? (<ListItem button key={"Talleres"} onClick={() => cambioRuta('talleres')}>
                     <ListItemIcon>
                         <RowingIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Talleres"} />
-                </ListItem>
+                </ListItem>):''}
             </List>
             <List>
-                <ListItem button key={"Colectivos"} onClick={() => cambioRuta('colectivos')}>
+                {((Meteor.user() && Meteor.user().profile.visualizarColectivos) === true) ? (<ListItem button key={"Colectivos"} onClick={() => cambioRuta('colectivos')}>
                     <ListItemIcon>
                         <FavoriteIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Colectivos"} />
-                </ListItem>
+                </ListItem>):''}
             </List>
             <List>
-                <ListItem button key={"Convocatorias"} onClick={() => cambioRuta('convocatorias')}>
+                {((Meteor.user() && Meteor.user().profile.visualizarConvocatorias) === true) ? (<ListItem button key={"Convocatorias"} onClick={() => cambioRuta('convocatorias')}>
                     <ListItemIcon>
                         <LibraryBooksIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Convocatorias"} />
-                </ListItem>
+                </ListItem>):''}
             </List>
             <List>
-                <ListItem button key={"Centros"} onClick={() => cambioRuta('centros')}>
+                {((Meteor.user() && Meteor.user().profile.visualizarCentros) === true) ? (<ListItem button key={"Centros"} onClick={() => cambioRuta('centros')}>
                     <ListItemIcon>
                         <ExploreIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Centros"} />
-                </ListItem>
+                </ListItem>):''}
             </List>
             <Divider />
             <List>
