@@ -12,7 +12,7 @@ function TablaInstructor({instructores}) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("crearInstructor",
-                newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,
+                newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -30,7 +30,7 @@ function TablaInstructor({instructores}) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("editarInstructor",
-                    newData._id, newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,
+                    newData._id, newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,newData.idUsuario,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -47,7 +47,7 @@ function TablaInstructor({instructores}) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("borrarInstructor",
-                    data._id,
+                    data._id, data.idUsuario,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -70,7 +70,13 @@ function TablaInstructor({instructores}) {
                     { title: "Apellidos", field: "apellidos" },
                     { title: "Apodo", field: "apodo" },
                     { title: "Contrasena", field: "contrasena" },
-                    { title: "Email", field: "email"}
+                    { title: "Email", field: "email"},
+                    { title: "Visualizar Adulto Mayor", field: "visualizarAdultoMayor", type:'boolean'},
+                    { title: "Editar Adulto Mayor", field: "editarAdultoMayor", type:'boolean'},
+                    { title: "Visualizar Voluntario", field: "visualizarVoluntario", type:'boolean'},
+                    { title: "Editar Voluntario", field: "editarVoluntario", type:'boolean'},
+                    { title: "Visualizar Instructor", field: "visualizarInstructor", type:'boolean'},
+                    { title: "Editar Instructor", field: "editarInstructor", type:'boolean'}
 
                 ]
             }
