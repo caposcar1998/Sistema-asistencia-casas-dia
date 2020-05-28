@@ -35,6 +35,22 @@ export default function TablaAnadirPersonal({ casaSeleccionada, handleCerrarAnad
         casaSeleccionada
     }, []);
 
+    function eliminarEmpleado(idEliminar, puesto) {
+        return new Promise(
+            (resolve, reject) => {
+                Meteor.call("borrarEmpleadoDeCasa",
+                    idEliminar, puesto,
+                    (err, res) => {
+                        if (err) {
+                            reject()
+                        } else {
+                            resolve()
+                        }
+                    });
+            }
+        )
+     }
+
     return (
         <>
             <AppBar position="static">
@@ -60,7 +76,7 @@ export default function TablaAnadirPersonal({ casaSeleccionada, handleCerrarAnad
                     {casaSeleccionada.empleados.map((empleado) => (
                         <TableRow key={empleado.nombre}>
                             <TableCell>
-                                <IconButton>
+                                <IconButton onClick={() => eliminarEmpleado(empleado.idReferencia, empleado.puesto)}>
                                     <DeleteIcon />
                                 </IconButton>
                             </TableCell>

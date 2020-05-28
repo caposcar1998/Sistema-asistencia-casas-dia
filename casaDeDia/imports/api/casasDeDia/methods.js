@@ -67,7 +67,19 @@ Meteor.methods({
                  } 
             }
         )
-     }
+    },
+    
+    "borrarEmpleadoDeCasa"(idEmpleado, puesto) {
+        console.log(idEmpleado)
+        console.log(puesto)
+        CasasDeDia.update
+            (
+                { "empleados": { $elemMatch: { "idReferencia": idEmpleado, "puesto":puesto } } },
+                { $pull: { "empleados": { "idReferencia": idEmpleado,"puesto": puesto } } },
+                false,
+                true
+            )
+    }
 
 });
 
