@@ -4,21 +4,24 @@ import { Asilos } from "../asilos/asilos";
 Meteor.methods({
 
 
-    "crearAsilo"(nombre,direccion, servicios, horarioAtencion,precio,telefono) {
+    "crearAsilo"(nombre, direccion, actividades, restricciones, horarioApertura, horarioCierre, cupoLimite, codigoPostal ,foto) {
         Asilos.insert(
             {
                 nombre: nombre,
                 direccion: direccion,
-                servicios: servicios,
-                horarioAtencion: horarioAtencion,
-                precio: precio,
-                telefono: telefono
+                actividades: actividades,
+                restricciones: restricciones,
+                horarioApertura: horarioApertura,
+                horarioCierre: horarioCierre,
+                cupoLimite: cupoLimite,
+                codigoPostal: codigoPostal,
+                foto: foto
             }
 
         )
     },
 
-    "editarAsilo"(idAsilos,nombre, direccion, servicios, horarioAtencion, precio, telefono) {
+    "editarAsilo"(idAsilos, nombre, direccion, actividades, restricciones, horario, horarioAtencion, cupoLimite, codigoPostal ,foto) {
         Asilos.update(
             { _id: idAsilos },
             {
@@ -26,10 +29,13 @@ Meteor.methods({
                 {
                     nombre: nombre,
                     direccion: direccion,
-                    servicios: servicios,
+                    actividades: actividades,
+                    restricciones: restricciones,
+                    horario: horario,
                     horarioAtencion: horarioAtencion,
-                    precio: precio,
-                    telefono: telefono
+                    cupoLimite: cupoLimite,
+                    codigoPostal: codigoPostal,
+                    foto: foto
                 }
             }
         )
