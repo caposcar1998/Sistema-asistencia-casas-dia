@@ -3,6 +3,7 @@ import MaterialTable from 'material-table';
 import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { Usuarios } from "../../api/usuarios/usuarios";
+import { Meteor } from 'meteor/meteor';
 
 
 function TablaAdministrador({ administradores }) {
@@ -85,6 +86,7 @@ function TablaAdministrador({ administradores }) {
 
 
 export default withTracker(() => {
+    Meteor.subscribe("usuarios");
     return {
         administradores: Usuarios.find({}).fetch(),
     };

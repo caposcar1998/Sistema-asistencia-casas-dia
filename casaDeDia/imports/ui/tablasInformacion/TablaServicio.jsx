@@ -3,6 +3,7 @@ import MaterialTable from 'material-table';
 import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { Servicios } from "../../api/servicios/servicios";
+import { Meteor } from 'meteor/meteor';
 
 
 function TablaServicio({servicios}) {
@@ -89,6 +90,7 @@ function TablaServicio({servicios}) {
 
 
 export default withTracker(() => {
+    Meteor.subscribe("servicios");
     return {
         servicios: Servicios.find({}).fetch(),
     };

@@ -30,6 +30,10 @@ import { Meteor } from 'meteor/meteor';
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 
+import { Tracker } from 'meteor/tracker'
+
+Tracker.autorun(()=>{
+
 const useStyles = makeStyles({
     list: {
         width: 250,
@@ -39,6 +43,7 @@ const useStyles = makeStyles({
     },
 });
 
+
 export default function ContenidoMenuGeneral({handleCambioPagina}) {
     const classes = useStyles();
     const [state, setState] = React.useState({
@@ -47,6 +52,11 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
         bottom: false,
         right: false,
     });
+
+
+    const usuario = Meteor.user() && Meteor.user().profile.visualizarAdultoMayor;
+
+    const usuarioLogeado = Meteor.userId();
 
     const [pagina, setPagina] = useState("administrador");
 
@@ -70,7 +80,8 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
         cambioRuta("login");
     }
 
-    const list = (anchor) => (
+
+    const list = (anchor) =>(
         <div
             className={clsx(classes.list, {
                 [classes.fullList]: anchor === "top" || anchor === "bottom",
@@ -85,22 +96,24 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                 //aria-labelledby="nested-list-subheader"
                 subheader={
                     <ListSubheader component="div">
-                        Bienvenido (Administrador)
+                        Bienvenido
           </ListSubheader>
                 }
             >
-                <ListItem button key={"Usuarios"} onClick={() =>cambioRuta("administrador")}>
+                
+                {/*<ListItem button key={"Usuarios"} onClick={() =>cambioRuta("administrador")}>
                     <ListItemIcon>
                         <PeopleIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Usuarios"} />
-                </ListItem>
-                <ListItem button key={"Adultos Mayores"} onClick={() => cambioRuta("adultosMayores")}>
+            </ListItem>*/}
+                {((Meteor.user() && Meteor.user().profile.visualizarAdultoMayor) === true) ? (<ListItem button key={"Adultos Mayores"} onClick={() => cambioRuta("adultosMayores")}>
                     <ListItemIcon>
                         <DirectionsWalkIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Adultos Mayores"} />
-                </ListItem>
+            </ListItem>):''}
+                
             </List>
             <Divider />
             <List>
@@ -145,32 +158,36 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                     <ListItemText primary={"Tarjetas"} />
                 </ListItem>
             </List>
-            <Divider />
+            {(((Meteor.user() && Meteor.user().profile.visualizarVoluntario) !== true) && 
+            ((Meteor.user() && Meteor.user().profile.visualizarVoluntario) !== true) && 
+            ((Meteor.user() && Meteor.user().profile.visualizarInstructor) !== true)) ? '': (<Divider />)} 
+            
             <List>
-                <ListItem button key={"Administrador"} onClick={() => cambioRuta('administrador')}>
+                {/*<ListItem button key={"Administrador"} onClick={() => cambioRuta('administrador')}>
                     <ListItemIcon>
                         <GradeIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Adminsitrador"} />
-                </ListItem>
-                <ListItem button key={"Empleados"} onClick={() => cambioRuta('empleados')}>
+                </ListItem>*/}
+                {((Meteor.user() && Meteor.user().profile.visualizarVoluntario) === true) ? (<ListItem button key={"Empleados"} onClick={() => cambioRuta('empleados')}>
                     <ListItemIcon>
                         <WorkIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Empleados"} />
-                </ListItem>
-                <ListItem button key={"Voluntarios"} onClick={() => cambioRuta('voluntarios')}>
+                </ListItem>):''}
+                {((Meteor.user() && Meteor.user().profile.visualizarVoluntario) === true) ? (<ListItem button key={"Voluntarios"} onClick={() => cambioRuta('voluntarios')}>
                     <ListItemIcon>
                         <EmojiPeopleIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Voluntarios"} />
-                </ListItem>
-                <ListItem button key={"Instructores"} onClick={() => cambioRuta('instructores')}>
+                </ListItem>):''}
+                
+                {((Meteor.user() && Meteor.user().profile.visualizarInstructor) === true) ? (<ListItem button key={"Instructores"} onClick={() => cambioRuta('instructores')}>
                     <ListItemIcon>
                         <LocalLibraryIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Instructores"} />
-                </ListItem>
+                </ListItem>):''}
             </List>
             <Divider />
             <List>
@@ -233,21 +250,35 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
             </List>
         </div>
     );
+    
 
-    return (
-        <div>
-            {["left"].map((anchor) => (
-                <React.Fragment key={anchor}>
-                    <Button onMouseEnter={toggleDrawer("left", true)}>{"menu"}</Button>
-                    <Drawer
-                        anchor={anchor}
-                        open={state[anchor]}
-                        onClose={toggleDrawer(anchor, false)}
-                    >
-                        {list(anchor)}
-                    </Drawer>
-                </React.Fragment>
-            ))}
-        </div>
-    );
+    
+
+    
+    if(usuarioLogeado !== null){
+        return (
+            <div>
+                {["left"].map((anchor) => (
+                    <React.Fragment key={anchor}>
+                        <Button onMouseEnter={toggleDrawer("left", true)}>{"menu"}</Button>
+                        <Drawer
+                            anchor={anchor}
+                            open={state[anchor]}
+                            onClose={toggleDrawer(anchor, false)}
+                        >
+                            {list(anchor)}
+                        </Drawer>
+                    </React.Fragment>
+                ))}
+            </div>
+        );
+    }else{
+
+        return(cambioRuta('login'));
+
+    }
 }
+
+});
+
+
