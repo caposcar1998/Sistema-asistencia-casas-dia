@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function ModalAnadirPersonal({ openAnadirEmpleado,casaSeleccionada, handleCerrarAnadirEmpleado  }) {
+export default function ModalAnadirPersonal({ casasDeDiaServidor,openAnadirEmpleado,casaSeleccionada, handleCerrarAnadirEmpleado  }) {
     const classes = useStyles();
     const [modalStyle] = useState(getModalStyle);
 
@@ -46,6 +46,7 @@ export default function ModalAnadirPersonal({ openAnadirEmpleado,casaSeleccionad
             <div style={modalStyle} className={classes.paper}>
                 <TablaAnadirPersonal
                     casaSeleccionada={casaSeleccionada}
+                    handleCerrarAnadirEmpleado={handleCerrarAnadirEmpleado}
                 />
             </div>
         </Modal>

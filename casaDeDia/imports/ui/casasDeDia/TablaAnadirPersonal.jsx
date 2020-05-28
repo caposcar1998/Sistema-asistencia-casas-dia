@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import { Box,Paper, IconButton, AppBar, Toolbar, Typography, Button, Grid, TextField, Select, MenuItem } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 
 
 
@@ -26,11 +27,13 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function TablaAnadirPersonal({ casaSeleccionada }) {
+export default function TablaAnadirPersonal({ casaSeleccionada, handleCerrarAnadirEmpleado }) {
     const classes = useStyles();
 
 
-
+    useEffect(() => {
+        casaSeleccionada
+    }, []);
 
     return (
         <>
@@ -74,12 +77,14 @@ export default function TablaAnadirPersonal({ casaSeleccionada }) {
             </Table>
             </TableContainer>
 
-            <CrearNuevoUsuario casaSeleccionada={casaSeleccionada}/>
+            <CrearNuevoUsuario casaSeleccionada={casaSeleccionada}
+                handleCerrarAnadirEmpleado={handleCerrarAnadirEmpleado}
+            />
             </>
     );
 }
 
-function CrearNuevoUsuario({ casaSeleccionada }) {
+function CrearNuevoUsuario({ casaSeleccionada, handleCerrarAnadirEmpleado }) {
     const [personal, setPersonal] = useState([]);
     const [personaSeleccionada, setPersonaSeleccionada] = useState();
     const [puesto, setPuesto] = useState();
@@ -110,12 +115,12 @@ function CrearNuevoUsuario({ casaSeleccionada }) {
                     casaSeleccionada._id,personaSeleccionada._id, personaSeleccionada.nombre, puesto,
                     (err, res) => {
                         if (err) {
-                            setAlert("success")
+                            setAlert("error")
                             setSnackBarState(true)
                             setMessage("Error al crear el usuario")
                             reject()
                         } else {
-                            setAlert("error")
+                            setAlert("success")
                             setSnackBarState(true)
                             setMessage("Exito al crear el usuario")
                             resolve()
@@ -125,9 +130,14 @@ function CrearNuevoUsuario({ casaSeleccionada }) {
         )
     }
 
+    function cancelarCrear() {
+        handleCerrarAnadirEmpleado()
+    }
+
     useEffect(() => {
         traerPersonalServidor();
     }, []);
+
 
     return (
         <>
@@ -158,7 +168,7 @@ function CrearNuevoUsuario({ casaSeleccionada }) {
                 <Grid item xs={6}>
                     <Button onClick={crearUsuario}>Crear</Button>
                 </Grid>
-                <Grid item xs={6}><Button>Cancelar</Button></Grid>
+                    <Grid item xs={6} onClick={cancelarCrear}><Button>Cancelar</Button></Grid>
             </Grid>
         </Paper>
         {
