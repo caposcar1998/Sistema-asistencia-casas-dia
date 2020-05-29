@@ -7,8 +7,12 @@ if (Meteor.isServer) {
     // This code only runs on the server
     // Only publish tasks that are public or belong to the current user
     Meteor.publish("tutores", function(){
-        return Tutores.find();
+        if(Meteor.user().profile.visualizarTutores === true){
+            return Tutores.find();
+        }
     });
+
+    
 }
 
 

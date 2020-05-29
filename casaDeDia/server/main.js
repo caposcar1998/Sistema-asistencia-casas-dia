@@ -6,10 +6,10 @@ Meteor.startup(() => {
  
 
     //Querry para crear el admin
-    if(Meteor.users.find().count() === 0){
+    if(Meteor.users.find().count() === 0 || !(Meteor.users.findOne({username:"administradorGeneral"}))){
         Accounts.createUser({
-            username: 'admin',
-            password: 'admin',
+            username: 'administradorGeneral',
+            password: 'administradorGeneral',
             profile:{
                 role: 'voluntarios',
                 visualizarAdultoMayor: true,
@@ -31,7 +31,8 @@ Meteor.startup(() => {
                 editarTutores:true,
                 visualizarTalleres:true,
                 visualizarConvocatorias:true,
-                visualizarCentros:true
+                visualizarCentros:true,
+                visualizarColectivos:true
             }
         });
     }
