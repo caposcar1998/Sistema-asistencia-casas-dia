@@ -31,6 +31,9 @@ import ConvocatoriasTab from "../../ui/tabs/ConvocatoriasTab";
 
 import CentrosTab from "../../ui/tabs/CentrosTab";
 
+import { Tracker } from 'meteor/tracker';
+import { Meteor } from 'meteor/meteor';
+
 FlowRouter.route('/', {
     name: 'login',
     action() {
@@ -53,9 +56,13 @@ FlowRouter.route('/administrador', {
 FlowRouter.route('/administrador/beneficios', {
     name: 'beneficios',
     action() {
-        mount(AdministradorPage, {
-            content: <BeneficiosTab />
-        })
+        if((Meteor.user() && Meteor.user().profile.visualizarBeneficios) === true){
+            mount(AdministradorPage, {
+                content: <BeneficiosTab />
+            })
+        }else{
+            FlowRouter.go('administrador');
+        }
     }
 })
 
@@ -63,9 +70,13 @@ FlowRouter.route('/administrador/beneficios', {
 FlowRouter.route('/administrador/tarjetas', {
     name: 'tarjetas',
     action() {
-        mount(AdministradorPage, {
-            content: <TarjetasTab />
-        })
+        if((Meteor.user() && Meteor.user().profile.visualizarBeneficios) === true){
+            mount(AdministradorPage, {
+                content: <TarjetasTab />
+            })
+        }else{
+            FlowRouter.go('administrador');
+        }
     }
 })
 
@@ -81,27 +92,41 @@ FlowRouter.route('/administrador/administradores', {
 FlowRouter.route('/administrador/asilos', {
     name: 'asilos',
     action() {
-        mount(AdministradorPage, {
-            content: <AsilosTab />
-        })
+        if((Meteor.user() && Meteor.user().profile.visualizarBeneficios) === true){
+            mount(AdministradorPage, {
+                content: <AsilosTab />
+            })
+        }else{
+            FlowRouter.go('administrador');
+        }
+        
     }
 })
 
 FlowRouter.route('/administrador/casasDeDia', {
     name: 'casasDeDia',
     action() {
-        mount(AdministradorPage, {
-            content: <CasasDeDiaTab />
-        })
+        if((Meteor.user() && Meteor.user().profile.visualizarBeneficios) === true){
+            mount(AdministradorPage, {
+                content: <CasasDeDiaTab />
+            })
+        }else{
+            FlowRouter.go('administrador');
+        }
+        
     }
 })
 
 FlowRouter.route('/administrador/clubes', {
     name: 'clubes',
     action() {
-        mount(AdministradorPage, {
-            content: <ClubesTab />
-        })
+        if((Meteor.user() && Meteor.user().profile.visualizarBeneficios) === true){
+            mount(AdministradorPage, {
+                content: <ClubesTab />
+            })
+        }else{
+            FlowRouter.go('administrador');
+        }
     }
 })
 
@@ -138,9 +163,14 @@ FlowRouter.route('/administrador/Servicios', {
 FlowRouter.route('/administrador/Voluntarios', {
     name: 'voluntarios',
     action() {
-        mount(AdministradorPage, {
-            content: <VoluntariosTab />
-        })
+        if((Meteor.user() && Meteor.user().profile.visualizarBeneficios) === true){
+            mount(AdministradorPage, {
+                content: <VoluntariosTab />
+            })
+        }else{
+            FlowRouter.go('administrador');
+        }
+        
     }
 })
 
