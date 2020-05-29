@@ -13,6 +13,12 @@ let EmpleadosCasaDia = new SimpleSchema({
     puesto: { type: String }
 })
 
+let AdultosMayoresCasaDia = new SimpleSchema({
+    idReferencia: { type: String },
+    nombre: { type: String },
+    curp: {type: String}
+})
+
 let Schema = new SimpleSchema({
     nombre: { type: String },
     direccion: { type: String },
@@ -28,7 +34,9 @@ let Schema = new SimpleSchema({
     "adultosMayores.$": { type: AdultosMayores },
     adultosMayores: { type: Array, defaultValue: [], optional: true },
     "empleados.$": { type: EmpleadosCasaDia },
-    empleados: { type: Array, defaultValue: [], optional: true }
+    empleados: { type: Array, defaultValue: [], optional: true },
+    "usuarios.$": { type: AdultosMayoresCasaDia },
+    usuarios: { type: Array, defaultValue: [], optional: true }
 })
 
 

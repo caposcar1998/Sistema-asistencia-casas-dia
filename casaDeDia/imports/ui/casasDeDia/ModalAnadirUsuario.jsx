@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Modal } from '@material-ui/core';
+import TablaAnadirUsuario from './TablaAnadirUsuario';
 
 
 
@@ -43,7 +44,10 @@ export default function ModalAnadirUsuario({ openAnadirPersona, casaSeleccionada
 
         >
             <div style={modalStyle} className={classes.paper}>
-                anadirUsuario
+                <TablaAnadirUsuario
+                    casaSeleccionada={casaSeleccionada}
+                    handleCerrarAnadirUsuario={handleCerrarAnadirUsuario}
+                />
             </div>
         </Modal>
     )

@@ -16,7 +16,8 @@ Meteor.methods({
                 cupoLimite: cupoLimite,
                 codigoPostal: codigoPostal,
                 foto: foto,
-                empleados: []
+                empleados: [],
+                usuarios: []
             }
 
         )
@@ -54,6 +55,21 @@ Meteor.methods({
         return CasasDeDia.find().fetch();
     },
 
+    "anadirAdulto"(idCasaDeDia, idUsuario, nombre, curp) {
+        CasasDeDia.update(
+            { _id: idCasaDeDia },
+            {
+                $push: {
+                    "usuarios": {
+                        idReferencia: idUsuario,
+                        nombre: nombre,
+                        curp: curp
+                    }
+                }
+            }
+        )
+    },
+
     "anadirUsuario"(idCasaDeDia,idUsuario, nombre, puesto) {
         CasasDeDia.update(
             { _id: idCasaDeDia },
@@ -84,6 +100,16 @@ Meteor.methods({
             { _id: idCasaDeDia, "empleados.idReferencia": idEmpleado, "empleados.puesto": puesto },
             { $set: { "empleados.$.puesto": puestoNuevo } }
         )
+    },
+
+    "borrarUsuarioDeCasa"(idUsuario, curp) {
+        CasasDeDia.update
+            (
+                { "usuarios": { $elemMatch: { "idReferencia": idUsuario, "curp": curp } } },
+                { $pull: { "usuarios": { "idReferencia": idUsuario, "curp": curp } } },
+                false,
+                true
+            )
     },
 
 });
