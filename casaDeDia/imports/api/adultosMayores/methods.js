@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { AdultosMayores } from "../adultosMayores/adultosMayores";
+import { CasasDeDia } from '../casasDeDia/casasDeDia';
 
 Meteor.methods({
 
@@ -47,8 +48,17 @@ Meteor.methods({
         AdultosMayores.remove(
             {
                 "_id": idAdultoMayor
-            }
+            },
+             
         )
+        //Hacer esto para coleccion que usa aadulto mayor
+        CasasDeDia.update
+            (
+                { "usuarios": { $elemMatch: { "idReferencia": idAdultoMayor } } },
+                { $pull: { "usuarios": { "idReferencia": idAdultoMayor } } },
+                false,
+                true
+            )
     },
 
     "leerAdultoMayor"() {

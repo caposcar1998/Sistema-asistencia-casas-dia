@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Empleados } from "../empleados/empleados";
+import { CasasDeDia } from '../casasDeDia/casasDeDia';
 
 Meteor.methods({
 
@@ -148,6 +149,15 @@ Meteor.methods({
                 "_id": idEmpleado
             }
         )
+
+        //Hacer esto para coleccion que usa empleados
+        CasasDeDia.update
+            (
+                { "empleados": { $elemMatch: { "idReferencia": idEmpleado } } },
+                { $pull: { "empleados": { "idReferencia": idEmpleado } } },
+                false,
+                true
+            )
     },
 
     "leerEmpleado"() {

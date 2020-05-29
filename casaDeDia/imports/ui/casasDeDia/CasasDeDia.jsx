@@ -5,6 +5,8 @@ import ModalCrearCasaDeDia from '../modales/ModaCrearCasaDeDia';
 import TarjetasCasasDeDia from './TarjetasCasasDeDia';
 import BorrarCasaDia from './BorrarCasaDia';
 import EditarCasaDia from './EditarCasaDeDia';
+import ModalAnadirPersonal from './ModalAnadirPersonal';
+import ModalAnadirUsuario from './ModalAnadirUsuario';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,6 +23,8 @@ export default function CasasDeDia() {
     const [openEditarCasaDia, setOpenEditarCasaDia] = useState(false);
     const [openBorrarCasaDia, setOpenBorrarCasaDia] = useState(false);
     const [casaSeleccionada, setCasaSeleccionada] = useState();
+    const [openAnadirEmpleado, setOpenAbrirEmpleado] = useState(false);
+    const [openAnadirPersona, setOpenAbrirPersona] = useState(false);
 
     const handleOpenBorrarCasaDia = (casa) => {
         setCasaSeleccionada(casa)
@@ -55,6 +59,24 @@ export default function CasasDeDia() {
         setOpenModal(false);
     };
 
+    const handleOpenAnadirEmpleado = (casa) => {
+        setCasaSeleccionada(casa)
+        setOpenAbrirEmpleado(true)
+     }
+
+    const handleOpenAnadirUsuario = (casa) => {
+        setCasaSeleccionada(casa)
+        setOpenAbrirPersona(true)
+     }
+
+    const handleCerrarAnadirEmpleado = () => {
+        setOpenAbrirEmpleado(false)
+     }
+
+    const handleCerrarAnadirUsuario = () => {
+        setOpenAbrirPersona(false)
+     }
+
     function casasDeDiaServidor() {
         return new Promise(
             (resolve, reject) => {
@@ -87,6 +109,8 @@ export default function CasasDeDia() {
                                 casa={casa}
                                 handleOpenBorrarCasaDia={handleOpenBorrarCasaDia}
                                 handleOpenEditarCasaDia={handleOpenEditarCasaDia}
+                                handleOpenAnadirEmpleado={handleOpenAnadirEmpleado}
+                                handleOpenAnadirUsuario={handleOpenAnadirUsuario}
                                 />
                     ))}
                         </Grid>  
@@ -110,6 +134,16 @@ export default function CasasDeDia() {
                 handleCloseModal={handleCloseModal}
                 openModal={openModal}
                 casasDeDiaServidor={casasDeDiaServidor}
+            />
+            <ModalAnadirPersonal
+                casaSeleccionada={casaSeleccionada}
+                handleCerrarAnadirEmpleado={handleCerrarAnadirEmpleado}
+                openAnadirEmpleado={openAnadirEmpleado}
+            />
+            <ModalAnadirUsuario
+                casaSeleccionada={casaSeleccionada}
+                handleCerrarAnadirUsuario={handleCerrarAnadirUsuario}
+                openAnadirPersona={openAnadirPersona}
             />
         </>
     )
