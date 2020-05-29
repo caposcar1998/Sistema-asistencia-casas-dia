@@ -10,7 +10,7 @@ import { Box,Paper, IconButton, AppBar, Toolbar, Typography, Button, Grid, TextF
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
-
+import CheckIcon from '@material-ui/icons/Check';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -31,18 +31,24 @@ export default function TablaAnadirPersonal({ casaSeleccionada, handleCerrarAnad
     const classes = useStyles();
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
-    const [open, setOpen] = useState(false);
     const [message, setMessage] = useState(); 
+    const [puestoNuevo, setPuestoNuevo] = useState("");
 
-    useEffect(() => {
-        casaSeleccionada
-    }, []);
 
-    function eliminarEmpleado(idEliminar, puesto) {
+    function editCampo() {
+        if (editable){
+            setEditable(false)
+        }
+        if (!editable) {
+            setEditable(true)
+         }
+     }
+
+    function eliminarEmpleado(idEliminar,puesto) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("borrarEmpleadoDeCasa",
-                    idEliminar, puesto,
+                    idEliminar, puesto, 
                     (err, res) => {
                         if (err) {
                             setAlert("error")
@@ -53,6 +59,28 @@ export default function TablaAnadirPersonal({ casaSeleccionada, handleCerrarAnad
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Empleado eliminado")
+                            resolve()
+                        }
+                    });
+            }
+        )
+    }
+    
+    function editarTrabajador(idEditar, puesto ) {
+        return new Promise(
+            (resolve, reject) => {
+                Meteor.call("editarEmpleadoDeCasa",
+                    casaSeleccionada._id,idEditar, puesto, puestoNuevo,
+                    (err, res) => {
+                        if (err) {
+                            setAlert("error")
+                            setSnackBarState(true)
+                            setMessage("Error al editar empleados")
+                            reject()
+                        } else {
+                            setAlert("success")
+                            setSnackBarState(true)
+                            setMessage("Empleado editado")
                             resolve()
                         }
                     });
@@ -91,11 +119,21 @@ export default function TablaAnadirPersonal({ casaSeleccionada, handleCerrarAnad
                             </TableCell>
                             <TableCell>
                                 <IconButton>
-                                    <EditIcon />
+                                    <EditIcon onClick={editCampo} />
                                 </IconButton>
                             </TableCell>
                             <TableCell align="right">{empleado.nombre}</TableCell>
-                            <TableCell align="right">{empleado.puesto}</TableCell>
+                            <TableCell align="right">
+                                {
+                                    editable ?
+                                        empleado.puesto :
+                                        <>
+                                            <TextField value={puestoNuevo} onChange={(e) => setPuestoNuevo(e.target.value)} />
+                                            <CheckIcon onClick={() =>editarTrabajador(empleado.idReferencia, empleado.puesto)} />
+                                            </>
+                                }
+                                
+                            </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
@@ -119,7 +157,8 @@ function CrearNuevoUsuario({ casaSeleccionada, handleCerrarAnadirEmpleado }) {
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
     const [message, setMessage] = useState();
-    
+
+
     function traerPersonalServidor() {
         return new Promise(
             (resolve, reject) => {
@@ -158,6 +197,7 @@ function CrearNuevoUsuario({ casaSeleccionada, handleCerrarAnadirEmpleado }) {
         )
     }
 
+
     function cancelarCrear() {
         handleCerrarAnadirEmpleado()
     }
@@ -194,9 +234,9 @@ function CrearNuevoUsuario({ casaSeleccionada, handleCerrarAnadirEmpleado }) {
                     <TextField id="puesto" label="puesto" value={puesto} onChange={(e) => setPuesto(e.target.value)} />
                     </Grid>
                 <Grid item xs={6}>
-                    <Button onClick={crearUsuario}>Crear</Button>
+                        <Button onClick={crearUsuario} variant="contained" color="primary">Crear</Button>
                 </Grid>
-                    <Grid item xs={6} onClick={cancelarCrear}><Button>Cancelar</Button></Grid>
+                    <Grid item xs={6}><Button onClick={cancelarCrear}  variant="contained" color="secondary">Cancelar</Button></Grid>
             </Grid>
         </Paper>
         {
@@ -204,7 +244,4 @@ function CrearNuevoUsuario({ casaSeleccionada, handleCerrarAnadirEmpleado }) {
         <CustomSnackbars type={alert} state={snackBarState} message={message} />
             }
             </>
-    )
- }
-
- 
+    )} 

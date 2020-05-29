@@ -70,8 +70,6 @@ Meteor.methods({
     },
     
     "borrarEmpleadoDeCasa"(idEmpleado, puesto) {
-        console.log(idEmpleado)
-        console.log(puesto)
         CasasDeDia.update
             (
                 { "empleados": { $elemMatch: { "idReferencia": idEmpleado, "puesto":puesto } } },
@@ -79,7 +77,14 @@ Meteor.methods({
                 false,
                 true
             )
-    }
+    },
+
+    "editarEmpleadoDeCasa"(idCasaDeDia,idEmpleado, puesto, puestoNuevo) {
+        CasasDeDia.update(
+            { _id: idCasaDeDia, "empleados.idReferencia": idEmpleado, "empleados.puesto": puesto },
+            { $set: { "empleados.$.puesto": puestoNuevo } }
+        )
+    },
 
 });
 

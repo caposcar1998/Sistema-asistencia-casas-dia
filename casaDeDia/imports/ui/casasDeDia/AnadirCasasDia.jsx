@@ -128,7 +128,7 @@ return (
                 <Grid item xs={4}>
                         <Grid item xs={12}>Nombre</Grid>
                 <Grid item xs={12}>
-id="nombre" label="Casa dia" value={nombre} onChange={(e) => setNombre(e.target.value)}                        <TextField  />
+                <TextField id="nombre" label="Casa dia" value={nombre} onChange={(e) => setNombre(e.target.value)}/>
                 </Grid>
                 </Grid>
 

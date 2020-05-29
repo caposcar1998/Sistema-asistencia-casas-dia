@@ -62,13 +62,11 @@ export default function CasasDeDia() {
     const handleOpenAnadirEmpleado = (casa) => {
         setCasaSeleccionada(casa)
         setOpenAbrirEmpleado(true)
-        console.log(casa)
      }
 
     const handleOpenAnadirUsuario = (casa) => {
         setCasaSeleccionada(casa)
         setOpenAbrirPersona(true)
-        console.log(casa)
      }
 
     const handleCerrarAnadirEmpleado = () => {
