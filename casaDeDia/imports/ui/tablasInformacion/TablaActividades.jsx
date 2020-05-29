@@ -3,6 +3,7 @@ import MaterialTable from 'material-table';
 import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { Actividades } from '../../api/actividades/actividades';
+import { Meteor } from 'meteor/meteor';
 
 
 
@@ -86,6 +87,7 @@ function TablaActividades({ actividades }) {
 
 
 export default withTracker(() => {
+    Meteor.subscribe("actividades");
     return {
         actividades: Actividades.find({}).fetch(),
     };

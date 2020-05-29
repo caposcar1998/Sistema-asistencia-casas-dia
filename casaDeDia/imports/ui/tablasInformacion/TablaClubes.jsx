@@ -3,6 +3,7 @@ import MaterialTable from 'material-table';
 import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { Clubes } from "../../api/clubes/clubes";
+import { Meteor } from 'meteor/meteor';
 
 
 function TablaClubes({ clubes }) {
@@ -88,6 +89,7 @@ function TablaClubes({ clubes }) {
 
 
 export default withTracker(() => {
+    Meteor.subscribe("clubes");
     return {
         clubes: Clubes.find({}).fetch(),
     };
