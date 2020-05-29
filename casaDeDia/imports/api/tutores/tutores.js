@@ -23,5 +23,14 @@ let Schema = new SimpleSchema({
     direccion: { type: String },
     telefono: { type: String },
     telefonoInteligente: { type: Boolean },
-    curp: {type: String}
+    curp: {type: String},
+    apodo: { type: String },
+    contrasena: {type: String},
+    idUsuario: { type: String },
+    visualizarTalleres:{type:String},
+    visualizarConvocatorias:{type:String},
+    visualizarCentros:{type:String},
+    visualizarColectivos:{type:String},
+    visualizarTutores:{type:String},
+    editarTutores:{type:String}
 })
