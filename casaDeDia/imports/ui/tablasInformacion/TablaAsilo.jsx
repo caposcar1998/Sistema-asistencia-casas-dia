@@ -3,6 +3,7 @@ import MaterialTable from 'material-table';
 import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { Asilos } from "../../api/asilos/asilos";
+import { Meteor } from 'meteor/meteor';
 
 
 function TablaAsilo({asilos}) {
@@ -87,6 +88,7 @@ function TablaAsilo({asilos}) {
 
 
 export default withTracker(() => {
+    Meteor.subscribe("asilos");
     return {
         asilos: Asilos.find({}).fetch(),
     };

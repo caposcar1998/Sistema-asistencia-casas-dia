@@ -14,3 +14,4 @@ export default function MenuGeneralAdministrador() {
     <ContenidoMenuGeneral handleCambioPagina={handleCambioPagina}/>
   )
 }
+

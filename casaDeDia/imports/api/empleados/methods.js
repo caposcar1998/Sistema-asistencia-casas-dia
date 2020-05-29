@@ -5,12 +5,33 @@ import { CasasDeDia } from '../casasDeDia/casasDeDia';
 Meteor.methods({
 
 
-    "crearEmpleado"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor ) {
+    "crearEmpleado"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor, idUsuario,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos) {
         idUsuario = Accounts.createUser({
             username: apodo,
             password: contrasena,
             profile:{
-                role: 'empleados'
+                role: 'empleados',
+                visualizarAdultoMayor: visualizarAdultoMayor,
+                editarAdultoMayor: editarAdultoMayor,
+                visualizarVoluntario: visualizarVoluntario,
+                editarVoluntario: editarVoluntario,
+                visualizarInstructor: visualizarInstructor,
+                editarInstructor: editarInstructor,
+                visualizarAsilo: visualizarAsilo,
+                visualizarCasasDeDia: visualizarCasasDeDia,
+                visualizarClubes:visualizarClubes,
+                visualizarServicios:visualizarServicios,
+                visualizarActividades:visualizarActividades,
+                visualizarTarjetas:visualizarTarjetas,
+                visualizarEmpleados:visualizarEmpleados,
+                editarEmpleados:editarEmpleados,
+                visualizarBeneficios:visualizarBeneficios,
+                visualizarTutores:visualizarTutores,
+                editarTutores:editarTutores,
+                visualizarTalleres:visualizarTalleres,
+                visualizarConvocatorias:visualizarConvocatorias,
+                visualizarCentros:visualizarCentros,
+                visualizarColectivos:visualizarColectivos,
             }
         }),
         
@@ -27,15 +48,55 @@ Meteor.methods({
                 editarVoluntario: editarVoluntario,
                 visualizarInstructor: visualizarInstructor,
                 editarInstructor: editarInstructor,
-                idUsuario: idUsuario
+                idUsuario: idUsuario,
+                visualizarAsilo: visualizarAsilo,
+                visualizarCasasDeDia: visualizarCasasDeDia,
+                visualizarClubes:visualizarClubes,
+                visualizarServicios:visualizarServicios,
+                visualizarActividades:visualizarActividades,
+                visualizarTarjetas:visualizarTarjetas,
+                visualizarEmpleados:visualizarEmpleados,
+                editarEmpleados:editarEmpleados,
+                visualizarBeneficios:visualizarBeneficios,
+                visualizarTutores:visualizarTutores,
+                editarTutores:editarTutores,
+                visualizarTalleres:visualizarTalleres,
+                visualizarConvocatorias:visualizarConvocatorias,
+                visualizarCentros:visualizarCentros,
+                visualizarColectivos:visualizarColectivos,
             }
         )
     },
 
-    "editarEmpleado"(idEmpleado,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor, idUsuario) {
+    "editarEmpleado"(idEmpleado,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor,idUsuario, visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros, visualizarColectivos) {
         Meteor.users.update(idUsuario,{
             $set:{
                 username: apodo,
+                profile:{
+                    role: 'empleados',
+                    visualizarAdultoMayor: visualizarAdultoMayor,
+                    editarAdultoMayor: editarAdultoMayor,
+                    visualizarVoluntario: visualizarVoluntario,
+                    editarVoluntario: editarVoluntario,
+                    visualizarInstructor: visualizarInstructor,
+                    editarInstructor: editarInstructor,
+                    visualizarAsilo: visualizarAsilo,
+                    visualizarCasasDeDia: visualizarCasasDeDia,
+                    visualizarClubes:visualizarClubes,
+                    visualizarServicios:visualizarServicios,
+                    visualizarActividades:visualizarActividades,
+                    visualizarTarjetas:visualizarTarjetas,
+                    visualizarEmpleados:visualizarEmpleados,
+                    editarEmpleados:editarEmpleados,
+                    visualizarBeneficios:visualizarBeneficios,
+                    visualizarTutores:visualizarTutores,
+                    editarTutores:editarTutores,
+                    visualizarTalleres:visualizarTalleres,
+                    visualizarConvocatorias:visualizarConvocatorias,
+                    visualizarCentros:visualizarCentros,
+                    visualizarColectivos:visualizarColectivos,
+                }
+                
                 
             }
         });
@@ -59,7 +120,22 @@ Meteor.methods({
                     visualizarVoluntario: visualizarVoluntario,
                     editarVoluntario: editarVoluntario,
                     visualizarInstructor: visualizarInstructor,
-                    editarInstructor: editarInstructor
+                    editarInstructor: editarInstructor,
+                    visualizarAsilo: visualizarAsilo,
+                    visualizarCasasDeDia: visualizarCasasDeDia,
+                    visualizarClubes:visualizarClubes,
+                    visualizarServicios:visualizarServicios,
+                    visualizarActividades:visualizarActividades,
+                    visualizarTarjetas:visualizarTarjetas,
+                    visualizarEmpleados:visualizarEmpleados,
+                    editarEmpleados:editarEmpleados,
+                    visualizarBeneficios:visualizarBeneficios,
+                    visualizarTutores:visualizarTutores,
+                    editarTutores:editarTutores,
+                    visualizarTalleres:visualizarTalleres,
+                    visualizarConvocatorias:visualizarConvocatorias,
+                    visualizarCentros:visualizarCentros,
+                    visualizarColectivos:visualizarColectivos
                 }
             }
         )

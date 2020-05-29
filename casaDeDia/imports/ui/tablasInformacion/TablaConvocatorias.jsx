@@ -3,6 +3,7 @@ import MaterialTable from 'material-table';
 import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { Convocatorias } from "../../api/convocatorias/convocatorias"
+import { Meteor } from 'meteor/meteor';
 
 function TablaConvocatorias({convocatoria}) {
         function addConvocatoria(newData) {
@@ -82,6 +83,7 @@ function TablaConvocatorias({convocatoria}) {
 }
 
 export default withTracker(() => {
+    Meteor.subscribe("convocatorias");
     return {
         convocatoria: Convocatorias.find({}).fetch(),
     };

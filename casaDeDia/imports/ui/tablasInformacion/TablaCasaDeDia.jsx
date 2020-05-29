@@ -3,6 +3,7 @@ import MaterialTable from 'material-table';
 import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { CasasDeDia } from "../../api/casasDeDia/casasDeDia";
+import { Meteor } from 'meteor/meteor';
 
 
 function TablaCasaDeDia({ casasDeDia }) {
@@ -88,6 +89,7 @@ function TablaCasaDeDia({ casasDeDia }) {
 
 
 export default withTracker(() => {
+    Meteor.subscribe("casasDeDia");
     return {
         casasDeDia: CasasDeDia.find({}).fetch(),
     };

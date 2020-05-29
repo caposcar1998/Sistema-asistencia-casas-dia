@@ -4,6 +4,8 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { Talleres } from "../../api/talleres/talleres";
 
+import { Meteor } from 'meteor/meteor';
+
 
 function TablaTaller({talleres}) {
 
@@ -90,6 +92,7 @@ function TablaTaller({talleres}) {
 
 
 export default withTracker(() => {
+    Meteor.subscribe("talleres");
     return {
         talleres: Talleres.find({}).fetch(),
     };
