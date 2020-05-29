@@ -24,7 +24,7 @@ if (Meteor.isServer) {
     });
 
     /*Meteor.publish("empleados", function(){
-        if(Meteor.user().profile.visualizarAdultoMayor === true){
+        if(Meteor.user().profile.visualizarEmpleado === true){
             return Empleados.find();
         }
     });*/
@@ -56,5 +56,6 @@ let Schema = new SimpleSchema({
     editarTutores:{type:String},
     visualizarTalleres:{type:String},
     visualizarConvocatorias:{type:String},
-    visualizarCentros:{type:String}
+    visualizarCentros:{type:String},
+    visualizarColectivos:{type:String},
 })
