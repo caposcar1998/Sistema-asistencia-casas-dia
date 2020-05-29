@@ -6,11 +6,11 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { Box,Paper, IconButton, AppBar, Toolbar, Typography, Button, Grid, TextField, Select, MenuItem } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
+import { Box,Paper, AppBar, Toolbar, Typography, Button, Grid, TextField, Select, MenuItem } from '@material-ui/core';
+
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
-import CheckIcon from '@material-ui/icons/Check';
+
+import EmpleadosCasaDeDia from './EmpleadosCasaDeDia';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,8 +32,7 @@ export default function TablaAnadirPersonal({ casaSeleccionada, handleCerrarAnad
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
     const [message, setMessage] = useState(); 
-    const [puestoNuevo, setPuestoNuevo] = useState("");
-
+    const [editable, setEditable] = useState(true); 
 
     function editCampo() {
         if (editable){
@@ -66,7 +65,7 @@ export default function TablaAnadirPersonal({ casaSeleccionada, handleCerrarAnad
         )
     }
     
-    function editarTrabajador(idEditar, puesto ) {
+    function editarTrabajador(idEditar, puesto, puestoNuevo ) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("editarEmpleadoDeCasa",
@@ -111,30 +110,13 @@ export default function TablaAnadirPersonal({ casaSeleccionada, handleCerrarAnad
                 </TableHead>
                 <TableBody>
                     {casaSeleccionada.empleados.map((empleado) => (
-                        <TableRow key={empleado.nombre}>
-                            <TableCell>
-                                <IconButton onClick={() => eliminarEmpleado(empleado.idReferencia, empleado.puesto)}>
-                                    <DeleteIcon />
-                                </IconButton>
-                            </TableCell>
-                            <TableCell>
-                                <IconButton>
-                                    <EditIcon onClick={editCampo} />
-                                </IconButton>
-                            </TableCell>
-                            <TableCell align="right">{empleado.nombre}</TableCell>
-                            <TableCell align="right">
-                                {
-                                    editable ?
-                                        empleado.puesto :
-                                        <>
-                                            <TextField value={puestoNuevo} onChange={(e) => setPuestoNuevo(e.target.value)} />
-                                            <CheckIcon onClick={() =>editarTrabajador(empleado.idReferencia, empleado.puesto)} />
-                                            </>
-                                }
-                                
-                            </TableCell>
-                        </TableRow>
+                        <EmpleadosCasaDeDia
+                            empleado={empleado}
+                            eliminarEmpleado={eliminarEmpleado}
+                            editarTrabajador={editarTrabajador}
+                            editCampo={editCampo}
+                            editable={editable}
+                        />
                     ))}
                 </TableBody>
             </Table>
