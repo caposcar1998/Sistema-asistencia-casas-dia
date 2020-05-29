@@ -69,6 +69,10 @@ function TablaAdultoMayor({adultosMayores}) {
             newData.codigoPostal == null || newData.apodo == null ||  newData.contrasena == null) {
             window.alert("No se llenaron todos los campos, intete de nuevo.");
             return validation = false;
+        }else if (newData.nombre == "" || newData.apellidos == "" || newData.curp == "" || newData.sexo == "" || 
+            newData.edad == "" || newData.grupoSanguineo == "" || newData.direccion == "" || 
+            newData.codigoPostal == "" || newData.apodo == "" ||  newData.contrasena == "") {
+            window.alert("No se llenaron todos los campos, intete de nuevo.");
         }else if(newData.curp.toString().length > 18 || newData.curp.toString().length < 18) {
             window.alert("El CURP no es válido, verifique que sean 18 caracteres e intente de nuevo. ");
             return validation = false;

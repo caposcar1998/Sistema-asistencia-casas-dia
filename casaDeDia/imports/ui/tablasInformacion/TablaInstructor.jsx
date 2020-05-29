@@ -41,6 +41,9 @@ function TablaInstructor({instructores}) {
         if (newData.nombre == null || newData.apellidos == null || newData.contrasena == null || newData.email == null || newData.apodo == null) {
             window.alert("No se llenaron todos los campos, intete de nuevo.");
             return validation = false;
+        }else if (newData.nombre == "" || newData.apellidos == "" || newData.contrasena == "" || newData.email == "" || newData.apodo == "") {
+            window.alert("No se llenaron todos los campos, intete de nuevo.");
+            return validation = false;
         }else if(reg.test(newData.email) == false) {
             window.alert("No se ingresó un correo válido, intente de nuevo.");
             return validation = false;
@@ -56,20 +59,28 @@ function TablaInstructor({instructores}) {
 }
 
     function editInstructor(newData) {
-        return new Promise(
-            (resolve, reject) => {
-                Meteor.call("editarInstructor",
-                    newData._id, newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,newData.idUsuario,
-                    (err, res) => {
-                        if (err) {
-                            reject()
-                        } else {
-                            resolve()
+        val = validations(newData);
+        if(val == true)
+        {
+            return new Promise(
+                (resolve, reject) => {
+                    Meteor.call("editarInstructor",
+                        newData._id, newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,newData.idUsuario,
+                        (err, res) => {
+                            if (err) {
+                                reject()
+                            } else {
+                                resolve()
+                            }
                         }
-                    });
-            }
-
-        )
+                    );
+                }
+            )
+        }
+        else 
+        {
+            location.reload();
+        } 
     };
 
     function borrarInstructor(data) {

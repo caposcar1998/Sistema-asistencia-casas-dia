@@ -35,8 +35,11 @@ function TablaEmpleado({empleados}) {
     function validations(newData) {
         var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         var letters = /^[A-Za-záéíóú]+$/;
-        
+        validation = false
+        console.log(newData.apellidos)
         if (newData.nombre == null || newData.apellidos == null || newData.contrasena == null || newData.email == null || newData.apodo == null) {
+            window.alert("No se llenaron todos los campos, intete de nuevo.");
+        }else if(newData.nombre == "" || newData.apellidos == "" || newData.contrasena == "" || newData.email == "" || newData.apodo == "") {
             window.alert("No se llenaron todos los campos, intete de nuevo.");
             return validation = false;
         }else if(reg.test(newData.email) == false) {
@@ -54,7 +57,7 @@ function TablaEmpleado({empleados}) {
 }
     function editEmpleado(newData) {
         val = validations(newData);
-
+        console.log(val)
         if(val == true) {
             return new Promise(
                 (resolve, reject) => {

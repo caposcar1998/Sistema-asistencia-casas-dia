@@ -40,6 +40,9 @@ function TablaAdministrador({ administradores }) {
         if (newData.nombre == null || newData.contrasena == null || newData.correo == null || newData.usuario == null) {
             window.alert("No se llenaron todos los campos, intete de nuevo.");
             return validation = false;
+        }else if (newData.nombre == "" || newData.contrasena == "" || newData.correo == "" || newData.usuario == "") {
+                window.alert("No se llenaron todos los campos, intete de nuevo.");
+                return validation = false;
         }else if(reg.test(newData.correo) == false) {
             window.alert("No se ingresó un correo válido, intente de nuevo.");
             return validation = false;
@@ -54,21 +57,26 @@ function TablaAdministrador({ administradores }) {
     
 }
 
-    function editAdministrador(newData) {
-        return new Promise(
-            (resolve, reject) => {
-                Meteor.call("editarUsuario",
-                    newData._id, newData.nombre, newData.usuario, newData.contrasena, newData.correo, newData.permisos,
-                    (err, res) => {
-                        if (err) {
-                            reject()
-                        } else {
-                            resolve()
-                        }
-                    });
-            }
+   function editAdministrador(newData) {
+        val = validations(newData);
 
-        )
+        if(val == true) {
+            return new Promise(
+                (resolve, reject) => {
+                    Meteor.call("editarUsuario",
+                        newData.nombre, newData.usuario, newData.contrasena, newData.correo, newData.permisos,
+                        (err, res) => {
+                            if (err) {
+                                reject()
+                            } else {
+                                resolve()
+                            }
+                        });
+                }
+            )
+        }else {
+            location.reload();
+        }
     };
 
     function borrarAdministrador(data) {
