@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Button} from '@material-ui/core';
-import ModalCrearAdultoMayor from '../modales/ModaCrearAdultoMayor';
+import ModalCrearAdultoMayor from '../modales/ModalCrearAdultoMayor';
 import TarjetasAdultoMayor from './TarjetasAdultoMayor';
 import BorrarAdultoMayor from './BorrarAdultoMayor';
 import EditarAdultoMayor from './EditarAdultoMayor';
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 export default function AdultoMayor() { 
     const classes = useStyles();
     const [openModal, setOpenModal] = useState(false);
-    const [casasDeDia, setAdultoMayor] = useState([])
+    const [adultoMayor, setAdultoMayor] = useState([])
     const [openEditarAdultoMayor, setOpenEditarAdultoMayor] = useState(false);
     const [openBorrarAdultoMayor, setOpenBorrarAdultoMayor] = useState(false);
     const [adultoSeleccionado, setAdultoSeleccionado] = useState();
@@ -27,9 +27,9 @@ export default function AdultoMayor() {
         setOpenBorrarAdultoMayor(true);
     };
 
-    const handleOpenEditarCasaDia = (casa) => {
-        setCasaSeleccionada(casa)
-        setOpenEditarCasaDia(true);
+    const handleOpenEditarAdultoMayor = (adulto) => {
+        setAdultoSeleccionado(adulto)
+        setOpenEditarAdultoMayor(true);
     };
 
     useEffect(() => {
@@ -96,7 +96,7 @@ export default function AdultoMayor() {
             </Grid>
             <BorrarAdultoMayor
                 adultoSeleccionado={adultoSeleccionado}
-                openBorrarAdultoMayore={openBorrarAdultoMayor}
+                openBorrarAdultoMayor={openBorrarAdultoMayor}
                 handleCerrarBorrarAdultoMayor={handleCerrarBorrarAdultoMayor}
                 adultoMayorServidor={adultoMayorServidor}
             />

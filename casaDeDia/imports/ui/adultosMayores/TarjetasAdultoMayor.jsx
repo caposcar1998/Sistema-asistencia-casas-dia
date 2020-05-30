@@ -38,7 +38,7 @@ export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayo
         setExpanded(!expanded);
     };
 
-    const getAdultoMayorABorrar = () => {
+    const getAdultoMayorBorrar = () => {
 
         handleOpenBorrarAdultoMayor(adulto)
      }
@@ -54,7 +54,6 @@ export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayo
             <Card className={classes.root}>
                 <CardHeader
                     title={adulto.nombre}
-                    subheader={"Apertura " + adulto.horarioApertura + "- Cierre " + adulto.horarioCierre}
                 />
                 <CardMedia
                     className={classes.media}
@@ -67,7 +66,7 @@ export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayo
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton aria-label="editar" onClick={getAdultoMayorABorrar}>
+                    <IconButton aria-label="editar" onClick={getAdultoMayorBorrar}>
                         <DeleteIcon />
                     </IconButton>
                     <IconButton aria-label="eliminar" onClick={getAdultoMayorAEditar}>
@@ -94,39 +93,7 @@ export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayo
                         <Typography paragraph>
                             {adulto.codigoPostal}
                         </Typography>
-                        <Typography paragraph>Restricciones:</Typography>
-                        <Typography paragraph>
-                            <List>
-                                {
-                                    (adulto.restricciones).map((restriccion) => (
-                                        <ListItem>
-                                            <Typography>
-                                                {restriccion}
-                                            </Typography>
-                                        </ListItem>
-
-                                    ))
-                                }
-                            </List>
-                        </Typography>
-                        <Typography paragraph>CupoLimite:</Typography>
-                        <Typography paragraph>
-                            {adulto.cupoLimite}
-                        </Typography>
-                        <Typography paragraph>Actividades:</Typography>
-                        <List>
-                            {
-                                //funciona pero aun no recibe un objeto
-                                (adulto.actividades).map((actividad) => (
-                                    <ListItem>
-                                        <Typography>
-                                            {actividad.nombre}
-                                        </Typography>
-                                    </ListItem>
-
-                                ))
-                            }
-                        </List>
+                        
                     </CardContent>
                 </Collapse>
             </Card>
