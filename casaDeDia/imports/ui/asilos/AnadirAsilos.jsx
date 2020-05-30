@@ -4,7 +4,7 @@ import {listaRestricciones} from "../../utilities/tablasEstaticas/restricciones"
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 
 
-export default function AnadirCasasDia({ casasDeDiaServidor,handleCloseModal}) {
+export default function AnadirAsilos({ casasDeDiaServidor,handleCloseModal}) {
         const [nombre, setNombre] = useState('');
         const [direccion, setDireccion] = useState('');
         const [actividades, setActividades] = useState([]);
@@ -95,16 +95,16 @@ export default function AnadirCasasDia({ casasDeDiaServidor,handleCloseModal}) {
                 )
         }
 
-        function crearCasaDeDia() {
+        function crearAsilo() {
                 return new Promise(
                         (resolve, reject) => {
-                                Meteor.call("crearCasaDeDia",
+                                Meteor.call("crearAsilo",
                                         nombre, direccion, actividades, restricciones, horarioApertura, horarioCierre, cupoLimite,codigoPostal,image,
                                         (err, res) => {
                                                 if (err) {
                                                         setAlert("error")
                                                         setSnackBarState(true)
-                                                        setMessage("Error al crear casa de dia")
+                                                        setMessage("Error al crear asilo")
                                                         handleCloseModal()
                                                         reject()
                                                 } else {
@@ -128,7 +128,7 @@ return (
                 <Grid item xs={4}>
                         <Grid item xs={12}>Nombre</Grid>
                 <Grid item xs={12}>
-                <TextField id="nombre" label="Casa dia" value={nombre} onChange={(e) => setNombre(e.target.value)}/>
+                        <TextField id="nombre" label="Asilo" value={nombre} onChange={(e) => setNombre(e.target.value)} />
                 </Grid>
                 </Grid>
 
@@ -263,7 +263,7 @@ return (
                 </Grid>
         <Grid item xs={4} />
         <Grid item xs={4}>
-                <Button variant="contained" onClick={crearCasaDeDia} color="primary">Crear</Button>                        
+                <Button variant="contained" onClick={crearAsilo} color="primary">Crear</Button>                        
         </Grid>
                         
         </Grid>

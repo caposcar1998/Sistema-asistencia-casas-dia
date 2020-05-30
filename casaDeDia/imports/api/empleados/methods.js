@@ -1,10 +1,11 @@
 import { Meteor } from 'meteor/meteor';
 import { Empleados } from "../empleados/empleados";
+import { CasasDeDia } from '../casasDeDia/casasDeDia';
 
 Meteor.methods({
 
 
-    "crearEmpleado"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor, idUsuario,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros) {
+    "crearEmpleado"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor, idUsuario,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos) {
         idUsuario = Accounts.createUser({
             username: apodo,
             password: contrasena,
@@ -29,7 +30,8 @@ Meteor.methods({
                 editarTutores:editarTutores,
                 visualizarTalleres:visualizarTalleres,
                 visualizarConvocatorias:visualizarConvocatorias,
-                visualizarCentros:visualizarCentros
+                visualizarCentros:visualizarCentros,
+                visualizarColectivos:visualizarColectivos,
             }
         }),
         
@@ -60,12 +62,13 @@ Meteor.methods({
                 editarTutores:editarTutores,
                 visualizarTalleres:visualizarTalleres,
                 visualizarConvocatorias:visualizarConvocatorias,
-                visualizarCentros:visualizarCentros
+                visualizarCentros:visualizarCentros,
+                visualizarColectivos:visualizarColectivos,
             }
         )
     },
 
-    "editarEmpleado"(idEmpleado,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor,idUsuario, visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros) {
+    "editarEmpleado"(idEmpleado,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor,idUsuario, visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros, visualizarColectivos) {
         Meteor.users.update(idUsuario,{
             $set:{
                 username: apodo,
@@ -90,7 +93,8 @@ Meteor.methods({
                     editarTutores:editarTutores,
                     visualizarTalleres:visualizarTalleres,
                     visualizarConvocatorias:visualizarConvocatorias,
-                    visualizarCentros:visualizarCentros
+                    visualizarCentros:visualizarCentros,
+                    visualizarColectivos:visualizarColectivos,
                 }
                 
                 
@@ -130,7 +134,8 @@ Meteor.methods({
                     editarTutores:editarTutores,
                     visualizarTalleres:visualizarTalleres,
                     visualizarConvocatorias:visualizarConvocatorias,
-                    visualizarCentros:visualizarCentros
+                    visualizarCentros:visualizarCentros,
+                    visualizarColectivos:visualizarColectivos
                 }
             }
         )
@@ -144,6 +149,15 @@ Meteor.methods({
                 "_id": idEmpleado
             }
         )
+
+        //Hacer esto para coleccion que usa empleados
+        CasasDeDia.update
+            (
+                { "empleados": { $elemMatch: { "idReferencia": idEmpleado } } },
+                { $pull: { "empleados": { "idReferencia": idEmpleado } } },
+                false,
+                true
+            )
     },
 
     "leerEmpleado"() {

@@ -4,7 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { Promociones } from '../../api/promociones/promociones';
 
-
+import { Meteor } from 'meteor/meteor';
 
 
 function TablaPromociones({ promociones }) {
@@ -94,6 +94,7 @@ function TablaPromociones({ promociones }) {
     );
 }
 export default withTracker(() => {
+    Meteor.subscribe("promociones");
     return {
         promociones: Promociones.find({}).fetch(),
     };

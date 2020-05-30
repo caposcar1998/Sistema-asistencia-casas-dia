@@ -7,8 +7,12 @@ if (Meteor.isServer) {
     // This code only runs on the server
     // Only publish tasks that are public or belong to the current user
     Meteor.publish("tutores", function(){
-        return Tutores.find();
+        if(Meteor.user().profile.visualizarTutores === true){
+            return Tutores.find();
+        }
     });
+
+    
 }
 
 
@@ -19,5 +23,14 @@ let Schema = new SimpleSchema({
     direccion: { type: String },
     telefono: { type: String },
     telefonoInteligente: { type: Boolean },
-    curp: {type: String}
+    curp: {type: String},
+    apodo: { type: String },
+    contrasena: {type: String},
+    idUsuario: { type: String },
+    visualizarTalleres:{type:String},
+    visualizarConvocatorias:{type:String},
+    visualizarCentros:{type:String},
+    visualizarColectivos:{type:String},
+    visualizarTutores:{type:String},
+    editarTutores:{type:String}
 })

@@ -9,8 +9,6 @@ import { Tracker } from 'meteor/tracker'
 Tracker.autorun(()=>{
 
 function TablaAdultoMayor({adultosMayores}) {
-
-
     function addAdultoMayor(newData) {
         return new Promise(
             (resolve, reject) => {

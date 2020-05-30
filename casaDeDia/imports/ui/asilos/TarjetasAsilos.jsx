@@ -4,8 +4,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import { List, ListItem, Grid, Typography, Card, CardContent, CardActions, CardMedia, CardHeader, Collapse } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -32,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function TarjetasCasasDeDia({ casa, handleOpenAnadirUsuario,handleOpenAnadirEmpleado,handleOpenBorrarCasaDia, handleOpenEditarCasaDia }) {
+export default function TarjetasAsilos({ casa, handleOpenBorrarCasaDia, handleOpenEditarCasaDia }) {
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
 
@@ -49,14 +47,6 @@ export default function TarjetasCasasDeDia({ casa, handleOpenAnadirUsuario,handl
 
         handleOpenEditarCasaDia(casa)
     }
-
-    const anadirPersonasMayores = () => {
-        handleOpenAnadirUsuario(casa)
-     }
-
-    const anadirPersonal = () => {
-        handleOpenAnadirEmpleado(casa)
-     }
     
     return (
 
@@ -82,12 +72,6 @@ export default function TarjetasCasasDeDia({ casa, handleOpenAnadirUsuario,handl
                     </IconButton>
                     <IconButton aria-label="eliminar" onClick={getCasaDiaAEditar}>
                         <EditIcon />
-                    </IconButton>
-                    <IconButton aria-label="editar" onClick={anadirPersonal}>
-                        <PersonAddIcon/>
-                    </IconButton>
-                    <IconButton aria-label="editar" onClick={anadirPersonasMayores}>
-                        <GroupAddIcon />
                     </IconButton>
                     <IconButton
                         className={clsx(classes.expand, {

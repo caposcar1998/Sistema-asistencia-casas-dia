@@ -1,12 +1,10 @@
 import React, {useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Button} from '@material-ui/core';
-import ModalCrearCasaDeDia from '../modales/ModaCrearCasaDeDia';
-import TarjetasCasasDeDia from './TarjetasCasasDeDia';
-import BorrarCasaDia from './BorrarCasaDia';
-import EditarCasaDia from './EditarCasaDeDia';
-import ModalAnadirPersonal from './ModalAnadirPersonal';
-import ModalAnadirUsuario from './ModalAnadirUsuario';
+import ModalCrearAsilo from '../modales/ModaCrearAsilo';
+import TarjetasAsilos from './TarjetasAsilos';
+import BorrarAsilos from './BorrarAsilos';
+import EditarAsilos from './EditarAsilos';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,15 +14,13 @@ const useStyles = makeStyles((theme) => ({
    
 }));
 
-export default function CasasDeDia() { 
+export default function Asilos() { 
     const classes = useStyles();
     const [openModal, setOpenModal] = useState(false);
     const [casasDeDia, setCasasDeDia] = useState([])
     const [openEditarCasaDia, setOpenEditarCasaDia] = useState(false);
     const [openBorrarCasaDia, setOpenBorrarCasaDia] = useState(false);
     const [casaSeleccionada, setCasaSeleccionada] = useState();
-    const [openAnadirEmpleado, setOpenAbrirEmpleado] = useState(false);
-    const [openAnadirPersona, setOpenAbrirPersona] = useState(false);
 
     const handleOpenBorrarCasaDia = (casa) => {
         setCasaSeleccionada(casa)
@@ -59,28 +55,10 @@ export default function CasasDeDia() {
         setOpenModal(false);
     };
 
-    const handleOpenAnadirEmpleado = (casa) => {
-        setCasaSeleccionada(casa)
-        setOpenAbrirEmpleado(true)
-     }
-
-    const handleOpenAnadirUsuario = (casa) => {
-        setCasaSeleccionada(casa)
-        setOpenAbrirPersona(true)
-     }
-
-    const handleCerrarAnadirEmpleado = () => {
-        setOpenAbrirEmpleado(false)
-     }
-
-    const handleCerrarAnadirUsuario = () => {
-        setOpenAbrirPersona(false)
-     }
-
     function casasDeDiaServidor() {
         return new Promise(
             (resolve, reject) => {
-                Meteor.call("leerCasasDeDia",
+                Meteor.call("leerAsilo",
                     (err, res) => {
                         if (err) {
                             reject()
@@ -99,18 +77,16 @@ export default function CasasDeDia() {
             <Grid container className={classes.fondo}>
             <Paper>
             <Grid item xs={12}>
-                <Button onClick={handleOpenModal} variant="contained" color="primary">Nueva casa de dia</Button>
+                <Button onClick={handleOpenModal} variant="contained" color="primary">Nuevo asilo</Button>
             </Grid>
         
                     <Grid item xs={12}>
                         <Grid container spacing={3}>
                         {casasDeDia.map((casa) => (
-                            <TarjetasCasasDeDia
+                            <TarjetasAsilos
                                 casa={casa}
                                 handleOpenBorrarCasaDia={handleOpenBorrarCasaDia}
                                 handleOpenEditarCasaDia={handleOpenEditarCasaDia}
-                                handleOpenAnadirEmpleado={handleOpenAnadirEmpleado}
-                                handleOpenAnadirUsuario={handleOpenAnadirUsuario}
                                 />
                     ))}
                         </Grid>  
@@ -118,32 +94,22 @@ export default function CasasDeDia() {
                     
                 </Paper>
             </Grid>
-            <BorrarCasaDia
+            <BorrarAsilos
                 casaSeleccionada={casaSeleccionada}
                 openBorrarCasaDia={openBorrarCasaDia}
                 handleCerrarBorrarCasaDia={handleCerrarBorrarCasaDia}
                 casasDeDiaServidor={casasDeDiaServidor}
             />
-            <EditarCasaDia
+            <EditarAsilos
                 casaSeleccionada={casaSeleccionada}
                 openEditarCasaDia={openEditarCasaDia}
                 handleCerrarEditarCasaDia={handleCerrarEditarCasaDia}
                 casasDeDiaServidor={casasDeDiaServidor}
             />
-            <ModalCrearCasaDeDia
+            <ModalCrearAsilo
                 handleCloseModal={handleCloseModal}
                 openModal={openModal}
                 casasDeDiaServidor={casasDeDiaServidor}
-            />
-            <ModalAnadirPersonal
-                casaSeleccionada={casaSeleccionada}
-                handleCerrarAnadirEmpleado={handleCerrarAnadirEmpleado}
-                openAnadirEmpleado={openAnadirEmpleado}
-            />
-            <ModalAnadirUsuario
-                casaSeleccionada={casaSeleccionada}
-                handleCerrarAnadirUsuario={handleCerrarAnadirUsuario}
-                openAnadirPersona={openAnadirPersona}
             />
         </>
     )

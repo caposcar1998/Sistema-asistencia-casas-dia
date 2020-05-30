@@ -11,7 +11,7 @@ function TablaTutor({tutores}) {
             return new Promise(
                 (resolve, reject) => {
                     Meteor.call("crearTutor",
-                        newData.nombre, newData.apellido, newData.fechaNacimiento, newData.direccion, newData.telefono, newData.telefonoInteligente, newData.curp,
+                        newData.nombre, newData.apellido, newData.fechaNacimiento, newData.direccion, newData.telefono, newData.telefonoInteligente, newData.curp, newData.apodo,newData.contrasena,newData.visualizarTalleres,newData.visualizarConvocatorias,newData.visualizarCentros,newData.visualizarColectivos,newData.visualizarTutores,newData.editarTutores,
                         (err, res) => {
                             if (err) {
                                 alert("Error al Crear Al Tutor para Futuro Colectivo.")
@@ -29,7 +29,7 @@ function TablaTutor({tutores}) {
             return new Promise(
                 (resolve, reject) => {
                 Meteor.call("editarTutor",
-                    newData._id, newData.nombre, newData.apellido, newData.fechaNacimiento, newData.direccion, newData.telefono, newData.telefonoInteligente, newData.curp,
+                    newData._id, newData.nombre, newData.apellido, newData.fechaNacimiento, newData.direccion, newData.telefono, newData.telefonoInteligente, newData.curp,newData.apodo,newData.contrasena,newData.idUsuario,newData.visualizarTalleres,newData.visualizarConvocatorias,newData.visualizarCentros,newData.visualizarColectivos,newData.visualizarTutores,newData.editarTutores,
                     (err, res) => {
                         if (err) {
                             alert("Error al Editar al Tutor para Colectivo.")
@@ -61,20 +61,48 @@ function TablaTutor({tutores}) {
             )
         };
 
+        if(Meteor.user() && Meteor.user().profile.editarTutores !== true){
+            return (
+    
+                <MaterialTable
+                    title="Tutores"
+                    icons={tableIcons}
+                    columns={
+                        [
+                            { title: "Nombre", field: "nombre" },
+                            { title: "Apellido", field: "apellido" },
+                            { title: "FechaNacimiento", field: "fechaNacimiento", type: "date" },
+                            { title: "direccion", field: "direccion" },
+                            { title: "telefono", field: "telefono" },
+                            { title: "curp", field: "curp" },
+                        ]
+                    }
+                    data={tutores}
+                />
+            );
+        }
+
     return (
         <MaterialTable
             title="Tutores Colectivo"
             icons={tableIcons}
             columns={
                 [
-                    { title: "Id", field: "_id" },
                     { title: "Nombre", field: "nombre" },
                     { title: "Apellido", field: "apellido" },
                     { title: "FechaNacimiento", field: "fechaNacimiento", type: "date" },
                     { title: "direccion", field: "direccion" },
                     { title: "telefono", field: "telefono" },
                     { title: "telefono Inteligente", field: "telefonoInteligente", type: "boolean" },
-                    { title: "curp", field: "curp" }
+                    { title: "curp", field: "curp" },
+                    { title: "apodo", field: "apodo" },
+                    { title: "contrasena", field: "contrasena" },
+                    { title: "Visualizar Talleres", field: "visualizarTalleres", type:'boolean' },
+                    { title: "Visualizar Colectivos", field: "visualizarColectivos" , type:'boolean'},
+                    { title: "Visualizar Centros", field: "visualizarCentros", type:'boolean' },
+                    { title: "Visualizar Convocatorias", field: "visualizarConvocatorias" , type:'boolean'},
+                    { title: "Visualizar Tutores", field: "visualizarTutores" , type:'boolean'},
+                    { title: "Editar Tutores", field: "editarTutores", type:'boolean' }
                 ]
             }
             data={tutores}
