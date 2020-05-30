@@ -17,10 +17,11 @@ function TarjetasSalud({ administradores }) {
             icons={tableIcons}
             columns={
                 [
-                    { title: "Nombre beneficiado", field: "nombre" },
-                    { title: "Tipo de tarjeta", field: "tipoTarjeta" },
-                    { title: "Numero Tarjeta", field: "numeroTarjeta" },
-                    { title: "curp", field: "curp" },
+                    { title: "Nombre beneficiado", field: "beneficiado" },
+                    { title: "Numero de tarjeta", field: "numeroTarjeta" },
+                    { title: "Fecha vigencia", field: "fechaVigencia" },
+                    { title: "Hospital", field: "hospital" },
+                    { title: "Numero paciente", field: "noPaciente" },
                 ]
             }
             data={administradores}
@@ -36,3 +37,5 @@ export default withTracker(() => {
         administradores: Usuarios.find({}).fetch(),
     };
 })(TarjetasSalud);
+
+

@@ -36,3 +36,5 @@ export default withTracker(() => {
         administradores: Usuarios.find({}).fetch(),
     };
 })(TarjetasDespensa);
+
+

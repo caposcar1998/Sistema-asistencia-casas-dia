@@ -20,6 +20,8 @@ function TarjetasEfectivo({ administradores }) {
                     { title: "Nombre beneficiado", field: "nombre" },
                     { title: "Tipo de tarjeta", field: "tipoTarjeta" },
                     { title: "Numero Tarjeta", field: "numeroTarjeta" },
+                    { title: "Cantidad", field: "cantidad" },
+                    { title: "Banco", field: "banco" },
                     { title: "curp", field: "curp" },
                 ]
             }
