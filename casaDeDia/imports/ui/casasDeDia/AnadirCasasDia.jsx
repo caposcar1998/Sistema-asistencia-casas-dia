@@ -36,7 +36,7 @@ export default function AnadirCasasDia({ casasDeDiaServidor,handleCloseModal}) {
                         'https://api.cloudinary.com/v1_1/dzue2mlpl/image/upload',
                         {
                                 method: 'POST',
-                                body: data
+                                body: data,
                         }
                 )
                 const file = await res.json()
@@ -63,7 +63,7 @@ export default function AnadirCasasDia({ casasDeDiaServidor,handleCloseModal}) {
                 PaperProps: {
                         style: {
                                 maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-                                width: 250,
+                                width: 450,
                         },
                 },
         };
@@ -125,20 +125,20 @@ return (
 <>                    
 
         <Grid container>                            
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                         <Grid item xs={12}>Nombre</Grid>
                 <Grid item xs={12}>
                 <TextField id="nombre" label="Casa dia" value={nombre} onChange={(e) => setNombre(e.target.value)}/>
                 </Grid>
                 </Grid>
 
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                         <Grid item xs={12}>Direccion</Grid>
                 <Grid item xs={12}>
                         <TextField id="direccion" label="Direccion" value={direccion} onChange={(e) => setDireccion(e.target.value)} />
                 </Grid>
         </Grid>   
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                         <Grid item xs={12}>Actividades</Grid>
                 <Grid item xs={12}>
                         
@@ -162,7 +162,7 @@ return (
 
                 </Grid>
        </Grid> 
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                         <Grid item xs={12}>Restricciones</Grid>
                                 <Grid item xs={12}>
                 <Select
@@ -185,7 +185,7 @@ return (
 
                         </Grid>
         </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                         <Grid item xs={12}>Hora apertura</Grid>
                 <Grid item xs={12}>
                         <TextField
@@ -197,7 +197,7 @@ return (
                         />
                 </Grid>
         </Grid>                                         
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                         <Grid item xs={12}>Hora cierre</Grid>
                 <Grid item xs={12}>
                         <TextField
@@ -209,7 +209,7 @@ return (
                         />
                 </Grid>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12}>
                 <Grid item xs={12}>Codigo postal</Grid>
                 <Grid item xs={12}>
                         <TextField
@@ -220,7 +220,7 @@ return (
                         />
                 </Grid>
         </Grid>                   
-        <Grid item xs={4}>
+        <Grid item xs={12}>
                 <Grid item xs={12}>Cupo limite</Grid>
                 <Grid item xs={12}>
                         <Select
@@ -245,7 +245,7 @@ return (
                         </Select>
                 </Grid>
                         </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                 <Grid item xs={12}>Seleccionar foto</Grid>
                 <Grid item xs={12}>
                         <Input
@@ -261,8 +261,8 @@ return (
                         )}
                 </Grid>
                 </Grid>
-        <Grid item xs={4} />
-        <Grid item xs={4}>
+        <Grid item xs={12} />
+        <Grid item xs={12}>
                 <Button variant="contained" onClick={crearCasaDeDia} color="primary">Crear</Button>                        
         </Grid>
                         

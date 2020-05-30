@@ -1,0 +1,18 @@
+.divMenu{
+    background-color:#006400;
+}
+
+.menuText{
+    color: white;
+    font-size: x-large;
+    position: absolute;
+    top:  50%;
+    font-style: italic;
+    transform: rotate(-90deg);
+    text-align:center;
+}
+
+.menu {
+    height: 100vh;
+    max-height: auto;
+}

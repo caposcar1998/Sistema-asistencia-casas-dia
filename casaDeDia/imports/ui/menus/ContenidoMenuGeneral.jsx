@@ -29,7 +29,10 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Meteor } from 'meteor/meteor';
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-
+import Collapse from '@material-ui/core/Collapse';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import "../menus/MenuEstilos.css";
 import { Tracker } from 'meteor/tracker'
 
 Tracker.autorun(()=>{
@@ -55,6 +58,30 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
 
 
     const usuario = Meteor.user() && Meteor.user().profile.visualizarAdultoMayor;
+
+    const [open, setOpen] = React.useState(true);
+
+     const [open2, setOpen2] = React.useState(true);
+
+     const [open3, setOpen3] = React.useState(true);
+
+     const [open4, setOpen4] = React.useState(true);
+
+     const handleClick = () => {
+        setOpen(!open);
+      };
+    
+    const handleClick2 = () => {
+        setOpen2(!open2);
+    };
+
+    const handleClick3 = () => {
+        setOpen3(!open3);
+    };
+
+    const handleClick4 = () => {
+        setOpen4(!open4);
+    };
 
     const usuarioLogeado = Meteor.userId();
 
@@ -116,7 +143,13 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                 
             </List>
             <Divider />
-            
+            <List>
+                <ListItem button onMouseEnter={handleClick2}>
+                    <ListItemText primary={"Localizaciones"} />
+                    {open2 ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
+            </List>
+            <Collapse in={open2} timeout="auto" unmountOnExit>
             <List>
             {((Meteor.user() && Meteor.user().profile.visualizarAsilo) === true) ? (
             <ListItem button key={"Asilos"} onClick={() => cambioRuta('asilos')}>
@@ -125,7 +158,6 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                     </ListItemIcon>
                     <ListItemText primary={"Asilos"} />
                 </ListItem>):''}
-
                 {((Meteor.user() && Meteor.user().profile.visualizarCasasDeDia) === true) ?(<ListItem button key={"Casas de dia"} onClick={() => cambioRuta('casasDeDia')}>
                     <ListItemIcon>
                         <HouseIcon />
@@ -138,20 +170,21 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                     </ListItemIcon>
                     <ListItemText primary={"Clubes"} />
                 </ListItem>):''}
-
                 {((Meteor.user() && Meteor.user().profile.visualizarServicios) === true) ? (<ListItem button key={"Servicios"} onClick={() => cambioRuta('servicios')}>
                     <ListItemIcon>
                         <RoomServiceIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Servicios"} />
                 </ListItem>):''}
+            </List>
+            </Collapse>
                 {((Meteor.user() && Meteor.user().profile.visualizarActividades) === true) ? (<ListItem button key={"Actividades"} onClick={() => cambioRuta('actividades')}>
                     <ListItemIcon>
                         <LocalActivityIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Actividades"} />
                 </ListItem>):''}
-            </List>
+            
             {(((Meteor.user() && Meteor.user().profile.visualizarTarjetas) !== true)) ? '': (<Divider />)}
             <List>
             {((Meteor.user() && Meteor.user().profile.visualizarTarjetas) === true) ? (<ListItem button key={"Tarjetas"} onClick={() => cambioRuta('tarjetas')}>
@@ -161,13 +194,21 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                     <ListItemText primary={"Tarjetas"} />
                 </ListItem>):''}
             </List>
+            <Collapse in={open2} timeout="auto" unmountOnExit>
             {(((Meteor.user() && Meteor.user().profile.visualizarAsilo) !== true) && 
             ((Meteor.user() && Meteor.user().profile.visualizarCasasDeDia) !== true) && 
             ((Meteor.user() && Meteor.user().profile.visualizarClues) !== true) &&
             ((Meteor.user() && Meteor.user().profile.visualizarServicios) !== true) &&
             ((Meteor.user() && Meteor.user().profile.visualizarActividades) !== true)) ? '': (<Divider />)}
+            </Collapse>
             
-            
+            <List>
+                <ListItem button onMouseEnter={handleClick3}>
+                    <ListItemText primary={"Recursos Humanos"} />
+                    {open3 ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
+            </List>
+            <Collapse in={open3} timeout="auto" unmountOnExit>
             <List>
                 {/*<ListItem button key={"Administrador"} onClick={() => cambioRuta('administrador')}>
                     <ListItemIcon>
@@ -195,9 +236,13 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                     <ListItemText primary={"Instructores"} />
                 </ListItem>):''}
             </List>
+            </Collapse>
+            <Collapse in={open3} timeout="auto" unmountOnExit>
             {(((Meteor.user() && Meteor.user().profile.visualizarVoluntario) !== true) && 
             ((Meteor.user() && Meteor.user().profile.visualizarVoluntario) !== true) && 
             ((Meteor.user() && Meteor.user().profile.visualizarInstructor) !== true)) ? '': (<Divider />)} 
+            </Collapse>
+
             
             <List>
                 {((Meteor.user() && Meteor.user().profile.visualizarBeneficios) === true) ? (<ListItem button key={"Beneficios"} onClick={() => cambioRuta('beneficios')}>
@@ -206,9 +251,15 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                     </ListItemIcon>
                     <ListItemText primary={"Beneficios"} />
                 </ListItem>):''}
-            </List>
-            
+            </List>    
             {(((Meteor.user() && Meteor.user().profile.visualizarBeneficios) !== true)) ? '': (<Divider />)}
+            <List>
+                <ListItem button onMouseEnter={handleClick4}>
+                    <ListItemText primary={"Colectivos"} />
+                    {open4 ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
+            </List>
+            <Collapse in={open4} timeout="auto" unmountOnExit>
             <List>
                 {((Meteor.user() && Meteor.user().profile.visualizarTutores) === true) ? (<ListItem button key={"Tutores"} onClick={() => cambioRuta('tutores')}>
                     <ListItemIcon>
@@ -249,6 +300,7 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                     <ListItemText primary={"Centros"} />
                 </ListItem>):''}
             </List>
+            </Collapse>
             <Divider />
             <List>
                 <ListItem button key={"Cerrar Sesión"} onClick={() => cerrarSesion()}>
@@ -267,10 +319,11 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
     
     if(usuarioLogeado !== null){
         return (
-            <div>
+            <div className="divMenu">
+            <span className="menuText">MENU</span>
                 {["left"].map((anchor) => (
                     <React.Fragment key={anchor}>
-                        <Button onMouseEnter={toggleDrawer("left", true)}>{"menu"}</Button>
+                        <Button onMouseEnter={toggleDrawer("left", true)} className="menu" ></Button>
                         <Drawer
                             anchor={anchor}
                             open={state[anchor]}
@@ -290,5 +343,3 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
 }
 
 });
-
-
