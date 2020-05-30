@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Button } from '@material-ui/core';
-import ModalCrearCasaDeDia from '../modales/ModaCrearCasaDeDia';
-import TarjetasCasasDeDia from './TarjetasCasasDeDia';
-import BorrarCasaDia from './BorrarCasaDia';
-import EditarCasaDia from './EditarCasaDeDia';
+import TarjetasDeTarjetas from './TarjetasDeTarjetas';
+import BorrarTarjeta from './BorrarTarjeta';
+import EditarTarjeta from './EditarTarjeta';
+import ModalCrearTarjeta from './ModalCrearTarjeta';
+
 
 
 
@@ -18,34 +19,34 @@ const useStyles = makeStyles((theme) => ({
 export default function CrearTarjetas() {
     const classes = useStyles();
     const [openModal, setOpenModal] = useState(false);
-    const [casasDeDia, setCasasDeDia] = useState([])
-    const [openEditarCasaDia, setOpenEditarCasaDia] = useState(false);
-    const [openBorrarCasaDia, setOpenBorrarCasaDia] = useState(false);
-    const [casaSeleccionada, setCasaSeleccionada] = useState();
+    const [tarjetas, setTarjetas] = useState([])
+    const [openEditarTarjeta, setOpenEditarTarjeta] = useState(false);
+    const [openBorrarTarjeta, setOpenBorrarTarjeta] = useState(false);
+    const [tarjetaSeleccionada, setTarjetaSeleccionada] = useState();
 
-    const handleOpenBorrarCasaDia = (casa) => {
-        setCasaSeleccionada(casa)
-        setOpenBorrarCasaDia(true);
+    const handleOpenBorrarTarjeta = (tarjeta) => {
+        setTarjetaSeleccionada(tarjeta)
+        setOpenBorrarTarjeta(true);
     };
 
-    const handleOpenEditarCasaDia = (casa) => {
-        setCasaSeleccionada(casa)
-        setOpenEditarCasaDia(true);
+    const handleOpenEditarTarjeta = (casa) => {
+        setTarjetaSeleccionada(casa)
+        setOpenEditarTarjeta(true);
     };
 
     useEffect(() => {
-        casasDeDiaServidor();
+        tarjetasServidor();
     }, []);
 
 
 
-    const handleCerrarBorrarCasaDia = () => {
-        setOpenBorrarCasaDia(false);
+    const handleCerrarBorrarTarjeta = () => {
+        setOpenBorrarTarjeta(false);
     }
 
 
-    const handleCerrarEditarCasaDia = () => {
-        setOpenEditarCasaDia(false);
+    const handleCerrarEditarTarjeta = () => {
+        setOpenEditarTarjeta(false);
     }
 
     const handleOpenModal = () => {
@@ -56,27 +57,18 @@ export default function CrearTarjetas() {
         setOpenModal(false);
     };
 
-    const handleOpenAnadirEmpleado = (casa) => {
-        setCasaSeleccionada(casa)
-        setOpenAbrirEmpleado(true)
-    }
-
-    const handleOpenAnadirUsuario = (casa) => {
-        setCasaSeleccionada(casa)
-        setOpenAbrirPersona(true)
-    }
 
 
 
-    function casasDeDiaServidor() {
+    function tarjetasServidor() {
         return new Promise(
             (resolve, reject) => {
-                Meteor.call("leerCasasDeDia",
+                Meteor.call("leertarjetas",
                     (err, res) => {
                         if (err) {
                             reject()
                         } else {
-                            setCasasDeDia(res)
+                            setTarjetas(res)
                             resolve()
                         }
                     });
@@ -90,18 +82,16 @@ export default function CrearTarjetas() {
             <Grid container className={classes.fondo}>
                 <Paper>
                     <Grid item xs={12}>
-                        <Button onClick={handleOpenModal} variant="contained" color="primary">Nueva casa de dia</Button>
+                        <Button onClick={handleOpenModal} variant="contained" color="primary">Nueva TArjeta</Button>
                     </Grid>
 
                     <Grid item xs={12}>
                         <Grid container spacing={3}>
-                            {casasDeDia.map((casa) => (
-                                <TarjetasCasasDeDia
-                                    casa={casa}
-                                    handleOpenBorrarCasaDia={handleOpenBorrarCasaDia}
-                                    handleOpenEditarCasaDia={handleOpenEditarCasaDia}
-                                    handleOpenAnadirEmpleado={handleOpenAnadirEmpleado}
-                                    handleOpenAnadirUsuario={handleOpenAnadirUsuario}
+                            {tarjetas.map((tarjeta) => (
+                                <TarjetasDeTarjetas
+                                    tarjeta={tarjeta}
+                                    handleOpenBorrarTarjeta={handleOpenBorrarTarjeta}
+                                    handleOpenEditarTarjeta={handleOpenEditarTarjeta}
                                 />
                             ))}
                         </Grid>
@@ -109,22 +99,22 @@ export default function CrearTarjetas() {
 
                 </Paper>
             </Grid>
-            <BorrarCasaDia
-                casaSeleccionada={casaSeleccionada}
-                openBorrarCasaDia={openBorrarCasaDia}
-                handleCerrarBorrarCasaDia={handleCerrarBorrarCasaDia}
-                casasDeDiaServidor={casasDeDiaServidor}
+            <BorrarTarjeta
+                tarjetaSeleccionada={tarjetaSeleccionada}
+                openBorrarTarjeta={openBorrarTarjeta}
+                handleCerrarBorrarTarjeta={handleCerrarBorrarTarjeta}
+                tarjetasServidor={tarjetasServidor}
             />
-            <EditarCasaDia
-                casaSeleccionada={casaSeleccionada}
-                openEditarCasaDia={openEditarCasaDia}
-                handleCerrarEditarCasaDia={handleCerrarEditarCasaDia}
-                casasDeDiaServidor={casasDeDiaServidor}
+            <EditarTarjeta
+                tarjetaSeleccionada={tarjetaSeleccionada}
+                openEditarTarjeta={openEditarTarjeta}
+                handleCerrarEditarTarjeta={handleCerrarEditarTarjeta}
+                tarjetasServidor={tarjetasServidor}
             />
-            <ModalCrearCasaDeDia
+            <ModalCrearTarjeta
                 handleCloseModal={handleCloseModal}
                 openModal={openModal}
-                casasDeDiaServidor={casasDeDiaServidor}
+                tarjetasServidor={tarjetasServidor}
             />
         </>
     )

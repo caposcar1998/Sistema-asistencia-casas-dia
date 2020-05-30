@@ -20,6 +20,7 @@ let Schema = new SimpleSchema({
     numeroTarjeta: { type: String },
     fechaVigencia: { type: Date },
     tipo: { type: String }
+    
 })
 
 
