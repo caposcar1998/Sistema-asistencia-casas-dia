@@ -58,7 +58,7 @@ export default function Clubes() {
     function clubesServidor() {
         return new Promise(
             (resolve, reject) => {
-                Meteor.call("leerClubes",
+                Meteor.call("leerClub",
                     (err, res) => {
                         if (err) {
                             reject()
