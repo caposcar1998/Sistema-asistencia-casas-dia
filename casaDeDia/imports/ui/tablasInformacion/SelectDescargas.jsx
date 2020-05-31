@@ -21,6 +21,12 @@ import { Actividades } from '../../api/actividades/actividades';
 import { CasasDeDia } from "../../api/casasDeDia/casasDeDia";
 import { Asilos } from "../../api/asilos/asilos";
 import { Clubes } from "../../api/clubes/clubes";
+import { Centros } from "../../api/centros/centros"
+import { Convocatorias } from "../../api/convocatorias/convocatorias"
+import { Colectivos } from "../../api/colectivos/colectivos"
+import { Talleres } from "../../api/talleres/talleres";
+import { Tutores } from "../../api/tutores/tutores";
+import { Promociones } from '../../api/promociones/promociones';
 import {listaRestricciones} from "../../utilities/tablasEstaticas/restricciones";
 
 const useStyles = makeStyles((theme) => ({
@@ -80,7 +86,7 @@ function getStyles(name, personName, theme) {
   };
 }
 
-function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, servicios,actividades,casasDeDia,asilos,clubes}) {
+function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, servicios,actividades,casasDeDia,asilos,clubes,centros,convocatorias,tutores,colectivos,talleres,promociones}) {
   const classes = useStyles();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
@@ -89,25 +95,7 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
     setPersonName(event.target.value);
   };
 
-  let dataEmpleados = [];
-  let dataInstructores = [];
-  let dataAdultosMayores = [];
   let data = [];
-
-  /*const columns = [{
-    id: 'first',
-    displayName: 'First column'
-    }, {
-    id: 'second',
-    displayName: 'Second column'
-    }];
-    const datas = [{
-      first: 'foo',
-      second: 'bar'
-      }, {
-      first: 'foobar',
-      second: 'foobar'
-      }];*/
 
     const colAdultosMayores = [{
       id: 'primera_am',
@@ -184,16 +172,6 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
         displayName: 'Dirección'
         }]
 
-      const data1 = {empleados}
-      const data2 = {instructores}
-      const data3 = {voluntarios}
-      const data4 = {adultosmayores}
-      const data5 = {servicios}
-      const data6 = {actividades}
-      const data7 = {casasDeDia}
-      const data8 = {asilos}
-      const data9 = {clubes}
-
       const colEmpleados = [{
       id: 'primera',
       displayName: 'Nombre Completo'
@@ -205,20 +183,86 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
       displayName: 'Email'
       }]
 
+      const colCentros = [{
+        id: 'primera_c',
+        displayName: 'Calle'},{
+        id: 'segunda_c',
+        displayName: 'Delegacion'},{
+        id: 'tercera_c',
+        displayName: 'Codigo Postal'},{
+        id: 'cuarta_c',
+        displayName: 'Numero Telefonico',
+      }];
+
+      const colConvocatorias = [{
+        id: 'primera_con',
+        displayName: 'Nombre'},{
+        id: 'segunda_con',
+        displayName: 'Fecha de Lanzamiento'},{
+        id: 'tercera_con',
+        displayName: 'Fecha de Finalizacion'}
+      ];
+
+      const colColectivos = [{
+        id: 'primera_col',
+        displayName: 'Nombre'
+      },{
+        id: 'segunda_col',
+        displayName: 'Descripcion'
+      },{
+        id: 'tercera_col',
+        displayName: 'Categoria'
+      }
+      ];
+
+      const colTalleres = [
+        {id: 'primera_t',
+        displayName: 'Cupo'},
+        {id: 'segunda_t',
+        displayName: 'Nombre'},
+        {id: 'tercera_t',
+        displayName: 'Instructor'},
+        {id: 'cuarta_t',
+        displayName: 'Colectivos'}
+      ];
+
+      const colTutores = [
+        {id: 'primera_tu',
+        displayName: 'Nombre'},
+        {id: 'segunda_tu',
+        displayName: 'Apellido'},
+        {id: 'tercera_tu',
+        displayName: 'Fecha de nacimiento'},
+        {id: 'cuarta_tu',
+        displayName: 'Telefono'},
+        {id: 'quinta_tu',
+        displayName: 'Direccion'},
+        {id: 'sexta_tu',
+        displayName: 'Curp'},
+      ];
+
+      const colPromociones = [
+        {id: 'primera_p',
+        displayName: 'Establecimiento'},
+        {id: 'segunda_p',
+        displayName: 'Telefono'},
+        {id: 'tercera_p',
+        displayName: 'Descripcion'},
+        {id: 'cuarta_p',
+        displayName: 'Direcciom'},
+        {id: 'quinta_p',
+        displayName: 'Restricciones'},
+        {id: 'sexta_p',
+        displayName: 'Fecha de inicio'},
+        {id: 'septima_p',
+        displayName: 'Fecha final'},
+      ]
+
       function ayudaEmpleados(empleados){
           empleados.map(function(empleado){
           return(data.push(empleado))
         })
       };
-      //ayudaEmpleados({empleados}.empleados)
-      //ayudaEmpleados(data2.instructores)
-      //ayudaEmpleados(data3.voluntarios)
-      //ayudaEmpleados(data4.adultosmayores)
-      //ayudaEmpleados(data5.servicios)
-      //ayudaEmpleados(data6.actividades);
-      //ayudaEmpleados(data7.casasDeDia)
-      //ayudaEmpleados(data8.asilos)
-      //ayudaEmpleados(data9.clubes)
 
       const datas1 = (dat,tipo,info) => dat.map((usuario)=>{
         if(tipo === 'Empleados' || tipo === 'Voluntarios' || tipo === 'Instructores'){
@@ -274,6 +318,61 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
             septima_cd:usuario.cupoLimite,
             octava_cd:usuario.codigoPostal,
           })
+        }else if(tipo === 'Actividades'){
+          return({
+            primera_ac:usuario.nombre,
+            segunda_ac:usuario.fechaInicio,
+            tercera_ac:usuario.fechaFinal,
+            cuarta_ac:usuario.hora,
+            quinta_ac:usuario.descripcion,
+            sexta_ac:usuario.direccion,
+          })
+        }else if(tipo === 'Centros'){
+          return({
+            primera_c:usuario.calle,
+            segunda_c:usuario.delegacion,
+            tercera_c:usuario.codigoPostal,
+            cuarta_c:usuario.numeroTelefonico,
+          })
+        }else if(tipo === 'Convocatorias'){
+          return({
+            primera_con:usuario.nombre,
+            segunda_con:usuario.fechaLanzamiento,
+            tercera_con:usuario.fechaFinalizacion,
+          })
+        }else if(tipo === 'Colectivos'){
+          return({
+            primera_col:usuario.nombre,
+            segunda_col:usuario.descripcion,
+            tercera_col:usuario.categoria,
+          })
+        }else if(tipo === 'Talleres'){
+          return({
+            primera_t:usuario.cupo,
+            segunda_t:usuario.nombre,
+            tercera_t:usuario.instructor,
+            cuarta_t:usuario.colectivo,
+          })
+        }else if(tipo === 'Tutores'){
+          return({
+            primera_tu:usuario.nombre,
+            segunda_tu:usuario.apellido,
+            tercera_tu:usuario.fechaNacimiento,
+            cuarta_tu:usuario.telefono,
+            quinta_tu:usuario.direccion,
+            sexta_tu:usuario.curp,
+          })
+        }
+        else if(tipo === 'Beneficios'){
+          return({
+            primera_p:usuario.nombre,
+            segunda_p:usuario.telefono,
+            tercera_p:usuario.descripcion,
+            cuarta_p:usuario.direccion,
+            quinta_p:usuario.restricciones,
+            sexta_p:usuario.fechaInicio,
+            septima_p:usuario.fechaFinal,
+          })
         }
         
       })
@@ -304,10 +403,7 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
         displayName: 'Código Postal'
         }];
 
-      //console.log(datas1(data));
-      //console.log(datas2(data));
-      //console.log(datas3(data));
-      //console.log(datas4(data));
+      
       //console.log(datas1(data,'Clubes',{clubes}.clubes))
      
       console.log(datas1(data,'Empleados'))
@@ -394,6 +490,60 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
             datas={datas1(data,'Servicios')}
             text="Descargar Reporte" />
           )
+        }else if(tipo === 'Centros'){
+          ayudaEmpleados({centros}.centros)
+          return(
+            <CsvDownloader
+            filename="Reporte Centros"
+            columns={colCentros}
+            datas={datas1(data,'Centros')}
+            text="Descargar Reporte" />
+          )
+        }else if(tipo === 'Convocatorias'){
+          ayudaEmpleados({convocatorias}.convocatorias)
+          return(
+            <CsvDownloader
+            filename="Reporte Convocatorias"
+            columns={colConvocatorias}
+            datas={datas1(data,'Convocatorias')}
+            text="Descargar Reporte" />
+          )
+        }else if(tipo === 'Colectivos'){
+          ayudaEmpleados({colectivos}.colectivos)
+          return(
+            <CsvDownloader
+            filename="Reporte Colectivos"
+            columns={colColectivos}
+            datas={datas1(data,'Colectivos')}
+            text="Descargar Reporte" />
+          )
+        }else if(tipo === 'Talleres'){
+          ayudaEmpleados({talleres}.talleres)
+          return(
+            <CsvDownloader
+            filename="Reporte Talleres"
+            columns={colTalleres}
+            datas={datas1(data,'Talleres')}
+            text="Descargar Reporte" />
+          )
+        }else if(tipo === 'Tutores'){
+          ayudaEmpleados({tutores}.tutores)
+          return(
+            <CsvDownloader
+            filename="Reporte Tutores"
+            columns={colTutores}
+            datas={datas1(data,'Tutores')}
+            text="Descargar Reporte" />
+          )
+        }else if(tipo === 'Beneficios'){
+          ayudaEmpleados({promociones}.promociones)
+          return(
+            <CsvDownloader
+            filename="Reporte Beneficios"
+            columns={colPromociones}
+            datas={datas1(data,'Beneficios')}
+            text="Descargar Reporte" />
+          )
         }
       }
 
@@ -420,17 +570,7 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
         </Select>
         {console.log(personName)}
           <div style={{ marginTop: 70 }}>
-            {/*<button onClick={csvDownload(personName)}>
-              Descargar Reporte
-            </button>
-            {personName === 'Adultos Mayores' ? 
-            (<CsvDownloader
-            filename="Reporte Adultos Mayores"
-            columns={colAdultosMayores}
-            datas={datas1(data,'Adultos Mayores',{adultosmayores})}
-            text="Descargar Reporte" />):''}*/}
             {csvD(personName)}
-            
           </div> 
           
       </FormControl>
@@ -451,6 +591,12 @@ export default withTracker(() => {
   Meteor.subscribe("casasDeDia");
   Meteor.subscribe("asilos");
   Meteor.subscribe("clubes");
+  Meteor.subscribe("centros");
+  Meteor.subscribe("convocatorias");
+  Meteor.subscribe("colectivos")
+  Meteor.subscribe("talleres")
+  Meteor.subscribe("tutores")
+  Meteor.subscribe("promociones")
   return {
       empleados: Empleados.find({}).fetch(),
       instructores: Instructores.find({}).fetch(),
@@ -461,5 +607,11 @@ export default withTracker(() => {
       casasDeDia: CasasDeDia.find({}).fetch(),
       asilos: Asilos.find({}).fetch(),
       clubes: Clubes.find({}).fetch(),
+      centros: Centros.find({}).fetch(),
+      convocatorias: Convocatorias.find({}).fetch(),
+      colectivos: Colectivos.find({}).fetch(),
+      talleres : Talleres.find({}).fetch(),
+      tutores: Tutores.find({}).fetch(),
+      promociones: Promociones.find({}).fetch(),
   };
 })(MultipleSelect);
