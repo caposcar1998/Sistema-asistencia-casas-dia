@@ -123,6 +123,12 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
           </ListSubheader>
                 }
             >
+                <ListItem button key={"Descargas"} onClick={() =>cambioRuta("descargas")}>
+                    <ListItemIcon>
+                        <PeopleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Descargas"} />
+                </ListItem>
                 
                 {/*<ListItem button key={"Usuarios"} onClick={() =>cambioRuta("administrador")}>
                     <ListItemIcon>

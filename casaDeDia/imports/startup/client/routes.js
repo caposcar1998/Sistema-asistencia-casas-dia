@@ -33,6 +33,7 @@ import CentrosTab from "../../ui/tabs/CentrosTab";
 
 import { Tracker } from 'meteor/tracker';
 import { Meteor } from 'meteor/meteor';
+import Descargas from '../../ui/tabs/Descargas';
 
 FlowRouter.route('/', {
     name: 'login',
@@ -163,7 +164,7 @@ FlowRouter.route('/administrador/Servicios', {
 FlowRouter.route('/administrador/Voluntarios', {
     name: 'voluntarios',
     action() {
-        if((Meteor.user() && Meteor.user().profile.visualizarBeneficios) === true){
+        if((Meteor.user() && Meteor.user().profile.visualizarVoluntario) === true){
             mount(AdministradorPage, {
                 content: <VoluntariosTab />
             })
@@ -237,30 +238,12 @@ FlowRouter.route('/administrador/centros', {
     }
 })
 
-/*Accounts.createUser({
-    username: 'admin',
-    password: 'admin',
-    profile:{
-        role: 'voluntarios',
-        visualizarAdultoMayor: true,
-        editarAdultoMayor: true,
-        visualizarVoluntario: true,
-        editarVoluntario: true,
-        visualizarInstructor: true,
-        editarInstructor: true,
-        visualizarAsilo: true,
-        visualizarCasasDeDia: true,
-        visualizarClubes:true,
-        visualizarServicios:true,
-        visualizarActividades:true,
-        visualizarTarjetas:true,
-        visualizarEmpleados:true,
-        editarEmpleados:true,
-        visualizarBeneficios:true,
-        visualizarTutores:true,
-        editarTutores:true,
-        visualizarTalleres:true,
-        visualizarConvocatorias:true,
-        visualizarCentros:true
+FlowRouter.route('/administrador/descargas', {
+    name: 'descargas',
+    action() {
+        mount(AdministradorPage, {
+            content: <Descargas />
+        })
     }
-});*/
+})
+
