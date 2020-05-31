@@ -21,7 +21,6 @@ let lugaresAceptados = new SimpleSchema({
 let Schema = new SimpleSchema({
 
     nombre: { type: String },
-    fechaVigencia: { type: Date },
     cantidad: { type: Number },
     "lugaresAceptados.$": { type: lugaresAceptados },
     lugaresAceptados: { type: Array, defaultValue: [], optional: true },

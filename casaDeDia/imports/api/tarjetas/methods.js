@@ -4,13 +4,43 @@ import { Tarjetas } from "../tarjetas/tarjetas";
 Meteor.methods({
 
 
-    "crearTarjeta"(beneficiado,numeroTarjeta,fechaVigencia,tipo) {
+
+
+    "crearSalud"(nombre, fechaVigencia, hospital, servicios) {
         Tarjetas.insert(
             {
-                beneficiado: beneficiado,
-                numeroTarjeta: numeroTarjeta,
+                tipo: "salud",
+                nombre: nombre,
                 fechaVigencia: fechaVigencia,
-                tipo: tipo
+                hospital: hospital,
+                servicios: servicios
+            }
+
+        )
+    },
+
+    "crearDinero"(nombre, fechaVigencia, cantidad, banco, tiempo) {
+        Tarjetas.insert(
+            {
+                tipo: "dinero",
+                nombre: nombre,
+                fechaVigencia: fechaVigencia,
+                cantidad: cantidad,
+                banco: banco,
+                tiempo: tiempo
+            }
+
+        )
+    },
+
+    "crearDespensa"(nombre, fechaVigencia, cantidad, lugaresAceptados) {
+        Tarjetas.insert(
+            {
+                tipo: "despensa",
+                nombre: nombre,
+                fechaVigencia: fechaVigencia,
+                cantidad: cantidad,
+                lugaresAceptados: lugaresAceptados
             }
 
         )

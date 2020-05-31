@@ -13,11 +13,20 @@ export default function AnadirTarjeta({ tipoTarjeta,tarjetasServidor, handleClos
 
         <>
             {tipoTarjeta == "salud" ? 
-                < CrearSalud/> :
+                < CrearSalud
+                    tarjetasServidor={tarjetasServidor}
+                    handleCloseModal={handleCloseModal}
+                /> :
                 tipoTarjeta == "efectivo" ?
-                    <CrearDinero/> :
+                    <CrearDinero
+                        tarjetasServidor={tarjetasServidor}
+                        handleCloseModal={handleCloseModal}
+                    /> :
                 tipoTarjeta == "despensa" ?
-                        <CrearDespensa /> :
+                        <CrearDespensa
+                            tarjetasServidor={tarjetasServidor}
+                            handleCloseModal={handleCloseModal}
+                        /> :
                         <Typography>Selecciona una opcion</Typography>
                     }
         </>
@@ -26,7 +35,7 @@ export default function AnadirTarjeta({ tipoTarjeta,tarjetasServidor, handleClos
 
 
 
-function CrearSalud() {
+function CrearSalud({tarjetasServidor, handleCloseModal }) {
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
     const [open, setOpen] = useState(false);
@@ -40,7 +49,30 @@ function CrearSalud() {
         setServicios(event.target.value);
     }
     
-    function crearTarjetaSalud(){}
+    function crearTarjetaSalud() {
+        return new Promise(
+            (resolve, reject) => {
+                Meteor.call("crearSalud",
+                    nombre,fechaVigencia,hospital,servicios,
+                    (err, res) => {
+                        if (err) {
+                            setAlert("error")
+                            setSnackBarState(true)
+                            setMessage("Error al crear tarjeta")
+                            handleCloseModal()
+                            reject()
+                        } else {
+                            setAlert("success")
+                            setSnackBarState(true)
+                            setMessage("Registro correcto")
+                            handleCloseModal()
+                            tarjetasServidor()
+                            resolve()
+                        }
+                    });
+            }
+        )
+    }
     
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
@@ -127,7 +159,30 @@ function CrearDinero() {
     const [openTiempo, setOpenTiempo] = useState(false);
  
 
-    function crearTarjetaDinero() { }
+    function crearTarjetaDinero() {
+        return new Promise(
+            (resolve, reject) => {
+                Meteor.call("crearDinero",
+                    nombre, fechaVigencia, cantidad, banco,tiempo,
+                    (err, res) => {
+                        if (err) {
+                            setAlert("error")
+                            setSnackBarState(true)
+                            setMessage("Error al crear tarjeta")
+                            handleCloseModal()
+                            reject()
+                        } else {
+                            setAlert("success")
+                            setSnackBarState(true)
+                            setMessage("Registro correcto")
+                            handleCloseModal()
+                            tarjetasServidor()
+                            resolve()
+                        }
+                    });
+            }
+        )
+     }
 
 
     const handleChangeBanco = (event) => {
@@ -253,7 +308,30 @@ function CrearDespensa() {
         setLugaresAceptados(event.target.value);
     }
 
-    function crearTarjetaDespensa() { }
+    function crearTarjetaDespensa() {
+        return new Promise(
+            (resolve, reject) => {
+                Meteor.call("crearDespensa",
+                    nombre, fechaVigencia, cantidad, lugaresAceptados,
+                    (err, res) => {
+                        if (err) {
+                            setAlert("error")
+                            setSnackBarState(true)
+                            setMessage("Error al crear tarjeta")
+                            handleCloseModal()
+                            reject()
+                        } else {
+                            setAlert("success")
+                            setSnackBarState(true)
+                            setMessage("Registro correcto")
+                            handleCloseModal()
+                            tarjetasServidor()
+                            resolve()
+                        }
+                    });
+            }
+        )
+     }
 
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
