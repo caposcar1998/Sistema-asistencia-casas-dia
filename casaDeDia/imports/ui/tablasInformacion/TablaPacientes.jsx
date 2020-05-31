@@ -8,25 +8,51 @@ function TablaPacientes({pacientes}) {
     
     
     function addPaciente(newData) {
-        return new Promise(
-            (resolve, reject) => {
-                Meteor.call("crearPaciente",
-                    newData.nombre, newData.apellido, newData.fechaNacimiento, newData.direccion, newData.telefono, newData.telefonoInteligente,
-                    (err, res) => {
-                        if (err) {
-                            alert("Error al crear al paciente")
-                            reject()
-                        } else {
-                            alert("Se creo el paciente correctamente")
-                            resolve()
-                        }
-                    });
-                
-            }
-        
-          )
+        val = validations(newData);
+
+        if(val == true) {
+            return new Promise(
+                (resolve, reject) => {
+                    Meteor.call("crearPaciente",
+                        newData.nombre, newData.apellido, newData.fechaNacimiento, newData.direccion, newData.telefono, newData.telefonoInteligente,
+                        (err, res) => {
+                            if (err) {
+                                alert("Error al crear al paciente")
+                                reject()
+                            } else {
+                                alert("Se creo el paciente correctamente")
+                                resolve()
+                            }
+                        });
+                    
+                }
+            
+            )
+        }else {
+            location.reload();
+        }
         
      };
+
+     function validations(newData) {
+        var letters = /^[A-Za-záéíóú]+$/;
+        
+        if (newData.nombre == null || newData.apellido == null || newData.direccion == null || newData.telefono == null) {
+            window.alert("No se llenaron todos los campos, intete de nuevo.");
+            return validation = false;
+        }else if(letters.test(newData.nombre)== false || letters.test(newData.apellido)== false) {
+            window.alert("El nombre y/o apellidos no deben de contener números, intente de nuevo.");
+            return validation = false;
+        }else if(newData.telefono.toString().length > 10) {
+            window.alert("El número no puede exceder de 10 digitos")
+        }
+        else {
+            return validation = true;
+        }
+    
+}
+
+
     function editPaciente(newData) {
         return new Promise(
             (resolve, reject) => {
@@ -78,7 +104,7 @@ function TablaPacientes({pacientes}) {
                     { title: "Apellido", field: "apellido" },
                     { title: "FechaNacimiento", field: "fechaNacimiento", type: "date" },
                     { title: "direccion", field: "direccion" },
-                    { title: "telefono", field: "telefono" },
+                    { title: "telefono", field: "telefono", type: "numeric" },
                     { title: "telefono Inteligente", field: "telefonoInteligente", type: "boolean" },
                     
                 ]

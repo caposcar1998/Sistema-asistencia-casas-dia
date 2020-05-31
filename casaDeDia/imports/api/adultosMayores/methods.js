@@ -7,7 +7,7 @@ import { Asilos } from '../asilos/asilos';
 Meteor.methods({
 
 
-    "crearAdultoMayor"(nombre,apellidos,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,apodo,contrasena) {
+    "crearAdultoMayor"(nombre,apellidos,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,foto) {
         AdultosMayores.insert(
             {
                 nombre: nombre,
@@ -18,14 +18,13 @@ Meteor.methods({
                 grupoSanguineo: grupoSanguineo,
                 direccion: direccion,
                 codigoPostal: codigoPostal,
-                apodo:apodo,
-                contrasena:contrasena
+                foto:foto
             }
 
         )
     },
 
-    "editarAdultoMayor"(idAdultoMayor,nombre,apellidos,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,apodo,contrasena) {
+    "editarAdultoMayor"(idAdultoMayor,nombre,apellidos,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,foto) {
         AdultosMayores.update(
             { _id: idAdultoMayor },
             {
@@ -39,8 +38,7 @@ Meteor.methods({
                     grupoSanguineo: grupoSanguineo,
                     direccion: direccion,
                     codigoPostal: codigoPostal,
-                    apodo:apodo,
-                    contrasena:contrasena
+                    foto: foto
                 }
             }
         )
