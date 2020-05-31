@@ -24,6 +24,9 @@ function TablaInstructor({instructores}) {
                             resolve()
                         }
                     });
+                }
+                )
+         };
 
 
 
@@ -41,6 +44,9 @@ function TablaInstructor({instructores}) {
                             resolve()
                         }
                         });
+                    }
+              )
+       };
  
             
 
