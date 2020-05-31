@@ -46,20 +46,53 @@ Meteor.methods({
         )
     },
 
-    "editarTarjeta"(idTarjeta, beneficiado, numeroTarjeta, fechaVigencia, tipo) {
+    "editarSalud"(idTarjeta, nombre, fechaVigencia, hospital, servicios) {
+
+            Tarjetas.update(
+                { _id: idTarjeta },
+                {
+                    $set:
+                    {
+                        nombre: nombre,
+                        fechaVigencia: fechaVigencia,
+                        hospital: hospital,
+                        servicios: servicios
+                    }
+                }
+            )
+    },
+
+    "editarDinero"(idTarjeta, nombre, fechaVigencia, cantidad, banco, tiempo,) {
         Tarjetas.update(
             { _id: idTarjeta },
             {
                 $set:
                 {
-                    beneficiado: beneficiado,
-                    numeroTarjeta: numeroTarjeta,
+                    nombre: nombre,
                     fechaVigencia: fechaVigencia,
-                    tipo: tipo
+                    cantidad: cantidad,
+                    banco: banco,
+                    tiempo: tiempo
+                }
+            })
+    },
+     
+
+    "editarDespensa"(idTarjeta, nombre, fechaVigencia, cantidad, lugaresAceptados) {
+        Tarjetas.update(
+            { _id: idTarjeta },
+            {
+                $set:
+                {
+                    nombre: nombre,
+                    fechaVigencia: fechaVigencia,
+                    cantidad: cantidad,
+                    lugaresAceptados: lugaresAceptados
                 }
             }
         )
     },
+
 
     "borrarTarjeta"(idTarjeta) {
         Tarjetas.remove(
