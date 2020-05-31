@@ -6,9 +6,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import TarjetasSalud from '../tarjetas/TarjetasSalud';
-import TarjetasEfectivo from '../tarjetas/TarjetasEfectivo';
-import TarjetasDespensa from '../tarjetas/TarjetasDespensa';
 import CrearTarjetas from '../tarjetas/CrearTarjetas';
 
 
@@ -68,24 +65,13 @@ export default function BeneficiosTab() {
         <div className={classes.root}>
             <AppBar position="static" className={classes.appBar}>
                 <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                    <Tab label="Anadir Tarjetas" {...a11yProps(0)} />
-                    <Tab label="Tarjetas Medicamentos" {...a11yProps(1)} />
-                    <Tab label="Tarjetas Despensa" {...a11yProps(2)} />
-                    <Tab label="Tarjetas Efectivo" {...a11yProps(3)} />
+                    <Tab label="Tarjetas" {...a11yProps(0)} />
+
 
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
                 <CrearTarjetas />
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                <TarjetasSalud/>
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-                <TarjetasDespensa />
-            </TabPanel>
-            <TabPanel value={value} index={3}>
-                <TarjetasEfectivo />
             </TabPanel>
         </div>
     );
