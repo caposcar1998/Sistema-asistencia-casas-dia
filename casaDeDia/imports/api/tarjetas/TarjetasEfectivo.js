@@ -1,7 +1,7 @@
 import SimpleSchema from "simpl-schema";
 import { Meteor } from 'meteor/meteor';
 
-export const TarjetasSalud = new Mongo.Collection("tarjetasSalud");
+export const TarjetasEfectivo = new Mongo.Collection("tarjetasEfectivo");
 
 if (Meteor.isServer) {
     // This code only runs on the server
@@ -21,3 +21,5 @@ let Schema = new SimpleSchema({
     banco: {type: String}
 })
 
+
+//Solo para referencia
