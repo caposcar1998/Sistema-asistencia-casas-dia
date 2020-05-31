@@ -24,6 +24,9 @@ function TablaVoluntario({voluntarios}) {
                             resolve()
                         }
                     });
+                }
+                )
+         };
 
 
     function editVoluntario(newData) {
@@ -40,6 +43,9 @@ function TablaVoluntario({voluntarios}) {
                             }
 
                     });
+                }
+                )
+         };
 
 
     function borrarVoluntario(data) {

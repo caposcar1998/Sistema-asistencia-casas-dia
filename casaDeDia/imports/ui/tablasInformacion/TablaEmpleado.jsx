@@ -24,6 +24,10 @@ function TablaEmpleado({empleados}) {
                         }
                     });
 
+                }
+                )
+         };
+
 
 
 
@@ -40,6 +44,9 @@ function TablaEmpleado({empleados}) {
                                 resolve()
                             }
                         });
+                    }
+                    )
+             };
                 
           
 
