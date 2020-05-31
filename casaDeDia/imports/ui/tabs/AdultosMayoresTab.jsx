@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import TablaAdultoMayor from '../tablasInformacion/TablaAdultoMayor';
+import AdultoMayor  from '../adultosMayores/AdultoMayor';
 
 
 export function TabPanel(props) {
@@ -69,8 +70,9 @@ export default function BeneficiosTab() {
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-                <TablaAdultoMayor />
+                <AdultoMayor />
             </TabPanel>
         </div>
     );
 }
+

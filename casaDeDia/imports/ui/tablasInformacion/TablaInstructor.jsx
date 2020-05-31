@@ -12,6 +12,7 @@ function TablaInstructor({instructores}) {
 
 
     function addInstructor(newData) {
+
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("crearInstructor",
@@ -24,12 +25,11 @@ function TablaInstructor({instructores}) {
                         }
                     });
 
-            }
 
-        )
 
-    };
+
     function editInstructor(newData) {
+
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("editarInstructor",
@@ -40,11 +40,9 @@ function TablaInstructor({instructores}) {
                         } else {
                             resolve()
                         }
-                    });
-            }
-
-        )
-    };
+                        });
+ 
+            
 
     function borrarInstructor(data) {
         return new Promise(
