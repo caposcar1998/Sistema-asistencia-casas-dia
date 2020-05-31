@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Tarjetas } from "../tarjetas/tarjetas";
+import { AdultosMayores } from '../adultosMayores/adultosMayores';
 
 Meteor.methods({
 
@@ -100,6 +101,13 @@ Meteor.methods({
                 "_id": idTarjeta
             }
         )
+        AdultosMayores.update
+            (
+                { "tarjetas": { $elemMatch: { "idReferencia": idTarjeta } } },
+                { $pull: { "tarjetas": { "idReferencia": idTarjeta } } },
+                false,
+                true
+            )
     },
 
     "leerTarjeta"() {
