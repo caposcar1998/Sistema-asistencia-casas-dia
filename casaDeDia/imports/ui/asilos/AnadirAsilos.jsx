@@ -4,7 +4,7 @@ import {listaRestricciones} from "../../utilities/tablasEstaticas/restricciones"
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 
 
-export default function AnadirAsilos({ casasDeDiaServidor,handleCloseModal}) {
+export default function AnadirAsilos({asilosServidor,handleCloseModal}) {
         const [nombre, setNombre] = useState('');
         const [direccion, setDireccion] = useState('');
         const [actividades, setActividades] = useState([]);
@@ -112,7 +112,7 @@ export default function AnadirAsilos({ casasDeDiaServidor,handleCloseModal}) {
                                                         setSnackBarState(true)
                                                         setMessage("Registro correcto")
                                                         handleCloseModal()
-                                                        casasDeDiaServidor()
+                                                        asilosServidor()
                                                         resolve()
                                                 }
                                         });

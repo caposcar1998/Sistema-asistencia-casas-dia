@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function TarjetasAsilos({ casa, handleOpenBorrarCasaDia, handleOpenEditarCasaDia }) {
+export default function TarjetasAsilos({ asilo, handleOpenBorrarAsilos,  handleOpenEditarAsilos }) {
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
 
@@ -38,14 +38,14 @@ export default function TarjetasAsilos({ casa, handleOpenBorrarCasaDia, handleOp
         setExpanded(!expanded);
     };
 
-    const getCasaDeDiaABorrar = () => {
+    const getAsiloABorrar = () => {
 
-        handleOpenBorrarCasaDia(casa)
+        handleOpenBorrarAsilos(asilo)
      }
 
-    const getCasaDiaAEditar = () => {
+    const getAsiloAEditar = () => {
 
-        handleOpenEditarCasaDia(casa)
+         handleOpenEditarAsilos(asilo)
     }
     
     return (
@@ -53,24 +53,24 @@ export default function TarjetasAsilos({ casa, handleOpenBorrarCasaDia, handleOp
         <Grid item>
             <Card className={classes.root}>
                 <CardHeader
-                    title={casa.nombre}
-                    subheader={"Apertura " + casa.horarioApertura + "- Cierre " + casa.horarioCierre}
+                    title={asilo.nombre}
+                    subheader={"Apertura " + asilo.horarioApertura + "- Cierre " + asilo.horarioCierre}
                 />
                 <CardMedia
                     className={classes.media}
-                    image={casa.foto}
-                    title={casa.nombre}
+                    image={asilo.foto}
+                    title={asilo.nombre}
                 />
                 <CardContent>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        {casa.direccion}
+                        {asilo.direccion}
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton aria-label="editar" onClick={getCasaDeDiaABorrar}>
+                    <IconButton aria-label="editar" onClick={getAsiloABorrar}>
                         <DeleteIcon />
                     </IconButton>
-                    <IconButton aria-label="eliminar" onClick={getCasaDiaAEditar}>
+                    <IconButton aria-label="eliminar" onClick={getAsiloAEditar}>
                         <EditIcon />
                     </IconButton>
                     <IconButton
@@ -88,17 +88,17 @@ export default function TarjetasAsilos({ casa, handleOpenBorrarCasaDia, handleOp
                     <CardContent>
                         <Typography paragraph>Direccion:</Typography>
                         <Typography paragraph>
-                            {casa.direccion}
+                            {asilo.direccion}
                         </Typography>
                         <Typography paragraph>Codigo:</Typography>
                         <Typography paragraph>
-                            {casa.codigoPostal}
+                            {asilo.codigoPostal}
                         </Typography>
                         <Typography paragraph>Restricciones:</Typography>
                         <Typography paragraph>
                             <List>
                                 {
-                                    (casa.restricciones).map((restriccion) => (
+                                    (asilo.restricciones).map((restriccion) => (
                                         <ListItem>
                                             <Typography>
                                                 {restriccion}
@@ -111,13 +111,13 @@ export default function TarjetasAsilos({ casa, handleOpenBorrarCasaDia, handleOp
                         </Typography>
                         <Typography paragraph>CupoLimite:</Typography>
                         <Typography paragraph>
-                            {casa.cupoLimite}
+                            {asilo.cupoLimite}
                         </Typography>
                         <Typography paragraph>Actividades:</Typography>
                         <List>
                             {
                                 //funciona pero aun no recibe un objeto
-                                (casa.actividades).map((actividad) => (
+                                (asilo.actividades).map((actividad) => (
                                     <ListItem>
                                         <Typography>
                                             {actividad.nombre}

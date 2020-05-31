@@ -30,22 +30,22 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function EditarAsilos({ casasDeDiaServidor,casaSeleccionada,openEditarCasaDia, handleCerrarEditarCasaDia }) {
+export default function EditarAsilos({ asilosServidor,asiloSeleccionado,openEditarAsilos, handleCerrarEditarAsilos }) {
     const classes = useStyles();
     const [modalStyle] = useState(getModalStyle);
 
     return (
         <Modal
             className={classes.posicionModal}
-            open={openEditarCasaDia}
-            onClose={handleCerrarEditarCasaDia}
+            open={openEditarAsilos}
+            onClose={handleCerrarEditarAsilos}
 
         >
                 <div style={modalStyle} className={classes.paper}>
                 <PaperEditarAsilos
-                    handleCerrarEditarCasaDia={handleCerrarEditarCasaDia}
-                    casaSeleccionada={casaSeleccionada}
-                    casasDeDiaServidor={casasDeDiaServidor} />
+                    handleCerrarEditarAsilos={handleCerrarEditarAsilos}
+                    asiloSeleccionado={asiloSeleccionado}
+                    asilosServidor={asilosServidor} />
             </div>
         </Modal>
     )

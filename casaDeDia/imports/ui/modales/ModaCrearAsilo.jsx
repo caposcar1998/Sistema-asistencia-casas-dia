@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function ModalCrearAsilo({ handleCloseModal, openModal, casasDeDiaServidor }) {
+export default function ModalCrearAsilo({ handleCloseModal, openModal, asilosServidor }) {
     const classes = useStyles();
     const [modalStyle] = useState(getModalStyle);
 
@@ -40,7 +40,7 @@ export default function ModalCrearAsilo({ handleCloseModal, openModal, casasDeDi
             
         >
             <div style={modalStyle} className={classes.paper} >
-                <AnadirAsilos handleCloseModal={handleCloseModal} casasDeDiaServidor={casasDeDiaServidor} />
+                <AnadirAsilos handleCloseModal={handleCloseModal} asilosServidor={asilosServidor} />
             </div>
         </Modal>
     )

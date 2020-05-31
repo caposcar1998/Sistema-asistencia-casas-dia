@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function BorrarAsilos({ casasDeDiaServidor,openBorrarCasaDia, handleCerrarBorrarCasaDia, casaSeleccionada}) {
+export default function BorrarAsilos({ asilosServidor,openBorrarAsilos, handleCerrarBorrarAsilos, asiloSeleccionado}) {
     const classes = useStyles();
     const [modalStyle] = useState(getModalStyle);
     const [alert, setAlert] = useState();
@@ -38,7 +38,7 @@ export default function BorrarAsilos({ casasDeDiaServidor,openBorrarCasaDia, han
     const [message, setMessage] = useState();
 
     function borrarCasaDeDia() { 
-        const { _id } = casaSeleccionada;
+        const { _id } = asiloSeleccionado;
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("borrarAsilo",
@@ -48,14 +48,14 @@ export default function BorrarAsilos({ casasDeDiaServidor,openBorrarCasaDia, han
                             setAlert("error")
                             setSnackBarState(true)
                             setMessage("Error al borrar asilo")
-                            handleCerrarBorrarCasaDia()    
+                            handleCerrarBorrarAsilos()    
                             reject()
                         } else {
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Asilo eliminado")
-                            handleCerrarBorrarCasaDia()
-                            casasDeDiaServidor()
+                            handleCerrarBorrarAsilos()
+                            asilosServidor()
                             resolve()
                         }
                     });
@@ -67,8 +67,8 @@ export default function BorrarAsilos({ casasDeDiaServidor,openBorrarCasaDia, han
         <>
         <Modal
             className={classes.posicionModal}
-            open={openBorrarCasaDia}
-            onClose={handleCerrarBorrarCasaDia}
+            open={openBorrarAsilos}
+            onClose={handleCerrarBorrarAsilos}
 
         >
             <div style={modalStyle} className={classes.paper}>
@@ -76,7 +76,7 @@ export default function BorrarAsilos({ casasDeDiaServidor,openBorrarCasaDia, han
                 <p id="simple-modal-description">
                     Seguro deseas borrar este asilo?
                 </p>
-                <Button variant="contained" color="secondary" onClick={handleCerrarBorrarCasaDia}>Cancelar</Button>
+                <Button variant="contained" color="secondary" onClick={handleCerrarBorrarAsilos}>Cancelar</Button>
                 <Button variant="contained" color="primary" onClick={borrarCasaDeDia}>Borrar</Button>
             </div>
             </Modal>
