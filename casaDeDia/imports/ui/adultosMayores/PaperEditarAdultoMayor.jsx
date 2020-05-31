@@ -50,12 +50,12 @@ export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSelec
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("editarAdultoMayor",
-                    adultoSeleccionado._id,nombre, apellidos, curp, sexo, edad, grupoSanguineo, direccion, codigoPostal, apodo, contrasena,
+                    adultoSeleccionado._id,nombre, apellidos, curp, sexo, edad, grupoSanguineo, direccion, codigoPostal, 
                     (err, res) => {
                         if (err) {
                             setAlert("error")
                             setSnackBarState(true)
-                            setMessage("Error al adulto mayor")
+                            setMessage("Error al editar aladulto mayor")
                             handleCerrarEditarAdultoMayor()
                             reject()
                         } else {
@@ -142,20 +142,7 @@ export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSelec
                     </Grid>
                 </Grid>
 
-                <Grid item xs={4}>
-                    <Grid item xs={12}>Apodo</Grid>
-                    <Grid item xs={12}>
-                        <TextField id="apodo" value={apodo} onChange={(e) => setApodo(e.target.value)} />
-                    </Grid>
-                </Grid>
-
-
-                <Grid item xs={4}>
-                    <Grid item xs={12}>Contraseña</Grid>
-                    <Grid item xs={12}>
-                        <TextField id="contrasena" value={contrasena} onChange={(e) => setContrasena(e.target.value)} />
-                    </Grid>
-                </Grid>
+                
                 
                 <Grid item xs={4} />
                 <Grid item xs={8}>

@@ -62,7 +62,8 @@ export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayo
                 />
                 <CardContent>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        {adulto.direccion}
+                        curp: 
+                        { adulto.curp}
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
@@ -85,11 +86,23 @@ export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayo
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
+                        <Typography paragraph>Nombre:</Typography>
+                        <Typography paragraph>
+                            {adulto.nombre}
+                        </Typography>
+                        <Typography paragraph>Apellido:</Typography>
+                        <Typography paragraph>
+                            {adulto.apellidos}
+                        </Typography>
+                        <Typography paragraph>Grupo Sanguieno:</Typography>
+                        <Typography paragraph>
+                            {adulto.grupoSanguineo}
+                        </Typography>
                         <Typography paragraph>Direccion:</Typography>
                         <Typography paragraph>
                             {adulto.direccion}
                         </Typography>
-                        <Typography paragraph>Codigo:</Typography>
+                        <Typography paragraph>Codigo postal:</Typography>
                         <Typography paragraph>
                             {adulto.codigoPostal}
                         </Typography>

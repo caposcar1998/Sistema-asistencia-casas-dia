@@ -5,7 +5,7 @@ import { CasasDeDia } from '../casasDeDia/casasDeDia';
 Meteor.methods({
 
 
-    "crearAdultoMayor"(nombre,apellidos,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,apodo,contrasena) {
+    "crearAdultoMayor"(nombre,apellidos,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal) {
         AdultosMayores.insert(
             {
                 nombre: nombre,
@@ -16,14 +16,12 @@ Meteor.methods({
                 grupoSanguineo: grupoSanguineo,
                 direccion: direccion,
                 codigoPostal: codigoPostal,
-                apodo:apodo,
-                contrasena:contrasena
             }
 
         )
     },
 
-    "editarAdultoMayor"(idAdultoMayor,nombre,apellidos,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,apodo,contrasena) {
+    "editarAdultoMayor"(idAdultoMayor,nombre,apellidos,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal) {
         AdultosMayores.update(
             { _id: idAdultoMayor },
             {
@@ -37,8 +35,6 @@ Meteor.methods({
                     grupoSanguineo: grupoSanguineo,
                     direccion: direccion,
                     codigoPostal: codigoPostal,
-                    apodo:apodo,
-                    contrasena:contrasena
                 }
             }
         )
