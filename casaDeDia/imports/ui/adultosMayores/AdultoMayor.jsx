@@ -5,6 +5,7 @@ import ModalCrearAdultoMayor from '../modales/ModalCrearAdultoMayor';
 import TarjetasAdultoMayor from './TarjetasAdultoMayor';
 import BorrarAdultoMayor from './BorrarAdultoMayor';
 import EditarAdultoMayor from './EditarAdultoMayor';
+import ModalAnadirTarjeta from './ModalAnadirTarjeta';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,6 +22,18 @@ export default function AdultoMayor() {
     const [openEditarAdultoMayor, setOpenEditarAdultoMayor] = useState(false);
     const [openBorrarAdultoMayor, setOpenBorrarAdultoMayor] = useState(false);
     const [adultoSeleccionado, setAdultoSeleccionado] = useState();
+    const [openAnadirTarjeta, setOpenAbrirTarjeta] = useState(false);
+
+    const handleCerrarAnadirTarjeta = () => {
+        setOpenAbrirTarjeta(false)
+    }
+
+    const handleOpenAnadirTarjeta = (adulto) => {
+        setAdultoSeleccionado(adulto)
+        setOpenAbrirTarjeta(true)
+    }
+
+
 
     const handleOpenBorrarAdultoMayor = (adulto) => {
         setAdultoSeleccionado(adulto)
@@ -87,7 +100,8 @@ export default function AdultoMayor() {
                                 adulto={adulto}
                                 handleOpenBorrarAdultoMayor={handleOpenBorrarAdultoMayor}
                                 handleOpenEditarAdultoMayor={handleOpenEditarAdultoMayor}
-                                />
+                                handleOpenAnadirTarjeta={handleOpenAnadirTarjeta}
+                            />
                     ))}
                         </Grid>  
                     </Grid>
@@ -110,6 +124,11 @@ export default function AdultoMayor() {
                 handleCloseModal={handleCloseModal}
                 openModal={openModal}
                 adultoMayorServidor={adultoMayorServidor}
+            />
+            <ModalAnadirTarjeta
+                adultoSeleccionado={adultoSeleccionado}
+                handleCerrarAnadirTarjeta={handleCerrarAnadirTarjeta}
+                openAnadirTarjeta={openAnadirTarjeta}
             />
         </>
     )
