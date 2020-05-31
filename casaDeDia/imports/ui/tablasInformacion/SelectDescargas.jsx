@@ -18,6 +18,8 @@ import { AdultosMayores } from "../../api/adultosMayores/adultosMayores";
 import { withTracker } from 'meteor/react-meteor-data';
 import { Servicios } from "../../api/servicios/servicios";
 import { Actividades } from '../../api/actividades/actividades';
+import { CasasDeDia } from "../../api/casasDeDia/casasDeDia";
+import {listaRestricciones} from "../../utilities/tablasEstaticas/restricciones";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -76,7 +78,7 @@ function getStyles(name, personName, theme) {
   };
 }
 
-function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, servicios,actividades}) {
+function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, servicios,actividades,casasDeDia}) {
   const classes = useStyles();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
@@ -90,7 +92,7 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
   let dataAdultosMayores = [];
   let data = [];
 
-  const columns = [{
+  /*const columns = [{
     id: 'first',
     displayName: 'First column'
     }, {
@@ -103,7 +105,7 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
       }, {
       first: 'foobar',
       second: 'foobar'
-      }];
+      }];*/
 
     const colAdultosMayores = [{
       id: 'primera_am',
@@ -186,7 +188,8 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
       const data4 = {adultosmayores}
       const data5 = {servicios}
       const data6 = {actividades}
-      
+      const data7 = {casasDeDia}
+
       const colEmpleados = [{
       id: 'primera',
       displayName: 'Nombre Completo'
@@ -208,16 +211,93 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
       //ayudaEmpleados(data3.voluntarios)
       //ayudaEmpleados(data4.adultosmayores)
       //ayudaEmpleados(data5.servicios)
-      ayudaEmpleados(data6.actividades);
+      //ayudaEmpleados(data6.actividades);
+      ayudaEmpleados(data7.casasDeDia)
 
-      const datas1 = (dat) => dat.map((usuario)=>{
-        return({
-          primera:usuario.nombre,
-          segunda:usuario.apellidos,
-          tercera:usuario.email,
+      const datas1 = (dat,tipo) => dat.map((usuario)=>{
+        if(tipo === 'Empleados' || tipo === 'Voluntarios' || tipo === 'Instructores'){
+          return({
+            primera:usuario.nombre,
+            segunda:usuario.apellidos,
+            tercera:usuario.email,
+          })
+        }else if(tipo === 'Adultos Mayores'){
+          return({
+            primera_am:usuario.nombre,
+            segunda_am:usuario.apellidos,
+            tercera_am:usuario.curp,
+            cuarta_am:usuario.sexo,
+            quinta_am:usuario.edad,
+            sexta_am:usuario.grupoSanguineo,
+            septima_am:usuario.direccion,
+            octava_am:usuario.codigoPostal,
+          })
+        }else if(tipo === 'Servicios'){
+          return({
+            primera_s:usuario.tipoServicio,
+            segunda_s:usuario.nombre,
+            tercera_s:usuario.telefono,
+            cuarta_s:usuario.direccion,
+            quinta_s:usuario.fechaRegistro,
+            sexta_s:usuario.vigente,
+            septima_s:usuario.redSocial1,
+            octava_s:usuario.redSocial2,
+            novena_s:usuario.redSocial3,
+          })
+        }else if(tipo === 'Actividades'){
+          return({
+            primera_ac:usuario.nombre,
+            segunda_ac:usuario.fechaInicio,
+            tercera_ac:usuario.fechaFinal,
+            cuarta_ac:usuario.hora,
+            quinta_ac:usuario.descripcion,
+            sexta_ac:usuario.direccion,
+          })
+        }else if(tipo === 'Casas De Día' || tipo === 'Asilos' || tipo === 'Clubes'){
+          return({
+            primera_cd:usuario.nombre,
+            segunda_cd:usuario.direccion,
+            tercera_cd:(usuario.actividades.map((actividad)=>{
+              return(actividad.nombre)
+            }).join('; ')).replace(',','y'),
+            cuarta_cd:(usuario.restricciones.map((restriccion)=>{
+              return(restriccion+' ')
+            }).join('; ')).replace(',','y'),
+            quinta_cd:usuario.horarioApertura,
+            sexta_cd:usuario.horarioCierre,
+            septima_cd:usuario.cupoLimite,
+            octava_cd:usuario.codigoPostal,
+          })
         }
-        )
+        
       })
+
+      const colCasasDeDia = [{
+        id: 'primera_cd',
+        displayName: 'Nombre'
+        },{
+        id: 'segunda_cd',
+        displayName: 'Dirección'
+        }, {
+        id: 'tercera_cd',
+        displayName: 'Actividades'
+        },{
+          id: 'cuarta_cd',
+          displayName: 'Restricciones '
+        }, {
+        id: 'quinta_cd',
+        displayName: 'Horario Apertura'
+        }, {
+        id: 'sexta_cd',
+        displayName: 'Horario Cierre'
+        }, {
+        id: 'septima_cd',
+        displayName: 'Cupo Límite'
+        }, {
+        id: 'octava_cd',
+        displayName: 'Código Postal'
+        }];
+
       const datas2 = (dat) => dat.map((usuario)=>{
         return({
           primera_am:usuario.nombre,
@@ -228,8 +308,7 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
           sexta_am:usuario.grupoSanguineo,
           septima_am:usuario.direccion,
           octava_am:usuario.codigoPostal,
-        }
-        )
+        })
       })
 
       const datas3 = (dat) => dat.map((usuario)=>{
@@ -243,8 +322,7 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
           septima_s:usuario.redSocial1,
           octava_s:usuario.redSocial2,
           novena_s:usuario.redSocial3,
-        }
-        )
+        })
       })
 
       const datas4 = (dat) => dat.map((usuario)=>{
@@ -255,14 +333,14 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
           cuarta_ac:usuario.hora,
           quinta_ac:usuario.descripcion,
           sexta_ac:usuario.direccion,
-        }
-        )
+        })
       })
 
       //console.log(datas1(data));
       //console.log(datas2(data));
       //console.log(datas3(data));
-      console.log(datas4(data));
+      //console.log(datas4(data));
+      console.log(datas1(data,'Casas De Día'))
 
     
 
@@ -289,8 +367,8 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
           <div style={{ marginTop: 70 }}>
             <CsvDownloader
             filename="myfile"
-            columns={colActividades}
-            datas={datas4(data)}
+            columns={colCasasDeDia}
+            datas={datas1(data,'Casas De Día')}
             text="Descargar Reporte" />
           
           </div> 
@@ -310,6 +388,7 @@ export default withTracker(() => {
   Meteor.subscribe("adultosMayores");
   Meteor.subscribe("servicios");
   Meteor.subscribe("actividades");
+  Meteor.subscribe("casasDeDia");
   return {
       empleados: Empleados.find({}).fetch(),
       instructores: Instructores.find({}).fetch(),
@@ -317,5 +396,6 @@ export default withTracker(() => {
       adultosmayores: AdultosMayores.find({}).fetch(),
       servicios: Servicios.find({}).fetch(),
       actividades: Actividades.find({}).fetch(),
+      casasDeDia: CasasDeDia.find({}).fetch(),
   };
 })(MultipleSelect);
