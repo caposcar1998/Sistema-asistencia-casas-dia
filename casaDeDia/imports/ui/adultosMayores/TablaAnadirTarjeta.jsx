@@ -1,7 +1,190 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import { MenuItem, Box, Paper, AppBar, Toolbar, Typography, Button, Grid, Select, TextField } from '@material-ui/core';
+
+import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
+
+
+
+const useStyles = makeStyles((theme) => ({
+    table: {
+        minWidth: 650,
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+    title: {
+        flexGrow: 1,
+    },
+}));
+
 
 
 export default function TablaAnadirTarjeta({ adultoSeleccionado, handleCerrarAnadirTarjeta }) {
+    const classes = useStyles();
+    const [alert, setAlert] = useState();
+    const [snackBarState, setSnackBarState] = useState();
+    const [message, setMessage] = useState();
 
-    return (<div>{adultoSeleccionado.nombre}</div>)
- }
+
+    function eliminarTarjeta(idEliminar) {
+        return new Promise(
+            (resolve, reject) => {
+                Meteor.call("borrarTarjetaDeUsuario",
+                    idEliminar,
+                    (err, res) => {
+                        if (err) {
+                            setAlert("error")
+                            setSnackBarState(true)
+                            setMessage("Error al eliminar la tarjeta")
+                            reject()
+                        } else {
+                            setAlert("success")
+                            setSnackBarState(true)
+                            setMessage("Tarjeta eliminada")
+                            resolve()
+                        }
+                    });
+            }
+        )
+    }
+
+
+    return (
+        <>
+            <AppBar position="static">
+                <Toolbar>
+                    <Typography variant="h6" className={classes.title}>
+                        {adultoSeleccionado.nombre}
+                    </Typography>
+                    <Button color="inherit" >Anadir</Button>
+                </Toolbar>
+            </AppBar>
+
+            <TableContainer component={Paper}>
+                <Table className={classes.table} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Eliminar</TableCell>
+                            <TableCell align="right">Nombre</TableCell>
+                            <TableCell align="right">Tipo</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {adultoSeleccionado.tarjetas.map((tarjeta) => (
+                            <TarjetasUsuario
+                                tarjeta={tarjeta}
+                                eliminarTarjeta={eliminarTarjeta}
+                            />
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <CrearNuevaTarjeta
+                handleCerrarAnadirTarjeta={handleCerrarAnadirTarjeta}
+                adultoSeleccionado={adultoSeleccionado}
+            />
+            {snackBarState &&
+                <CustomSnackbars type={alert} state={snackBarState} message={message} />
+            }
+        </>
+    );
+}
+
+
+
+function CrearNuevaTarjeta({ adultoSeleccionado, handleCerrarAnadirTarjeta }) {
+    const [tarjetas, setTarjetas] = useState([]);
+    const [tarjetaSeleccionada, setTarjetaSeleccionada] = useState();
+    const [alert, setAlert] = useState();
+    const [snackBarState, setSnackBarState] = useState();
+    const [message, setMessage] = useState();
+
+
+    function traerTarjetasServidor() {
+        return new Promise(
+            (resolve, reject) => {
+                Meteor.call("leerTarjeta",
+                    (err, res) => {
+                        if (err) {
+                            reject()
+                        } else {
+                            setTarjetas(res)
+                            resolve()
+                        }
+                    });
+            }
+        )
+    }
+
+    function crearTarjeta() {
+        return new Promise(
+            (resolve, reject) => {
+                Meteor.call("anadirTarjeta",
+                    adultoSeleccionado._id, tarjetaSeleccionada._id, tarjetaSeleccionada.nombre, tarjetaSeleccionada.tipo,
+                    (err, res) => {
+                        if (err) {
+                            setAlert("error")
+                            setSnackBarState(true)
+                            setMessage("Error al crear la tarjeta")
+                            reject()
+                        } else {
+                            setAlert("success")
+                            setSnackBarState(true)
+                            setMessage("Exito al crear la tarjeta")
+                            resolve()
+                        }
+                    });
+            }
+        )
+    }
+
+
+    function cancelarCrear() {
+        handleCerrarAnadirTarjeta()
+    }
+
+    useEffect(() => {
+        traerTarjetasServidor();
+    }, []);
+
+
+    return (
+        <>
+            <Paper>
+                <Grid container>
+
+                    <Grid item xs={6}>Registrar</Grid>
+                    <Grid item xs={6}>
+                        <Select
+                            value={tarjetaSeleccionada}
+                            onChange={(e) => setTarjetaSeleccionada(e.target.value)}
+                        >
+                            {
+                                tarjetas == null ?
+                                    <MenuItem>Sin tarjetas</MenuItem> :
+                                    tarjetas.map((tarjeta) => (
+                                        <MenuItem value={tarjeta}>{tarjeta.nombre}</MenuItem>
+                                    ))}
+                        </Select>
+                    </Grid>
+                    <Box />
+                    <Grid item xs={6}>
+                        <Button onClick={crearTarjeta} variant="contained" color="primary">Crear</Button>
+                    </Grid>
+                    <Grid item xs={6}><Button onClick={cancelarCrear} variant="contained" color="secondary">Cancelar</Button></Grid>
+                </Grid>
+            </Paper>
+            {
+                snackBarState &&
+                <CustomSnackbars type={alert} state={snackBarState} message={message} />
+            }
+        </>
+    )
+} 
