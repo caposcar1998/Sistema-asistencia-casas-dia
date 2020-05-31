@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import { MenuItem, Box, Paper, AppBar, Toolbar, Typography, Button, Grid, Select, TextField } from '@material-ui/core';
 
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
+import TarjetasUsuario from './TarjetasUsuario';
 
 
 
@@ -73,7 +74,6 @@ export default function TablaAnadirTarjeta({ adultoSeleccionado, handleCerrarAna
                         <TableRow>
                             <TableCell>Eliminar</TableCell>
                             <TableCell align="right">Nombre</TableCell>
-                            <TableCell align="right">Tipo</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -127,7 +127,7 @@ function CrearNuevaTarjeta({ adultoSeleccionado, handleCerrarAnadirTarjeta }) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("anadirTarjeta",
-                    adultoSeleccionado._id, tarjetaSeleccionada._id, tarjetaSeleccionada.nombre, tarjetaSeleccionada.tipo,
+                    adultoSeleccionado._id, tarjetaSeleccionada._id, tarjetaSeleccionada.nombre,
                     (err, res) => {
                         if (err) {
                             setAlert("error")
