@@ -16,6 +16,8 @@ import { Instructores } from "../../api/instructores/instructores";
 import { Voluntarios } from "../../api/voluntarios/voluntarios";
 import { AdultosMayores } from "../../api/adultosMayores/adultosMayores";
 import { withTracker } from 'meteor/react-meteor-data';
+import { Servicios } from "../../api/servicios/servicios";
+import { Actividades } from '../../api/actividades/actividades';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -74,7 +76,7 @@ function getStyles(name, personName, theme) {
   };
 }
 
-function MultipleSelect({empleados, instructores, voluntarios, adultosmayores}) {
+function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, servicios,actividades}) {
   const classes = useStyles();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
@@ -106,7 +108,7 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores}) 
     const colAdultosMayores = [{
       id: 'primera_am',
       displayName: 'Nombre Completo'
-      }, {
+      },{
       id: 'segunda_am',
       displayName: 'Apellidos'
       }, {
@@ -129,10 +131,61 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores}) 
       displayName: 'Codigo Postal'
       }];
 
+    const colServicios = [{
+      id: 'primera_s',
+      displayName: 'Tipo de Servicio'
+      },{
+      id: 'segunda_s',
+      displayName: 'Nombre'
+      }, {
+      id: 'tercera_s',
+      displayName: 'Telefono'
+      }, {
+      id: 'cuarta_s',
+      displayName: 'Dirección'
+      }, {
+      id: 'quinta_s',
+      displayName: 'Fecha de Registro'
+      }, {
+      id: 'sexta_s',
+      displayName: 'Vigente'
+      }, {
+      id: 'septima_s',
+      displayName: 'Red Social 1'
+      }, {
+      id: 'octava_s',
+      displayName: 'Red Social 2'
+      }, {
+      id: 'novena_s',
+      displayName: 'Red Social 3'
+      }]
+
+      const colActividades = [{
+        id: 'primera_ac',
+        displayName: 'Nombre'
+        },{
+        id: 'segunda_ac',
+        displayName: 'Fecha Inicio'
+        }, {
+        id: 'tercera_ac',
+        displayName: 'Fecha Fin'
+        }, {
+        id: 'cuarta_ac',
+        displayName: 'Hora'
+        }, {
+        id: 'quinta_ac',
+        displayName: 'Descripción'
+        }, {
+        id: 'sexta_ac',
+        displayName: 'Dirección'
+        }]
+
       const data1 = {empleados}
       const data2 = {instructores}
       const data3 = {voluntarios}
       const data4 = {adultosmayores}
+      const data5 = {servicios}
+      const data6 = {actividades}
       
       const colEmpleados = [{
       id: 'primera',
@@ -153,7 +206,9 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores}) 
       //ayudaEmpleados(data1.empleados)
       //ayudaEmpleados(data2.instructores)
       //ayudaEmpleados(data3.voluntarios)
-      ayudaEmpleados(data4.adultosmayores)
+      //ayudaEmpleados(data4.adultosmayores)
+      //ayudaEmpleados(data5.servicios)
+      ayudaEmpleados(data6.actividades);
 
       const datas1 = (dat) => dat.map((usuario)=>{
         return({
@@ -167,7 +222,7 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores}) 
         return({
           primera_am:usuario.nombre,
           segunda_am:usuario.apellidos,
-          segunda_am:usuario.curp,
+          tercera_am:usuario.curp,
           cuarta_am:usuario.sexo,
           quinta_am:usuario.edad,
           sexta_am:usuario.grupoSanguineo,
@@ -177,8 +232,37 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores}) 
         )
       })
 
+      const datas3 = (dat) => dat.map((usuario)=>{
+        return({
+          primera_s:usuario.tipoServicio,
+          segunda_s:usuario.nombre,
+          tercera_s:usuario.telefono,
+          cuarta_s:usuario.direccion,
+          quinta_s:usuario.fechaRegistro,
+          sexta_s:usuario.vigente,
+          septima_s:usuario.redSocial1,
+          octava_s:usuario.redSocial2,
+          novena_s:usuario.redSocial3,
+        }
+        )
+      })
+
+      const datas4 = (dat) => dat.map((usuario)=>{
+        return({
+          primera_ac:usuario.nombre,
+          segunda_ac:usuario.fechaInicio,
+          tercera_ac:usuario.fechaFinal,
+          cuarta_ac:usuario.hora,
+          quinta_ac:usuario.descripcion,
+          sexta_ac:usuario.direccion,
+        }
+        )
+      })
+
       //console.log(datas1(data));
-      console.log(datas2(data));
+      //console.log(datas2(data));
+      //console.log(datas3(data));
+      console.log(datas4(data));
 
     
 
@@ -205,8 +289,8 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores}) 
           <div style={{ marginTop: 70 }}>
             <CsvDownloader
             filename="myfile"
-            columns={colAdultosMayores}
-            datas={datas2(data)}
+            columns={colActividades}
+            datas={datas4(data)}
             text="Descargar Reporte" />
           
           </div> 
@@ -224,10 +308,14 @@ export default withTracker(() => {
   Meteor.subscribe("instructores");
   Meteor.subscribe("voluntarios");
   Meteor.subscribe("adultosMayores");
+  Meteor.subscribe("servicios");
+  Meteor.subscribe("actividades");
   return {
       empleados: Empleados.find({}).fetch(),
       instructores: Instructores.find({}).fetch(),
       voluntarios: Voluntarios.find({}).fetch(),
       adultosmayores: AdultosMayores.find({}).fetch(),
+      servicios: Servicios.find({}).fetch(),
+      actividades: Actividades.find({}).fetch(),
   };
 })(MultipleSelect);
