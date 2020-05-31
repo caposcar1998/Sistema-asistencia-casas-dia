@@ -19,8 +19,6 @@ let Servicios = new SimpleSchema({
 })
 
 let Schema = new SimpleSchema({
-    nombre: {type: String},
-    fechaVigencia: { type: Date },
     hospital: { type: String },
     "servicios.$": { type: Servicios },
     servicios: { type: Array, defaultValue: [], optional: true },

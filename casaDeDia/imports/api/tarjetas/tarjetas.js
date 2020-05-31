@@ -19,8 +19,7 @@ if (Meteor.isServer) {
 }
 
 let Schema = new SimpleSchema({
-    beneficiado: { type: String },
-    numeroTarjeta: { type: String },
+    nombre: { type: String },
     fechaVigencia: { type: Date },
     tipo: { type: String },
     despensa: { type: TarjetasDespensa, optional: true },
