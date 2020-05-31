@@ -6,7 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { List, ListItem, Grid, Typography, Card, CardContent, CardActions, CardMedia, CardHeader, Collapse } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
+import CreditCardIcon from '@material-ui/icons/CreditCard';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayor, handleOpenEditarAdultoMayor }) {
+export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayor, handleOpenEditarAdultoMayor, handleOpenAnadirTarjeta }) {
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
 
@@ -46,6 +46,10 @@ export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayo
     const getAdultoMayorAEditar = () => {
 
         handleOpenEditarAdultoMayor(adulto)
+    }
+
+    const anadirTarjeta = () => {
+        handleOpenAnadirTarjeta(adulto)
     }
     
     return (
@@ -72,6 +76,9 @@ export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayo
                     </IconButton>
                     <IconButton aria-label="eliminar" onClick={getAdultoMayorAEditar}>
                         <EditIcon />
+                    </IconButton>
+                    <IconButton aria-label="anadir" onClick={anadirTarjeta}>
+                        <CreditCardIcon />
                     </IconButton>
                     <IconButton
                         className={clsx(classes.expand, {

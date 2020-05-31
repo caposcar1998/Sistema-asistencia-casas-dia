@@ -1,5 +1,6 @@
 import SimpleSchema from "simpl-schema";
 import { Meteor } from 'meteor/meteor';
+import { Tarjetas } from "../tarjetas/tarjetas";
 
 export const AdultosMayores = new Mongo.Collection("adultosMayores");
 
@@ -23,5 +24,7 @@ let Schema = new SimpleSchema({
     grupoSanguineo: { type: String },
     direccion: { type: String },
     codigoPostal: { type: String },
-    foto: { type: String }
+    foto: { type: String },
+    "tarjetas.$": { type: Tarjetas },
+    tarjetas: { type: Array, defaultValue: [], optional: true }
 })

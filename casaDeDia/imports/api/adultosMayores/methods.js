@@ -18,7 +18,8 @@ Meteor.methods({
                 grupoSanguineo: grupoSanguineo,
                 direccion: direccion,
                 codigoPostal: codigoPostal,
-                foto:foto
+                foto: foto,
+                tarjetas: []
             }
 
         )
