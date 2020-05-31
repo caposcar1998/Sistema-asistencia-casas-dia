@@ -5,6 +5,8 @@ import ModalCrearAsilo from '../modales/ModaCrearAsilo';
 import TarjetasAsilos from './TarjetasAsilos';
 import BorrarAsilos from './BorrarAsilos';
 import EditarAsilos from './EditarAsilos';
+import ModalAnadirPersonal from './ModalAnadirPersonal';
+import ModalAnadirUsuario from './ModalAnadirUsuario';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -17,34 +19,34 @@ const useStyles = makeStyles((theme) => ({
 export default function Asilos() { 
     const classes = useStyles();
     const [openModal, setOpenModal] = useState(false);
-    const [casasDeDia, setCasasDeDia] = useState([])
-    const [openEditarCasaDia, setOpenEditarCasaDia] = useState(false);
-    const [openBorrarCasaDia, setOpenBorrarCasaDia] = useState(false);
-    const [casaSeleccionada, setCasaSeleccionada] = useState();
+    const [asilos, setAsilos] = useState([])
+    const [openEditarAsilos, setOpenEditarAsilos] = useState(false);
+    const [openBorrarAsilos, setOpenBorrarAsilos] = useState(false);
+    const [asiloSeleccionado, setAsiloSeleccionado] = useState();
+    const [openAnadirEmpleado, setOpenAbrirEmpleado] = useState(false);
+    const [openAnadirPersona, setOpenAbrirPersona] = useState(false);
 
-    const handleOpenBorrarCasaDia = (casa) => {
-        setCasaSeleccionada(casa)
-        setOpenBorrarCasaDia(true);
+    const handleOpenBorrarAsilos = (asilo) => {
+        setAsiloSeleccionado(asilo)
+        setOpenBorrarAsilos(true);
     };
 
-    const handleOpenEditarCasaDia = (casa) => {
-        setCasaSeleccionada(casa)
-        setOpenEditarCasaDia(true);
+    const handleOpenEditarAsilos = (asilo) => {
+        setAsiloSeleccionado(asilo)
+        setOpenEditarAsilos(true);
     };
 
     useEffect(() => {
-        casasDeDiaServidor();
+        asilosServidor();
     }, []);
 
-
-
-    const handleCerrarBorrarCasaDia =() => { 
-        setOpenBorrarCasaDia(false);
+    const handleCerrarBorrarAsilos =() => { 
+        setOpenBorrarAsilos(false);
     } 
 
 
-    const handleCerrarEditarCasaDia = () => {
-        setOpenEditarCasaDia(false);
+    const handleCerrarEditarAsilos = () => {
+        setOpenEditarAsilos(false);
     } 
 
     const handleOpenModal = () => {
@@ -55,7 +57,25 @@ export default function Asilos() {
         setOpenModal(false);
     };
 
-    function casasDeDiaServidor() {
+    const handleOpenAnadirEmpleado = (asilo) => {
+        setAsiloSeleccionado(asilo)
+        setOpenAbrirEmpleado(true)
+     }
+
+    const handleOpenAnadirUsuario = (asilo) => {
+        setAsiloSeleccionado(asilo)
+        setOpenAbrirPersona(true)
+     }
+
+    const handleCerrarAnadirEmpleado = () => {
+        setOpenAbrirEmpleado(false)
+     }
+
+    const handleCerrarAnadirUsuario = () => {
+        setOpenAbrirPersona(false)
+     }
+
+    function asilosServidor() {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("leerAsilo",
@@ -63,7 +83,7 @@ export default function Asilos() {
                         if (err) {
                             reject()
                         } else {
-                            setCasasDeDia(res)
+                            setAsilos(res)
                             resolve()
                         }
                     });
@@ -82,11 +102,13 @@ export default function Asilos() {
         
                     <Grid item xs={12}>
                         <Grid container spacing={3}>
-                        {casasDeDia.map((casa) => (
+                        {asilos.map((asilo) => (
                             <TarjetasAsilos
-                                casa={casa}
-                                handleOpenBorrarCasaDia={handleOpenBorrarCasaDia}
-                                handleOpenEditarCasaDia={handleOpenEditarCasaDia}
+                                asilo={asilo}
+                                handleOpenBorrarAsilos={handleOpenBorrarAsilos}
+                                handleOpenEditarAsilos={handleOpenEditarAsilos}
+                                handleOpenAnadirEmpleado={handleOpenAnadirEmpleado}
+                                handleOpenAnadirUsuario={handleOpenAnadirUsuario}
                                 />
                     ))}
                         </Grid>  
@@ -95,21 +117,31 @@ export default function Asilos() {
                 </Paper>
             </Grid>
             <BorrarAsilos
-                casaSeleccionada={casaSeleccionada}
-                openBorrarCasaDia={openBorrarCasaDia}
-                handleCerrarBorrarCasaDia={handleCerrarBorrarCasaDia}
-                casasDeDiaServidor={casasDeDiaServidor}
+                asiloSeleccionado={asiloSeleccionado}
+                openBorrarAsilos={openBorrarAsilos}
+                handleCerrarBorrarAsilos={handleCerrarBorrarAsilos}
+                asilosServidor={asilosServidor}
             />
             <EditarAsilos
-                casaSeleccionada={casaSeleccionada}
-                openEditarCasaDia={openEditarCasaDia}
-                handleCerrarEditarCasaDia={handleCerrarEditarCasaDia}
-                casasDeDiaServidor={casasDeDiaServidor}
+                asiloSeleccionado={asiloSeleccionado}
+                openEditarAsilos={openEditarAsilos}
+                handleCerrarEditarAsilos={handleCerrarEditarAsilos}
+                asilosServidor={asilosServidor}
             />
             <ModalCrearAsilo
                 handleCloseModal={handleCloseModal}
                 openModal={openModal}
-                casasDeDiaServidor={casasDeDiaServidor}
+                asilosServidor={asilosServidor}
+            />
+            <ModalAnadirPersonal
+                asiloSeleccionado={asiloSeleccionado}
+                handleCerrarAnadirEmpleado={handleCerrarAnadirEmpleado}
+                openAnadirEmpleado={openAnadirEmpleado}
+            />
+            <ModalAnadirUsuario
+                asiloSeleccionado={asiloSeleccionado}
+                handleCerrarAnadirUsuario={handleCerrarAnadirUsuario}
+                openAnadirPersona={openAnadirPersona}
             />
         </>
     )

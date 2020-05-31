@@ -4,6 +4,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import { List, ListItem, Grid, Typography, Card, CardContent, CardActions, CardMedia, CardHeader, Collapse } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -30,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function TarjetasAsilos({ casa, handleOpenBorrarCasaDia, handleOpenEditarCasaDia }) {
+export default function TarjetasAsilos({ asilo, handleOpenBorrarAsilos,  handleOpenEditarAsilos, handleOpenAnadirUsuario,handleOpenAnadirEmpleado }) {
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
 
@@ -38,40 +40,54 @@ export default function TarjetasAsilos({ casa, handleOpenBorrarCasaDia, handleOp
         setExpanded(!expanded);
     };
 
-    const getCasaDeDiaABorrar = () => {
+    const getAsiloABorrar = () => {
 
-        handleOpenBorrarCasaDia(casa)
+        handleOpenBorrarAsilos(asilo)
      }
 
-    const getCasaDiaAEditar = () => {
+    const getAsiloAEditar = () => {
 
-        handleOpenEditarCasaDia(casa)
+         handleOpenEditarAsilos(asilo)
     }
+
+    const anadirPersonasMayores = () => {
+        handleOpenAnadirUsuario(asilo)
+     }
+
+    const anadirPersonal = () => {
+        handleOpenAnadirEmpleado(asilo)
+     }
     
-    return (
+     return (
 
         <Grid item>
             <Card className={classes.root}>
                 <CardHeader
-                    title={casa.nombre}
-                    subheader={"Apertura " + casa.horarioApertura + "- Cierre " + casa.horarioCierre}
+                    title={asilo.nombre}
+                    subheader={"Apertura " + asilo.horarioApertura + "- Cierre " + asilo.horarioCierre}
                 />
                 <CardMedia
                     className={classes.media}
-                    image={casa.foto}
-                    title={casa.nombre}
+                    image={asilo.foto}
+                    title={asilo.nombre}
                 />
                 <CardContent>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        {casa.direccion}
+                        {asilo.direccion}
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton aria-label="editar" onClick={getCasaDeDiaABorrar}>
+                    <IconButton aria-label="editar" onClick={getAsiloABorrar}>
                         <DeleteIcon />
                     </IconButton>
-                    <IconButton aria-label="eliminar" onClick={getCasaDiaAEditar}>
+                    <IconButton aria-label="eliminar" onClick={getAsiloAEditar}>
                         <EditIcon />
+                    </IconButton>
+                    <IconButton aria-label="editar" onClick={anadirPersonal}>
+                        <PersonAddIcon/>
+                    </IconButton>
+                    <IconButton aria-label="editar" onClick={anadirPersonasMayores}>
+                        <GroupAddIcon />
                     </IconButton>
                     <IconButton
                         className={clsx(classes.expand, {
@@ -88,17 +104,17 @@ export default function TarjetasAsilos({ casa, handleOpenBorrarCasaDia, handleOp
                     <CardContent>
                         <Typography paragraph>Direccion:</Typography>
                         <Typography paragraph>
-                            {casa.direccion}
+                            {asilo.direccion}
                         </Typography>
                         <Typography paragraph>Codigo:</Typography>
                         <Typography paragraph>
-                            {casa.codigoPostal}
+                            {asilo.codigoPostal}
                         </Typography>
                         <Typography paragraph>Restricciones:</Typography>
                         <Typography paragraph>
                             <List>
                                 {
-                                    (casa.restricciones).map((restriccion) => (
+                                    (asilo.restricciones).map((restriccion) => (
                                         <ListItem>
                                             <Typography>
                                                 {restriccion}
@@ -111,13 +127,13 @@ export default function TarjetasAsilos({ casa, handleOpenBorrarCasaDia, handleOp
                         </Typography>
                         <Typography paragraph>CupoLimite:</Typography>
                         <Typography paragraph>
-                            {casa.cupoLimite}
+                            {asilo.cupoLimite}
                         </Typography>
                         <Typography paragraph>Actividades:</Typography>
                         <List>
                             {
                                 //funciona pero aun no recibe un objeto
-                                (casa.actividades).map((actividad) => (
+                                (asilo.actividades).map((actividad) => (
                                     <ListItem>
                                         <Typography>
                                             {actividad.nombre}
