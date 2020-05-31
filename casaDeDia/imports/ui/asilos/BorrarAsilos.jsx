@@ -37,7 +37,7 @@ export default function BorrarAsilos({ asilosServidor,openBorrarAsilos, handleCe
     const [snackBarState, setSnackBarState] = useState(); 
     const [message, setMessage] = useState();
 
-    function borrarCasaDeDia() { 
+    function borrarAsilo() { 
         const { _id } = asiloSeleccionado;
         return new Promise(
             (resolve, reject) => {
@@ -77,7 +77,7 @@ export default function BorrarAsilos({ asilosServidor,openBorrarAsilos, handleCe
                     Seguro deseas borrar este asilo?
                 </p>
                 <Button variant="contained" color="secondary" onClick={handleCerrarBorrarAsilos}>Cancelar</Button>
-                <Button variant="contained" color="primary" onClick={borrarCasaDeDia}>Borrar</Button>
+                <Button variant="contained" color="primary" onClick={borrarAsilo}>Borrar</Button>
             </div>
             </Modal>
             {snackBarState &&

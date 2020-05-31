@@ -1,8 +1,9 @@
 
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Modal } from '@material-ui/core';
-import PaperEditarAsilos from './PaperEditarAsilos';
+import TablaAnadirUsuario from './TablaAnadirUsuario';
+
 
 
 function getModalStyle() {
@@ -21,34 +22,34 @@ const useStyles = makeStyles((theme) => ({
 
     paper: {
         position: 'absolute',
+        width: 400,
         backgroundColor: theme.palette.background.paper,
         border: '2px solid #000',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
-        fontSize: 20,
-        width:1500,
-        color: 'black',
     },
 
 }));
 
-export default function EditarAsilos({ asilosServidor,asiloSeleccionado,openEditarAsilos, handleCerrarEditarAsilos }) {
+
+export default function ModalAnadirUsuario({ openAnadirPersona, asiloSeleccionado, handleCerrarAnadirUsuario }) {
     const classes = useStyles();
     const [modalStyle] = useState(getModalStyle);
 
     return (
         <Modal
             className={classes.posicionModal}
-            open={openEditarAsilos}
-            onClose={handleCerrarEditarAsilos}
+            open={openAnadirPersona}
+            onClose={handleCerrarAnadirUsuario}
 
         >
-                <div style={modalStyle} className={classes.paper}>
-                <PaperEditarAsilos
-                    handleCerrarEditarAsilos={handleCerrarEditarAsilos}
+            <div style={modalStyle} className={classes.paper}>
+                <TablaAnadirUsuario
                     asiloSeleccionado={asiloSeleccionado}
-                    asilosServidor={asilosServidor} />
+                    handleCerrarAnadirUsuario={handleCerrarAnadirUsuario}
+                />
             </div>
         </Modal>
     )
 }
+

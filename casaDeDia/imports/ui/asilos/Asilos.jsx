@@ -5,6 +5,8 @@ import ModalCrearAsilo from '../modales/ModaCrearAsilo';
 import TarjetasAsilos from './TarjetasAsilos';
 import BorrarAsilos from './BorrarAsilos';
 import EditarAsilos from './EditarAsilos';
+import ModalAnadirPersonal from './ModalAnadirPersonal';
+import ModalAnadirUsuario from './ModalAnadirUsuario';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,8 +23,8 @@ export default function Asilos() {
     const [openEditarAsilos, setOpenEditarAsilos] = useState(false);
     const [openBorrarAsilos, setOpenBorrarAsilos] = useState(false);
     const [asiloSeleccionado, setAsiloSeleccionado] = useState();
-    //const [openAnadirEmpleado, setOpenAbrirEmpleado] = useState(false);
-    //const [openAnadirPersona, setOpenAbrirPersona] = useState(false);
+    const [openAnadirEmpleado, setOpenAbrirEmpleado] = useState(false);
+    const [openAnadirPersona, setOpenAbrirPersona] = useState(false);
 
     const handleOpenBorrarAsilos = (asilo) => {
         setAsiloSeleccionado(asilo)
@@ -55,13 +57,13 @@ export default function Asilos() {
         setOpenModal(false);
     };
 
-    /*const handleOpenAnadirEmpleado = (asilo) => {
-        setCasaSeleccionada(asilo)
+    const handleOpenAnadirEmpleado = (asilo) => {
+        setAsiloSeleccionado(asilo)
         setOpenAbrirEmpleado(true)
      }
 
     const handleOpenAnadirUsuario = (asilo) => {
-        setCasaSeleccionada(asilo)
+        setAsiloSeleccionado(asilo)
         setOpenAbrirPersona(true)
      }
 
@@ -71,7 +73,7 @@ export default function Asilos() {
 
     const handleCerrarAnadirUsuario = () => {
         setOpenAbrirPersona(false)
-     }*/
+     }
 
     function asilosServidor() {
         return new Promise(
@@ -105,8 +107,8 @@ export default function Asilos() {
                                 asilo={asilo}
                                 handleOpenBorrarAsilos={handleOpenBorrarAsilos}
                                 handleOpenEditarAsilos={handleOpenEditarAsilos}
-                                /*handleOpenAnadirEmpleado={handleOpenAnadirEmpleado}
-                                handleOpenAnadirUsuario={handleOpenAnadirUsuario}*/
+                                handleOpenAnadirEmpleado={handleOpenAnadirEmpleado}
+                                handleOpenAnadirUsuario={handleOpenAnadirUsuario}
                                 />
                     ))}
                         </Grid>  
@@ -131,16 +133,16 @@ export default function Asilos() {
                 openModal={openModal}
                 asilosServidor={asilosServidor}
             />
-            {/*<ModalAnadirPersonal
-                casaSeleccionada={casaSeleccionada}
+            <ModalAnadirPersonal
+                asiloSeleccionado={asiloSeleccionado}
                 handleCerrarAnadirEmpleado={handleCerrarAnadirEmpleado}
                 openAnadirEmpleado={openAnadirEmpleado}
             />
             <ModalAnadirUsuario
-                casaSeleccionada={casaSeleccionada}
+                asiloSeleccionado={asiloSeleccionado}
                 handleCerrarAnadirUsuario={handleCerrarAnadirUsuario}
                 openAnadirPersona={openAnadirPersona}
-            />*/}
+            />
         </>
     )
 }

@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { AdultosMayores } from "../adultosMayores/adultosMayores";
 import { CasasDeDia } from '../casasDeDia/casasDeDia';
+import { Asilos } from '../asilos/asilos';
+
 
 Meteor.methods({
 
@@ -53,6 +55,14 @@ Meteor.methods({
         )
         //Hacer esto para coleccion que usa aadulto mayor
         CasasDeDia.update
+            (
+                { "usuarios": { $elemMatch: { "idReferencia": idAdultoMayor } } },
+                { $pull: { "usuarios": { "idReferencia": idAdultoMayor } } },
+                false,
+                true
+            )
+        
+        Asilos.update
             (
                 { "usuarios": { $elemMatch: { "idReferencia": idAdultoMayor } } },
                 { $pull: { "usuarios": { "idReferencia": idAdultoMayor } } },

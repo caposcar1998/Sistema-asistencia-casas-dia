@@ -45,7 +45,8 @@ export default function PaperEditarAsilos({ asilosServidor,asiloSeleccionado, ha
             'https://api.cloudinary.com/v1_1/dzue2mlpl/image/upload',
             {
                 method: 'POST',
-                body: data
+                fontSize: 20,
+                body: data,
             }
         )
         const file = await res.json()

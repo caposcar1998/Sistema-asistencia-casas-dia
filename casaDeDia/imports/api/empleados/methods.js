@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Empleados } from "../empleados/empleados";
 import { CasasDeDia } from '../casasDeDia/casasDeDia';
+import { Asilos } from '../asilos/asilos';
 
 Meteor.methods({
 
@@ -152,6 +153,13 @@ Meteor.methods({
 
         //Hacer esto para coleccion que usa empleados
         CasasDeDia.update
+            (
+                { "empleados": { $elemMatch: { "idReferencia": idEmpleado } } },
+                { $pull: { "empleados": { "idReferencia": idEmpleado } } },
+                false,
+                true
+            )
+        Asilos.update
             (
                 { "empleados": { $elemMatch: { "idReferencia": idEmpleado } } },
                 { $pull: { "empleados": { "idReferencia": idEmpleado } } },
