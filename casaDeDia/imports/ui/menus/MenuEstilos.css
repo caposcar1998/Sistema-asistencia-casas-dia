@@ -7,7 +7,7 @@
     font-size: x-large;
     position: absolute;
     top:  50%;
-    font-style: italic;
+    font-style: default;
     transform: rotate(-90deg);
     text-align:center;
 }

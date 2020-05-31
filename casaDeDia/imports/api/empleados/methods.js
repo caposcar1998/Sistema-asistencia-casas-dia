@@ -1,7 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { Empleados } from "../empleados/empleados";
 import { CasasDeDia } from '../casasDeDia/casasDeDia';
+import { Clubes } from '../clubes/clubes';
 import { Asilos } from '../asilos/asilos';
+
 
 Meteor.methods({
 
@@ -159,7 +161,18 @@ Meteor.methods({
                 false,
                 true
             )
+
+
+        Clubes.update
+            (
+                { "usuarios": { $elemMatch: { "idReferencia": idAdultoMayor } } },
+                { $pull: { "usuarios": { "idReferencia": idAdultoMayor } } },
+                false,
+                true
+            )
+
         Asilos.update
+
             (
                 { "empleados": { $elemMatch: { "idReferencia": idEmpleado } } },
                 { $pull: { "empleados": { "idReferencia": idEmpleado } } },
