@@ -13,12 +13,11 @@ export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSelec
     const [sexo, setSexo] = useState('');
     const [edad, setEdad] = useState('');
     const [codigoPostal, setCodigoPostal] = useState('');
-    const [apodo, setApodo] = useState('');
-    const [contrasena, setContrasena] = useState('');
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState(); 
     const [message, setMessage] = useState(); 
-
+    const [image, setImage] = useState('')
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         setNombre(adultoSeleccionado.nombre);
@@ -28,9 +27,8 @@ export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSelec
         setSexo(adultoSeleccionado.sexo);
         setEdad(adultoSeleccionado.edad);
         setCodigoPostal(adultoSeleccionado.codigoPostal);
-        setApodo(adultoSeleccionado.apodo);
         setGrupoSanguineo(adultoSeleccionado.grupoSanguineo);
-        setContrasena(adultoSeleccionado.contrasena);
+        setImage(adultoSeleccionado.foto);
     }, []);
 
 
@@ -45,12 +43,32 @@ export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSelec
         },
     };
 
+    const uploadImage = async e => {
+        const files = e.target.files
+        const data = new FormData()
+        data.append('file', files[0])
+        data.append('upload_preset', 'prueba_image')
+        setLoading(true)
+        const res = await fetch(
+            'https://api.cloudinary.com/v1_1/dzue2mlpl/image/upload',
+            {
+                method: 'POST',
+                fontSize: 20,
+                body: data,
+            }
+        )
+        const file = await res.json()
+
+        setImage(file.secure_url) //URL de la imagen para agregarla a Mongo de ser necesario
+        setLoading(false)
+    }
+
 
     function editarAdultoMayor() {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("editarAdultoMayor",
-                    adultoSeleccionado._id,nombre, apellidos, curp, sexo, edad, grupoSanguineo, direccion, codigoPostal, 
+                    adultoSeleccionado._id,nombre, apellidos, curp, sexo, edad, grupoSanguineo, direccion, codigoPostal,image,
                     (err, res) => {
                         if (err) {
                             setAlert("error")
@@ -142,7 +160,22 @@ export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSelec
                     </Grid>
                 </Grid>
 
-                
+                <Grid item xs={4}>
+                    <Grid item xs={12}>Seleccionar foto</Grid>
+                    <Grid item xs={12}>
+                        <Input
+                            type="file"
+                            name="file"
+                            onChange={uploadImage}
+                            color="primary"
+                        />
+                        {loading ? (
+                            <LinearProgress />
+                        ) : (
+                                <img src={image} style={{ width: '300px' }} />
+                            )}
+                    </Grid>
+                </Grid>
                 
                 <Grid item xs={4} />
                 <Grid item xs={8}>

@@ -22,5 +22,6 @@ let Schema = new SimpleSchema({
     edad: { type: Number },
     grupoSanguineo: { type: String },
     direccion: { type: String },
-    codigoPostal:{ type: String }
+    codigoPostal: { type: String },
+    foto: { type: String }
 })
