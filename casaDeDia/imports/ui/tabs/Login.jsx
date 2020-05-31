@@ -43,6 +43,7 @@ export default function Login() {
         Meteor.loginWithPassword(username, password, function(err){
             if(err){
                 console.log(err.reason);
+                window.alert("Usuario o contraseña incorrectos. Intente de nuevo.")
             }else{
                 FlowRouter.go('administrador')
 

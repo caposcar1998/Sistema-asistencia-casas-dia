@@ -1,6 +1,9 @@
 
 import SimpleSchema from "simpl-schema";
 import { Meteor } from 'meteor/meteor';
+import { TarjetasSalud } from "./tarjetasSalud";
+import { TarjetasDespensa } from "./tarjetasDespensa";
+import { TarjetasEfectivo } from "./TarjetasEfectivo";
 
 export const Tarjetas = new Mongo.Collection("tarjetas");
 
@@ -16,10 +19,13 @@ if (Meteor.isServer) {
 }
 
 let Schema = new SimpleSchema({
-    beneficiado: { type: String },
-    numeroTarjeta: { type: String },
+    nombre: { type: String },
     fechaVigencia: { type: Date },
-    tipo: { type: String }
+    tipo: { type: String },
+    despensa: { type: TarjetasDespensa, optional: true },
+    efectivo: { type: TarjetasEfectivo, optional: true },
+    salud: { type: TarjetasSalud, optional: true}
+    
 })
 
 

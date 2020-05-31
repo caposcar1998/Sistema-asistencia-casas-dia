@@ -1,7 +1,7 @@
 
 import React, { useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AnadirAsilos from '../asilos/AnadirAsilos';
+import AnadirAdultoMayor from '../adultosMayores/AnadirAdultoMayor';
 import { Modal } from '@material-ui/core';
 
 
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function ModalCrearAsilo({ handleCloseModal, openModal, asilosServidor }) {
+export default function ModalCrearAdultoMayor({ handleCloseModal, openModal, adultoMayorServidor }) {
     const classes = useStyles();
     const [modalStyle] = useState(getModalStyle);
 
@@ -40,7 +40,7 @@ export default function ModalCrearAsilo({ handleCloseModal, openModal, asilosSer
             
         >
             <div style={modalStyle} className={classes.paper} >
-                <AnadirAsilos handleCloseModal={handleCloseModal} asilosServidor={asilosServidor} />
+                <AnadirAdultoMayor handleCloseModal={handleCloseModal} adultoMayorServidor={adultoMayorServidor} />
             </div>
         </Modal>
     )

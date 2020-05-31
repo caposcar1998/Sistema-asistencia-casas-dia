@@ -15,7 +15,9 @@ Meteor.methods({
                 horarioCierre: horarioCierre,
                 cupoLimite: cupoLimite,
                 codigoPostal: codigoPostal,
-                foto: foto
+                foto: foto,
+                empleados: [],
+                usuarios: []
             }
 
         )
@@ -51,10 +53,73 @@ Meteor.methods({
 
     "leerAsilo"() {
         return Asilos.find().fetch();
-    }
+    },
 
+    "anadirAdultoAsilo"(idAsilos, idUsuario, nombre, curp) {
+        Asilos.update(
+            { _id: idAsilos },
+            {
+                $push: {
+                    "usuarios": {
+                        idReferencia: idUsuario,
+                        nombre: nombre,
+                        curp: curp
+                    }
+                }
+            }
+        )
+    },
+
+    "anadirUsuarioAsilo"(idAsilos,idUsuario, nombre, puesto) {
+        Asilos.update(
+            { _id: idAsilos },
+            {
+                $push: {
+                    "empleados": {
+                        idReferencia: idUsuario,
+                        nombre: nombre,
+                        puesto: puesto
+                    }
+                 } 
+            }
+        )
+    },
+    
+    "borrarEmpleadoDeAsilo"(idEmpleado, puesto) {
+        Asilos.update
+            (
+                { "empleados": { $elemMatch: { "idReferencia": idEmpleado, "puesto":puesto } } },
+                { $pull: { "empleados": { "idReferencia": idEmpleado,"puesto": puesto } } },
+                false,
+                true
+            )
+    },
+
+    "editarEmpleadoDeAsilo"(idAsilos,idEmpleado, puesto, puestoNuevo) {
+        Asilos.update(
+            { _id: idAsilos, "empleados.idReferencia": idEmpleado, "empleados.puesto": puesto },
+            { $set: { "empleados.$.puesto": puestoNuevo } }
+        )
+    },
+
+    "borrarUsuarioDeAsilo"(idUsuario, curp) {
+        Asilos.update
+            (
+                { "usuarios": { $elemMatch: { "idReferencia": idUsuario, "curp": curp } } },
+                { $pull: { "usuarios": { "idReferencia": idUsuario, "curp": curp } } },
+                false,
+                true
+            )
+    },
 
 });
+
+
+
+
+
+
+
 
 
 

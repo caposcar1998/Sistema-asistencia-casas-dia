@@ -2,11 +2,14 @@ import { Meteor } from 'meteor/meteor';
 import { AdultosMayores } from "../adultosMayores/adultosMayores";
 import { CasasDeDia } from '../casasDeDia/casasDeDia';
 import { Clubes } from '../clubes/clubes';
+import { Asilos } from '../asilos/asilos';
+
+
 
 Meteor.methods({
 
 
-    "crearAdultoMayor"(nombre,apellidos,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,apodo,contrasena) {
+    "crearAdultoMayor"(nombre,apellidos,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,foto) {
         AdultosMayores.insert(
             {
                 nombre: nombre,
@@ -17,14 +20,14 @@ Meteor.methods({
                 grupoSanguineo: grupoSanguineo,
                 direccion: direccion,
                 codigoPostal: codigoPostal,
-                apodo:apodo,
-                contrasena:contrasena
+                foto: foto,
+                tarjetas: []
             }
 
         )
     },
 
-    "editarAdultoMayor"(idAdultoMayor,nombre,apellidos,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,apodo,contrasena) {
+    "editarAdultoMayor"(idAdultoMayor,nombre,apellidos,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,foto) {
         AdultosMayores.update(
             { _id: idAdultoMayor },
             {
@@ -38,8 +41,7 @@ Meteor.methods({
                     grupoSanguineo: grupoSanguineo,
                     direccion: direccion,
                     codigoPostal: codigoPostal,
-                    apodo:apodo,
-                    contrasena:contrasena
+                    foto: foto
                 }
             }
         )
@@ -61,7 +63,17 @@ Meteor.methods({
                 true
             )
 
+
         Clubes.update
+            (
+                { "usuarios": { $elemMatch: { "idReferencia": idAdultoMayor } } },
+                { $pull: { "usuarios": { "idReferencia": idAdultoMayor } } },
+                false,
+                true
+            )
+
+        
+        Asilos.update
             (
                 { "usuarios": { $elemMatch: { "idReferencia": idAdultoMayor } } },
                 { $pull: { "usuarios": { "idReferencia": idAdultoMayor } } },
@@ -72,7 +84,31 @@ Meteor.methods({
 
     "leerAdultoMayor"() {
         return AdultosMayores.find().fetch();
-    }
+    },
+
+    "anadirTarjeta"(idUsuario, idTarjeta, nombre) {
+        AdultosMayores.update(
+            { _id: idUsuario },
+            {
+                $push: {
+                    "tarjetas": {
+                        idReferencia: idTarjeta,
+                        nombre: nombre
+                    }
+                }
+            }
+        )
+    },
+
+    "borrarTarjetaDeUsuario"(idTarjeta) {
+        AdultosMayores.update
+            (
+                { "tarjetas": { $elemMatch: { "idReferencia": idTarjeta} } },
+                { $pull: { "tarjetas": { "idReferencia": idTarjeta} } },
+                false,
+                true
+            )
+     }
 
 
 });

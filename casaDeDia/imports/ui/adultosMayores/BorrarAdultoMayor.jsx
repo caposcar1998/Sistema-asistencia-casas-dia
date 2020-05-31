@@ -30,32 +30,32 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function BorrarAsilos({ asilosServidor,openBorrarAsilos, handleCerrarBorrarAsilos, asiloSeleccionado}) {
+export default function BorrarAdultoMayor({ adultoMayorServidor,openBorrarAdultoMayor, handleCerrarBorrarAdultoMayor, adultoSeleccionado}) {
     const classes = useStyles();
     const [modalStyle] = useState(getModalStyle);
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState(); 
     const [message, setMessage] = useState();
 
-    function borrarAsilo() { 
-        const { _id } = asiloSeleccionado;
+    function borrarAdultoMayor() { 
+        const { _id } = adultoSeleccionado;
         return new Promise(
             (resolve, reject) => {
-                Meteor.call("borrarAsilo",
+                Meteor.call("borrarAdultoMayor",
                     _id,
                     (err, res) => {
                         if (err) {
                             setAlert("error")
                             setSnackBarState(true)
-                            setMessage("Error al borrar asilo")
-                            handleCerrarBorrarAsilos()    
+                            setMessage("Error al borrar el adulto mayor")
+                            handleCerrarBorrarAdultoMayor()    
                             reject()
                         } else {
                             setAlert("success")
                             setSnackBarState(true)
-                            setMessage("Asilo eliminado")
-                            handleCerrarBorrarAsilos()
-                            asilosServidor()
+                            setMessage("Adulto mayor eliminado")
+                            handleCerrarBorrarAdultoMayor()
+                            adultoMayorServidor()
                             resolve()
                         }
                     });
@@ -67,17 +67,17 @@ export default function BorrarAsilos({ asilosServidor,openBorrarAsilos, handleCe
         <>
         <Modal
             className={classes.posicionModal}
-            open={openBorrarAsilos}
-            onClose={handleCerrarBorrarAsilos}
+            open={openBorrarAdultoMayor}
+            onClose={handleCerrarBorrarAdultoMayor}
 
         >
             <div style={modalStyle} className={classes.paper}>
-                <h2 id="simple-modal-title">Borrar asilo</h2>
+                <h2 id="simple-modal-title">Borrar adulto mayor</h2>
                 <p id="simple-modal-description">
-                    Seguro deseas borrar este asilo?
+                    ¿Seguro deseas borrar al adulto mayor?
                 </p>
-                <Button variant="contained" color="secondary" onClick={handleCerrarBorrarAsilos}>Cancelar</Button>
-                <Button variant="contained" color="primary" onClick={borrarAsilo}>Borrar</Button>
+                <Button variant="contained" color="secondary" onClick={handleCerrarBorrarAdultoMayor}>Cancelar</Button>
+                <Button variant="contained" color="primary" onClick={borrarAdultoMayor}>Borrar</Button>
             </div>
             </Modal>
             {snackBarState &&

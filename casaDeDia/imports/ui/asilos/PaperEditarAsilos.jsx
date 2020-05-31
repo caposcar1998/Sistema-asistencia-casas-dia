@@ -4,7 +4,7 @@ import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 import { listaRestricciones } from '../../utilities/tablasEstaticas/restricciones';
 
 
-export default function PaperEditarAsilos({ casasDeDiaServidor,casaSeleccionada, handleCerrarEditarCasaDia }) {
+export default function PaperEditarAsilos({ asilosServidor,asiloSeleccionado, handleCerrarEditarAsilos }) {
     const [nombre, setNombre]  = useState('');
     const [direccion, setDireccion] = useState('');
     const [actividades, setActividades] = useState([]);
@@ -23,15 +23,15 @@ export default function PaperEditarAsilos({ casasDeDiaServidor,casaSeleccionada,
 
     useEffect(() => {
         actividadesServidor();
-        setNombre(casaSeleccionada.nombre);
-        setDireccion(casaSeleccionada.direccion);
-        setActividades(casaSeleccionada.actividades);
-        setRestricciones(casaSeleccionada.restricciones);
-        setHorarioApertura(casaSeleccionada.horarioApertura);
-        setHorarioCierre(casaSeleccionada.horarioCierre);
-        setCupoLimite(casaSeleccionada.cupoLimite);
-        setCodigoPostal(casaSeleccionada.codigoPostal);
-        setImage(casaSeleccionada.foto);
+        setNombre(asiloSeleccionado.nombre);
+        setDireccion(asiloSeleccionado.direccion);
+        setActividades(asiloSeleccionado.actividades);
+        setRestricciones(asiloSeleccionado.restricciones);
+        setHorarioApertura(asiloSeleccionado.horarioApertura);
+        setHorarioCierre(asiloSeleccionado.horarioCierre);
+        setCupoLimite(asiloSeleccionado.cupoLimite);
+        setCodigoPostal(asiloSeleccionado.codigoPostal);
+        setImage(asiloSeleccionado.foto);
     }, []);
 
 
@@ -45,7 +45,8 @@ export default function PaperEditarAsilos({ casasDeDiaServidor,casaSeleccionada,
             'https://api.cloudinary.com/v1_1/dzue2mlpl/image/upload',
             {
                 method: 'POST',
-                body: data
+                fontSize: 20,
+                body: data,
             }
         )
         const file = await res.json()
@@ -108,20 +109,20 @@ export default function PaperEditarAsilos({ casasDeDiaServidor,casaSeleccionada,
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("editarAsilo",
-                    casaSeleccionada._id,nombre, direccion, actividades, restricciones, horarioApertura, horarioCierre, cupoLimite, codigoPostal, image,
+                    asiloSeleccionado._id,nombre, direccion, actividades, restricciones, horarioApertura, horarioCierre, cupoLimite, codigoPostal, image,
                     (err, res) => {
                         if (err) {
                             setAlert("error")
                             setSnackBarState(true)
                             setMessage("Error al crear asilo")
-                            handleCerrarEditarCasaDia()
+                            handleCerrarEditarAsilos()
                             reject()
                         } else {
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Registro correcto")
-                            handleCerrarEditarCasaDia()
-                            casasDeDiaServidor()
+                            handleCerrarEditarAsilos()
+                            asilosServidor()
                             resolve()
                         }
                     });
@@ -269,7 +270,7 @@ export default function PaperEditarAsilos({ casasDeDiaServidor,casaSeleccionada,
                 </Grid>
                 <Grid item xs={4} />
                 <Grid item xs={8}>
-                    <Button variant="contained" onClick={handleCerrarEditarCasaDia} color="secondary">Cancelar</Button>
+                    <Button variant="contained" onClick={handleCerrarEditarAsilos} color="secondary">Cancelar</Button>
                     <Button variant="contained" onClick={editarAsilo} color="primary">Editar</Button>
                 </Grid>
 
