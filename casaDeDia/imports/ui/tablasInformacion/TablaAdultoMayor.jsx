@@ -3,11 +3,12 @@ import MaterialTable from 'material-table';
 import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { AdultosMayores } from "../../api/adultosMayores/adultosMayores";
+import { Meteor } from 'meteor/meteor';
+import { Tracker } from 'meteor/tracker'
 
+Tracker.autorun(()=>{
 
 function TablaAdultoMayor({adultosMayores}) {
-
-
     function addAdultoMayor(newData) {
         val = validations(newData);
 
@@ -113,6 +114,31 @@ function TablaAdultoMayor({adultosMayores}) {
         )
     };
 
+    if(Meteor.user() && Meteor.user().profile.editarAdultoMayor !== true){
+        return (
+
+            <MaterialTable
+                title="Adultos Mayores"
+                icons={tableIcons}
+                columns={
+                    [
+                        { title: "Nombre Completo", field: "nombre" },
+                        { title: "Apellidos", field: "apellidos" },
+                        { title: "CURP", field: "curp" },
+                        { title: "Sexo", field: "sexo" },
+                        { title: "Edad", field: "edad", type:"numeric" },
+                        { title: "Grupo Sanguineo", field: "grupoSanguineo" },
+                        { title: "Dirección", field: "direccion" },
+                        { title: "C.P.", field: "codigoPostal" },
+                        { title: "apodo", field: "apodo"},
+                        { title: "contrasena", field: "contrasena"}
+                    ]
+                }
+                data={adultosMayores}
+            />
+        );
+    }
+
     return (
 
         <MaterialTable
@@ -145,7 +171,9 @@ function TablaAdultoMayor({adultosMayores}) {
 
 
 export default withTracker(() => {
+    Meteor.subscribe("adultosMayores");
     return {
         adultosMayores: AdultosMayores.find({}).fetch(),
     };
 })(TablaAdultoMayor);
+});

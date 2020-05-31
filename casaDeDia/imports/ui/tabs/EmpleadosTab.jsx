@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import TablaEmpleado from '../tablasInformacion/TablaEmpleado';
+import { Meteor } from 'meteor/meteor';
 
 
 export function TabPanel(props) {
@@ -43,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         backgroundColor: theme.palette.background.paper,
+        height: '100vh'
     },
     title: {
         flexGrow: 1

@@ -3,6 +3,7 @@ import MaterialTable from 'material-table';
 import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { Colectivos } from "../../api/colectivos/colectivos"
+import { Meteor } from 'meteor/meteor';
 
 function TablaColectivo({colectivos}) {
         function addColectivo(newData) {
@@ -83,6 +84,7 @@ function TablaColectivo({colectivos}) {
 }
 
 export default withTracker(() => {
+    Meteor.subscribe("colectivos");
     return {
         colectivos: Colectivos.find({}).fetch(),
     };

@@ -1,6 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { Actividades } from '../actividades/actividades';
 import { CasasDeDia } from "../casasDeDia/casasDeDia";
+import { Clubes } from "../clubes/clubes";
+import { Asilos } from "../asilos/asilos";
+
 Meteor.methods({
 
 
@@ -44,6 +47,21 @@ Meteor.methods({
         ),
         //Hacer esto para coleccion que usa actividades
         CasasDeDia.update
+            (
+                { "actividades": { $elemMatch: { "_id": Actividad } } },
+                { $pull: { "actividades": { "_id": Actividad } }},
+                false,
+                true
+            )
+        Asilos.update
+            (
+                { "actividades": { $elemMatch: { "_id": Actividad } } },
+                { $pull: { "actividades": { "_id": Actividad } }},
+                false,
+                true 
+            )
+
+        Clubes.update
             (
                 { "actividades": { $elemMatch: { "_id": Actividad } } },
                 { $pull: { "actividades": { "_id": Actividad } }},

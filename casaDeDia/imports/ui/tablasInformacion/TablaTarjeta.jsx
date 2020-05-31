@@ -4,6 +4,7 @@ import MaterialTable from 'material-table';
 import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { Tarjetas } from '../../api/tarjetas/tarjetas';
+import { Meteor } from 'meteor/meteor';
 
 
 function TablaTarjeta({tarjetas}) { 
@@ -87,6 +88,7 @@ function TablaTarjeta({tarjetas}) {
 }
 
 export default withTracker(() => {
+    Meteor.subscribe("tarjetas");
     return {
         tarjetas: Tarjetas.find({}).fetch(),
     };

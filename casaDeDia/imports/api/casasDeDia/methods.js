@@ -15,7 +15,9 @@ Meteor.methods({
                 horarioCierre: horarioCierre,
                 cupoLimite: cupoLimite,
                 codigoPostal: codigoPostal,
-                foto: foto
+                foto: foto,
+                empleados: [],
+                usuarios: []
             }
 
         )
@@ -51,8 +53,64 @@ Meteor.methods({
 
     "leerCasasDeDia"() {
         return CasasDeDia.find().fetch();
-    }
+    },
 
+    "anadirAdulto"(idCasaDeDia, idUsuario, nombre, curp) {
+        CasasDeDia.update(
+            { _id: idCasaDeDia },
+            {
+                $push: {
+                    "usuarios": {
+                        idReferencia: idUsuario,
+                        nombre: nombre,
+                        curp: curp
+                    }
+                }
+            }
+        )
+    },
+
+    "anadirUsuario"(idCasaDeDia,idUsuario, nombre, puesto) {
+        CasasDeDia.update(
+            { _id: idCasaDeDia },
+            {
+                $push: {
+                    "empleados": {
+                        idReferencia: idUsuario,
+                        nombre: nombre,
+                        puesto: puesto
+                    }
+                 } 
+            }
+        )
+    },
+    
+    "borrarEmpleadoDeCasa"(idEmpleado, puesto) {
+        CasasDeDia.update
+            (
+                { "empleados": { $elemMatch: { "idReferencia": idEmpleado, "puesto":puesto } } },
+                { $pull: { "empleados": { "idReferencia": idEmpleado,"puesto": puesto } } },
+                false,
+                true
+            )
+    },
+
+    "editarEmpleadoDeCasa"(idCasaDeDia,idEmpleado, puesto, puestoNuevo) {
+        CasasDeDia.update(
+            { _id: idCasaDeDia, "empleados.idReferencia": idEmpleado, "empleados.puesto": puesto },
+            { $set: { "empleados.$.puesto": puestoNuevo } }
+        )
+    },
+
+    "borrarUsuarioDeCasa"(idUsuario, curp) {
+        CasasDeDia.update
+            (
+                { "usuarios": { $elemMatch: { "idReferencia": idUsuario, "curp": curp } } },
+                { $pull: { "usuarios": { "idReferencia": idUsuario, "curp": curp } } },
+                false,
+                true
+            )
+    },
 
 });
 
