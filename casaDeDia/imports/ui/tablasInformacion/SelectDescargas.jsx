@@ -19,6 +19,8 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Servicios } from "../../api/servicios/servicios";
 import { Actividades } from '../../api/actividades/actividades';
 import { CasasDeDia } from "../../api/casasDeDia/casasDeDia";
+import { Asilos } from "../../api/asilos/asilos";
+import { Clubes } from "../../api/clubes/clubes";
 import {listaRestricciones} from "../../utilities/tablasEstaticas/restricciones";
 
 const useStyles = makeStyles((theme) => ({
@@ -78,7 +80,7 @@ function getStyles(name, personName, theme) {
   };
 }
 
-function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, servicios,actividades,casasDeDia}) {
+function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, servicios,actividades,casasDeDia,asilos,clubes}) {
   const classes = useStyles();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
@@ -189,6 +191,8 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
       const data5 = {servicios}
       const data6 = {actividades}
       const data7 = {casasDeDia}
+      const data8 = {asilos}
+      const data9 = {clubes}
 
       const colEmpleados = [{
       id: 'primera',
@@ -201,20 +205,22 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
       displayName: 'Email'
       }]
 
-      const ayudaEmpleados = (empleados) => {
-        empleados.map(function(empleado){
-          data.push(empleado)
+      function ayudaEmpleados(empleados){
+          empleados.map(function(empleado){
+          return(data.push(empleado))
         })
       };
-      //ayudaEmpleados(data1.empleados)
+      //ayudaEmpleados({empleados}.empleados)
       //ayudaEmpleados(data2.instructores)
       //ayudaEmpleados(data3.voluntarios)
       //ayudaEmpleados(data4.adultosmayores)
       //ayudaEmpleados(data5.servicios)
       //ayudaEmpleados(data6.actividades);
-      ayudaEmpleados(data7.casasDeDia)
+      //ayudaEmpleados(data7.casasDeDia)
+      //ayudaEmpleados(data8.asilos)
+      //ayudaEmpleados(data9.clubes)
 
-      const datas1 = (dat,tipo) => dat.map((usuario)=>{
+      const datas1 = (dat,tipo,info) => dat.map((usuario)=>{
         if(tipo === 'Empleados' || tipo === 'Voluntarios' || tipo === 'Instructores'){
           return({
             primera:usuario.nombre,
@@ -253,16 +259,16 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
             quinta_ac:usuario.descripcion,
             sexta_ac:usuario.direccion,
           })
-        }else if(tipo === 'Casas De Día' || tipo === 'Asilos' || tipo === 'Clubes'){
+        }else if(tipo === 'Casas de día' || tipo === 'Asilos' || tipo === 'Clubes'){
           return({
             primera_cd:usuario.nombre,
             segunda_cd:usuario.direccion,
             tercera_cd:(usuario.actividades.map((actividad)=>{
               return(actividad.nombre)
-            }).join('; ')).replace(',','y'),
+            }).join('; ')).replace(',',' y '),
             cuarta_cd:(usuario.restricciones.map((restriccion)=>{
               return(restriccion+' ')
-            }).join('; ')).replace(',','y'),
+            }).join('; ')).replace(',',' y '),
             quinta_cd:usuario.horarioApertura,
             sexta_cd:usuario.horarioCierre,
             septima_cd:usuario.cupoLimite,
@@ -298,51 +304,98 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
         displayName: 'Código Postal'
         }];
 
-      const datas2 = (dat) => dat.map((usuario)=>{
-        return({
-          primera_am:usuario.nombre,
-          segunda_am:usuario.apellidos,
-          tercera_am:usuario.curp,
-          cuarta_am:usuario.sexo,
-          quinta_am:usuario.edad,
-          sexta_am:usuario.grupoSanguineo,
-          septima_am:usuario.direccion,
-          octava_am:usuario.codigoPostal,
-        })
-      })
-
-      const datas3 = (dat) => dat.map((usuario)=>{
-        return({
-          primera_s:usuario.tipoServicio,
-          segunda_s:usuario.nombre,
-          tercera_s:usuario.telefono,
-          cuarta_s:usuario.direccion,
-          quinta_s:usuario.fechaRegistro,
-          sexta_s:usuario.vigente,
-          septima_s:usuario.redSocial1,
-          octava_s:usuario.redSocial2,
-          novena_s:usuario.redSocial3,
-        })
-      })
-
-      const datas4 = (dat) => dat.map((usuario)=>{
-        return({
-          primera_ac:usuario.nombre,
-          segunda_ac:usuario.fechaInicio,
-          tercera_ac:usuario.fechaFinal,
-          cuarta_ac:usuario.hora,
-          quinta_ac:usuario.descripcion,
-          sexta_ac:usuario.direccion,
-        })
-      })
-
       //console.log(datas1(data));
       //console.log(datas2(data));
       //console.log(datas3(data));
       //console.log(datas4(data));
-      console.log(datas1(data,'Casas De Día'))
+      //console.log(datas1(data,'Clubes',{clubes}.clubes))
+     
+      console.log(datas1(data,'Empleados'))
 
-    
+      const csvD = (tipo) => {
+        if(tipo === 'Adultos Mayores'){
+          ayudaEmpleados({adultosmayores}.adultosmayores)
+          return(
+            <CsvDownloader
+            filename="Reporte Adultos Mayores"
+            columns={colAdultosMayores}
+            datas={datas1(data,'Adultos Mayores')}
+            text="Descargar Reporte" />
+          )
+        }else if(tipo === 'Empleados'){
+          ayudaEmpleados({empleados}.empleados)
+          return(
+            <CsvDownloader
+            filename="Reporte Empleados"
+            columns={colEmpleados}
+            datas={datas1(data,'Empleados')}
+            text="Descargar Reporte" />
+          )
+        }else if(tipo === 'Voluntarios'){
+          ayudaEmpleados({voluntarios}.voluntarios)
+          return(
+            <CsvDownloader
+            filename="Reporte Voluntarios"
+            columns={colEmpleados}
+            datas={datas1(data,'Voluntarios')}
+            text="Descargar Reporte" />
+          )
+        }else if(tipo === 'Instructores'){
+          ayudaEmpleados({instructores}.instructores)
+          return(
+            <CsvDownloader
+            filename="Reporte Instructores"
+            columns={colEmpleados}
+            datas={datas1(data,'Instructores')}
+            text="Descargar Reporte" />
+          )
+        }else if(tipo === 'Asilos'){
+          ayudaEmpleados({asilos}.asilos)
+          return(
+            <CsvDownloader
+            filename="Reporte Asilos"
+            columns={colCasasDeDia}
+            datas={datas1(data,'Asilos')}
+            text="Descargar Reporte" />
+          )
+        }else if(tipo === 'Casas de día'){
+          ayudaEmpleados({casasDeDia}.casasDeDia)
+          return(
+            <CsvDownloader
+            filename="Reporte Casas de Día"
+            columns={colCasasDeDia}
+            datas={datas1(data,'Casas de día')}
+            text="Descargar Reporte" />
+          )
+        }else if(tipo === 'Clubes'){
+          ayudaEmpleados({clubes}.clubes)
+          return(
+            <CsvDownloader
+            filename="Reporte Clubes"
+            columns={colCasasDeDia}
+            datas={datas1(data,'Clubes')}
+            text="Descargar Reporte" />
+          )
+        }else if(tipo === 'Actividades'){
+          ayudaEmpleados({actividades}.actividades)
+          return(
+            <CsvDownloader
+            filename="Reporte Actividades"
+            columns={colActividades}
+            datas={datas1(data,'Actividades')}
+            text="Descargar Reporte" />
+          )
+        }else if(tipo === 'Servicios'){
+          ayudaEmpleados({servicios}.servicios)
+          return(
+            <CsvDownloader
+            filename="Reporte Servicios"
+            columns={colServicios}
+            datas={datas1(data,'Servicios')}
+            text="Descargar Reporte" />
+          )
+        }
+      }
 
   return (
     <div style={{ marginLeft: 70 }}>
@@ -363,14 +416,21 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
               {name}
             </MenuItem>
           ))}
-        </Select>
-          <div style={{ marginTop: 70 }}>
-            <CsvDownloader
-            filename="myfile"
-            columns={colCasasDeDia}
-            datas={datas1(data,'Casas De Día')}
-            text="Descargar Reporte" />
           
+        </Select>
+        {console.log(personName)}
+          <div style={{ marginTop: 70 }}>
+            {/*<button onClick={csvDownload(personName)}>
+              Descargar Reporte
+            </button>
+            {personName === 'Adultos Mayores' ? 
+            (<CsvDownloader
+            filename="Reporte Adultos Mayores"
+            columns={colAdultosMayores}
+            datas={datas1(data,'Adultos Mayores',{adultosmayores})}
+            text="Descargar Reporte" />):''}*/}
+            {csvD(personName)}
+            
           </div> 
           
       </FormControl>
@@ -389,6 +449,8 @@ export default withTracker(() => {
   Meteor.subscribe("servicios");
   Meteor.subscribe("actividades");
   Meteor.subscribe("casasDeDia");
+  Meteor.subscribe("asilos");
+  Meteor.subscribe("clubes");
   return {
       empleados: Empleados.find({}).fetch(),
       instructores: Instructores.find({}).fetch(),
@@ -397,5 +459,7 @@ export default withTracker(() => {
       servicios: Servicios.find({}).fetch(),
       actividades: Actividades.find({}).fetch(),
       casasDeDia: CasasDeDia.find({}).fetch(),
+      asilos: Asilos.find({}).fetch(),
+      clubes: Clubes.find({}).fetch(),
   };
 })(MultipleSelect);
