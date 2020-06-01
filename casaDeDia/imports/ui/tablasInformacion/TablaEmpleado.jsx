@@ -88,8 +88,8 @@ function TablaEmpleado({empleados}) {
 
 
     return (
-
-        <MaterialTable
+        
+        <MaterialTable 
             title="Empleados"
             icons={tableIcons}
             columns={
