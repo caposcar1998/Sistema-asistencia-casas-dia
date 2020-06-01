@@ -41,7 +41,7 @@ Meteor.methods({
         )
     },
 
-    "borrarServicio"(idAdultoMayor) {
+    "borrarServicio"(idServicio) {
         Servicios.remove(
             {
                 "_id": idServicio
