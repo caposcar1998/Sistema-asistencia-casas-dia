@@ -4,7 +4,7 @@ import { Voluntarios } from "../voluntarios/voluntarios";
 Meteor.methods({
 
 
-    "crearVoluntario"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor, idUsuario,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos) {
+    "crearVoluntario"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos,generarReportes) {
         idUsuario = Accounts.createUser({
             username: apodo,
             password: contrasena,
@@ -31,6 +31,7 @@ Meteor.methods({
                 visualizarConvocatorias:visualizarConvocatorias,
                 visualizarCentros:visualizarCentros,
                 visualizarColectivos:visualizarColectivos,
+                generarReportes:generarReportes
             }
         }),
         
@@ -63,13 +64,13 @@ Meteor.methods({
                 visualizarConvocatorias:visualizarConvocatorias,
                 visualizarCentros:visualizarCentros,
                 visualizarColectivos:visualizarColectivos,
-                
+                generarReportes:generarReportes
             }
 
         )
     },
 
-    "editarVoluntario"(idVoluntario,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor, idUsuario,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos) {
+    "editarVoluntario"(idVoluntario,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor, idUsuario,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos, generarReportes) {
         Meteor.users.update(idUsuario,{
             $set:{
                 username: apodo,
@@ -102,6 +103,7 @@ Meteor.methods({
                     visualizarConvocatorias:visualizarConvocatorias,
                     visualizarCentros:visualizarCentros,
                     visualizarColectivos:visualizarColectivos,
+                    generarReportes:generarReportes
                 }
             }
         });
@@ -141,6 +143,7 @@ Meteor.methods({
                     visualizarConvocatorias:visualizarConvocatorias,
                     visualizarCentros:visualizarCentros,
                     visualizarColectivos:visualizarColectivos,
+                    generarReportes:generarReportes
                 }
             }
         )
@@ -162,13 +165,3 @@ Meteor.methods({
 
 
 });
-
-
-
-
-
-
-
-
-
-

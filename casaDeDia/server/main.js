@@ -32,7 +32,8 @@ Meteor.startup(() => {
                 visualizarTalleres:true,
                 visualizarConvocatorias:true,
                 visualizarCentros:true,
-                visualizarColectivos:true
+                visualizarColectivos:true,
+                generarReportes:true
             }
         });
     }

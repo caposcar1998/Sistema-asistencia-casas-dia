@@ -33,6 +33,7 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { Tracker } from 'meteor/tracker'
+import GetAppIcon from '@material-ui/icons/GetApp';
 
 Tracker.autorun(()=>{
 
@@ -137,12 +138,13 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
           </ListSubheader>
                 }
             >
-                <ListItem button key={"Descargas"} onClick={() =>cambioRuta("descargas")}>
+                {((Meteor.user() && Meteor.user().profile.generarReportes) === true) ? (<ListItem button key={"Reportes"} onClick={() =>cambioRuta("descargas")}>
                     <ListItemIcon>
-                        <PeopleIcon />
+                        <GetAppIcon />
                     </ListItemIcon>
-                    <ListItemText primary={"Descargas"} />
-                </ListItem>
+                    <ListItemText primary={"Reportes"} />
+                </ListItem>):''}
+                
                 
                 {/*<ListItem button key={"Usuarios"} onClick={() =>cambioRuta("administrador")}>
                     <ListItemIcon>
