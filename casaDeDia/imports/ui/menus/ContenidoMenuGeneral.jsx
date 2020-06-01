@@ -44,6 +44,21 @@ const useStyles = makeStyles({
     fullList: {
         width: "auto",
     },
+    menu: {
+        height: "100vh",
+        maxHeight: "auto"
+    },
+    menuBar: {
+        backgroundColor: "#006400"
+    },
+    menuText: {
+        color: "white",
+        fontSize: "x-large",
+        position: "absolute",
+        top: "50%",
+        transform: "rotate(-90deg)",
+        textAlign: "center"
+    }
 });
 
 
@@ -321,11 +336,11 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
     
     if(usuarioLogeado !== null){
         return (
-            <div className="divMenu">
-            <span className="menuText">MENU</span>
+            <div className={classes.menuBar}>
+                <span className={classes.menuText}>MENU</span>
                 {["left"].map((anchor) => (
                     <React.Fragment key={anchor}>
-                        <Button onMouseEnter={toggleDrawer("left", true)} className="menu" ></Button>
+                        <Button onMouseEnter={toggleDrawer("left", true)} className={classes.menu} ></Button>
                         <Drawer
                             anchor={anchor}
                             open={state[anchor]}
