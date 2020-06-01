@@ -138,12 +138,13 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
           </ListSubheader>
                 }
             >
-                <ListItem button key={"Reportes"} onClick={() =>cambioRuta("descargas")}>
+                {((Meteor.user() && Meteor.user().profile.generarReportes) === true) ? (<ListItem button key={"Reportes"} onClick={() =>cambioRuta("descargas")}>
                     <ListItemIcon>
                         <GetAppIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Reportes"} />
-                </ListItem>
+                </ListItem>):''}
+                
                 
                 {/*<ListItem button key={"Usuarios"} onClick={() =>cambioRuta("administrador")}>
                     <ListItemIcon>

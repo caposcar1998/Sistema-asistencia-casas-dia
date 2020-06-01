@@ -44,5 +44,6 @@ let Schema = new SimpleSchema({
     visualizarTalleres:{type:String},
     visualizarConvocatorias:{type:String},
     visualizarCentros:{type:String},
-    visualizarColectivos:{type:String}
+    visualizarColectivos:{type:String},
+    generarReportes:{type:String}
 })
