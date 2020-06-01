@@ -110,7 +110,7 @@ export default function TablaAnadirPersonal({ clubSeleccionado, handleCerrarAnad
                 </TableHead>
                 <TableBody>
                     {clubSeleccionado.empleados.map((empleado) => (
-                        <EmpleadosCasaDeDia
+                        <EmpleadosClub
                             empleado={empleado}
                             eliminarEmpleado={eliminarEmpleado}
                             editarTrabajador={editarTrabajador}
@@ -160,7 +160,7 @@ function CrearNuevoUsuario({ clubSeleccionado, handleCerrarAnadirEmpleado }) {
     function crearUsuario() {
         return new Promise(
             (resolve, reject) => {
-                Meteor.call("anadirUsuario",
+                Meteor.call("anadirUsuarioClub",
                     clubSeleccionado._id,personaSeleccionada._id, personaSeleccionada.nombre, puesto,
                     (err, res) => {
                         if (err) {

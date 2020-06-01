@@ -5,6 +5,8 @@ import ModalCrearClub from '../modales/ModaCrearClub';
 import TarjetasClubes from './TarjetasClubes';
 import BorrarClub from './BorrarClub';
 import EditarClub from './EditarClub';
+import ModalAnadirPersonal from './ModalAnadirPersonal';
+import ModalAnadirUsuario from './ModalAnadirUsuario';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,6 +23,8 @@ export default function Clubes() {
     const [openEditarClub, setOpenEditarClub] = useState(false);
     const [openBorrarClub, setOpenBorrarClub] = useState(false);
     const [clubSeleccionado, setClubSeleccionado] = useState();
+    const [openAnadirEmpleado, setOpenAbrirEmpleado] = useState(false);
+    const [openAnadirPersona, setOpenAbrirPersona] = useState(false);
 
     const handleOpenBorrarClub = (club) => {
         setClubSeleccionado(club)
@@ -55,6 +59,24 @@ export default function Clubes() {
         setOpenModal(false);
     };
 
+    const handleOpenAnadirEmpleado = (club) => {
+        setClubSeleccionado(club)
+        setOpenAbrirEmpleado(true)
+     }
+
+    const handleOpenAnadirUsuario = (club) => {
+        setClubSeleccionado(club)
+        setOpenAbrirPersona(true)
+     }
+
+    const handleCerrarAnadirEmpleado = () => {
+        setOpenAbrirEmpleado(false)
+     }
+
+    const handleCerrarAnadirUsuario = () => {
+        setOpenAbrirPersona(false)
+     }
+
     function clubesServidor() {
         return new Promise(
             (resolve, reject) => {
@@ -87,6 +109,8 @@ export default function Clubes() {
                                 club={club}
                                 handleOpenBorrarClub={handleOpenBorrarClub}
                                 handleOpenEditarClub={handleOpenEditarClub}
+                                handleOpenAnadirEmpleado={handleOpenAnadirEmpleado}
+                                handleOpenAnadirUsuario={handleOpenAnadirUsuario}
                                 />
                     ))}
                         </Grid>  
@@ -110,6 +134,16 @@ export default function Clubes() {
                 handleCloseModal={handleCloseModal}
                 openModal={openModal}
                 clubesServidor={clubesServidor}
+            />
+            <ModalAnadirPersonal
+                clubSeleccionado={clubSeleccionado}
+                handleCerrarAnadirEmpleado={handleCerrarAnadirEmpleado}
+                openAnadirEmpleado={openAnadirEmpleado}
+            />
+            <ModalAnadirUsuario
+                clubSeleccionado={clubSeleccionado}
+                handleCerrarAnadirUsuario={handleCerrarAnadirUsuario}
+                openAnadirPersona={openAnadirPersona}
             />
         </>
     )

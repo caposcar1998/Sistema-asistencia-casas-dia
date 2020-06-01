@@ -165,8 +165,8 @@ Meteor.methods({
 
         Clubes.update
             (
-                { "usuarios": { $elemMatch: { "idReferencia": idAdultoMayor } } },
-                { $pull: { "usuarios": { "idReferencia": idAdultoMayor } } },
+                { "empleados": { $elemMatch: { "idReferencia": idEmpleado } } },
+                { $pull: { "empleados": { "idReferencia": idEmpleado } } },
                 false,
                 true
             )
