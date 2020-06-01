@@ -160,7 +160,7 @@ function CrearNuevoUsuario({ clubSeleccionado, handleCerrarAnadirEmpleado }) {
     function crearUsuario() {
         return new Promise(
             (resolve, reject) => {
-                Meteor.call("anadirUsuario",
+                Meteor.call("anadirUsuarioClub",
                     clubSeleccionado._id,personaSeleccionada._id, personaSeleccionada.nombre, puesto,
                     (err, res) => {
                         if (err) {

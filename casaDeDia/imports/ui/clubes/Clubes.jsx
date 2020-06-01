@@ -136,7 +136,7 @@ export default function Clubes() {
                 clubesServidor={clubesServidor}
             />
             <ModalAnadirPersonal
-                clubSeleccionada={clubSeleccionado}
+                clubSeleccionado={clubSeleccionado}
                 handleCerrarAnadirEmpleado={handleCerrarAnadirEmpleado}
                 openAnadirEmpleado={openAnadirEmpleado}
             />
