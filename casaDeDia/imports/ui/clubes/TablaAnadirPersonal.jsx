@@ -110,7 +110,7 @@ export default function TablaAnadirPersonal({ clubSeleccionado, handleCerrarAnad
                 </TableHead>
                 <TableBody>
                     {clubSeleccionado.empleados.map((empleado) => (
-                        <EmpleadosCasaDeDia
+                        <EmpleadosClub
                             empleado={empleado}
                             eliminarEmpleado={eliminarEmpleado}
                             editarTrabajador={editarTrabajador}

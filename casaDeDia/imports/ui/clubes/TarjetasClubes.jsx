@@ -4,6 +4,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import { List, ListItem, Grid, Typography, Card, CardContent, CardActions, CardMedia, CardHeader, Collapse } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -30,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function TarjetasClubes({ club, handleOpenBorrarClub, handleOpenEditarClub }) {
+export default function TarjetasClubes({ club, handleOpenAnadirUsuario,handleOpenAnadirEmpleado,handleOpenBorrarClub, handleOpenEditarClub }) {
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
 
@@ -47,6 +49,14 @@ export default function TarjetasClubes({ club, handleOpenBorrarClub, handleOpenE
 
         handleOpenEditarClub(club)
     }
+
+    const anadirPersonasMayores = () => {
+        handleOpenAnadirUsuario(club)
+     }
+
+    const anadirPersonal = () => {
+        handleOpenAnadirEmpleado(club)
+     }
     
     return (
 
@@ -72,6 +82,12 @@ export default function TarjetasClubes({ club, handleOpenBorrarClub, handleOpenE
                     </IconButton>
                     <IconButton aria-label="eliminar" onClick={getClubAEditar}>
                         <EditIcon />
+                    </IconButton>
+                    <IconButton aria-label="editar" onClick={anadirPersonal}>
+                        <PersonAddIcon/>
+                    </IconButton>
+                    <IconButton aria-label="editar" onClick={anadirPersonasMayores}>
+                        <GroupAddIcon />
                     </IconButton>
                     <IconButton
                         className={clsx(classes.expand, {
