@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function TablaAnadirPersonal({ asiloSeleccionado, handleCerrarAnadirEmpleado }) {
+export default function TablaAnadirPersonal({ asilosServidor,asiloSeleccionado, handleCerrarAnadirEmpleado }) {
     const classes = useStyles();
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
@@ -56,6 +56,8 @@ export default function TablaAnadirPersonal({ asiloSeleccionado, handleCerrarAna
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Empleado eliminado")
+                            asilosServidor()
+                            handleCerrarAnadirEmpleado()
                             resolve()
                         }
                     });
@@ -78,6 +80,8 @@ export default function TablaAnadirPersonal({ asiloSeleccionado, handleCerrarAna
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Empleado editado")
+                            asilosServidor()
+                            handleCerrarAnadirEmpleado()
                             resolve()
                         }
                     });
@@ -122,6 +126,7 @@ export default function TablaAnadirPersonal({ asiloSeleccionado, handleCerrarAna
 
             <CrearNuevoUsuario asiloSeleccionado={asiloSeleccionado}
                 handleCerrarAnadirEmpleado={handleCerrarAnadirEmpleado}
+                asilosServidor={asilosServidor}
             />
             {snackBarState &&
                 <CustomSnackbars type={alert} state={snackBarState} message={message} />
@@ -130,7 +135,7 @@ export default function TablaAnadirPersonal({ asiloSeleccionado, handleCerrarAna
     );
 }
 
-function CrearNuevoUsuario({ asiloSeleccionado, handleCerrarAnadirEmpleado }) {
+function CrearNuevoUsuario({ asilosServidor,asiloSeleccionado, handleCerrarAnadirEmpleado }) {
     const [personal, setPersonal] = useState([]);
     const [personaSeleccionada, setPersonaSeleccionada] = useState();
     const [puesto, setPuesto] = useState();
@@ -170,6 +175,8 @@ function CrearNuevoUsuario({ asiloSeleccionado, handleCerrarAnadirEmpleado }) {
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Exito al crear el usuario")
+                            asilosServidor()
+                            handleCerrarAnadirEmpleado()
                             resolve()
                         }
                     });
