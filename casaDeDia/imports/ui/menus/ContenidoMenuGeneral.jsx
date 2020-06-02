@@ -125,7 +125,7 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                 [classes.fullList]: anchor === "top" || anchor === "bottom",
             })}
             role="presentation"
-            onClick={toggleDrawer(anchor, false)}
+            //onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
             onMouseLeave={toggleDrawer(anchor, false)}
         >
@@ -162,7 +162,7 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
             </List>
             <Divider />
             <List>
-                <ListItem button onMouseEnter={desplazamientoLocalizaciones}>
+                <ListItem button onClick={desplazamientoLocalizaciones}>
                     <ListItemText primary={"Localizaciones"} />
                     {abrirLocalizaciones ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
@@ -221,7 +221,7 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
             </Collapse>
             
             <List>
-                <ListItem button onMouseEnter={desplazamientoRecusosHumanos}>
+                <ListItem button onClick={desplazamientoRecusosHumanos}>
                     <ListItemText primary={"Recursos Humanos"} />
                     {abrirRecusosHumanos ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
@@ -272,7 +272,7 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
             </List>    
             {(((Meteor.user() && Meteor.user().profile.visualizarBeneficios) !== true)) ? '': (<Divider />)}
             <List>
-                <ListItem button onMouseEnter={desplazamientoColectivos}>
+                <ListItem button onClick={desplazamientoColectivos}>
                     <ListItemText primary={"Colectivos"} />
                     {abrirColectivos ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
