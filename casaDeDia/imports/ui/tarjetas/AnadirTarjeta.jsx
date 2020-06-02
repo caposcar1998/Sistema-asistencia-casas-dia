@@ -100,8 +100,14 @@ function CrearSalud({tarjetasServidor, handleCloseModal }) {
             <Grid item xs={4}>
                 <Grid item xs={12}>Fecha Vigencia</Grid>
                 <Grid item xs={12}>
-                    <TextField id="fechaVigencia" label="fechaVigencia" value={fechaVigencia} onChange={(e) => setFechaVigencia(e.target.value)} />
-                </Grid>
+                        <TextField
+                            id="fechaVigencia"
+                            value={fechaVigencia}
+                            onChange={(e) => setFechaVigencia(e.target.value)} 
+                            type="date"
+                        />
+                       
+                    </Grid>
             </Grid>
             <Grid item xs={4}>
                 <Grid item xs={12}>Hospital</Grid>
@@ -236,13 +242,13 @@ function CrearDinero({ handleCloseModal, tarjetasServidor}) {
                 <Grid item xs={4}>
                     <Grid item xs={12}>Fecha vigencia</Grid>
                     <Grid item xs={12}>
-                        <TextField id="fechaVigencia" label="fechaVigencia" value={fechaVigencia} onChange={(e) => setFechaVigencia(e.target.value)} />
+                        <TextField type="date" id="fechaVigencia" value={fechaVigencia} onChange={(e) => setFechaVigencia(e.target.value)} />
                     </Grid>
                 </Grid>
                 <Grid item xs={4}>
                     <Grid item xs={12}>Cantidad</Grid>
                     <Grid item xs={12}>
-                        <TextField id="cantidad" label="cantidad" value={cantidad} onChange={(e) => setCantidad(e.target.value)} />
+                        <TextField type="number" id="cantidad" label="cantidad" value={cantidad} onChange={(e) => setCantidad(e.target.value)} />
                     </Grid>
                 </Grid>
                 <Grid item xs={4}>
@@ -359,13 +365,13 @@ function CrearDespensa({ handleCloseModal, tarjetasServidor }) {
                 <Grid item xs={4}>
                     <Grid item xs={12}>Fecha Vigencia</Grid>
                     <Grid item xs={12}>
-                        <TextField id="fechaVigencia" label="fechaVigencia" value={fechaVigencia} onChange={(e) => setFechaVigencia(e.target.value)} />
+                        <TextField type="date" id="fechaVigencia"  value={fechaVigencia} onChange={(e) => setFechaVigencia(e.target.value)} />
                     </Grid>
                 </Grid>
                 <Grid item xs={4}>
                     <Grid item xs={12}>Cantidad</Grid>
                     <Grid item xs={12}>
-                        <TextField id="cantidad" label="cantidad" value={cantidad} onChange={(e) => setCantidad(e.target.value)} />
+                        <TextField type="number" id="cantidad" label="cantidad" value={cantidad} onChange={(e) => setCantidad(e.target.value)} />
                     </Grid>
                 </Grid>
                 <Grid item xs={4}>
