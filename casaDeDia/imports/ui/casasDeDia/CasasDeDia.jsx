@@ -145,6 +145,7 @@ export default function CasasDeDia() {
                 casaSeleccionada={casaSeleccionada}
                 handleCerrarAnadirUsuario={handleCerrarAnadirUsuario}
                 openAnadirPersona={openAnadirPersona}
+                casasDeDiaServidor={casasDeDiaServidor}
             />
         </>
     )
