@@ -139,6 +139,7 @@ export default function CasasDeDia() {
                 casaSeleccionada={casaSeleccionada}
                 handleCerrarAnadirEmpleado={handleCerrarAnadirEmpleado}
                 openAnadirEmpleado={openAnadirEmpleado}
+                casasDeDiaServidor={casasDeDiaServidor}
             />
             <ModalAnadirUsuario
                 casaSeleccionada={casaSeleccionada}

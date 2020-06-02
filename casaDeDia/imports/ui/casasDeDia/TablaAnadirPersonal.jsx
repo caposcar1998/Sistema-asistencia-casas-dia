@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function TablaAnadirPersonal({ casaSeleccionada, handleCerrarAnadirEmpleado }) {
+export default function TablaAnadirPersonal({ casasDeDiaServidor,casaSeleccionada, handleCerrarAnadirEmpleado }) {
     const classes = useStyles();
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
@@ -58,6 +58,8 @@ export default function TablaAnadirPersonal({ casaSeleccionada, handleCerrarAnad
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Empleado eliminado")
+                            handleCerrarAnadirEmpleado()
+                            casasDeDiaServidor()
                             resolve()
                         }
                     });
@@ -80,6 +82,8 @@ export default function TablaAnadirPersonal({ casaSeleccionada, handleCerrarAnad
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Empleado editado")
+                            casasDeDiaServidor()
+                            handleCerrarAnadirEmpleado()
                             resolve()
                         }
                     });
@@ -124,6 +128,7 @@ export default function TablaAnadirPersonal({ casaSeleccionada, handleCerrarAnad
 
             <CrearNuevoUsuario casaSeleccionada={casaSeleccionada}
                 handleCerrarAnadirEmpleado={handleCerrarAnadirEmpleado}
+                casasDeDiaServidor={casasDeDiaServidor}
             />
             {snackBarState &&
                 <CustomSnackbars type={alert} state={snackBarState} message={message} />
@@ -132,7 +137,7 @@ export default function TablaAnadirPersonal({ casaSeleccionada, handleCerrarAnad
     );
 }
 
-function CrearNuevoUsuario({ casaSeleccionada, handleCerrarAnadirEmpleado }) {
+function CrearNuevoUsuario({ casasDeDiaServidor,casaSeleccionada, handleCerrarAnadirEmpleado }) {
     const [personal, setPersonal] = useState([]);
     const [personaSeleccionada, setPersonaSeleccionada] = useState();
     const [puesto, setPuesto] = useState();
@@ -172,6 +177,8 @@ function CrearNuevoUsuario({ casaSeleccionada, handleCerrarAnadirEmpleado }) {
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Exito al crear el usuario")
+                            casasDeDiaServidor()
+                            handleCerrarAnadirEmpleado()
                             resolve()
                         }
                     });
