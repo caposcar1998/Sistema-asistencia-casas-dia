@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function TablaAnadirPersonal({ asiloSeleccionado, handleCerrarAnadirUsuario }) {
+export default function TablaAnadirPersonal({ asilosServidor,asiloSeleccionado, handleCerrarAnadirUsuario }) {
     const classes = useStyles();
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
@@ -49,6 +49,8 @@ export default function TablaAnadirPersonal({ asiloSeleccionado, handleCerrarAna
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Usuario eliminado")
+                            asilosServidor()
+                            handleCerrarAnadirUsuario()
                             resolve()
                         }
                     });
@@ -64,7 +66,6 @@ export default function TablaAnadirPersonal({ asiloSeleccionado, handleCerrarAna
                     <Typography variant="h6" className={classes.title}>
                         {asiloSeleccionado.nombre}
                     </Typography>
-                    <Button color="inherit" >Anadir</Button>
                 </Toolbar>
             </AppBar>
 
@@ -90,6 +91,7 @@ export default function TablaAnadirPersonal({ asiloSeleccionado, handleCerrarAna
             <CrearNuevoUsuario
                 handleCerrarAnadirUsuario={handleCerrarAnadirUsuario}
                 asiloSeleccionado={asiloSeleccionado}
+                asilosServidor={asilosServidor}
             />
             {snackBarState &&
                 <CustomSnackbars type={alert} state={snackBarState} message={message} />
@@ -100,7 +102,7 @@ export default function TablaAnadirPersonal({ asiloSeleccionado, handleCerrarAna
 
 
 
-function CrearNuevoUsuario({ asiloSeleccionado, handleCerrarAnadirUsuario }) {
+function CrearNuevoUsuario({ asilosServidor,asiloSeleccionado, handleCerrarAnadirUsuario }) {
     const [usuarios, setUsuarios] = useState([]);
     const [personaSeleccionada, setPersonaSeleccionada] = useState();
     const [alert, setAlert] = useState();
@@ -139,6 +141,8 @@ function CrearNuevoUsuario({ asiloSeleccionado, handleCerrarAnadirUsuario }) {
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Exito al crear el usuario")
+                            asilosServidor()
+                            handleCerrarAnadirUsuario()
                             resolve()
                         }
                     });

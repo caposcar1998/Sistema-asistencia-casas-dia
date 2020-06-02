@@ -135,20 +135,20 @@ export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada
         <>
 
             <Grid container>
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                     <Grid item xs={12}>Nombre</Grid>
                     <Grid item xs={12}>
                         <TextField id="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
                     </Grid>
                 </Grid>
 
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                     <Grid item xs={12}>Direccion</Grid>
                     <Grid item xs={12}>
                         <TextField id="direccion" value={direccion} onChange={(e) => setDireccion(e.target.value)} />
                     </Grid>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                     <Grid item xs={12}>Actividades</Grid>
                     <Grid item xs={12}>
 
@@ -172,7 +172,7 @@ export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada
 
                     </Grid>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                     <Grid item xs={12}>Restricciones</Grid>
                     <Grid item xs={12}>
                         <Select
@@ -195,7 +195,7 @@ export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada
 
                     </Grid>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                     <Grid item xs={12}>Hora apertura</Grid>
                     <Grid item xs={12}>
                         <TextField
@@ -206,7 +206,7 @@ export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada
                         />
                     </Grid>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                     <Grid item xs={12}>Hora cierre</Grid>
                     <Grid item xs={12}>
                         <TextField
@@ -217,7 +217,7 @@ export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada
                         />
                     </Grid>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                     <Grid item xs={12}>Codigo postal</Grid>
                     <Grid item xs={12}>
                         <TextField
@@ -228,7 +228,7 @@ export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada
                         />
                     </Grid>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                     <Grid item xs={12}>Cupo limite</Grid>
                     <Grid item xs={12}>
                         <Select
@@ -252,7 +252,7 @@ export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada
                         </Select>
                     </Grid>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                     <Grid item xs={12}>Seleccionar foto</Grid>
                     <Grid item xs={12}>
                         <Input
@@ -268,7 +268,7 @@ export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada
                             )}
                     </Grid>
                 </Grid>
-                <Grid item xs={4} />
+                <Grid item xs={12} />
                 <Grid item xs={8}>
                     <Button variant="contained" onClick={handleCerrarEditarCasaDia} color="secondary">Cancelar</Button>
                     <Button variant="contained" onClick={editarCasaDeDia} color="primary">Editar</Button>

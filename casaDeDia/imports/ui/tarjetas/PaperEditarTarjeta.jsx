@@ -43,7 +43,7 @@ export default function PaperEditarTarjeta({ handleCerrarEditarTarjeta, tarjetaS
 
 
 
-function EditarSalud({ tarjetasServidor, handleCloseModal, tarjetaSeleccionada }) {
+function EditarSalud({ tarjetasServidor, handleCerrarEditarTarjeta, tarjetaSeleccionada }) {
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
     const [message, setMessage] = useState();
@@ -75,13 +75,13 @@ function EditarSalud({ tarjetasServidor, handleCloseModal, tarjetaSeleccionada }
                             setAlert("error")
                             setSnackBarState(true)
                             setMessage("Error al editar tarjeta")
-                            handleCloseModal()
+                            handleCerrarEditarTarjeta()
                             reject()
                         } else {
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Registro correcto")
-                            handleCloseModal()
+                            handleCerrarEditarTarjeta()
                             tarjetasServidor()
                             resolve()
                         }
@@ -116,7 +116,11 @@ function EditarSalud({ tarjetasServidor, handleCloseModal, tarjetaSeleccionada }
                 <Grid item xs={4}>
                     <Grid item xs={12}>Fecha Vigencia</Grid>
                     <Grid item xs={12}>
-                        <TextField id="fechaVigencia" label="fechaVigencia" value={fechaVigencia} onChange={(e) => setFechaVigencia(e.target.value)} />
+                        <TextField
+                            type="date"
+                            id="fechaVigencia"
+                            value={fechaVigencia}
+                            onChange={(e) => setFechaVigencia(e.target.value)} />
                     </Grid>
                 </Grid>
                 <Grid item xs={4}>
@@ -150,7 +154,7 @@ function EditarSalud({ tarjetasServidor, handleCloseModal, tarjetaSeleccionada }
                 </Grid>
                 <Grid item xs={4} />
                 <Grid item xs={4}>
-                    <Button variant="contained" onClick={editarTarjetaSalud} color="primary">Crear</Button>
+                    <Button variant="contained" onClick={editarTarjetaSalud} color="primary">Editar</Button>
                 </Grid>
 
             </Grid>
@@ -161,7 +165,7 @@ function EditarSalud({ tarjetasServidor, handleCloseModal, tarjetaSeleccionada }
     )
 }
 
-function EditarDinero({ tarjetasServidor, handleCloseModal, tarjetaSeleccionada }) {
+function EditarDinero({ tarjetasServidor, handleCerrarEditarTarjeta, tarjetaSeleccionada }) {
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
     const [open, setOpen] = useState(false);
@@ -195,13 +199,13 @@ function EditarDinero({ tarjetasServidor, handleCloseModal, tarjetaSeleccionada 
                             setAlert("error")
                             setSnackBarState(true)
                             setMessage("Error al editar tarjeta")
-                            handleCloseModal()
+                            handleCerrarEditarTarjeta()
                             reject()
                         } else {
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Registro correcto")
-                            handleCloseModal()
+                            handleCerrarEditarTarjeta()
                             tarjetasServidor()
                             resolve()
                         }
@@ -262,13 +266,13 @@ function EditarDinero({ tarjetasServidor, handleCloseModal, tarjetaSeleccionada 
                 <Grid item xs={4}>
                     <Grid item xs={12}>Fecha vigencia</Grid>
                     <Grid item xs={12}>
-                        <TextField id="fechaVigencia" label="fechaVigencia" value={fechaVigencia} onChange={(e) => setFechaVigencia(e.target.value)} />
+                        <TextField type="date" id="fechaVigencia" value={fechaVigencia} onChange={(e) => setFechaVigencia(e.target.value)} />
                     </Grid>
                 </Grid>
                 <Grid item xs={4}>
                     <Grid item xs={12}>Cantidad</Grid>
                     <Grid item xs={12}>
-                        <TextField id="cantidad" label="cantidad" value={cantidad} onChange={(e) => setCantidad(e.target.value)} />
+                        <TextField type="number" id="cantidad" label="cantidad" value={cantidad} onChange={(e) => setCantidad(e.target.value)} />
                     </Grid>
                 </Grid>
                 <Grid item xs={4}>
@@ -309,7 +313,7 @@ function EditarDinero({ tarjetasServidor, handleCloseModal, tarjetaSeleccionada 
                 </Grid>
                 <Grid item xs={4} />
                 <Grid item xs={4}>
-                    <Button variant="contained" onClick={editarjetaDinero} color="primary">Crear</Button>
+                    <Button variant="contained" onClick={editarjetaDinero} color="primary">Editar</Button>
                 </Grid>
 
             </Grid>
@@ -320,7 +324,7 @@ function EditarDinero({ tarjetasServidor, handleCloseModal, tarjetaSeleccionada 
     )
 }
 
-function EditarDespensa({ tarjetasServidor, handleCloseModal, tarjetaSeleccionada }) {
+function EditarDespensa({ tarjetasServidor, handleCerrarEditarTarjeta, tarjetaSeleccionada }) {
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
     const [message, setMessage] = useState();
@@ -353,13 +357,13 @@ function EditarDespensa({ tarjetasServidor, handleCloseModal, tarjetaSeleccionad
                             setAlert("error")
                             setSnackBarState(true)
                             setMessage("Error al editar tarjeta")
-                            handleCloseModal()
+                            handleCerrarEditarTarjeta()
                             reject()
                         } else {
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Registro correcto")
-                            handleCloseModal()
+                            handleCerrarEditarTarjeta()
                             tarjetasServidor()
                             resolve()
                         }
@@ -394,13 +398,13 @@ function EditarDespensa({ tarjetasServidor, handleCloseModal, tarjetaSeleccionad
                 <Grid item xs={4}>
                     <Grid item xs={12}>Fecha Vigencia</Grid>
                     <Grid item xs={12}>
-                        <TextField id="fechaVigencia" label="fechaVigencia" value={fechaVigencia} onChange={(e) => setFechaVigencia(e.target.value)} />
+                        <TextField type="date" id="fechaVigencia"  value={fechaVigencia} onChange={(e) => setFechaVigencia(e.target.value)} />
                     </Grid>
                 </Grid>
                 <Grid item xs={4}>
                     <Grid item xs={12}>Cantidad</Grid>
                     <Grid item xs={12}>
-                        <TextField id="cantidad" label="cantidad" value={cantidad} onChange={(e) => setCantidad(e.target.value)} />
+                        <TextField type="number" id="cantidad" label="cantidad" value={cantidad} onChange={(e) => setCantidad(e.target.value)} />
                     </Grid>
                 </Grid>
                 <Grid item xs={4}>
@@ -428,7 +432,7 @@ function EditarDespensa({ tarjetasServidor, handleCloseModal, tarjetaSeleccionad
                 </Grid>
                 <Grid item xs={4} />
                 <Grid item xs={4}>
-                    <Button variant="contained" onClick={editarTarjetaDespensa} color="primary">Crear</Button>
+                    <Button variant="contained" onClick={editarTarjetaDespensa} color="primary">Editar</Button>
                 </Grid>
 
             </Grid>
