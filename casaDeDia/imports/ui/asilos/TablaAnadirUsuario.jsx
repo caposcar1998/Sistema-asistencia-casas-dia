@@ -66,7 +66,6 @@ export default function TablaAnadirPersonal({ asilosServidor,asiloSeleccionado, 
                     <Typography variant="h6" className={classes.title}>
                         {asiloSeleccionado.nombre}
                     </Typography>
-                    <Button color="inherit" >Anadir</Button>
                 </Toolbar>
             </AppBar>
 

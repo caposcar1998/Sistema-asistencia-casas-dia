@@ -66,7 +66,6 @@ export default function TablaAnadirPersonal({ casasDeDiaServidor,casaSeleccionad
                     <Typography variant="h6" className={classes.title}>
                         {casaSeleccionada.nombre}
                     </Typography>
-                    <Button color="inherit" >Anadir</Button>
                 </Toolbar>
             </AppBar>
 
