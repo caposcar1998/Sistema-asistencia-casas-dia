@@ -145,7 +145,7 @@ function CrearSalud({tarjetasServidor, handleCloseModal }) {
     )
 }
 
-function CrearDinero() {
+function CrearDinero({ handleCloseModal, tarjetasServidor}) {
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
     const [open, setOpen] = useState(false);
@@ -294,7 +294,7 @@ function CrearDinero() {
     )
 }
 
-function CrearDespensa() {
+function CrearDespensa({ handleCloseModal, tarjetasServidor }) {
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
     const [open, setOpen] = useState(false);
