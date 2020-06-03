@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function TablaAnadirPersonal({ clubSeleccionado, handleCerrarAnadirEmpleado }) {
+export default function TablaAnadirPersonal({ clubesServidor,clubSeleccionado, handleCerrarAnadirEmpleado }) {
     const classes = useStyles();
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
@@ -58,6 +58,8 @@ export default function TablaAnadirPersonal({ clubSeleccionado, handleCerrarAnad
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Empleado eliminado")
+                            handleCerrarAnadirEmpleado()
+                            clubesServidor()
                             resolve()
                         }
                     });
@@ -80,6 +82,8 @@ export default function TablaAnadirPersonal({ clubSeleccionado, handleCerrarAnad
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Empleado editado")
+                            clubesServidor()
+                            handleCerrarAnadirEmpleado()
                             resolve()
                         }
                     });
@@ -94,7 +98,6 @@ export default function TablaAnadirPersonal({ clubSeleccionado, handleCerrarAnad
                     <Typography variant="h6" className={classes.title}>
                         {clubSeleccionado.nombre}
           </Typography>
-                    <Button color="inherit" >Anadir</Button>
                 </Toolbar>
             </AppBar>
         
@@ -124,6 +127,7 @@ export default function TablaAnadirPersonal({ clubSeleccionado, handleCerrarAnad
 
             <CrearNuevoUsuario clubSeleccionado={clubSeleccionado}
                 handleCerrarAnadirEmpleado={handleCerrarAnadirEmpleado}
+                clubesServidor={clubesServidor}
             />
             {snackBarState &&
                 <CustomSnackbars type={alert} state={snackBarState} message={message} />
@@ -132,7 +136,7 @@ export default function TablaAnadirPersonal({ clubSeleccionado, handleCerrarAnad
     );
 }
 
-function CrearNuevoUsuario({ clubSeleccionado, handleCerrarAnadirEmpleado }) {
+function CrearNuevoUsuario({ clubesServidor,clubSeleccionado, handleCerrarAnadirEmpleado }) {
     const [personal, setPersonal] = useState([]);
     const [personaSeleccionada, setPersonaSeleccionada] = useState();
     const [puesto, setPuesto] = useState();
@@ -172,6 +176,8 @@ function CrearNuevoUsuario({ clubSeleccionado, handleCerrarAnadirEmpleado }) {
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Exito al crear el usuario")
+                            clubesServidor()
+                            handleCerrarAnadirEmpleado()
                             resolve()
                         }
                     });
