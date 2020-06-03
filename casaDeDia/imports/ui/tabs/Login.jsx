@@ -22,8 +22,7 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(1),
         textAlign: 'center',
         color: theme.palette.text.secondary,
-        whiteSpace: 'nowrap',
-        marginBottom: theme.spacing(1),
+ 
     },
     inputRoot: {
         fontSize: 30
@@ -70,7 +69,7 @@ export default function Login() {
 
       <>
           <CssBaseline />
-          <Container>
+
               <Grid container
                   spacing={0}
                   direction="column"
@@ -121,7 +120,7 @@ export default function Login() {
                   
                 </Grid>
                 
-          </Container>
+         
       </>
       
 

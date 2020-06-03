@@ -137,11 +137,13 @@ export default function Asilos() {
                 asiloSeleccionado={asiloSeleccionado}
                 handleCerrarAnadirEmpleado={handleCerrarAnadirEmpleado}
                 openAnadirEmpleado={openAnadirEmpleado}
+                asilosServidor={asilosServidor}
             />
             <ModalAnadirUsuario
                 asiloSeleccionado={asiloSeleccionado}
                 handleCerrarAnadirUsuario={handleCerrarAnadirUsuario}
                 openAnadirPersona={openAnadirPersona}
+                asilosServidor={asilosServidor}
             />
         </>
     )
