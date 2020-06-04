@@ -3,6 +3,7 @@ import { ServiciosHospital } from '../serviciosHospital/serviciosHospital';
 import { CasasDeDia } from "../casasDeDia/casasDeDia";
 import { Clubes } from "../clubes/clubes";
 import { Asilos } from "../asilos/asilos";
+import { Tarjetas } from '../tarjetas/tarjetas';
 
 Meteor.methods({
 
@@ -41,6 +42,15 @@ Meteor.methods({
                 "_id": ServicioHospital
             }
         )
+        Tarjetas.update
+            (
+                { "servicios": { $elemMatch: { "_id": ServicioHospital } } },
+                { $pull: { "servicios": { "_id": ServicioHospital } } },
+                false,
+                true
+            )
+
+    
 
 
     },
