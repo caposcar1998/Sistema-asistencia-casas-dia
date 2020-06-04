@@ -324,12 +324,33 @@ function CrearDinero({ handleCloseModal, tarjetasServidor}) {
 function CrearDespensa({ handleCloseModal, tarjetasServidor }) {
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
-    const [open, setOpen] = useState(false);
     const [message, setMessage] = useState();
     const [nombre, setNombre] = useState("");
     const [fechaVigencia, setFechaVigencia] = useState("");
     const [cantidad, setCantidad] = useState()
     const [lugaresAceptados, setLugaresAceptados] = useState([]);
+    const [lugaresServidor, setlugaresServidor] = useState([]);
+
+
+    useEffect(() => {
+        lugaresServidorFuncion();
+    }, []);
+
+    function lugaresServidorFuncion() {
+        return new Promise(
+            (resolve, reject) => {
+                Meteor.call("leerEstablecimiento",
+                    (err, res) => {
+                        if (err) {
+                            reject()
+                        } else {
+                            setlugaresServidor(res)
+                            resolve()
+                        }
+                    });
+            }
+        )
+    }
 
     function handleChangeLugares(event) {
         setLugaresAceptados(event.target.value);
@@ -408,10 +429,10 @@ function CrearDespensa({ handleCloseModal, tarjetasServidor }) {
                             renderValue={(selected) => selected.join(', ')}
                             MenuProps={MenuProps}
                         >
-                            {lugaresAceptadosDespensa.map((lugar) => (
-                                <MenuItem key={lugar} value={lugar}>
+                            {lugaresServidor.map((lugar) => (
+                                <MenuItem key={lugar.nombre} value={lugar}>
                                     <Checkbox checked={lugaresAceptados.indexOf(lugar) > -1} />
-                                    <ListItemText primary={lugar} />
+                                    <ListItemText primary={lugar.nombre} />
                                 </MenuItem>
                             ))}
                         </Select>
