@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, TextField, Select, Checkbox, MenuItem, Button, Input, ListItemText, Typography } from '@material-ui/core';
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
-import { serviciosDisponibles } from '../../utilities/tablasEstaticas/servicios';
-import { lugaresAceptadosDespensa } from '../../utilities/tablasEstaticas/lugaresAceptados';
 
 
 export default function PaperEditarTarjeta({ handleCerrarEditarTarjeta, tarjetaSeleccionada, tarjetasServidor }) {
@@ -51,8 +49,10 @@ function EditarSalud({ tarjetasServidor, handleCerrarEditarTarjeta, tarjetaSelec
     const [fechaVigencia, setFechaVigencia] = useState("");
     const [hospital, setHospital] = useState("");
     const [servicios, setServicios] = useState([]);
+    const [serviciosDisponibles, setServiciosDisponibles] = useState([]);
 
     useEffect(() => {
+        serviciosServidor();
         tarjetasServidor();
         setNombre(tarjetaSeleccionada.nombre);
         setFechaVigencia(tarjetaSeleccionada.fechaVigencia);
@@ -64,6 +64,24 @@ function EditarSalud({ tarjetasServidor, handleCerrarEditarTarjeta, tarjetaSelec
     function handleChangeServicios(event) {
         setServicios(event.target.value);
     }
+
+
+    function serviciosServidor() {
+        return new Promise(
+            (resolve, reject) => {
+                Meteor.call("leerServicioHospital",
+                    (err, res) => {
+                        if (err) {
+                            reject()
+                        } else {
+                            setServiciosDisponibles(res)
+                            resolve()
+                        }
+                    });
+            }
+        )
+    }
+
 
     function editarTarjetaSalud() {
         return new Promise(
@@ -143,9 +161,9 @@ function EditarSalud({ tarjetasServidor, handleCerrarEditarTarjeta, tarjetaSelec
                             MenuProps={MenuProps}
                         >
                             {serviciosDisponibles.map((servicio) => (
-                                <MenuItem key={servicio} value={servicio}>
+                                <MenuItem key={servicio.nombre} value={servicio}>
                                     <Checkbox checked={servicios.indexOf(servicio) > -1} />
-                                    <ListItemText primary={servicio} />
+                                    <ListItemText primary={servicio.nombre} />
                                 </MenuItem>
                             ))}
                         </Select>
@@ -332,6 +350,7 @@ function EditarDespensa({ tarjetasServidor, handleCerrarEditarTarjeta, tarjetaSe
     const [fechaVigencia, setFechaVigencia] = useState("");
     const [cantidad, setCantidad] = useState()
     const [lugaresAceptados, setLugaresAceptados] = useState([]);
+    const [lugaresServidor, setlugaresServidor] = useState([]);
 
 
 
@@ -341,7 +360,24 @@ function EditarDespensa({ tarjetasServidor, handleCerrarEditarTarjeta, tarjetaSe
         setFechaVigencia(tarjetaSeleccionada.fechaVigencia);
         setCantidad(tarjetaSeleccionada.cantidad);
         setLugaresAceptados(tarjetaSeleccionada.lugaresAceptados);
+        lugaresServidorFuncion();
     }, []);
+
+    function lugaresServidorFuncion() {
+        return new Promise(
+            (resolve, reject) => {
+                Meteor.call("leerEstablecimiento",
+                    (err, res) => {
+                        if (err) {
+                            reject()
+                        } else {
+                            setlugaresServidor(res)
+                            resolve()
+                        }
+                    });
+            }
+        )
+    }
 
     function handleChangeLugares(event) {
         setLugaresAceptados(event.target.value);
@@ -420,10 +456,10 @@ function EditarDespensa({ tarjetasServidor, handleCerrarEditarTarjeta, tarjetaSe
                             renderValue={(selected) => selected.join(', ')}
                             MenuProps={MenuProps}
                         >
-                            {lugaresAceptadosDespensa.map((lugar) => (
-                                <MenuItem key={lugar} value={lugar}>
+                            {lugaresServidor.map((lugar) => (
+                                <MenuItem key={lugar.nombre} value={lugar}>
                                     <Checkbox checked={lugaresAceptados.indexOf(lugar) > -1} />
-                                    <ListItemText primary={lugar} />
+                                    <ListItemText primary={lugar.nombre} />
                                 </MenuItem>
                             ))}
                         </Select>

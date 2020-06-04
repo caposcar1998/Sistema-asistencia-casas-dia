@@ -3,6 +3,7 @@ import { Establecimientos } from '../establecimientos/establecimientos';
 import { CasasDeDia } from "../casasDeDia/casasDeDia";
 import { Clubes } from "../clubes/clubes";
 import { Asilos } from "../asilos/asilos";
+import { Tarjetas } from '../tarjetas/tarjetas';
 
 Meteor.methods({
 
@@ -39,6 +40,14 @@ Meteor.methods({
                 "_id": Establecimiento
             }
         )
+
+        Tarjetas.update
+            (
+                { "lugaresAceptados": { $elemMatch: { "_id": Establecimiento } } },
+                { $pull: { "lugaresAceptados": { "_id": Establecimiento } } },
+                false,
+                true
+            )
         
     },
 

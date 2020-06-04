@@ -199,30 +199,15 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                 </ListItem>):''}
             </List>
             </Collapse>
-                {((Meteor.user() && Meteor.user().profile.visualizarActividades) === true) ? (<ListItem button key={"Actividades"} onClick={() => cambioRuta('actividades')}>
-                    <ListItemIcon>
-                        <LocalActivityIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={"Actividades"} />
-                </ListItem>):''}
-
-                {((Meteor.user() && Meteor.user().profile.visualizarActividades) === true) ? (<ListItem button key={"Establecimientos"} onClick={() => cambioRuta('establecimientos')}>
-                    <ListItemIcon>
-                        <StoreIcon/>
-                    </ListItemIcon>
-                <ListItemText primary={"Establecimientos"} />
-            </ListItem>) : ''}
-            
-                {((Meteor.user() && Meteor.user().profile.visualizarActividades) === true) ? (<ListItem button key={"ServiciosHospital"} onClick={() => cambioRuta('serviciosHospital')}>
-                    <ListItemIcon>
-                        <LocalHospitalIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={"Servicios de Hospital"} />
-                </ListItem>) : ''}
-
 
                 {(((Meteor.user() && Meteor.user().profile.visualizarRestricciones) !== true)) ? '': (<Divider />)}
-                {((Meteor.user() && Meteor.user().profile.visualizarRestricciones) === true) ? (<ListItem button key={"Restricciones"} onClick={() => cambioRuta('restricciones')}>
+            {((Meteor.user() && Meteor.user().profile.visualizarActividades) === true) ? (<ListItem button key={"Actividades"} onClick={() => cambioRuta('actividades')}>
+                <ListItemIcon>
+                    <LocalActivityIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Actividades"} />
+            </ListItem>) : ''}    
+            {((Meteor.user() && Meteor.user().profile.visualizarRestricciones) === true) ? (<ListItem button key={"Restricciones"} onClick={() => cambioRuta('restricciones')}>
                     <ListItemIcon>
                         <AssignmentLateIcon />
                     </ListItemIcon>
@@ -237,7 +222,19 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                         <StyleIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Tarjetas"} />
-                </ListItem>):''}
+                </ListItem>) : ''}
+                {((Meteor.user() && Meteor.user().profile.visualizarActividades) === true) ? (<ListItem button key={"ServiciosHospital"} onClick={() => cambioRuta('serviciosHospital')}>
+                    <ListItemIcon>
+                        <LocalHospitalIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Servicios de Hospital"} />
+                </ListItem>) : ''}
+                {((Meteor.user() && Meteor.user().profile.visualizarActividades) === true) ? (<ListItem button key={"Establecimientos"} onClick={() => cambioRuta('establecimientos')}>
+                    <ListItemIcon>
+                        <StoreIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Establecimientos"} />
+                </ListItem>) : ''}
             </List>
             <Collapse in={abrirLocalizaciones} timeout="auto" unmountOnExit>
             {(((Meteor.user() && Meteor.user().profile.visualizarAsilo) !== true) && 
