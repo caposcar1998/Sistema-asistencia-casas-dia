@@ -97,7 +97,7 @@ export default function TarjetasDeTarjetas({ tarjeta, handleOpenBorrarTarjeta, h
                                             (tarjeta.servicios).map((servicio) => (
                                             <ListItem>
                                                 <Typography>
-                                                        {servicio}
+                                                        {servicio.nombre}
                                                 </Typography>
                                             </ListItem>
 
@@ -137,7 +137,7 @@ export default function TarjetasDeTarjetas({ tarjeta, handleOpenBorrarTarjeta, h
                                                     (tarjeta.lugaresAceptados).map((lugares) => (
                                                         <ListItem>
                                                             <Typography>
-                                                                {lugares}
+                                                                {lugares.nombre}
                                                             </Typography>
                                                         </ListItem>
 
