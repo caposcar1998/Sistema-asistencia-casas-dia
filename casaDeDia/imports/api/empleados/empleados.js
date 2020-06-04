@@ -59,4 +59,5 @@ let Schema = new SimpleSchema({
     visualizarCentros:{type:String},
     visualizarColectivos:{type:String},
     generarReportes:{type:String},
+    visualizarRestricciones:{type:String},
 })

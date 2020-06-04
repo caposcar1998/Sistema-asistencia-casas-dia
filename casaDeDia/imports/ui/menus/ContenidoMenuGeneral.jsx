@@ -34,6 +34,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { Tracker } from 'meteor/tracker'
 import GetAppIcon from '@material-ui/icons/GetApp';
+import AssignmentLateIcon from '@material-ui/icons/AssignmentLate';
 
 Tracker.autorun(()=>{
 
@@ -125,7 +126,7 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                 [classes.fullList]: anchor === "top" || anchor === "bottom",
             })}
             role="presentation"
-            onClick={toggleDrawer(anchor, false)}
+            //onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
             onMouseLeave={toggleDrawer(anchor, false)}
         >
@@ -162,7 +163,7 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
             </List>
             <Divider />
             <List>
-                <ListItem button onMouseEnter={desplazamientoLocalizaciones}>
+                <ListItem button onClick={desplazamientoLocalizaciones}>
                     <ListItemText primary={"Localizaciones"} />
                     {abrirLocalizaciones ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
@@ -202,6 +203,13 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                     </ListItemIcon>
                     <ListItemText primary={"Actividades"} />
                 </ListItem>):''}
+                {(((Meteor.user() && Meteor.user().profile.visualizarRestricciones) !== true)) ? '': (<Divider />)}
+                {((Meteor.user() && Meteor.user().profile.visualizarRestricciones) === true) ? (<ListItem button key={"Restricciones"} onClick={() => cambioRuta('restricciones')}>
+                    <ListItemIcon>
+                        <AssignmentLateIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Restricciones"} />
+                </ListItem>):''}
             
             {(((Meteor.user() && Meteor.user().profile.visualizarTarjetas) !== true)) ? '': (<Divider />)}
             <List>
@@ -217,11 +225,12 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
             ((Meteor.user() && Meteor.user().profile.visualizarCasasDeDia) !== true) && 
             ((Meteor.user() && Meteor.user().profile.visualizarClues) !== true) &&
             ((Meteor.user() && Meteor.user().profile.visualizarServicios) !== true) &&
+            ((Meteor.user() && Meteor.user().profile.visualizarRestricciones) !== true) &&
             ((Meteor.user() && Meteor.user().profile.visualizarActividades) !== true)) ? '': (<Divider />)}
             </Collapse>
             
             <List>
-                <ListItem button onMouseEnter={desplazamientoRecusosHumanos}>
+                <ListItem button onClick={desplazamientoRecusosHumanos}>
                     <ListItemText primary={"Recursos Humanos"} />
                     {abrirRecusosHumanos ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
@@ -272,7 +281,7 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
             </List>    
             {(((Meteor.user() && Meteor.user().profile.visualizarBeneficios) !== true)) ? '': (<Divider />)}
             <List>
-                <ListItem button onMouseEnter={desplazamientoColectivos}>
+                <ListItem button onClick={desplazamientoColectivos}>
                     <ListItemText primary={"Colectivos"} />
                     {abrirColectivos ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>

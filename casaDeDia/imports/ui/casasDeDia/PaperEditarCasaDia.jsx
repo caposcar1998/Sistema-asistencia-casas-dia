@@ -1,7 +1,6 @@
 import React, {useEffect, useState } from 'react';
 import { Grid, TextField, Select, Checkbox, MenuItem, Button, Input, ListItemText } from '@material-ui/core';
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
-import { listaRestricciones } from '../../utilities/tablasEstaticas/restricciones';
 
 
 export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada, handleCerrarEditarCasaDia }) {
@@ -17,16 +16,17 @@ export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada
     const [snackBarState, setSnackBarState] = useState();
     const [open, setOpen] = useState(false);
     const [actividadesDisponibles, setActividadesDisponible] = useState([]);
+    const [restriccionesDisponibles, setRestriccionesDisponible] = useState([]);
     const [message, setMessage] = useState();
     const [image, setImage] = useState('')
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         actividadesServidor();
+        restriccionesServidor();
         setNombre(casaSeleccionada.nombre);
         setDireccion(casaSeleccionada.direccion);
         setActividades(casaSeleccionada.actividades);
-        setRestricciones(casaSeleccionada.restricciones);
         setHorarioApertura(casaSeleccionada.horarioApertura);
         setHorarioCierre(casaSeleccionada.horarioCierre);
         setCupoLimite(casaSeleccionada.cupoLimite);
@@ -102,6 +102,22 @@ export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada
                         }
                     });
             }
+        )
+    }
+
+    function restriccionesServidor() { 
+        return new Promise(
+                (resolve, reject) => {
+                        Meteor.call("leerRestriccion",
+                                (err, res) => {
+                                        if (err) {
+                                                reject()
+                                        } else {
+                                                setRestriccionesDisponible(res)
+                                                resolve()
+                                        }
+                                });
+                }
         )
     }
 
@@ -185,7 +201,7 @@ export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada
                             renderValue={(selected) => selected.join(', ')}
                             MenuProps={MenuProps}
                         >
-                            {listaRestricciones.map((restriccion) => (
+                            {restriccionesDisponibles.map((restriccion) => (
                                 <MenuItem key={restriccion.nombre} value={restriccion}>
                                     <Checkbox checked={restricciones.indexOf(restriccion) > -1} />
                                     <ListItemText primary={restriccion.nombre} />
