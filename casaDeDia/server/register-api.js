@@ -15,6 +15,7 @@ import "../imports/api/instructores/methods";
 import "../imports/api/empleados/methods";
 import "../imports/api/actividades/methods";
 import "../imports/api/serviciosHospital/methods";
+import "../imports/api/establecimientos/methods"
 import "../imports/api/userLogin/methods";
 
 //Methods from team lila

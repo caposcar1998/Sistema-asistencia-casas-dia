@@ -24,6 +24,7 @@ import InstructoresTab from "../../ui/tabs/InstructoresTab";
 import EmpleadosTab from "../../ui/tabs/EmpleadosTab";
 import ActividadesTab from "../../ui/tabs/ActividadesTab";
 import ServiciosHospitalTab from "../../ui/tabs/ServiciosHospitalTab"
+import EstablecimientosTab from "../../ui/tabs/EstablecimientosTab"
 
 import TutorTab from "../../ui/tabs/TutoresTab";
 import TalleresTab from "../../ui/tabs/TalleresTab";
@@ -157,6 +158,16 @@ FlowRouter.route('/administrador/serviciosHospital', {
     action() {
         mount(AdministradorPage, {
             content: <ServiciosHospitalTab />
+
+        })
+    }
+})
+
+FlowRouter.route('/administrador/establecimientos', {
+    name: 'establecimientos',
+    action() {
+        mount(AdministradorPage, {
+            content: <EstablecimientosTab />
 
         })
     }
