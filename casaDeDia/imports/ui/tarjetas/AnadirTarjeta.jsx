@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Typography,Grid, Paper, TextField, Select, MenuItem, Button, Checkbox, ListItemText, Input, LinearProgress } from '@material-ui/core';
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
-import { serviciosDisponibles } from '../../utilities/tablasEstaticas/servicios';
 import { lugaresAceptadosDespensa } from '../../utilities/tablasEstaticas/lugaresAceptados';
 
 
@@ -38,12 +37,34 @@ export default function AnadirTarjeta({ tipoTarjeta,tarjetasServidor, handleClos
 function CrearSalud({tarjetasServidor, handleCloseModal }) {
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
-    const [open, setOpen] = useState(false);
     const [message, setMessage] = useState();
     const [nombre, setNombre] = useState("");
     const [fechaVigencia, setFechaVigencia] = useState("");
     const [hospital, setHospital] = useState("");
     const [servicios, setServicios] = useState([]);
+    const [serviciosDisponibles, setServiciosDisponibles] = useState([]);
+
+
+    useEffect(() => {
+        serviciosServidor();
+    }, []);
+
+    function serviciosServidor() {
+        return new Promise(
+            (resolve, reject) => {
+                Meteor.call("leerServicioHospital",
+                    (err, res) => {
+                        if (err) {
+                            reject()
+                        } else {
+                            setServiciosDisponibles(res)
+                            resolve()
+                        }
+                    });
+            }
+        )
+     }
+
 
     function handleChangeServicios(event) {
         setServicios(event.target.value);
@@ -129,9 +150,9 @@ function CrearSalud({tarjetasServidor, handleCloseModal }) {
                         MenuProps={MenuProps}
                     >
                         {serviciosDisponibles.map((servicio) => (
-                            <MenuItem key={servicio} value={servicio}>
+                            <MenuItem key={servicio.nombre} value={servicio}>
                                 <Checkbox checked={servicios.indexOf(servicio) > -1} />
-                                <ListItemText primary={servicio} />
+                                <ListItemText primary={servicio.nombre} />
                             </MenuItem>
                         ))}
                     </Select>
