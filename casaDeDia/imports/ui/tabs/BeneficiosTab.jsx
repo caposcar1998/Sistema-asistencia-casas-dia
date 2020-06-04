@@ -7,7 +7,6 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import TablaPromociones from '../tablasInformacion/TablaPromociones';
-import TablaAsilo from '../tablasInformacion/TablaAsilo';
 import TablaCasaDeDia from '../tablasInformacion/TablaCasaDeDia';
 import TablaAdministrador from '../tablasInformacion/TablaAdministrador'
 
