@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Typography,Grid, Paper, TextField, Select, MenuItem, Button, Checkbox, ListItemText, Input, LinearProgress } from '@material-ui/core';
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
-import { lugaresAceptadosDespensa } from '../../utilities/tablasEstaticas/lugaresAceptados';
 
 
 export default function AnadirTarjeta({ tipoTarjeta,tarjetasServidor, handleCloseModal }) {
