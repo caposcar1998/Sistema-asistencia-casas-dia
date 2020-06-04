@@ -210,13 +210,16 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                     <ListItemIcon>
                         <StoreIcon/>
                     </ListItemIcon>
-                    <ListItemText primary={"Establecimientos"} />
-                </ListItem>):''}
+                <ListItemText primary={"Establecimientos"} />
+            </ListItem>) : ''}
+            
                 {((Meteor.user() && Meteor.user().profile.visualizarActividades) === true) ? (<ListItem button key={"ServiciosHospital"} onClick={() => cambioRuta('serviciosHospital')}>
                     <ListItemIcon>
-                        <LocalHospitalIcon/>
+                        <LocalHospitalIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Servicios de Hospital"} />
+                </ListItem>) : ''}
+
 
                 {(((Meteor.user() && Meteor.user().profile.visualizarRestricciones) !== true)) ? '': (<Divider />)}
                 {((Meteor.user() && Meteor.user().profile.visualizarRestricciones) === true) ? (<ListItem button key={"Restricciones"} onClick={() => cambioRuta('restricciones')}>

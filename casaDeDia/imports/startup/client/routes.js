@@ -170,6 +170,9 @@ FlowRouter.route('/administrador/establecimientos', {
     action() {
         mount(AdministradorPage, {
             content: <EstablecimientosTab />
+        })
+        }
+})
 
 FlowRouter.route('/administrador/restricciones', {
     name: 'restricciones',
