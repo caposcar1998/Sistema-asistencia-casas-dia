@@ -15,6 +15,8 @@ import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
 import PeopleIcon from "@material-ui/icons/People";
 import GradeIcon from "@material-ui/icons/Grade";
 import WorkIcon from "@material-ui/icons/Work";
+import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
+import StoreIcon from '@material-ui/icons/Store';
 import LocalLibraryIcon from "@material-ui/icons/LocalLibrary";
 import DirectionsWalkIcon from "@material-ui/icons/DirectionsWalk";
 import RoomServiceIcon from "@material-ui/icons/RoomService";
@@ -203,12 +205,26 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                     </ListItemIcon>
                     <ListItemText primary={"Actividades"} />
                 </ListItem>):''}
+
+                {((Meteor.user() && Meteor.user().profile.visualizarActividades) === true) ? (<ListItem button key={"Establecimientos"} onClick={() => cambioRuta('establecimientos')}>
+                    <ListItemIcon>
+                        <StoreIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary={"Establecimientos"} />
+                </ListItem>):''}
+                {((Meteor.user() && Meteor.user().profile.visualizarActividades) === true) ? (<ListItem button key={"ServiciosHospital"} onClick={() => cambioRuta('serviciosHospital')}>
+                    <ListItemIcon>
+                        <LocalHospitalIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary={"Servicios de Hospital"} />
+
                 {(((Meteor.user() && Meteor.user().profile.visualizarRestricciones) !== true)) ? '': (<Divider />)}
                 {((Meteor.user() && Meteor.user().profile.visualizarRestricciones) === true) ? (<ListItem button key={"Restricciones"} onClick={() => cambioRuta('restricciones')}>
                     <ListItemIcon>
                         <AssignmentLateIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Restricciones"} />
+
                 </ListItem>):''}
             
             {(((Meteor.user() && Meteor.user().profile.visualizarTarjetas) !== true)) ? '': (<Divider />)}

@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function ModalAnadirUsuario({ openAnadirPersona, clubSeleccionado, handleCerrarAnadirUsuario }) {
+export default function ModalAnadirUsuario({ clubesServidor,openAnadirPersona, clubSeleccionado, handleCerrarAnadirUsuario }) {
     const classes = useStyles();
     const [modalStyle] = useState(getModalStyle);
 
@@ -47,6 +47,7 @@ export default function ModalAnadirUsuario({ openAnadirPersona, clubSeleccionado
                 <TablaAnadirUsuario
                     clubSeleccionado={clubSeleccionado}
                     handleCerrarAnadirUsuario={handleCerrarAnadirUsuario}
+                    clubesServidor={clubesServidor}
                 />
             </div>
         </Modal>

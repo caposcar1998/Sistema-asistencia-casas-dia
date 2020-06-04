@@ -10,13 +10,13 @@ import { Meteor } from 'meteor/meteor';
 export const Clubes = new Mongo.Collection("clubes");
 
 
-let EmpleadosClub = new SimpleSchema({
+let EmpleadosCasaDia = new SimpleSchema({
     idReferencia: { type: String },
     nombre: { type: String },
     puesto: { type: String }
 })
 
-let AdultosMayoresClub = new SimpleSchema({
+let AdultosMayoresCasaDia = new SimpleSchema({
     idReferencia: { type: String },
     nombre: { type: String },
     curp: {type: String}
@@ -48,8 +48,15 @@ let Schema = new SimpleSchema({
     foto: { type: String },
     "adultosMayores.$": { type: AdultosMayores },
     adultosMayores: { type: Array, defaultValue: [], optional: true },
-    "empleados.$": { type: EmpleadosClub },
+    "empleados.$": { type: EmpleadosCasaDia },
     empleados: { type: Array, defaultValue: [], optional: true },
-    "usuarios.$": { type: AdultosMayoresClub },
+    "usuarios.$": { type: AdultosMayoresCasaDia },
     usuarios: { type: Array, defaultValue: [], optional: true }
 })
+
+
+
+
+
+
+

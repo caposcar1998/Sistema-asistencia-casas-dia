@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function TablaAnadirPersonal({ clubSeleccionado, handleCerrarAnadirUsuario }) {
+export default function TablaAnadirPersonal({ clubesServidor,clubSeleccionado, handleCerrarAnadirUsuario }) {
     const classes = useStyles();
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
@@ -49,6 +49,8 @@ export default function TablaAnadirPersonal({ clubSeleccionado, handleCerrarAnad
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Usuario eliminado")
+                            clubesServidor()
+                            handleCerrarAnadirUsuario()
                             resolve()
                         }
                     });
@@ -64,7 +66,6 @@ export default function TablaAnadirPersonal({ clubSeleccionado, handleCerrarAnad
                     <Typography variant="h6" className={classes.title}>
                         {clubSeleccionado.nombre}
                     </Typography>
-                    <Button color="inherit" >Anadir</Button>
                 </Toolbar>
             </AppBar>
 
@@ -90,6 +91,7 @@ export default function TablaAnadirPersonal({ clubSeleccionado, handleCerrarAnad
             <CrearNuevoUsuario
                 handleCerrarAnadirUsuario={handleCerrarAnadirUsuario}
                 clubSeleccionado={clubSeleccionado}
+                clubesServidor={clubesServidor}
             />
             {snackBarState &&
                 <CustomSnackbars type={alert} state={snackBarState} message={message} />
@@ -100,7 +102,7 @@ export default function TablaAnadirPersonal({ clubSeleccionado, handleCerrarAnad
 
 
 
-function CrearNuevoUsuario({ clubSeleccionado, handleCerrarAnadirUsuario }) {
+function CrearNuevoUsuario({ clubesServidor,clubSeleccionado, handleCerrarAnadirUsuario }) {
     const [usuarios, setUsuarios] = useState([]);
     const [personaSeleccionada, setPersonaSeleccionada] = useState();
     const [alert, setAlert] = useState();
@@ -139,6 +141,8 @@ function CrearNuevoUsuario({ clubSeleccionado, handleCerrarAnadirUsuario }) {
                             setAlert("success")
                             setSnackBarState(true)
                             setMessage("Exito al crear el usuario")
+                            clubesServidor()
+                            handleCerrarAnadirUsuario()
                             resolve()
                         }
                     });

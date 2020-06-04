@@ -80,7 +80,7 @@ export default function Clubes() {
     function clubesServidor() {
         return new Promise(
             (resolve, reject) => {
-                Meteor.call("leerClub",
+                Meteor.call("leerClubes",
                     (err, res) => {
                         if (err) {
                             reject()
@@ -99,7 +99,7 @@ export default function Clubes() {
             <Grid container className={classes.fondo}>
             <Paper>
             <Grid item xs={12}>
-                <Button onClick={handleOpenModal} variant="contained" color="primary">Nuevo club</Button>
+                <Button onClick={handleOpenModal} variant="contained" color="primary">Nueva club de dia</Button>
             </Grid>
         
                     <Grid item xs={12}>
@@ -130,7 +130,7 @@ export default function Clubes() {
                 handleCerrarEditarClub={handleCerrarEditarClub}
                 clubesServidor={clubesServidor}
             />
-             <ModalCrearClub
+            <ModalCrearClub
                 handleCloseModal={handleCloseModal}
                 openModal={openModal}
                 clubesServidor={clubesServidor}
@@ -139,11 +139,13 @@ export default function Clubes() {
                 clubSeleccionado={clubSeleccionado}
                 handleCerrarAnadirEmpleado={handleCerrarAnadirEmpleado}
                 openAnadirEmpleado={openAnadirEmpleado}
+                clubesServidor={clubesServidor}
             />
             <ModalAnadirUsuario
                 clubSeleccionado={clubSeleccionado}
                 handleCerrarAnadirUsuario={handleCerrarAnadirUsuario}
                 openAnadirPersona={openAnadirPersona}
+                clubesServidor={clubesServidor}
             />
         </>
     )

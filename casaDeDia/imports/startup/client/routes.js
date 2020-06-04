@@ -23,7 +23,10 @@ import VoluntariosTab from "../../ui/tabs/VoluntariosTab";
 import InstructoresTab from "../../ui/tabs/InstructoresTab";
 import EmpleadosTab from "../../ui/tabs/EmpleadosTab";
 import ActividadesTab from "../../ui/tabs/ActividadesTab";
+import ServiciosHospitalTab from "../../ui/tabs/ServiciosHospitalTab"
+import EstablecimientosTab from "../../ui/tabs/EstablecimientosTab"
 import RestriccionesTab from "../../ui/tabs/RestriccionesTab"
+
 
 import TutorTab from "../../ui/tabs/TutoresTab";
 import TalleresTab from "../../ui/tabs/TalleresTab";
@@ -152,11 +155,28 @@ FlowRouter.route('/administrador/actividades', {
     }
 })
 
+FlowRouter.route('/administrador/serviciosHospital', {
+    name: 'serviciosHospital',
+    action() {
+        mount(AdministradorPage, {
+            content: <ServiciosHospitalTab />
+
+        })
+    }
+})
+
+FlowRouter.route('/administrador/establecimientos', {
+    name: 'establecimientos',
+    action() {
+        mount(AdministradorPage, {
+            content: <EstablecimientosTab />
+
 FlowRouter.route('/administrador/restricciones', {
     name: 'restricciones',
     action() {
         mount(AdministradorPage, {
             content: <RestriccionesTab />
+
 
         })
     }
