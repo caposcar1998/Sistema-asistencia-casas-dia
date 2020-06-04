@@ -23,6 +23,7 @@ import VoluntariosTab from "../../ui/tabs/VoluntariosTab";
 import InstructoresTab from "../../ui/tabs/InstructoresTab";
 import EmpleadosTab from "../../ui/tabs/EmpleadosTab";
 import ActividadesTab from "../../ui/tabs/ActividadesTab";
+import RestriccionesTab from "../../ui/tabs/RestriccionesTab"
 
 import TutorTab from "../../ui/tabs/TutoresTab";
 import TalleresTab from "../../ui/tabs/TalleresTab";
@@ -146,6 +147,16 @@ FlowRouter.route('/administrador/actividades', {
     action() {
         mount(AdministradorPage, {
             content: <ActividadesTab />
+
+        })
+    }
+})
+
+FlowRouter.route('/administrador/restricciones', {
+    name: 'restricciones',
+    action() {
+        mount(AdministradorPage, {
+            content: <RestriccionesTab />
 
         })
     }
