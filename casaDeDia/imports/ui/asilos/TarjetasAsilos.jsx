@@ -117,7 +117,7 @@ export default function TarjetasAsilos({ asilo, handleOpenBorrarAsilos,  handleO
                                     (asilo.restricciones).map((restriccion) => (
                                         <ListItem>
                                             <Typography>
-                                                {restriccion}
+                                                {restriccion.nombre}
                                             </Typography>
                                         </ListItem>
 

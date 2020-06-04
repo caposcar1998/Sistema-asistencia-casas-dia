@@ -117,7 +117,7 @@ export default function TarjetasCasasDeDia({ casa, handleOpenAnadirUsuario,handl
                                     (casa.restricciones).map((restriccion) => (
                                         <ListItem>
                                             <Typography>
-                                                {restriccion}
+                                                {restriccion.nombre}
                                             </Typography>
                                         </ListItem>
 

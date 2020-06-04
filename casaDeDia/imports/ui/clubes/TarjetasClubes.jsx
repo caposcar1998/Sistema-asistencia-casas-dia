@@ -117,7 +117,7 @@ export default function TarjetasClubes({ club, handleOpenAnadirUsuario,handleOpe
                                     (club.restricciones).map((restriccion) => (
                                         <ListItem>
                                             <Typography>
-                                                {restriccion}
+                                                {restriccion.nombre}
                                             </Typography>
                                         </ListItem>
 
