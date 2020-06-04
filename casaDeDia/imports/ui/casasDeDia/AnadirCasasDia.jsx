@@ -1,6 +1,5 @@
 import React, {useEffect, useState } from 'react';
 import { Grid, Paper, TextField, Select, MenuItem, Button, Checkbox, ListItemText, Input, LinearProgress  } from '@material-ui/core';
-import {listaRestricciones} from "../../utilities/tablasEstaticas/restricciones";
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 
 
@@ -17,12 +16,14 @@ export default function AnadirCasasDia({ casasDeDiaServidor,handleCloseModal}) {
         const [snackBarState, setSnackBarState] = useState(); 
         const [open, setOpen] = useState(false);
         const [actividadesDisponibles, setActividadesDisponible] = useState([]);
+        const [restriccionesDisponibles, setRestriccionesDisponible] = useState([]);
         const [message, setMessage] = useState(); 
         const [image, setImage] = useState('')
         const [loading, setLoading] = useState(false)
 
         useEffect(() => {
                 actividadesServidor();
+                restriccionesServidor();
         }, []);
 
 
@@ -88,6 +89,22 @@ export default function AnadirCasasDia({ casasDeDiaServidor,handleCloseModal}) {
                                                         reject()
                                                 } else {
                                                         setActividadesDisponible(res)
+                                                        resolve()
+                                                }
+                                        });
+                        }
+                )
+        }
+
+        function restriccionesServidor() { 
+                return new Promise(
+                        (resolve, reject) => {
+                                Meteor.call("leerRestriccion",
+                                        (err, res) => {
+                                                if (err) {
+                                                        reject()
+                                                } else {
+                                                        setRestriccionesDisponible(res)
                                                         resolve()
                                                 }
                                         });
@@ -175,10 +192,10 @@ return (
                         renderValue={(selected) => selected.join(', ')}
                         MenuProps={MenuProps}
                 >
-                        {listaRestricciones.map((restriccion) => (
-                                <MenuItem key={restriccion} value={restriccion}>
+                        {restriccionesDisponibles.map((restriccion) => (
+                                <MenuItem key={restriccion.nombre} value={restriccion}>
                                         <Checkbox checked={restricciones.indexOf(restriccion) > -1} />
-                                        <ListItemText primary={restriccion} />
+                                        <ListItemText primary={restriccion.nombre} />
                                 </MenuItem>
                         ))}
                 </Select>
