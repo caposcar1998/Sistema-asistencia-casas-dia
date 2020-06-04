@@ -287,6 +287,11 @@ function CrearDinero({ handleCloseModal, tarjetasServidor}) {
                             <MenuItem value={"Bancomer"}>Bancomer</MenuItem>
                             <MenuItem value={"Banco Azteca"}>Banco Azteca</MenuItem>
                             <MenuItem value={"Santander"}>Santander</MenuItem>
+                            <MenuItem value={"HSBC"}>HSBC</MenuItem>
+                            <MenuItem value={"Banamex"}>Banamex</MenuItem>
+                            <MenuItem value={"Banxico"}>Banxico</MenuItem>
+                            <MenuItem value={"Scotiabank"}>Scotiabank</MenuItem>
+                            <MenuItem value={"Banco Mexico"}>Banco Mexico</MenuItem>
                         </Select>
                     </Grid>
                 </Grid>
