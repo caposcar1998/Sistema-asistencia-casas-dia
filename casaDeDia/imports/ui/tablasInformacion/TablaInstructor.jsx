@@ -121,7 +121,6 @@ function TablaInstructor({instructores}) {
                     { title: "Visualizar Centros", field: "visualizarCentros", type:'boolean'},
                     { title: "Generar Reportes", field: "generarReportes", type:'boolean'},
                     { title: "Visualizar Restricciones", field: "visualizarRestricciones", type:'boolean'},
-
                 ]
             }
             data={instructores}

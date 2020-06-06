@@ -14,7 +14,7 @@ function TablaEstablecimientos({ establecimientos }) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("crearEstablecimiento",
-                    newData.nombre, newData.descripcion, newData.direccion,
+                    newData.nombre, newData.descripcion, newData.direccion, newData.verEstablecimientos, newData.editarEstablecimientos,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -31,7 +31,7 @@ function TablaEstablecimientos({ establecimientos }) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("editarEstablecimiento",
-                    newData.nombre, newData.descripcion, newData.direccion,
+                newData.nombre, newData.descripcion, newData.direccion, newData.verEstablecimientos, newData.editarEstablecimientos,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -69,7 +69,9 @@ function TablaEstablecimientos({ establecimientos }) {
                 [
                     { title: "Nombre", field: "nombre" },
                     { title: "Descripción", field: "descripcion" },
-                    { title: "Dirección", field: "direccion" }
+                    { title: "Dirección", field: "direccion" },
+                    { title: "Ver Establecimientos", field: "verEstablecimientos", type: 'boolean'},
+                    { title: "Editar Establecimientos", field: "editarEstablecimientos", type: 'boolean'}
                 ]
             }
             data={establecimientos}

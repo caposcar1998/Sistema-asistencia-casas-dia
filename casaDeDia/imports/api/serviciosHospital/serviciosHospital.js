@@ -17,4 +17,6 @@ let Schema = new SimpleSchema({
     vigencia: { type: Date },
     descripcion: { type: String },
     laboratorio: { type: String },
+    verServiciosHospital: {type: String},
+    editarServiciosHospital: {type: String}
 })
