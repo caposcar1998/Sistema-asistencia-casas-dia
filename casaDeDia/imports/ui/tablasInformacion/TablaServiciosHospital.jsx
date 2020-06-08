@@ -22,7 +22,6 @@ function TablaServiciosHospital({ serviciosHospital }) {
                             resolve()
                         }
                     });
-
             }
         )
 
@@ -31,7 +30,7 @@ function TablaServiciosHospital({ serviciosHospital }) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("editarServicioHospital",
-                    newData.nombre, newData.vigencia, newData.descripcion, newData.laboratorio,
+                    newData._id, newData.nombre, newData.vigencia, newData.descripcion, newData.laboratorio,
                     (err, res) => {
                         if (err) {
                             reject()

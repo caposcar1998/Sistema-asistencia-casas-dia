@@ -23,7 +23,7 @@ let Schema = new SimpleSchema({
     edad: { type: Number },
     grupoSanguineo: { type: String },
     direccion: { type: String },
-    codigoPostal: { type: String },
+    codigoPostal: { type: Number },
     foto: { type: String },
     "tarjetas.$": { type: Tarjetas },
     tarjetas: { type: Array, defaultValue: [], optional: true }
