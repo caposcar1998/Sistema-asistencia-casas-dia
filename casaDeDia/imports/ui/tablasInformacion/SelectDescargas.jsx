@@ -27,8 +27,10 @@ import { Colectivos } from "../../api/colectivos/colectivos"
 import { Talleres } from "../../api/talleres/talleres";
 import { Tutores } from "../../api/tutores/tutores";
 import { Promociones } from '../../api/promociones/promociones';
+import { Establecimientos } from '../../api/establecimientos/establecimientos';
+import { ServiciosHospital } from '../../api/serviciosHospital/serviciosHospital';
 import {listaRestricciones} from "../../utilities/tablasEstaticas/restricciones";
-//holaaa
+
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -76,6 +78,8 @@ const names = [
   'Colectivos',
   'Convocatorias',
   'Centros',
+  'Establecimientos',
+  'ServiciosHospital',
 ];
 
 function getStyles(name, personName, theme) {
@@ -87,7 +91,7 @@ function getStyles(name, personName, theme) {
   };
 }
 
-function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, servicios,actividades,casasDeDia,asilos,clubes,centros,convocatorias,tutores,colectivos,talleres,promociones}) {
+function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, servicios,actividades,casasDeDia,asilos,clubes,centros,convocatorias,tutores,colectivos,talleres,promociones,establecimientos,serviciosHospital}) {
   const classes = useStyles();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
@@ -257,7 +261,27 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
         displayName: 'Fecha de inicio'},
         {id: 'septima_p',
         displayName: 'Fecha final'},
-      ]
+      ];
+
+      const colEstablecimientos = [
+        {id: 'primera_es',
+        displayName: 'Nombre'},
+        {id: 'segunda_es',
+        displayName: 'Descripcion'},
+        {id: 'tercera_es',
+        displayName: 'Direccion'},
+      ];
+
+      const colServiciosHospital = [
+        {id: 'primera_sh',
+        displayName: 'Nombre'},
+        {id: 'segunda_sh',
+        displayName: 'Vigencia'},
+        {id: 'tercera_sh',
+        displayName: 'Descripcion'},
+        {id: 'cuarta_sh',
+        displayName: 'Laboratorio'},
+      ];
 
       function ayudaEmpleados(empleados){
           empleados.map(function(empleado){
@@ -375,7 +399,20 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
             septima_p:usuario.fechaFinal,
           })
         }
-        
+        else if(tipo === 'Establecimientos'){
+          return({
+            primera_es:usuario.nombre,
+            segunda_es:usuario.descripcion,
+            tercera_es:usuario.direccion,
+          })
+        }else if(tipo === 'ServiciosHospital'){
+          return({
+            primera_sh:usuario.nombre,
+            segunda_sh:usuario.vigencia,
+            tercera_sh:usuario.descripcion,
+            cuarta_sh:usuario.laboratorio,
+          })
+        }
       })
 
       const colCasasDeDia = [{
@@ -545,6 +582,24 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
             datas={datas1(data,'Beneficios')}
             text="Descargar Reporte" />
           )
+        }else if(tipo === 'Establecimientos'){
+          ayudaEmpleados({establecimientos}.establecimientos)
+          return(
+            <CsvDownloader
+            filename="Reporte Establecimientos"
+            columns={colEstablecimientos}
+            datas={datas1(data,'Establecimientos')}
+            text="Descargar Reporte" />
+          )
+        }else if(tipo === 'ServiciosHospital'){
+          ayudaEmpleados({serviciosHospital}.serviciosHospital)
+          return(
+            <CsvDownloader
+            filename="Reporte Servicios Hospitales"
+            columns={colServiciosHospital}
+            datas={datas1(data,'ServiciosHospital')}
+            text="Descargar Reporte" />
+          )
         }
       }
 
@@ -594,10 +649,12 @@ export default withTracker(() => {
   Meteor.subscribe("clubes");
   Meteor.subscribe("centros");
   Meteor.subscribe("convocatorias");
-  Meteor.subscribe("colectivos")
-  Meteor.subscribe("talleres")
-  Meteor.subscribe("tutores")
-  Meteor.subscribe("promociones")
+  Meteor.subscribe("colectivos");
+  Meteor.subscribe("talleres");
+  Meteor.subscribe("tutores");
+  Meteor.subscribe("promociones");
+  Meteor.subscribe("establecimientos");
+  Meteor.subscribe("serviciosHospital");
   return {
       empleados: Empleados.find({}).fetch(),
       instructores: Instructores.find({}).fetch(),
@@ -614,5 +671,7 @@ export default withTracker(() => {
       talleres : Talleres.find({}).fetch(),
       tutores: Tutores.find({}).fetch(),
       promociones: Promociones.find({}).fetch(),
+      establecimientos: Establecimientos.find({}).fetch(),
+      serviciosHospital: ServiciosHospital.find({}).fetch(),
   };
 })(MultipleSelect);

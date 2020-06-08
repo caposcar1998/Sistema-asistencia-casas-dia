@@ -22,7 +22,6 @@ function TablaServiciosHospital({ serviciosHospital }) {
                             resolve()
                         }
                     });
-
             }
         )
 
