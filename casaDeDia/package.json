@@ -17,6 +17,7 @@
     "meteor-node-stubs": "^1.0.0",
     "moment": "^2.24.0",
     "react": "^16.13.1",
+    "react-csv-downloader": "^1.8.0",
     "react-dom": "^16.13.1",
     "react-mounter": "^1.2.0",
     "react-router-dom": "^5.1.2",

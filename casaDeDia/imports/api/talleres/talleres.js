@@ -1,5 +1,7 @@
 import SimpleSchema from "simpl-schema";
 import { Meteor } from 'meteor/meteor';
+import Instructores from "../instructores/instructores";
+import Colectivos from "../colectivos/colectivos";
 
 export const Talleres = new Mongo.Collection("talleres");
 
@@ -14,9 +16,14 @@ if (Meteor.isServer) {
 }
 
 let Schema = new SimpleSchema({
-    cupo: { type: Int16Array },
     nombre: { type: String },
-    instructor: { type: String},
-    colectivo: {type: String},
+    descripcion: { type: String },
+    "instructores.$": { type: Instructores },
+    instructores: { type: Array, defaultValue: [], optional: true },
+    "colectivos.$": { type: Colectivos },
+    colectivos: { type: Array, defaultValue: [], optional: true },
+    cupoLimite: { type: Number },
+    foto: { type: String }
+
     
 })

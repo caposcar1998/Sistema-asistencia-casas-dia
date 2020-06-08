@@ -1,51 +1,46 @@
 import { Meteor } from 'meteor/meteor';
-import { Tutores } from "../tutores/tutores";
 import { Colectivos } from "../colectivos/colectivos";
 
 Meteor.methods({
-
-    "crearColectivo"(idTutor, nombre, descripcion, categoria){
-        const idTutor_c = Tutores.findOne({
-            "_id": idTutor
-        })
-        if (idTutor_c.nombre == null) { 
-            throw new Meteor.Error(idTutor);
-        } else{
+        "crearColectivo"(nombre, descripcion, tutores, categoria, cupoLimite, foto) {
             Colectivos.insert(
                 {
-                    idTutor: idTutor,
                     nombre: nombre,
                     descripcion: descripcion,
-                    categoria: categoria
+                    tutores: tutores,
+                    categoria: categoria,
+                    cupoLimite: cupoLimite,
+                    foto: foto,
                 }
-            ) 
-        }
-    },
- 
-    "editarColectivo"(idColectivo, idTutor, nombre, descripcion, categoria) { 
-        Colectivos.update(
-            { _id: idColectivo},
-            {
-                $set:
+            )
+        },
+
+        "editarColectivo"(idColectivo, nombre, descripcion, tutores, categoria, cupoLimite, foto) {
+            Colectivos.update(
+                { _id: idColectivo},
                 {
-                    idTutor: idTutor,
-                    nombre: nombre,
-                    descripcion: descripcion,
-                    categoria: categoria
+                    $set:
+                    {
+                        nombre: nombre,
+                        descripcion: descripcion,
+                        tutores: tutores,
+                        categoria: categoria,
+                        cupoLimite: cupoLimite,
+                        foto: foto
+                    }
                 }
-            }
-        )
-    },
+            )
+        },
 
-    "borrarColectivo"(idColectivo) {
-        Colectivos.remove(
-            {
-                "_id": idColectivo 
-            }
-        )
-    },
+        "borrarColectivo"(idColectivo) {
+            Colectivos.remove(
+                {
+                    "_id": idColectivo
+                }
+            )
+        },
 
-    "leerColectivo"() {
+        "leerColectivos"() {
             return Colectivos.find().fetch();
-    }
+        },
 });
