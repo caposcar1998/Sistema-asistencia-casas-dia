@@ -6,7 +6,9 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import TablaColectivo from '../tablasInformacion/TablaColectivo';
+import Colectivos from '../colectivos/Colectivos';
+
+
 
 export function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -42,13 +44,14 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         backgroundColor: theme.palette.background.paper,
-        height: '100vh'
+        height: '100vh',
+        width: '100vh'
     },
     title: {
         flexGrow: 1
     },
     appBar: {
-        backgroundColor: "#DCD0FF"
+        backgroundColor: "#006400"
     }
 }));
 
@@ -64,12 +67,12 @@ export default function BeneficiosTab() {
         <div className={classes.root}>
             <AppBar position="static" className={classes.appBar}>
                 <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                    <Tab label="Registrar Colectivo" {...a11yProps(0)} />
+                    <Tab label="Colectivos" {...a11yProps(0)} />
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-                <TablaColectivo />
-      </TabPanel>
+                <Colectivos/>
+            </TabPanel>
         </div>
     );
 }

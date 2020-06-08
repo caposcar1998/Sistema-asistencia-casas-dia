@@ -2,27 +2,31 @@ import { Meteor } from 'meteor/meteor';
 import { Centros } from "../centros/centros";
 Meteor.methods({
 
-    "crearCentro"(calle, delegacion, codigoPostal, numeroTelefonico){
+    "crearCentro"(nombre,calle, delegacion, codigoPostal, numeroTelefonico,foto){
             Centros.insert(
                 {
+                    nombre:nombre,
                     calle: calle,
                     delegacion: delegacion,
                     codigoPostal: codigoPostal,
-                    numeroTelefonico: numeroTelefonico
+                    numeroTelefonico: numeroTelefonico,
+                    foto:foto
                 }
             ) 
         },
  
-    "editarCentro"(idCentro, calle, delegacion, codigoPostal, numeroTelefonico) { 
+    "editarCentro"(idCentro, nombre, calle, delegacion, codigoPostal, numeroTelefonico,foto) { 
         Centros.update(
             { _id: idCentro},
             {
                 $set:
                 {
+                    nombre:nombre,
                     calle: calle,
                     delegacion: delegacion,
                     codigoPostal: codigoPostal,
-                    numeroTelefonico: numeroTelefonico
+                    numeroTelefonico: numeroTelefonico,
+                    foto:foto
                 }
             }
         )

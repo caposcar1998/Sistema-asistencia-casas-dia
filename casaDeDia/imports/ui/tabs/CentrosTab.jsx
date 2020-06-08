@@ -6,7 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import TablaCentros from '../tablasInformacion/TablaCentros';
+import Centros from '../centros/Centros';
 
 
 export function TabPanel(props) {
@@ -43,13 +43,14 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         backgroundColor: theme.palette.background.paper,
-        height: '100vh'
+        height: '100vh',
+        width: '100vh'
     },
     title: {
         flexGrow: 1
     },
     appBar: {
-        backgroundColor: "#DCD0FF"
+        backgroundColor: "#006400"
     }
 }));
 
@@ -71,7 +72,7 @@ export default function BeneficiosTab() {
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-                <TablaCentros />
+                <Centros />
             </TabPanel>
         </div>
     );
