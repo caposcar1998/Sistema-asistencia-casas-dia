@@ -59,6 +59,7 @@ let Schema = new SimpleSchema({
     visualizarCentros:{type:String},
     visualizarColectivos:{type:String},
     generarReportes:{type:String},
+    visualizarRestricciones:{type:String},
     visualizarEstablecimiento:{type:String},
     editarEstablecimiento:{type:String},
     visualizarServiciosHospital:{type:String},
