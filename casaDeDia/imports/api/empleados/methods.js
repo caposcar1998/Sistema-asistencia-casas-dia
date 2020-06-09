@@ -7,7 +7,7 @@ import SimpleSchema from 'simpl-schema';
 
 Meteor.methods({
 
-    "crearEmpleado"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor, idUsuario,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos,generarReportes,visualizarRestricciones,visualizarEstablecimiento,editarEstablecimiento,visualizarServiciosHospital,editarServiciosHospital) {
+    "crearEmpleado"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor, idUsuario,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos,generarReportes,visualizarEstablecimiento,editarEstablecimiento,visualizarServiciosHospital,editarServiciosHospital) {
         
         new SimpleSchema({
             nombre: { type: String },
@@ -44,7 +44,6 @@ Meteor.methods({
                 visualizarCentros:visualizarCentros,
                 visualizarColectivos:visualizarColectivos,
                 generarReportes:generarReportes,
-                visualizarRestricciones:visualizarRestricciones,
                 visualizarEstablecimiento:visualizarEstablecimiento,
                 editarEstablecimiento:editarEstablecimiento,
                 visualizarServiciosHospital:visualizarServiciosHospital,
@@ -82,7 +81,6 @@ Meteor.methods({
                 visualizarCentros:visualizarCentros,
                 visualizarColectivos:visualizarColectivos,
                 generarReportes:generarReportes,
-                visualizarRestricciones:visualizarRestricciones,
                 visualizarEstablecimiento:visualizarEstablecimiento,
                 editarEstablecimiento:editarEstablecimiento,
                 visualizarServiciosHospital:visualizarServiciosHospital,
@@ -91,7 +89,7 @@ Meteor.methods({
         )
     },
 
-    "editarEmpleado"(idEmpleado,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor,idUsuario, visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros, visualizarColectivos,generarReportes,visualizarRestricciones,visualizarEstablecimiento,editarEstablecimiento,visualizarServiciosHospital,editarServiciosHospital) {
+    "editarEmpleado"(idEmpleado,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor,idUsuario, visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros, visualizarColectivos,generarReportes,visualizarEstablecimiento,editarEstablecimiento,visualizarServiciosHospital,editarServiciosHospital) {
         
         new SimpleSchema({
             nombre: { type: String },
@@ -128,7 +126,6 @@ Meteor.methods({
                     visualizarCentros:visualizarCentros,
                     visualizarColectivos:visualizarColectivos,
                     generarReportes:generarReportes,
-                    visualizarRestricciones:visualizarRestricciones,
                     visualizarEstablecimiento:visualizarEstablecimiento,
                     editarEstablecimiento:editarEstablecimiento,
                     visualizarServiciosHospital:visualizarServiciosHospital,
@@ -175,7 +172,6 @@ Meteor.methods({
                     visualizarCentros:visualizarCentros,
                     visualizarColectivos:visualizarColectivos,
                     generarReportes:generarReportes,
-                    visualizarRestricciones:visualizarRestricciones,
                     visualizarEstablecimiento:visualizarEstablecimiento,
                     editarEstablecimiento:editarEstablecimiento,
                     visualizarServiciosHospital:visualizarServiciosHospital,
