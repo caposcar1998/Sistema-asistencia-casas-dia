@@ -154,7 +154,7 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
       id: 'novena_s',
       displayName: 'Red Social 3'
       }]
-
+      //console.log({centros}.centros);
       const colActividades = [{
         id: 'primera_ac',
         displayName: 'Nombre'
@@ -187,6 +187,8 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
       }]
 
       const colCentros = [{
+        id: 'cuarta_c',
+        displayName: 'Nombre'},{
         id: 'primera_c',
         displayName: 'Calle'},{
         id: 'segunda_c',
@@ -215,6 +217,9 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
       },{
         id: 'tercera_col',
         displayName: 'Categoria'
+      },{
+        id: 'cuarta_col',
+        displayName: 'Tutores'
       }
       ];
 
@@ -224,7 +229,7 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
         {id: 'segunda_t',
         displayName: 'Nombre'},
         {id: 'tercera_t',
-        displayName: 'Instructor'},
+        displayName: 'Instructores'},
         {id: 'cuarta_t',
         displayName: 'Colectivos'}
       ];
@@ -340,6 +345,7 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
           })
         }else if(tipo === 'Centros'){
           return({
+            cuarta_c:usuario.nombre,
             primera_c:usuario.calle,
             segunda_c:usuario.delegacion,
             tercera_c:usuario.codigoPostal,
@@ -356,13 +362,18 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
             primera_col:usuario.nombre,
             segunda_col:usuario.descripcion,
             tercera_col:usuario.categoria,
+            cuarta_col:(usuario.tutores.map((tutor)=>{
+              return(tutor.nombre+' '+tutor.apellido+' ')
+            }).join('; ')).replace(',',' y '),
           })
         }else if(tipo === 'Talleres'){
           return({
-            primera_t:usuario.cupo,
+            primera_t:usuario.cupoLimite,
             segunda_t:usuario.nombre,
             tercera_t:usuario.instructor,
-            cuarta_t:usuario.colectivo,
+            cuarta_t:(usuario.colectivos.map((col)=>{
+              return(col.nombre+' ')
+            }).join('; ')).replace(',',' y '),
           })
         }else if(tipo === 'Tutores'){
           return({
