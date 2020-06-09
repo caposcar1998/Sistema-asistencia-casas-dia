@@ -82,7 +82,7 @@ export default function Login() {
                     
                     
                     <Grid item xs={12}>
-                          <Typography variant={xs ="h5", lg="h3" }>Adminsitracion de casas de dia para adultos mayores</Typography>   
+                      <Typography variant={xs = "h5", lg = "h3"}>Administración de casas de dia para adultos mayores</Typography>   
                     </Grid>
                     <Grid item xs={12}>
                           <Typography variant={xs = "h5", lg = "h3"}>Administrador</Typography>
