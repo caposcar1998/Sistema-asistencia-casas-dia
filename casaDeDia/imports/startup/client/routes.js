@@ -16,7 +16,7 @@ import AdministradoresTab from "../../ui/tabs/AdministradoresTab";
 import AsilosTab from "../../ui/tabs/AsilosTab";
 import CasasDeDiaTab from "../../ui/tabs/CasasDeDiaTab";
 import ClubesTab from "../../ui/tabs/ClubesTab";
-
+import ServiciosTab from "../../ui/tabs/ServiciosTab";	
 import AdultosMayoresTab from "../../ui/tabs/AdultosMayoresTab";
 import VoluntariosTab from "../../ui/tabs/VoluntariosTab";
 import InstructoresTab from "../../ui/tabs/InstructoresTab";
@@ -271,3 +271,11 @@ FlowRouter.route('/administrador/descargas', {
     }
 })
 
+FlowRouter.route('/administrador/Servicios', {
+    name: 'servicios',
+    action() {
+        mount(AdministradorPage, {
+            content: <ServiciosTab />
+        })
+    }
+})
