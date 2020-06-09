@@ -23,8 +23,6 @@ Meteor.startup(() => {
                 visualizarClubes:true,
                 visualizarServicios:true,
                 visualizarActividades:true,
-                visualizarServiciosHospital:true,
-                visualizarEstablecimientos:true,
                 visualizarTarjetas:true,
                 visualizarEmpleados:true,
                 editarEmpleados:true,
@@ -37,6 +35,10 @@ Meteor.startup(() => {
                 visualizarColectivos:true,
                 generarReportes:true,
                 visualizarRestricciones:true,
+                visualizarEstablecimiento:true,
+                editarEstablecimiento:true,
+                visualizarServicioHospital:true,
+                editarServicioHospital:true,
             }
         });
     }

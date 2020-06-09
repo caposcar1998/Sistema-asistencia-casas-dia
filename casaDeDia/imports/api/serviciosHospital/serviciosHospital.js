@@ -16,5 +16,5 @@ let Schema = new SimpleSchema({
     nombre: { type: String },
     vigencia: { type: Date },
     descripcion: { type: String },
-    laboratorio: { type: String },
+    laboratorio: { type: String }
 })

@@ -69,7 +69,7 @@ function TablaServiciosHospital({ serviciosHospital }) {
                     { title: "Nombre", field: "nombre" },
                     { title: "Vigencia", field: "vigencia", type: "datetime" },
                     { title: "Descripcion", field: "descripcion" },
-                    { title: "Laboratorio", field: "laboratorio" }
+                    { title: "Laboratorio", field: "laboratorio" },
                 ]
             }
             data={serviciosHospital}

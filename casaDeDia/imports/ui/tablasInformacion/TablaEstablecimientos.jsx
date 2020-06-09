@@ -31,7 +31,7 @@ function TablaEstablecimientos({ establecimientos }) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("editarEstablecimiento",
-                    newData.nombre, newData.descripcion, newData.direccion,
+                newData.nombre, newData.descripcion, newData.direccion,
                     (err, res) => {
                         if (err) {
                             reject()

@@ -1,5 +1,6 @@
 import SimpleSchema from "simpl-schema";
 import { Meteor } from 'meteor/meteor';
+import { Checkbox } from "@material-ui/core";
 
 export const Establecimientos = new Mongo.Collection("establecimientos");
 
@@ -15,5 +16,5 @@ if (Meteor.isServer) {
 let Schema = new SimpleSchema({
     nombre: { type: String },
     descripcion: { type: String },
-    direccion: { type: String },
+    direccion: { type: String }
 })

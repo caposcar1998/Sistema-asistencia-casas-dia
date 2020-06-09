@@ -16,7 +16,7 @@ function TablaVoluntario({voluntarios}) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("crearVoluntario",
-                newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,newData.visualizarAsilo,newData.visualizarCasasDeDia,newData.visualizarClubes,newData.visualizarServicios,newData.visualizarActividades,newData.visualizarTarjetas,newData.visualizarEmpleados,newData.editarEmpleados,newData.visualizarBeneficios,newData.visualizarTutores,newData.editarTutores,newData.visualizarTalleres,newData.visualizarConvocatorias,newData.visualizarCentros,newData.visualizarColectivos,newData.generarReportes,newData.visualizarRestricciones,
+                newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,newData.visualizarAsilo,newData.visualizarCasasDeDia,newData.visualizarClubes,newData.visualizarServicios,newData.visualizarActividades,newData.visualizarTarjetas,newData.visualizarEmpleados,newData.editarEmpleados,newData.visualizarBeneficios,newData.visualizarTutores,newData.editarTutores,newData.visualizarTalleres,newData.visualizarConvocatorias,newData.visualizarCentros,newData.visualizarColectivos,newData.generarReportes,newData.visualizarRestricciones,newData.visualizarEstablecimiento,newData.editarEstablecimiento,newData.visualizarServiciosHospital,newData.editarServiciosHospital,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -34,7 +34,7 @@ function TablaVoluntario({voluntarios}) {
             return new Promise(
                 (resolve, reject) => {
                     Meteor.call("editarVoluntario",
-                        newData._id, newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,newData.idUsuario,newData.visualizarAsilo,newData.visualizarCasasDeDia,newData.visualizarClubes,newData.visualizarServicios,newData.visualizarActividades,newData.visualizarTarjetas,newData.visualizarEmpleados,newData.editarEmpleados,newData.visualizarBeneficios,newData.visualizarTutores,newData.editarTutores,newData.visualizarTalleres,newData.visualizarConvocatorias,newData.visualizarCentros,newData.visualizarColectivos,newData.generarReportes,newData.visualizarRestricciones,
+                        newData._id, newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,newData.idUsuario,newData.visualizarAsilo,newData.visualizarCasasDeDia,newData.visualizarClubes,newData.visualizarServicios,newData.visualizarActividades,newData.visualizarTarjetas,newData.visualizarEmpleados,newData.editarEmpleados,newData.visualizarBeneficios,newData.visualizarTutores,newData.editarTutores,newData.visualizarTalleres,newData.visualizarConvocatorias,newData.visualizarCentros,newData.visualizarColectivos,newData.generarReportes,newData.visualizarRestricciones,newData.visualizarEstablecimiento,newData.editarEstablecimiento,newData.visualizarServiciosHospital,newData.editarServiciosHospital,
                         (err, res) => {
                             if (err) {
                                 reject()
@@ -118,7 +118,11 @@ function TablaVoluntario({voluntarios}) {
                     { title: "Visualizar Convocatorias", field: "visualizarConvocatorias", type:'boolean'},
                     { title: "Visualizar Centros", field: "visualizarCentros", type:'boolean'},
                     { title: "Generar reportes", field: "generarReportes", type:'boolean'},
-                    { title: "Visualizar Restricciones", field: "visualizarRestricciones", type: 'booelan'},
+                    { title: "Visualizar Restricciones", field: "visualizarRestricciones", type: 'boolean'},
+                    { title: "Visualizar Establecimientos", field: "visualizarEstablecimiento", type: 'boolean'},
+                    { title: "Editar Establecimiento", field: "editarEstablecimiento", type: 'boolean'},
+                    { title: "Visualizar Servicios de Hospital", field: "visualizarServiciosHospital", type: 'boolean'},
+                    { title: "Editar Servicios de Hospital", field: "editarServiciosHospital", type: 'boolean'},
                 ]
             }
             data={voluntarios}
