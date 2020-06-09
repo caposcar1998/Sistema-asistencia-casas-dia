@@ -29,7 +29,7 @@ import { Promociones } from '../../api/promociones/promociones';
 import { Establecimientos } from '../../api/establecimientos/establecimientos';
 import { ServiciosHospital } from '../../api/serviciosHospital/serviciosHospital';
 import {listaRestricciones} from "../../utilities/tablasEstaticas/restricciones";
-
+import { Servicios } from "../../api/servicios/servicios";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -65,6 +65,7 @@ const names = [
   'Asilos',
   'Casas de día',
   'Clubes',
+  'Servicios',
   'Actividades',
   'Tarjetas',
   'Empleados',
@@ -309,6 +310,18 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
             sexta_am:usuario.grupoSanguineo,
             septima_am:usuario.direccion,
             octava_am:usuario.codigoPostal,
+          })
+        } else if (tipo === 'Servicios') {
+          return ({
+            primera_s: usuario.tipoServicio,
+            segunda_s: usuario.nombre,
+            tercera_s: usuario.telefono,
+            cuarta_s: usuario.direccion,
+            quinta_s: usuario.fechaRegistro,
+            sexta_s: usuario.vigente,
+            septima_s: usuario.redSocial1,
+            octava_s: usuario.redSocial2,
+            novena_s: usuario.redSocial3,
           })
         }else if(tipo === 'Actividades'){
           return({
@@ -651,6 +664,7 @@ export default withTracker(() => {
   Meteor.subscribe("promociones");
   Meteor.subscribe("establecimientos");
   Meteor.subscribe("serviciosHospital");
+  Meteor.subscribe("servicios");
   return {
       empleados: Empleados.find({}).fetch(),
       instructores: Instructores.find({}).fetch(),
@@ -660,6 +674,7 @@ export default withTracker(() => {
       casasDeDia: CasasDeDia.find({}).fetch(),
       asilos: Asilos.find({}).fetch(),
       clubes: Clubes.find({}).fetch(),
+      servicios: Servicios.find({}).fetch(),
       centros: Centros.find({}).fetch(),
       convocatorias: Convocatorias.find({}).fetch(),
       colectivos: Colectivos.find({}).fetch(),

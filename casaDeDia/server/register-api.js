@@ -17,7 +17,7 @@ import "../imports/api/serviciosHospital/methods";
 import "../imports/api/establecimientos/methods"
 import "../imports/api/restricciones/methods";
 import "../imports/api/userLogin/methods";
-
+import "../imports/api/servicios/methods";
 //Methods from team lila
 import "../imports/api/tutores/methods";
 import "../imports/api/talleres/methods";
