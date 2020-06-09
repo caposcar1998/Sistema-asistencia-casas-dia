@@ -1,10 +1,19 @@
 import { Meteor } from 'meteor/meteor';
 import { Voluntarios } from "../voluntarios/voluntarios";
+import SimpleSchema from 'simpl-schema';
 
 Meteor.methods({
 
-
     "crearVoluntario"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos,generarReportes,visualizarRestricciones,visualizarEstablecimiento,editarEstablecimiento,visualizarServiciosHospital,editarServiciosHospital) {
+        
+        new SimpleSchema({
+            nombre: { type: String },
+            apellidos: { type: String },
+            apodo: { type: String },
+            contrasena: { type: String },
+            email: { type: String },
+          }).validate({ nombre,apellidos,apodo,contrasena,email});
+
         idUsuario = Accounts.createUser({
             username: apodo,
             password: contrasena,
@@ -81,6 +90,15 @@ Meteor.methods({
     },
 
     "editarVoluntario"(idVoluntario,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor, idUsuario,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos, generarReportes,visualizarRestricciones,visualizarEstablecimiento,editarEstablecimiento,visualizarServiciosHospital,editarServiciosHospital) {
+        
+        new SimpleSchema({
+            nombre: { type: String },
+            apellidos: { type: String },
+            apodo: { type: String },
+            contrasena: { type: String },
+            email: { type: String },
+          }).validate({ nombre,apellidos,apodo,contrasena,email});
+        
         Meteor.users.update(idUsuario,{
             $set:{
                 username: apodo,

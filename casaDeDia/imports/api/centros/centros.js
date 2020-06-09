@@ -14,8 +14,10 @@ if (Meteor.isServer) {
 }
 
 let Schema = new SimpleSchema({
+    nombre: { type: String },
     calle: { type: String },
     delegacion: { type: String },
     codigoPostal: { type: String },
-    numeroTelefonico: { type: String }
+    numeroTelefonico: { type: String },
+    foto: { type: String }
 })
