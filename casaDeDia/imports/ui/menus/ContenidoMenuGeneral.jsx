@@ -191,12 +191,6 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                     </ListItemIcon>
                     <ListItemText primary={"Clubes"} />
                 </ListItem>):''}
-                {((Meteor.user() && Meteor.user().profile.visualizarServicios) === true) ? (<ListItem button key={"Servicios"} onClick={() => cambioRuta('servicios')}>
-                    <ListItemIcon>
-                        <RoomServiceIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={"Servicios"} />
-                </ListItem>):''}
             </List>
             </Collapse>
 

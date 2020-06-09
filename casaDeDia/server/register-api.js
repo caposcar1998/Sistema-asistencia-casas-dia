@@ -9,7 +9,6 @@ import "../imports/api/usuarios/methods";
 import "../imports/api/clubes/methods";
 
 import "../imports/api/adultosMayores/methods";
-import "../imports/api/servicios/methods";
 import "../imports/api/voluntarios/methods";
 import "../imports/api/instructores/methods";
 import "../imports/api/empleados/methods";

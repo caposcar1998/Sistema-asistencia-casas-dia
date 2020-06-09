@@ -18,7 +18,6 @@ import CasasDeDiaTab from "../../ui/tabs/CasasDeDiaTab";
 import ClubesTab from "../../ui/tabs/ClubesTab";
 
 import AdultosMayoresTab from "../../ui/tabs/AdultosMayoresTab";
-import ServiciosTab from "../../ui/tabs/ServiciosTab";
 import VoluntariosTab from "../../ui/tabs/VoluntariosTab";
 import InstructoresTab from "../../ui/tabs/InstructoresTab";
 import EmpleadosTab from "../../ui/tabs/EmpleadosTab";
@@ -185,15 +184,6 @@ FlowRouter.route('/administrador/restricciones', {
     }
 })
 
-
-FlowRouter.route('/administrador/Servicios', {
-    name: 'servicios',
-    action() {
-        mount(AdministradorPage, {
-            content: <ServiciosTab />
-        })
-    }
-})
 
 FlowRouter.route('/administrador/Voluntarios', {
     name: 'voluntarios',

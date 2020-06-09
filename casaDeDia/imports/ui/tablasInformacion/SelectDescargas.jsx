@@ -16,7 +16,6 @@ import { Instructores } from "../../api/instructores/instructores";
 import { Voluntarios } from "../../api/voluntarios/voluntarios";
 import { AdultosMayores } from "../../api/adultosMayores/adultosMayores";
 import { withTracker } from 'meteor/react-meteor-data';
-import { Servicios } from "../../api/servicios/servicios";
 import { Actividades } from '../../api/actividades/actividades';
 import { CasasDeDia } from "../../api/casasDeDia/casasDeDia";
 import { Asilos } from "../../api/asilos/asilos";
@@ -66,7 +65,6 @@ const names = [
   'Asilos',
   'Casas de día',
   'Clubes',
-  'Servicios',
   'Actividades',
   'Tarjetas',
   'Empleados',
@@ -306,18 +304,6 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
             sexta_am:usuario.grupoSanguineo,
             septima_am:usuario.direccion,
             octava_am:usuario.codigoPostal,
-          })
-        }else if(tipo === 'Servicios'){
-          return({
-            primera_s:usuario.tipoServicio,
-            segunda_s:usuario.nombre,
-            tercera_s:usuario.telefono,
-            cuarta_s:usuario.direccion,
-            quinta_s:usuario.fechaRegistro,
-            sexta_s:usuario.vigente,
-            septima_s:usuario.redSocial1,
-            octava_s:usuario.redSocial2,
-            novena_s:usuario.redSocial3,
           })
         }else if(tipo === 'Actividades'){
           return({
@@ -642,7 +628,6 @@ export default withTracker(() => {
   Meteor.subscribe("instructores");
   Meteor.subscribe("voluntarios");
   Meteor.subscribe("adultosMayores");
-  Meteor.subscribe("servicios");
   Meteor.subscribe("actividades");
   Meteor.subscribe("casasDeDia");
   Meteor.subscribe("asilos");
@@ -660,7 +645,6 @@ export default withTracker(() => {
       instructores: Instructores.find({}).fetch(),
       voluntarios: Voluntarios.find({}).fetch(),
       adultosmayores: AdultosMayores.find({}).fetch(),
-      servicios: Servicios.find({}).fetch(),
       actividades: Actividades.find({}).fetch(),
       casasDeDia: CasasDeDia.find({}).fetch(),
       asilos: Asilos.find({}).fetch(),
