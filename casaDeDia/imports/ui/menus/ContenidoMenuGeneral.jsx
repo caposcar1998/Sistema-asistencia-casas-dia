@@ -201,13 +201,13 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                 </ListItemIcon>
                 <ListItemText primary={"Actividades"} />
             </ListItem>) : ''}    
-            {((Meteor.user() && Meteor.user().profile.visualizarRestricciones) === true) ? (<ListItem button key={"Restricciones"} onClick={() => cambioRuta('restricciones')}>
+            <ListItem button key={"Restricciones"} onClick={() => cambioRuta('restricciones')}>
                     <ListItemIcon>
                         <AssignmentLateIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Restricciones"} />
 
-                </ListItem>):''}
+                </ListItem>
             
             {(((Meteor.user() && Meteor.user().profile.visualizarTarjetas) !== true)) ? '': (<Divider />)}
             <List>
