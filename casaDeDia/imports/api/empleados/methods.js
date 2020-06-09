@@ -171,7 +171,7 @@ Meteor.methods({
                     visualizarConvocatorias:visualizarConvocatorias,
                     visualizarCentros:visualizarCentros,
                     visualizarColectivos:visualizarColectivos,
-                    generarReportes:generarReportes,yy
+                    generarReportes:generarReportes,
                     visualizarEstablecimiento:visualizarEstablecimiento,
                     editarEstablecimiento:editarEstablecimiento,
                     visualizarServiciosHospital:visualizarServiciosHospital,
