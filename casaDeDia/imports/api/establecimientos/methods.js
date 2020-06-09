@@ -8,20 +8,18 @@ import { Tarjetas } from '../tarjetas/tarjetas';
 Meteor.methods({
 
 
-    "crearEstablecimiento"(nombre, descripcion, direccion, verEstablecimientos, editarEstablecimientos) {
+    "crearEstablecimiento"(nombre, descripcion, direccion) {
         Establecimientos.insert(
             {
                 nombre: nombre,
                 descripcion: descripcion,
-                direccion: direccion,
-                verEstablecimientos: verEstablecimientos,
-                editarEstablecimientos: editarEstablecimientos
+                direccion: direccion
             }
 
         )
     },
 
-    "editarEstablecimiento"(idEstablecimiento, nombre, descripcion, direccion, verEstablecimientos, editarEstablecimientos) {
+    "editarEstablecimiento"(idEstablecimiento, nombre, descripcion, direccion) {
         Establecimientos.update(
             { _id: idEstablecimiento},
             {
@@ -29,9 +27,7 @@ Meteor.methods({
                 {
                     nombre: nombre,
                     descripcion: descripcion,
-                    direccion: direccion,
-                    verEstablecimientos: verEstablecimientos,
-                    editarEstablecimientos: editarEstablecimientos
+                    direccion: direccion
                 }
             }
         )

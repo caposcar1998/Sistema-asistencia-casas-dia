@@ -4,7 +4,7 @@ import { Voluntarios } from "../voluntarios/voluntarios";
 Meteor.methods({
 
 
-    "crearVoluntario"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos,generarReportes,visualizarRestricciones) {
+    "crearVoluntario"(nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos,generarReportes,visualizarRestricciones,visualizarEstablecimiento,editarEstablecimiento,visualizarServiciosHospital,editarServiciosHospital) {
         idUsuario = Accounts.createUser({
             username: apodo,
             password: contrasena,
@@ -33,6 +33,10 @@ Meteor.methods({
                 visualizarColectivos:visualizarColectivos,
                 generarReportes:generarReportes,
                 visualizarRestricciones:visualizarRestricciones,
+                visualizarEstablecimiento:visualizarEstablecimiento,
+                editarEstablecimiento:editarEstablecimiento,
+                visualizarServiciosHospital:visualizarServiciosHospital,
+                editarServiciosHospital:editarServiciosHospital,
             }
         }),
         
@@ -67,12 +71,16 @@ Meteor.methods({
                 visualizarColectivos:visualizarColectivos,
                 generarReportes:generarReportes,
                 visualizarRestricciones:visualizarRestricciones,
+                visualizarEstablecimiento:visualizarEstablecimiento,
+                editarEstablecimiento:editarEstablecimiento,
+                visualizarServiciosHospital:visualizarServiciosHospital,
+                editarServiciosHospital:editarServiciosHospital,
             }
 
         )
     },
 
-    "editarVoluntario"(idVoluntario,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor, idUsuario,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos, generarReportes,visualizarRestricciones) {
+    "editarVoluntario"(idVoluntario,nombre,apellidos,apodo,contrasena,email,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor, idUsuario,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos, generarReportes,visualizarRestricciones,visualizarEstablecimiento,editarEstablecimiento,visualizarServiciosHospital,editarServiciosHospital) {
         Meteor.users.update(idUsuario,{
             $set:{
                 username: apodo,
@@ -107,6 +115,10 @@ Meteor.methods({
                     visualizarColectivos:visualizarColectivos,
                     generarReportes:generarReportes,
                     visualizarRestricciones:visualizarRestricciones,
+                    visualizarEstablecimiento:visualizarEstablecimiento,
+                    editarEstablecimiento:editarEstablecimiento,
+                    visualizarServiciosHospital:visualizarServiciosHospital,
+                    editarServiciosHospital:editarServiciosHospital
                 }
             }
         });
@@ -148,6 +160,10 @@ Meteor.methods({
                     visualizarColectivos:visualizarColectivos,
                     generarReportes:generarReportes,
                     visualizarRestricciones:visualizarRestricciones,
+                    visualizarEstablecimiento:visualizarEstablecimiento,
+                    editarEstablecimiento:editarEstablecimiento,
+                    visualizarServiciosHospital:visualizarServiciosHospital,
+                    editarServiciosHospital:editarServiciosHospital
                 }
             }
         )

@@ -14,7 +14,7 @@ function TablaServiciosHospital({ serviciosHospital }) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("crearServicioHospital",
-                    newData.nombre, newData.vigencia, newData.descripcion, newData.laboratorio, newData.verServiciosHospital, newData.editarServiciosHospital,
+                    newData.nombre, newData.vigencia, newData.descripcion, newData.laboratorio,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -31,7 +31,7 @@ function TablaServiciosHospital({ serviciosHospital }) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("editarServicioHospital",
-                    newData.nombre, newData.vigencia, newData.descripcion, newData.laboratorio, newData.verServiciosHospital, newData.editarServiciosHospital,
+                    newData.nombre, newData.vigencia, newData.descripcion, newData.laboratorio,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -71,8 +71,6 @@ function TablaServiciosHospital({ serviciosHospital }) {
                     { title: "Vigencia", field: "vigencia", type: "datetime" },
                     { title: "Descripcion", field: "descripcion" },
                     { title: "Laboratorio", field: "laboratorio" },
-                    { title: "Ver Servicios de Hospital", field: "verServiciosHospital", type: 'boolean'},
-                    { title: "Editar Servicios de Hospital", field: "editarServiciosHospital", type: 'boolean'}
                 ]
             }
             data={serviciosHospital}
