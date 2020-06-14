@@ -7,7 +7,7 @@ import { Asilos } from "../asilos/asilos";
 Meteor.methods({
 
 
-    "crearActividad"(nombre, fechaInicio, fechaFinal, hora, descripcion, direccion) {
+    "crearActividad"(nombre, fechaInicio, fechaFinal, hora, descripcion, direccion, codigoPostal) {
         Actividades.insert(
             {
                 nombre: nombre,
@@ -15,13 +15,14 @@ Meteor.methods({
                 fechaFinal: fechaFinal,
                 hora: hora,
                 descripcion: descripcion,
-                direccion: direccion
+                direccion: direccion,
+                codigoPostal: codigoPostal
             }
 
         )
     },
 
-    "editarActividad"(idActividad, nombre, fechaInicio, fechaFinal, hora, descripcion, direccion) {
+    "editarActividad"(idActividad, nombre, fechaInicio, fechaFinal, hora, descripcion, direccion, codigoPostal) {
         Actividades.update(
             { _id: idActividad},
             {
@@ -32,7 +33,8 @@ Meteor.methods({
                     fechaFinal: fechaFinal,
                     hora: hora,
                     descripcion: descripcion,
-                    direccion: direccion
+                    direccion: direccion,
+                    codigoPostal: codigoPostal
                 }
             }
         )

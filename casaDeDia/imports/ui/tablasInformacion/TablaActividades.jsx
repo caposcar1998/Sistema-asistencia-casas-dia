@@ -14,7 +14,7 @@ function TablaActividades({ actividades }) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("crearActividad",
-                    newData.nombre, newData.fechaInicio, newData.fechaFinal, newData.hora, newData.descripcion, newData.direccion,
+                    newData.nombre, newData.fechaInicio, newData.fechaFinal, newData.hora, newData.descripcion, newData.direccion, newData.codigoPostal,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -31,7 +31,7 @@ function TablaActividades({ actividades }) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("editarActividad",
-                    newData.nombre, newData.fechaInicio, newData.fechaFinal, newData.hora, newData.descripcion, newData.direccion,
+                    newData._id, newData.nombre, newData.fechaInicio, newData.fechaFinal, newData.hora, newData.descripcion, newData.direccion, newData.codigoPostal,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -68,11 +68,12 @@ function TablaActividades({ actividades }) {
             columns={
                 [
                     { title: "Nombre", field: "nombre" },
-                    { title: "fechaInicio", field: "fechaInicio", type: "datetime" },
-                    { title: "fechaFinal", field: "fechaFinal", type: "datetime" },
-                    { title: "hora", field: "hora", type: "time" },
-                    { title: "descripcion", field: "descripcion" },
-                    { title: "direccion", field: "direccion" }
+                    { title: "Fecha inicio", field: "fechaInicio", type: "datetime" },
+                    { title: "Fecha iinal", field: "fechaFinal", type: "datetime" },
+                    { title: "Hora", field: "hora", type: "time" },
+                    { title: "Descripción", field: "descripcion" },
+                    { title: "Dirección", field: "direccion" },
+                    { title: "Código postal", field: "codigoPostal"}
                 ]
             }
             data={actividades}

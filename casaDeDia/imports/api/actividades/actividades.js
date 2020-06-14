@@ -19,4 +19,5 @@ let Schema = new SimpleSchema({
     hora: {type: String},
     descripcion: { type: String },
     direccion: { type: String },
+    codigoPostal: {type: String}
 })
