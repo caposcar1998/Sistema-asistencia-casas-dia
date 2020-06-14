@@ -102,13 +102,21 @@ export default function TarjetasAsilos({ asilo, handleOpenBorrarAsilos,  handleO
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
-                        <Typography paragraph>Direccion:</Typography>
+                        <Typography paragraph>Dirección:</Typography>
                         <Typography paragraph>
                             {asilo.direccion}
                         </Typography>
-                        <Typography paragraph>Codigo:</Typography>
+                        <Typography paragraph>Código postal:</Typography>
                         <Typography paragraph>
                             {asilo.codigoPostal}
+                        </Typography>
+                        <Typography paragraph>Tipo Institución:</Typography>
+                        <Typography paragraph>
+                            {asilo.tipoInstitucion}
+                        </Typography>
+                        <Typography paragraph>Costo:</Typography>
+                        <Typography paragraph>
+                            {asilo.costo}
                         </Typography>
                         <Typography paragraph>Restricciones:</Typography>
                         <Typography paragraph>

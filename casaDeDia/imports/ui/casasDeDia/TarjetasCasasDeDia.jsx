@@ -106,7 +106,7 @@ export default function TarjetasCasasDeDia({ casa, handleOpenAnadirUsuario,handl
                         <Typography paragraph>
                             {casa.direccion}
                         </Typography>
-                        <Typography paragraph>Código:</Typography>
+                        <Typography paragraph>Código postal:</Typography>
                         <Typography paragraph>
                             {casa.codigoPostal}
                         </Typography>
