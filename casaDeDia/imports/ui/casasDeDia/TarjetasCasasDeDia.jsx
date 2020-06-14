@@ -102,13 +102,21 @@ export default function TarjetasCasasDeDia({ casa, handleOpenAnadirUsuario,handl
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
-                        <Typography paragraph>Direccion:</Typography>
+                        <Typography paragraph>Dirección:</Typography>
                         <Typography paragraph>
                             {casa.direccion}
                         </Typography>
-                        <Typography paragraph>Codigo:</Typography>
+                        <Typography paragraph>Código:</Typography>
                         <Typography paragraph>
                             {casa.codigoPostal}
+                        </Typography>
+                        <Typography paragraph>Tipo Institución:</Typography>
+                        <Typography paragraph>
+                            {casa.tipoInstitucion}
+                        </Typography>
+                        <Typography paragraph>Costo:</Typography>
+                        <Typography paragraph>
+                            {casa.costo}
                         </Typography>
                         <Typography paragraph>Restricciones:</Typography>
                         <Typography paragraph>
@@ -125,7 +133,7 @@ export default function TarjetasCasasDeDia({ casa, handleOpenAnadirUsuario,handl
                                 }
                             </List>
                         </Typography>
-                        <Typography paragraph>CupoLimite:</Typography>
+                        <Typography paragraph>Cupo limite:</Typography>
                         <Typography paragraph>
                             {casa.cupoLimite}
                         </Typography>
