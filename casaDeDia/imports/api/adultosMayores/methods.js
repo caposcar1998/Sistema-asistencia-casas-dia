@@ -4,14 +4,17 @@ import { CasasDeDia } from '../casasDeDia/casasDeDia';
 import { Clubes } from '../clubes/clubes';
 import { Asilos } from '../asilos/asilos';
 import SimpleSchema from 'simpl-schema';
-
-
+import CryptoJS from "react-native-crypto-js";
 
 Meteor.methods({
 
 
     "crearAdultoMayor"(nombre,apellidos,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,foto) {
-        
+        // Encrypt
+        let ap = CryptoJS.AES.encrypt(apellidos, 'secret key 123').toString();
+        let crp = CryptoJS.AES.encrypt(curp, 'secret key 123').toString();
+        let dir = CryptoJS.AES.encrypt(direccion, 'secret key 123').toString();
+
         new SimpleSchema({
             nombre: { type: String },
             apellidos: { type: String },
@@ -24,12 +27,12 @@ Meteor.methods({
         AdultosMayores.insert(
             {
                 nombre: nombre,
-                apellidos: apellidos,
-                curp: curp,
+                apellidos: ap,
+                curp: crp,
                 sexo: sexo,
                 edad: edad,
                 grupoSanguineo: grupoSanguineo,
-                direccion: direccion,
+                direccion: dir,
                 codigoPostal: codigoPostal,
                 foto: foto,
                 tarjetas: []
@@ -39,7 +42,11 @@ Meteor.methods({
     },
 
     "editarAdultoMayor"(idAdultoMayor,nombre,apellidos,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,foto) {
-        
+        // Encrypt
+        let ap = CryptoJS.AES.encrypt(apellidos, 'secret key 123').toString();
+        let crp = CryptoJS.AES.encrypt(curp, 'secret key 123').toString();
+        let dir = CryptoJS.AES.encrypt(direccion, 'secret key 123').toString();
+
         new SimpleSchema({
             nombre: { type: String },
             apellidos: { type: String },
@@ -56,12 +63,12 @@ Meteor.methods({
                 $set:
                 {
                     nombre: nombre,
-                    apellidos: apellidos,
-                    curp: curp,
+                    apellidos: ap,
+                    curp: crp,
                     sexo: sexo,
                     edad: edad,
                     grupoSanguineo: grupoSanguineo,
-                    direccion: direccion,
+                    direccion: dir,
                     codigoPostal: codigoPostal,
                     foto: foto
                 }

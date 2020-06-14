@@ -30,6 +30,7 @@ import { Establecimientos } from '../../api/establecimientos/establecimientos';
 import { ServiciosHospital } from '../../api/serviciosHospital/serviciosHospital';
 import {listaRestricciones} from "../../utilities/tablasEstaticas/restricciones";
 import { Servicios } from "../../api/servicios/servicios";
+import CryptoJS from "react-native-crypto-js";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -301,14 +302,21 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
             tercera:usuario.email,
           })
         }else if(tipo === 'Adultos Mayores'){
+          // Decrypt
+          let bytes  = CryptoJS.AES.decrypt(usuario.apellidos, 'secret key 123');
+          let apellidos_adulto = bytes.toString(CryptoJS.enc.Utf8);
+          let bytes2  = CryptoJS.AES.decrypt(usuario.curp, 'secret key 123');
+          let curp_adulto = bytes2.toString(CryptoJS.enc.Utf8);
+          let bytes3  = CryptoJS.AES.decrypt(usuario.direccion, 'secret key 123');
+          let direccion_adulto = bytes3.toString(CryptoJS.enc.Utf8);
           return({
             primera_am:usuario.nombre,
-            segunda_am:usuario.apellidos,
-            tercera_am:usuario.curp,
+            segunda_am:apellidos_adulto,
+            tercera_am:curp_adulto,
             cuarta_am:usuario.sexo,
             quinta_am:usuario.edad,
             sexta_am:usuario.grupoSanguineo,
-            septima_am:usuario.direccion,
+            septima_am:direccion_adulto.replace(/,/g,'  '),
             octava_am:usuario.codigoPostal,
           })
         } else if (tipo === 'Servicios') {

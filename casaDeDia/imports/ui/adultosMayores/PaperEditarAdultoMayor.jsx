@@ -1,6 +1,7 @@
 import React, {useEffect, useState } from 'react';
 import { Grid, TextField, Button, Input, LinearProgress } from '@material-ui/core';
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
+import CryptoJS from "react-native-crypto-js";
 
 
 export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSeleccionado, handleCerrarEditarAdultoMayor }) {
@@ -19,10 +20,18 @@ export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSelec
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+        // Decrypt
+        let bytes  = CryptoJS.AES.decrypt(adultoSeleccionado.apellidos, 'secret key 123');
+        let apellidos_adulto = bytes.toString(CryptoJS.enc.Utf8);
+        let bytes2  = CryptoJS.AES.decrypt(adultoSeleccionado.curp, 'secret key 123');
+        let curp_adulto = bytes2.toString(CryptoJS.enc.Utf8);
+        let bytes3  = CryptoJS.AES.decrypt(adultoSeleccionado.direccion, 'secret key 123');
+        let direccion_adulto = bytes3.toString(CryptoJS.enc.Utf8);
+        
         setNombre(adultoSeleccionado.nombre);
-        setApellidos(adultoSeleccionado.apellidos);
-        setDireccion(adultoSeleccionado.direccion);
-        setCurp(adultoSeleccionado.curp);
+        setApellidos(apellidos_adulto);
+        setDireccion(direccion_adulto);
+        setCurp(curp_adulto);
         setSexo(adultoSeleccionado.sexo);
         setEdad(adultoSeleccionado.edad);
         setCodigoPostal(adultoSeleccionado.codigoPostal);

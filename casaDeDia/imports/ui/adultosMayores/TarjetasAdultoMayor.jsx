@@ -7,6 +7,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { List, ListItem, Grid, Typography, Card, CardContent, CardActions, CardMedia, CardHeader, Collapse } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CreditCardIcon from '@material-ui/icons/CreditCard';
+import CryptoJS from "react-native-crypto-js";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,6 +34,15 @@ const useStyles = makeStyles((theme) => ({
 export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayor, handleOpenEditarAdultoMayor, handleOpenAnadirTarjeta }) {
     const classes = useStyles();
     const [expanded, setExpanded] = useState(false);
+
+    // Decrypt
+    let bytes  = CryptoJS.AES.decrypt(adulto.apellidos, 'secret key 123');
+    let apellidos_adulto = bytes.toString(CryptoJS.enc.Utf8);
+    let bytes2  = CryptoJS.AES.decrypt(adulto.curp, 'secret key 123');
+    let curp_adulto = bytes2.toString(CryptoJS.enc.Utf8);
+    let bytes3  = CryptoJS.AES.decrypt(adulto.direccion, 'secret key 123');
+    let direccion_adulto = bytes3.toString(CryptoJS.enc.Utf8);
+    console.log(direccion_adulto);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -67,7 +77,7 @@ export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayo
                 <CardContent>
                     <Typography variant="body2" color="textSecondary" component="p">
                         curp: 
-                        { adulto.curp}
+                        {curp_adulto}
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
@@ -99,7 +109,7 @@ export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayo
                         </Typography>
                         <Typography paragraph>Apellido:</Typography>
                         <Typography paragraph>
-                            {adulto.apellidos}
+                            {apellidos_adulto}
                         </Typography>
                         <Typography paragraph>Grupo Sanguieno:</Typography>
                         <Typography paragraph>
@@ -107,7 +117,7 @@ export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayo
                         </Typography>
                         <Typography paragraph>Direccion:</Typography>
                         <Typography paragraph>
-                            {adulto.direccion}
+                            {direccion_adulto}
                         </Typography>
                         <Typography paragraph>Codigo postal:</Typography>
                         <Typography paragraph>

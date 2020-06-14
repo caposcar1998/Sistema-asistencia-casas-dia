@@ -20,6 +20,7 @@
     "react-csv-downloader": "^1.8.0",
     "react-dom": "^16.13.1",
     "react-mounter": "^1.2.0",
+    "react-native-crypto-js": "^1.0.0",
     "react-router-dom": "^5.1.2",
     "simpl-schema": "^1.7.1"
   },
