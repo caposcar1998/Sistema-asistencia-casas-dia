@@ -4,6 +4,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import WhatsappIcon from '@material-ui/icons/Whatsapp';
+import FBIcon from '@material-ui/icons/Facebook';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import PeopleIcon from '@material-ui/icons/People';
 import { List, ListItem, Grid, Typography, Card, CardContent, CardActions, CardMedia, CardHeader, Collapse } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CryptoJS from "react-native-crypto-js";
@@ -54,7 +58,7 @@ export default function TarjetasColectivos({colectivo, handleOpenBorrarColectivo
                     image={colectivo.foto}
                 />
                 <CardContent>
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography variant="body2" color="textSecondary" component="p" variant="h5">
                         {colectivo.descripcion}
                     </Typography>
                 </CardContent>
@@ -78,12 +82,28 @@ export default function TarjetasColectivos({colectivo, handleOpenBorrarColectivo
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
-                        <Typography paragraph>Categoria:</Typography>
+                        <Typography paragraph variant="h6">Whatsapp del Colectivo:</Typography>
+                        <Typography paragraph>
+                            <WhatsappIcon />
+                            {colectivo.redSocial1}
+                        </Typography>
+                        <Typography paragraph variant="h6">Facebook del Colectivo:</Typography>
+                        <Typography paragraph>
+                        <FBIcon />
+                            {colectivo.redSocial2}
+                        </Typography>
+                        <Typography paragraph variant="h6">Twitter del Colectivo:</Typography>
+                        <Typography paragraph>
+                        <TwitterIcon />
+                            {colectivo.redSocial3}
+                        </Typography>
+                        <Typography paragraph variant="h6">Categoria:</Typography>
                         <Typography paragraph>
                             {colectivo.categoria}
                         </Typography>
-                        <Typography paragraph>Nombre Tutor(es):</Typography>
+                        <Typography paragraph variant="h6">Nombre Tutor(es):</Typography>
                         <Typography paragraph>
+                            <PeopleIcon />
                             <List>
                                 {
                                     (colectivo.tutores).map((tutores) => (
@@ -99,7 +119,7 @@ export default function TarjetasColectivos({colectivo, handleOpenBorrarColectivo
                                 }
                             </List>
                         </Typography>
-                        <Typography paragraph>CupoLimite:</Typography>
+                        <Typography paragraph variant="h6">CupoLimite:</Typography>
                         <Typography paragraph>
                             {colectivo.cupoLimite}
                         </Typography>

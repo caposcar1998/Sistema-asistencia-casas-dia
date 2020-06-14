@@ -19,5 +19,8 @@ let Schema = new SimpleSchema({
     categoria: { type: String },
     cupoLimite: { type: Number },
     foto: { type: String },
+    redSocial1: {type: String},
+    redSocial2: {type: String},
+    redSocial3: {type: String}
 })
 
