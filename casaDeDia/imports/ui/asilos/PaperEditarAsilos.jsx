@@ -175,7 +175,7 @@ export default function PaperEditarAsilos({ asilosServidor,asiloSeleccionado, ha
                 </Grid>
 
                 <Grid item xs={12}>
-                    <Grid item xs={12}>Direccion</Grid>
+                    <Grid item xs={12}>Dirección</Grid>
                     <Grid item xs={12}>
                         <TextField id="direccion" value={direccion} onChange={(e) => setDireccion(e.target.value)} />
                     </Grid>
@@ -250,7 +250,7 @@ export default function PaperEditarAsilos({ asilosServidor,asiloSeleccionado, ha
                     </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                    <Grid item xs={12}>Codigo postal</Grid>
+                    <Grid item xs={12}>Código postal</Grid>
                     <Grid item xs={12}>
                         <TextField
                             id="codigo"
@@ -261,7 +261,7 @@ export default function PaperEditarAsilos({ asilosServidor,asiloSeleccionado, ha
                     </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                    <Grid item xs={12}>Cupo limite</Grid>
+                    <Grid item xs={12}>Cupo límite</Grid>
                     <Grid item xs={12}>
                         <Select
                             labelId="cupoLimite"
