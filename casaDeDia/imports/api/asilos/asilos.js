@@ -49,5 +49,7 @@ let Schema = new SimpleSchema({
     "empleados.$": { type: EmpleadosCasaDia },
     empleados: { type: Array, defaultValue: [], optional: true },
     "usuarios.$": { type: AdultosMayoresCasaDia },
-    usuarios: { type: Array, defaultValue: [], optional: true }
+    usuarios: { type: Array, defaultValue: [], optional: true },
+    tipoInstitucion: { type: String },
+    costo: { type: Number }
 })

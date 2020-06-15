@@ -14,7 +14,7 @@ function TablaServiciosHospital({ serviciosHospital }) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("crearServicioHospital",
-                    newData.nombre, newData.vigencia, newData.descripcion, newData.laboratorio,
+                    newData.nombre, newData.vigencia, newData.descripcion, newData.laboratorio, newData.nombreInstitucion, newData.direccion, newData.codigoPostal, newData.tipoInstitucion,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -30,7 +30,7 @@ function TablaServiciosHospital({ serviciosHospital }) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("editarServicioHospital",
-                    newData._id, newData.nombre, newData.vigencia, newData.descripcion, newData.laboratorio,
+                    newData._id, newData.nombre, newData.vigencia, newData.descripcion, newData.laboratorio, newData.nombreInstitucion, newData.direccion, newData.codigoPostal, newData.tipoInstitucion,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -68,8 +68,12 @@ function TablaServiciosHospital({ serviciosHospital }) {
                 [
                     { title: "Nombre", field: "nombre" },
                     { title: "Vigencia", field: "vigencia", type: "datetime" },
-                    { title: "Descripcion", field: "descripcion" },
+                    { title: "Descripción", field: "descripcion" },
                     { title: "Laboratorio", field: "laboratorio" },
+                    { title: "Nombre Institución", field: "nombreInstitucion" },
+                    { title: "Dirección", field: "direccion" },
+                    { title: "Codigo postal", field: "codigoPostal" },
+                    { title: "Privado", field: "tipoInstitucion", type:"boolean" },
                 ]
             }
             data={serviciosHospital}
@@ -89,3 +93,5 @@ export default withTracker(() => {
         serviciosHospital: ServiciosHospital.find({}).fetch(),
     };
 })(TablaServiciosHospital);
+
+
