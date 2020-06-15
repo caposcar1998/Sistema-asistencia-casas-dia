@@ -65,7 +65,7 @@ function TablaRestricciones({ restricciones }) {
             columns={
                 [
                     { title: "Nombre", field: "nombre" },
-                    { title: "descripcion", field: "descripcion" },
+                    { title: "Descripción", field: "descripcion" },
                 ]
             }
             data={restricciones}
