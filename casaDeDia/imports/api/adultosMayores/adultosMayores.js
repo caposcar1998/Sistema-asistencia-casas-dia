@@ -15,6 +15,11 @@ if (Meteor.isServer) {
 
 }
 
+let tarjetasUsuario = new SimpleSchema({
+    tarjeta: { type: Tarjetas },
+    noTarjeta: {type: String}
+})
+
 let Schema = new SimpleSchema({
     nombre: { type: String },
     apellidos: { type: String },
@@ -25,6 +30,6 @@ let Schema = new SimpleSchema({
     direccion: { type: String },
     codigoPostal: { type: Number },
     foto: { type: String },
-    "tarjetas.$": { type: Tarjetas },
+    "tarjetas.$": { type: tarjetasUsuario },
     tarjetas: { type: Array, defaultValue: [], optional: true }
 })

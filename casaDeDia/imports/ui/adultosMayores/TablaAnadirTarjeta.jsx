@@ -32,7 +32,16 @@ export default function TablaAnadirTarjeta({ adultoSeleccionado, handleCerrarAna
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
     const [message, setMessage] = useState();
+    const [editable, setEditable] = useState(true);
 
+    function editCampo() {
+        if (editable) {
+            setEditable(false)
+        }
+        if (!editable) {
+            setEditable(true)
+        }
+    }
 
     function eliminarTarjeta(idEliminar) {
         return new Promise(
@@ -56,6 +65,30 @@ export default function TablaAnadirTarjeta({ adultoSeleccionado, handleCerrarAna
         )
     }
 
+    function editarNoTarjeta(idEditar, noTarjeta, noTarjetaNueva) {
+        return new Promise(
+            (resolve, reject) => {
+                Meteor.call("editarTarjetaUsuario",
+                    adultoSeleccionado._id, idEditar, noTarjeta, noTarjetaNueva,
+                    (err, res) => {
+                        if (err) {
+                            setAlert("error");
+                            setSnackBarState(true);
+                            setMessage("Error al editar tarjeta");
+                            reject();
+                        } else {
+                            setAlert("success");
+                            setSnackBarState(true);
+                            setMessage("Tarjeta editada");
+                            casasDeDiaServidor();
+                            handleCerrarAnadirTarjeta();
+                            resolve()
+                        }
+                    });
+            }
+        )
+    }
+
 
     return (
         <>
@@ -64,7 +97,6 @@ export default function TablaAnadirTarjeta({ adultoSeleccionado, handleCerrarAna
                     <Typography variant="h6" className={classes.title}>
                         {adultoSeleccionado.nombre}
                     </Typography>
-                    <Button color="inherit" >Añadir</Button>
                 </Toolbar>
             </AppBar>
 
@@ -74,6 +106,8 @@ export default function TablaAnadirTarjeta({ adultoSeleccionado, handleCerrarAna
                         <TableRow>
                             <TableCell>Eliminar</TableCell>
                             <TableCell align="right">Nombre</TableCell>
+                            <TableCell align="right">No. tarjeta</TableCell>
+                            <TableCell align="right">Editar</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -81,6 +115,10 @@ export default function TablaAnadirTarjeta({ adultoSeleccionado, handleCerrarAna
                             <TarjetasUsuario
                                 tarjeta={tarjeta}
                                 eliminarTarjeta={eliminarTarjeta}
+                                adultoSeleccionado={adultoSeleccionado}
+                                editarNoTarjeta={editarNoTarjeta}
+                                editable={editable}
+                                editCampo={editCampo}
                             />
                         ))}
                     </TableBody>
@@ -105,7 +143,7 @@ function CrearNuevaTarjeta({ adultoSeleccionado, handleCerrarAnadirTarjeta }) {
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
     const [message, setMessage] = useState();
-
+    const [noTarjeta, setNoTarjeta] = useState('');
 
     function traerTarjetasServidor() {
         return new Promise(
@@ -127,7 +165,7 @@ function CrearNuevaTarjeta({ adultoSeleccionado, handleCerrarAnadirTarjeta }) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("anadirTarjeta",
-                    adultoSeleccionado._id, tarjetaSeleccionada._id, tarjetaSeleccionada.nombre,
+                    adultoSeleccionado._id, tarjetaSeleccionada._id, tarjetaSeleccionada.nombre, noTarjeta,
                     (err, res) => {
                         if (err) {
                             setAlert("error")
@@ -173,6 +211,10 @@ function CrearNuevaTarjeta({ adultoSeleccionado, handleCerrarAnadirTarjeta }) {
                                         <MenuItem value={tarjeta}>{tarjeta.nombre}</MenuItem>
                                     ))}
                         </Select>
+                    </Grid>
+                    <Grid item xs={6}>Número referencia</Grid>
+                    <Grid item xs={6}>
+                        <TextField id="noTarjeta" label="noTarjeta"  value={noTarjeta} onChange={(e) => setNoTarjeta(e.target.value)}/>
                     </Grid>
                     <Box />
                     <Grid item xs={6}>

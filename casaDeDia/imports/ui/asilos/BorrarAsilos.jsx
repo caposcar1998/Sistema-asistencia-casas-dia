@@ -74,7 +74,7 @@ export default function BorrarAsilos({ asilosServidor,openBorrarAsilos, handleCe
             <div style={modalStyle} className={classes.paper}>
                 <h2 id="simple-modal-title">Borrar asilo</h2>
                 <p id="simple-modal-description">
-                    Seguro deseas borrar este asilo?
+                    ¿Seguro deseas borrar este asilo?
                 </p>
                 <Button variant="contained" color="secondary" onClick={handleCerrarBorrarAsilos}>Cancelar</Button>
                 <Button variant="contained" color="primary" onClick={borrarAsilo}>Borrar</Button>
