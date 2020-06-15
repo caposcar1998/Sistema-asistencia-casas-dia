@@ -9,7 +9,7 @@ import SimpleSchema from 'simpl-schema';
 
 Meteor.methods({
 
-    "crearServicioHospital"(nombre, vigencia, descripcion, laboratorio) {
+    "crearServicioHospital"(nombre, vigencia, descripcion, laboratorio, nombreInstitucion,direccion, codigoPostal, tipoInstitucion) {
 
         new SimpleSchema({
             nombre: { type: String },
@@ -22,15 +22,18 @@ Meteor.methods({
                 nombre: nombre,
                 vigencia: vigencia,
                 descripcion: descripcion,
-                laboratorio: laboratorio
+                laboratorio: laboratorio,
+                nombreInstitucion: nombreInstitucion,
+                direccion: direccion,
+                codigoPostal: codigoPostal,
+                tipoInstitucion: tipoInstitucion
             }
 
         )
     },
 
-    "editarServicioHospital"(idServicioHospital, nombre, vigencia, descripcion, laboratorio) {
-        console.log("Hola soy victor")
-        console.log(nombre, descripcion)
+    "editarServicioHospital"(idServicioHospital, nombre, vigencia, descripcion, laboratorio, nombreInstitucion, direccion, codigoPostal, tipoInstitucion) {
+
         new SimpleSchema({
             nombre: { type: String },
             descripcion: { type: String },
@@ -44,7 +47,11 @@ Meteor.methods({
                     nombre: nombre,
                     vigencia: vigencia,
                     descripcion: descripcion,
-                    laboratorio: laboratorio
+                    laboratorio: laboratorio,
+                    nombreInstitucion: nombreInstitucion,
+                    direccion: direccion,
+                    codigoPostal: codigoPostal,
+                    tipoInstitucion: tipoInstitucion
                 }
             }
         )
