@@ -108,14 +108,15 @@ Meteor.methods({
         return AdultosMayores.find().fetch();
     },
 
-    "anadirTarjeta"(idUsuario, idTarjeta, nombre) {
+    "anadirTarjeta"(idUsuario, idTarjeta, nombre, noTarjeta) {
         AdultosMayores.update(
             { _id: idUsuario },
             {
                 $push: {
                     "tarjetas": {
                         idReferencia: idTarjeta,
-                        nombre: nombre
+                        nombre: nombre,
+                        noTarjeta : noTarjeta
                     }
                 }
             }
@@ -130,7 +131,16 @@ Meteor.methods({
                 false,
                 true
             )
-     }
+    },
+    
+    "editarTarjetaUsuario"(idAdultoSeleccionado, idEditar, noTarjeta, noTarjetaNueva) { 
+        AdultosMayores.update(
+            { _id: idAdultoSeleccionado, "tarjetas.idReferencia": idEditar, "tarjetas.noTarjeta": noTarjeta },
+            { $set: { "tarjetas.$.noTarjeta": noTarjetaNueva } }
+        )
+    }
+
+       
 
 
 });
