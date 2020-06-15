@@ -135,10 +135,12 @@ Meteor.methods({
     
     "editarTarjetaUsuario"(idAdultoSeleccionado, idEditar, noTarjeta, noTarjetaNueva) { 
         AdultosMayores.update(
-            { _id: idAdultoSeleccionado, "tarjetas.idReferencia": idEditar, "tarjetas.tarjetasUsuario": noTarjetaNueva },
-            { $set: { "empleados.$.puesto": puestoNuevo } }
+            { _id: idAdultoSeleccionado, "tarjetas.idReferencia": idEditar, "tarjetas.noTarjeta": noTarjeta },
+            { $set: { "tarjetas.$.noTarjeta": noTarjetaNueva } }
         )
     }
+
+       
 
 
 });

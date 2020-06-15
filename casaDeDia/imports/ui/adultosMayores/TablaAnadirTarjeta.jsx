@@ -79,7 +79,7 @@ export default function TablaAnadirTarjeta({ adultoSeleccionado, handleCerrarAna
                         } else {
                             setAlert("success");
                             setSnackBarState(true);
-                            setMessage("TArjeta editado");
+                            setMessage("Tarjeta editada");
                             casasDeDiaServidor();
                             handleCerrarAnadirTarjeta();
                             resolve()

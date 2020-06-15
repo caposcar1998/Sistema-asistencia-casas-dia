@@ -13,7 +13,7 @@ export default function TarjetasUsuario({ tarjeta, eliminarTarjeta, editable, ed
         eliminarTarjeta(idEliminar)
     }
 
-    function handleEditarTarjeta(idEditar, puesto) {
+    function handleEditarTarjeta(idEditar, noTarjeta) {
         editarNoTarjeta(idEditar, noTarjeta, noTarjetaNuevo)
     }
 
@@ -32,7 +32,7 @@ export default function TarjetasUsuario({ tarjeta, eliminarTarjeta, editable, ed
                         tarjeta.noTarjeta :
                         <>
                             <TextField value={noTarjetaNuevo} onChange={(e) => setNoTarjetaNuevo(e.target.value)} />
-                            <CheckIcon onClick={() => handleEditarTarjeta(adultoSeleccionado.idReferencia, adultoSeleccionado.noTarjeta)} />
+                            <CheckIcon onClick={() => handleEditarTarjeta(tarjeta.idReferencia, tarjeta.noTarjeta)} />
                         </>
                 }
             </TableCell>
