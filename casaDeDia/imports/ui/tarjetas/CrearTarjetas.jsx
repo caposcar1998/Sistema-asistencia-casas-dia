@@ -82,7 +82,7 @@ export default function CrearTarjetas() {
             <Grid container className={classes.fondo}>
                 <Paper>
                     <Grid item xs={12}>
-                        <Button onClick={handleOpenModal} variant="contained" color="primary">Nueva TArjeta</Button>
+                        <Button onClick={handleOpenModal} variant="contained" color="primary">Nueva Tarjeta</Button>
                     </Grid>
 
                     <Grid item xs={12}>

@@ -133,7 +133,7 @@ export default function TarjetasClubes({ club, handleOpenAnadirUsuario,handleOpe
                                 }
                             </List>
                         </Typography>
-                        <Typography paragraph>CupoLimite:</Typography>
+                        <Typography paragraph>Cupo límite:</Typography>
                         <Typography paragraph>
                             {club.cupoLimite}
                         </Typography>

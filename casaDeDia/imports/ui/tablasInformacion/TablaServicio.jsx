@@ -69,7 +69,7 @@ function TablaServicio({ servicios }) {
                 [
                     { title: "Tipo de Servicio", field: "tipoServicio" },
                     { title: "Nombre", field: "nombre" },
-                    { title: "Telefono", field: "telefono" },
+                    { title: "Teléfono", field: "telefono" },
                     { title: "Dirección", field: "direccion" },
                     { title: "Fecha de Registro", field: "fechaRegistro", type: "datetime" },
                     { title: "Vigente", field: "vigente", type: "boolean" },

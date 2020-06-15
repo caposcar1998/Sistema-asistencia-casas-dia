@@ -72,7 +72,7 @@ function TablaServiciosHospital({ serviciosHospital }) {
                     { title: "Laboratorio", field: "laboratorio" },
                     { title: "Nombre Institución", field: "nombreInstitucion" },
                     { title: "Dirección", field: "direccion" },
-                    { title: "Codigo postal", field: "codigoPostal" },
+                    { title: "Código postal", field: "codigoPostal" },
                     { title: "Privado", field: "tipoInstitucion", type:"boolean" },
                 ]
             }

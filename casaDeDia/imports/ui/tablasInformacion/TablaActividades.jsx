@@ -69,7 +69,7 @@ function TablaActividades({ actividades }) {
                 [
                     { title: "Nombre", field: "nombre" },
                     { title: "Fecha inicio", field: "fechaInicio", type: "datetime" },
-                    { title: "Fecha iinal", field: "fechaFinal", type: "datetime" },
+                    { title: "Fecha final", field: "fechaFinal", type: "datetime" },
                     { title: "Hora", field: "hora", type: "time" },
                     { title: "Descripción", field: "descripcion" },
                     { title: "Dirección", field: "direccion" },

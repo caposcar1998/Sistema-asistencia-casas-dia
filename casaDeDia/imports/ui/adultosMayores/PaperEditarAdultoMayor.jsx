@@ -110,14 +110,14 @@ export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSelec
 
 
                 <Grid item xs={4}>
-                    <Grid item xs={12}>Grupo sanguíneo</Grid>
+                    <Grid item xs={12}>Grupo Sanguíneo</Grid>
                     <Grid item xs={12}>
                         <TextField id="grupoSanguineo" value={grupoSanguineo} onChange={(e) => setGrupoSanguineo(e.target.value)} />
                     </Grid>
                 </Grid>
 
                 <Grid item xs={4}>
-                    <Grid item xs={12}>Direccion</Grid>
+                    <Grid item xs={12}>Dirección</Grid>
                     <Grid item xs={12}>
                         <TextField id="direccion" value={direccion} onChange={(e) => setDireccion(e.target.value)} />
                     </Grid>
@@ -148,7 +148,7 @@ export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSelec
                 
                 
                 <Grid item xs={4}>
-                    <Grid item xs={12}>Codigo postal</Grid>
+                    <Grid item xs={12}>Código postal</Grid>
                     <Grid item xs={12}>
                         <TextField
                             id="codigo"
