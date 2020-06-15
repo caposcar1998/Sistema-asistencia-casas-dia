@@ -133,7 +133,7 @@ export default function TarjetasCasasDeDia({ casa, handleOpenAnadirUsuario,handl
                                 }
                             </List>
                         </Typography>
-                        <Typography paragraph>Cupo limite:</Typography>
+                        <Typography paragraph>Cupo límite:</Typography>
                         <Typography paragraph>
                             {casa.cupoLimite}
                         </Typography>

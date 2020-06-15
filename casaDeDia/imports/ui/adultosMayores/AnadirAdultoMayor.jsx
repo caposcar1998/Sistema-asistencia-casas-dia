@@ -98,9 +98,9 @@ return (
                 
 
                 <Grid item xs={12}>
-                        <Grid item xs={12}>Direccion</Grid>
+                        <Grid item xs={12}>Dirección</Grid>
                 <Grid item xs={12}>
-                        <TextField id="direccion" label="Direccion" value={direccion} onChange={(e) => setDireccion(e.target.value)} />
+                        <TextField id="direccion" label="Dirección" value={direccion} onChange={(e) => setDireccion(e.target.value)} />
                 </Grid>
 
                 <Grid item xs={12}>
@@ -114,7 +114,7 @@ return (
                 <Grid item xs={12}>
                         <Grid item xs={12}>Grupo Sanguíneo</Grid>
                 <Grid item xs={12}>
-                        <TextField id="grupoSanguineo" label="GrupoSanguineo" value={grupoSanguineo} onChange={(e) => setGrupoSanguineo(e.target.value)} />
+                        <TextField id="grupoSanguineo" label="GrupoSanguíneo" value={grupoSanguineo} onChange={(e) => setGrupoSanguineo(e.target.value)} />
                 </Grid>
                 </Grid>
 
@@ -136,7 +136,7 @@ return (
         </Grid>   
 
         <Grid item xs={12}>
-                <Grid item xs={12}>Codigo postal</Grid>
+                <Grid item xs={12}>Código postal</Grid>
                 <Grid item xs={12}>
                         <TextField
                                 id="codigo"

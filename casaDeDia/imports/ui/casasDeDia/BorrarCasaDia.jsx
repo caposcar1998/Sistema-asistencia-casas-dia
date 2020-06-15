@@ -47,13 +47,13 @@ export default function BorrarCasaDia({ casasDeDiaServidor,openBorrarCasaDia, ha
                         if (err) {
                             setAlert("error")
                             setSnackBarState(true)
-                            setMessage("Error al borrar la casa de dia")
+                            setMessage("Error al borrar la casa de día")
                             handleCerrarBorrarCasaDia()    
                             reject()
                         } else {
                             setAlert("success")
                             setSnackBarState(true)
-                            setMessage("Casa de dia eliminada")
+                            setMessage("Casa de día eliminada")
                             handleCerrarBorrarCasaDia()
                             casasDeDiaServidor()
                             resolve()
@@ -72,9 +72,9 @@ export default function BorrarCasaDia({ casasDeDiaServidor,openBorrarCasaDia, ha
 
         >
             <div style={modalStyle} className={classes.paper}>
-                <h2 id="simple-modal-title">Borrar casa de dia</h2>
+                <h2 id="simple-modal-title">Borrar casa de día</h2>
                 <p id="simple-modal-description">
-                    Seguro deseas borrar esta casa de dia?
+                    ¿Seguro deseas borrar esta casa de día?
                 </p>
                 <Button variant="contained" color="secondary" onClick={handleCerrarBorrarCasaDia}>Cancelar</Button>
                 <Button variant="contained" color="primary" onClick={borrarCasaDeDia}>Borrar</Button>

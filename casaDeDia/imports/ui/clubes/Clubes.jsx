@@ -99,7 +99,7 @@ export default function Clubes() {
             <Grid container className={classes.fondo}>
             <Paper>
             <Grid item xs={12}>
-                <Button onClick={handleOpenModal} variant="contained" color="primary">Nueva club de dia</Button>
+                <Button onClick={handleOpenModal} variant="contained" color="primary">Nuevo Club</Button>
             </Grid>
         
                     <Grid item xs={12}>

@@ -147,7 +147,7 @@ export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada
                         if (err) {
                             setAlert("error")
                             setSnackBarState(true)
-                            setMessage("Error al crear casa de dia")
+                            setMessage("Error al crear casa de día")
                             handleCerrarEditarCasaDia()
                             reject()
                         } else {
@@ -176,7 +176,7 @@ export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada
                 </Grid>
 
                 <Grid item xs={12}>
-                    <Grid item xs={12}>Direccion</Grid>
+                    <Grid item xs={12}>Dirección</Grid>
                     <Grid item xs={12}>
                         <TextField id="direccion" value={direccion} onChange={(e) => setDireccion(e.target.value)} />
                     </Grid>
@@ -251,7 +251,7 @@ export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada
                     </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                    <Grid item xs={12}>Codigo postal</Grid>
+                    <Grid item xs={12}>Código postal</Grid>
                     <Grid item xs={12}>
                         <TextField
                             id="codigo"
@@ -262,7 +262,7 @@ export default function PaperEditarCasaDIa({ casasDeDiaServidor,casaSeleccionada
                     </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                    <Grid item xs={12}>Cupo limite</Grid>
+                    <Grid item xs={12}>Cupo límite</Grid>
                     <Grid item xs={12}>
                         <Select
                             labelId="cupoLimite"

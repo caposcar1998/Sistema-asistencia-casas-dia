@@ -136,7 +136,7 @@ export default function AnadirCasasDia({ casasDeDiaServidor,handleCloseModal}) {
                                                 if (err) {
                                                         setAlert("error")
                                                         setSnackBarState(true)
-                                                        setMessage("Error al crear casa de dia")
+                                                        setMessage("Error al crear casa de día")
                                                         handleCloseModal()
                                                         reject()
                                                 } else {
@@ -160,14 +160,14 @@ return (
                 <Grid item xs={12}>
                         <Grid item xs={12}>Nombre</Grid>
                 <Grid item xs={12}>
-                <TextField id="nombre" label="Casa dia" value={nombre} onChange={(e) => setNombre(e.target.value)}/>
+                <TextField id="nombre" label="Casa de día" value={nombre} onChange={(e) => setNombre(e.target.value)}/>
                 </Grid>
                 </Grid>
 
                 <Grid item xs={12}>
-                        <Grid item xs={12}>Direccion</Grid>
+                        <Grid item xs={12}>Dirección</Grid>
                 <Grid item xs={12}>
-                        <TextField id="direccion" label="Direccion" value={direccion} onChange={(e) => setDireccion(e.target.value)} />
+                        <TextField id="direccion" label="Dirección" value={direccion} onChange={(e) => setDireccion(e.target.value)} />
                 </Grid>
         </Grid>   
                 <Grid item xs={12}>
@@ -242,7 +242,7 @@ return (
                 </Grid>
         </Grid>
         <Grid item xs={12}>
-                <Grid item xs={12}>Codigo postal</Grid>
+                <Grid item xs={12}>Código postal</Grid>
                 <Grid item xs={12}>
                         <TextField
                                 id="codigo"

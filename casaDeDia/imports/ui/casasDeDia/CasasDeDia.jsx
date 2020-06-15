@@ -99,7 +99,7 @@ export default function CasasDeDia() {
             <Grid container className={classes.fondo}>
             <Paper>
             <Grid item xs={12}>
-                <Button onClick={handleOpenModal} variant="contained" color="primary">Nueva casa de dia</Button>
+                <Button onClick={handleOpenModal} variant="contained" color="primary">Nueva casa de día</Button>
             </Grid>
         
                     <Grid item xs={12}>

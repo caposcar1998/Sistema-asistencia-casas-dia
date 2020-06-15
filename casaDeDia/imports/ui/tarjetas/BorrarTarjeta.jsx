@@ -74,7 +74,7 @@ export default function BorrarTarjeta({ tarjetasServidor, openBorrarTarjeta, han
                 <div style={modalStyle} className={classes.paper}>
                     <h2 id="simple-modal-title">Borrar tarjeta</h2>
                     <p id="simple-modal-description">
-                        Seguro deseas borrar esta tarjeta?
+                        ¿Seguro deseas borrar esta tarjeta?
                 </p>
                     <Button variant="contained" color="secondary" onClick={handleCerrarBorrarTarjeta}>Cancelar</Button>
                     <Button variant="contained" color="primary" onClick={borrarTarjeta}>Borrar</Button>

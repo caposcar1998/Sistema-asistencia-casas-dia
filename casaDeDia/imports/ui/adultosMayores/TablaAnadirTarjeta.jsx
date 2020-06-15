@@ -64,7 +64,7 @@ export default function TablaAnadirTarjeta({ adultoSeleccionado, handleCerrarAna
                     <Typography variant="h6" className={classes.title}>
                         {adultoSeleccionado.nombre}
                     </Typography>
-                    <Button color="inherit" >Anadir</Button>
+                    <Button color="inherit" >Añadir</Button>
                 </Toolbar>
             </AppBar>
 

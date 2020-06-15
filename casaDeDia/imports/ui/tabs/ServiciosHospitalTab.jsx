@@ -64,7 +64,7 @@ export default function ServiciosHospitalTab() {
         <div className={classes.root}>
             <AppBar position="static" className={classes.appBar}>
                 <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                    <Tab label="Registrar servicio de Hospital" {...a11yProps(0)} />
+                    <Tab label="Registrar Servicio de Hospital" {...a11yProps(0)} />
                 </Tabs>
             </AppBar>
 
