@@ -10,7 +10,7 @@ function TablaConvocatorias({convocatoria}) {
             return new Promise(
                 (resolve, reject) => {
                     Meteor.call("crearConvocatoria",
-                        newData.nombre, newData.fechaLanzamiento, newData.fechaFinalizacion,
+                        newData.nombre,newData.descripcion, newData.fechaLanzamiento, newData.fechaFinalizacion,
                         (err, res) => {
                             if (err) {
                                 alert("Error al crear la convocatoria")
@@ -28,7 +28,7 @@ function TablaConvocatorias({convocatoria}) {
             return new Promise(
                 (resolve, reject) => {
                 Meteor.call("editarConvocatoria",
-                    newData._id, newData.nombre, newData.fechaLanzamiento, newData.fechaFinalizacion,
+                    newData._id, newData.nombre,newData.descripcion, newData.fechaLanzamiento, newData.fechaFinalizacion,
                     (err, res) => {
                         if (err) {
                             alert("Error al encontrar la convocatoria deseada")
@@ -67,6 +67,7 @@ function TablaConvocatorias({convocatoria}) {
             columns={
                 [
                     { title: "Nombre", field: "nombre" },
+                    { title: "Descripción", field: "descripcion" },
                     { title: "FechaLanzamiento", field: "fechaLanzamiento", type: "date" },
                     { title: "FechaFinalizacion", field: "fechaFinalizacion", type: "date" },
 
