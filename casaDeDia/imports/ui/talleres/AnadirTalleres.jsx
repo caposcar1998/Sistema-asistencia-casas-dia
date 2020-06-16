@@ -1,7 +1,7 @@
 import React, {useEffect, useState } from 'react';
 import { Grid, Paper, TextField, Select, MenuItem, Button, Checkbox, ListItemText, Input, LinearProgress  } from '@material-ui/core';
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
-
+import CryptoJS from "react-native-crypto-js";
 
 export default function AnadirTalleres({talleresServidor,handleCloseModal}) {
         const [nombre, setNombre] = useState('');
@@ -171,7 +171,7 @@ export default function AnadirTalleres({talleresServidor,handleCloseModal}) {
                                                 {instructoresDisponibles.map((instructor) => (
                                                         <MenuItem key={instructor.nombre} value={instructor}>
                                                                 <Checkbox checked={instructores.indexOf(instructor) > -1} />
-                                                                <ListItemText primary={instructor.nombre} />
+                                                                <ListItemText primary={CryptoJS.AES.decrypt(instructor.nombre, 'secret key 123').toString(CryptoJS.enc.Utf8)} />
                                                         </MenuItem>
                                                 ))}
                                         </Select>

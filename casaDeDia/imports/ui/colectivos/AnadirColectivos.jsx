@@ -2,6 +2,7 @@ import React, {useEffect, useState } from 'react';
 import { Grid, Paper, TextField, Select, MenuItem, Button, Checkbox, ListItemText, Input, LinearProgress  } from '@material-ui/core';
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 import { useCallback } from 'react';
+import CryptoJS from "react-native-crypto-js";
 
 
 export default function AnadirColectivos({colectivosServidor,handleCloseModal}) {
@@ -159,7 +160,7 @@ export default function AnadirColectivos({colectivosServidor,handleCloseModal}) 
                                                 {tutoresDisponibles.map((tutor) => (
                                                         <MenuItem key={tutor.nombre} value={tutor}>
                                                                 <Checkbox checked={tutores.indexOf(tutor) > -1} />
-                                                                <ListItemText primary={tutor.nombre} />
+                                                                <ListItemText primary={CryptoJS.AES.decrypt(tutor.nombre, 'secret key 123').toString(CryptoJS.enc.Utf8)} />
                                                         </MenuItem>
                                                 ))}
                                         </Select>
