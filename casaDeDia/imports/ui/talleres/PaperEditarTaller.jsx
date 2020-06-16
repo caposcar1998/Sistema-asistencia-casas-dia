@@ -8,6 +8,9 @@ export default function PaperEditarTaller({talleresServidor,tallerSeleccionado, 
         const [instructores, setInstructores] = useState([]);
         const [colectivos, setColectivos] = useState([]);
         const [cupoLimite, setCupoLimite] = useState('');
+        const [redSocial1, setRedSocial1] = useState('');
+        const [redSocial2, setRedSocial2] = useState('');
+        const [redSocial3, setRedSocial3] = useState('');
         const [alert, setAlert] = useState();
         const [snackBarState, setSnackBarState] = useState(); 
         const [open, setOpen] = useState(false);      
@@ -117,7 +120,7 @@ export default function PaperEditarTaller({talleresServidor,tallerSeleccionado, 
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("editarTaller",
-                    tallerSeleccionado._id,nombre, descripcion, instructores, colectivos, cupoLimite, image,
+                    tallerSeleccionado._id,nombre, descripcion, instructores, colectivos, cupoLimite, image, redSocial1, redSocial2, redSocial3,
                     (err, res) => {
                         if (err) {
                             setAlert("error")
@@ -248,6 +251,24 @@ export default function PaperEditarTaller({talleresServidor,tallerSeleccionado, 
                     </Grid>
                 </Grid>
                         </Grid>
+                        <Grid item xs={12}>
+                            <Grid item xs={12}>Whatsapp del Taller</Grid>
+                                <Grid item xs={12}>
+                                        <TextField id="redSocial1" label="+55 1 55 xxxx xxxx" value={redSocial1} onChange={(e) => setRedSocial1(e.target.value)} />
+                                </Grid>
+                    </Grid>
+                    <Grid item xs={12}>
+                            <Grid item xs={12}>Facebook del Taller</Grid>
+                                <Grid item xs={12}>
+                                        <TextField id="redSocial2" label="https://facebook.com/colectivo" value={redSocial2} onChange={(e) => setRedSocial2(e.target.value)} />
+                                </Grid>
+                    </Grid>
+                    <Grid item xs={12}>
+                            <Grid item xs={12}>Twitter del Taller:</Grid>
+                                <Grid item xs={12}>
+                                        <TextField id="redSocial3" label="@xxxx" value={redSocial3} onChange={(e) => setRedSocial3(e.target.value)} />
+                                </Grid>
+                    </Grid>
                         <Grid item xs={4} />
                         
                 

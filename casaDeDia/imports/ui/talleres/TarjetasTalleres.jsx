@@ -3,6 +3,9 @@ import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import DeleteIcon from '@material-ui/icons/Delete';
+import WhatsappIcon from '@material-ui/icons/Whatsapp';
+import FBIcon from '@material-ui/icons/Facebook';
+import TwitterIcon from '@material-ui/icons/Twitter';
 import EditIcon from '@material-ui/icons/Edit';
 import { List, ListItem, Grid, Typography, Card, CardContent, CardActions, CardMedia, CardHeader, Collapse } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -54,6 +57,21 @@ export default function TarjetasTalleres({taller, handleOpenBorrarTaller, handle
                     title={taller.nombre}
                 />
                 <CardContent>
+                <Typography paragraph variant="h6">Whatsapp del Taller:</Typography>
+                        <Typography paragraph>
+                            <WhatsappIcon />
+                            {taller.redSocial1}
+                        </Typography>
+                        <Typography paragraph variant="h6">Facebook del Taller:</Typography>
+                        <Typography paragraph>
+                        <FBIcon />
+                            {taller.redSocial2}
+                        </Typography>
+                        <Typography paragraph variant="h6">Twitter del Taller:</Typography>
+                        <Typography paragraph>
+                        <TwitterIcon />
+                            {taller.redSocial3}
+                        </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
                         {taller.descripcion}
                     </Typography>
