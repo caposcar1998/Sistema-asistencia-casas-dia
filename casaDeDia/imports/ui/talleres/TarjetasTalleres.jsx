@@ -57,6 +57,21 @@ export default function TarjetasTalleres({taller, handleOpenBorrarTaller, handle
                     title={taller.nombre}
                 />
                 <CardContent>
+                <Typography paragraph variant="h6">Whatsapp del Taller:</Typography>
+                        <Typography paragraph>
+                            <WhatsappIcon />
+                            {taller.redSocial1}
+                        </Typography>
+                        <Typography paragraph variant="h6">Facebook del Taller:</Typography>
+                        <Typography paragraph>
+                        <FBIcon />
+                            {taller.redSocial2}
+                        </Typography>
+                        <Typography paragraph variant="h6">Twitter del Taller:</Typography>
+                        <Typography paragraph>
+                        <TwitterIcon />
+                            {taller.redSocial3}
+                        </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
                         {taller.descripcion}
                     </Typography>
