@@ -65,7 +65,7 @@ export default function BeneficiosTab() {
         <div className={classes.root}>
             <AppBar position="static" className={classes.appBar}>
                 <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                    <Tab label="Casas de dia" {...a11yProps(0)} />
+                    <Tab label="Casas de día" {...a11yProps(0)} />
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>

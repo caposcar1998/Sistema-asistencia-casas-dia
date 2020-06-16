@@ -108,7 +108,7 @@ export default function TablaAnadirPersonal({ clubesServidor,clubSeleccionado, h
                         <TableCell>Eliminar</TableCell>
                         <TableCell>Editar</TableCell>
                         <TableCell align="right">Nombre</TableCell>
-                        <TableCell align="right">Funcion</TableCell>
+                        <TableCell align="right">Función</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

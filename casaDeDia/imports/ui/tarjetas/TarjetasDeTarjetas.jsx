@@ -155,7 +155,7 @@ export default function TarjetasDeTarjetas({ tarjeta, handleOpenBorrarTarjeta, h
                             :
                             tarjeta.tipo == "despensa" ?
                                     <>
-                                        <Typography paragraph>Cantidad::</Typography>
+                                        <Typography paragraph>Cantidad:</Typography>
                                         <Typography paragraph>
                                             {cant_tarjeta}
                                         </Typography>

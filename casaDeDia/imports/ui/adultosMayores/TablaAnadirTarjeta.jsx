@@ -33,7 +33,16 @@ export default function TablaAnadirTarjeta({ adultoSeleccionado, handleCerrarAna
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
     const [message, setMessage] = useState();
+    const [editable, setEditable] = useState(true);
 
+    function editCampo() {
+        if (editable) {
+            setEditable(false)
+        }
+        if (!editable) {
+            setEditable(true)
+        }
+    }
 
     function eliminarTarjeta(idEliminar) {
         return new Promise(
@@ -57,6 +66,30 @@ export default function TablaAnadirTarjeta({ adultoSeleccionado, handleCerrarAna
         )
     }
 
+    function editarNoTarjeta(idEditar, noTarjeta, noTarjetaNueva) {
+        return new Promise(
+            (resolve, reject) => {
+                Meteor.call("editarTarjetaUsuario",
+                    adultoSeleccionado._id, idEditar, noTarjeta, noTarjetaNueva,
+                    (err, res) => {
+                        if (err) {
+                            setAlert("error");
+                            setSnackBarState(true);
+                            setMessage("Error al editar tarjeta");
+                            reject();
+                        } else {
+                            setAlert("success");
+                            setSnackBarState(true);
+                            setMessage("Tarjeta editada");
+                            casasDeDiaServidor();
+                            handleCerrarAnadirTarjeta();
+                            resolve()
+                        }
+                    });
+            }
+        )
+    }
+
 
     return (
         <>
@@ -65,7 +98,6 @@ export default function TablaAnadirTarjeta({ adultoSeleccionado, handleCerrarAna
                     <Typography variant="h6" className={classes.title}>
                         {CryptoJS.AES.decrypt(adultoSeleccionado.nombre, 'secret key 123').toString(CryptoJS.enc.Utf8)}
                     </Typography>
-                    <Button color="inherit" >Anadir</Button>
                 </Toolbar>
             </AppBar>
 
@@ -75,6 +107,8 @@ export default function TablaAnadirTarjeta({ adultoSeleccionado, handleCerrarAna
                         <TableRow>
                             <TableCell>Eliminar</TableCell>
                             <TableCell align="right">Nombre</TableCell>
+                            <TableCell align="right">No. tarjeta</TableCell>
+                            <TableCell align="right">Editar</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -82,6 +116,10 @@ export default function TablaAnadirTarjeta({ adultoSeleccionado, handleCerrarAna
                             <TarjetasUsuario
                                 tarjeta={tarjeta}
                                 eliminarTarjeta={eliminarTarjeta}
+                                adultoSeleccionado={adultoSeleccionado}
+                                editarNoTarjeta={editarNoTarjeta}
+                                editable={editable}
+                                editCampo={editCampo}
                             />
                         ))}
                     </TableBody>
@@ -107,16 +145,7 @@ function CrearNuevaTarjeta({ adultoSeleccionado, handleCerrarAnadirTarjeta }) {
     const [snackBarState, setSnackBarState] = useState();
     const [message, setMessage] = useState();
 
-    /*const d = (tarjetas) => tarjetas.map((terjeta)=> {
-        // Decrypt
-        let bytes  = CryptoJS.AES.decrypt(tarjetaSeleccionada.nombre, 'secret key 123');
-        let nombre_tarjeta = bytes.toString(CryptoJS.enc.Utf8);
-        let bytes2  = CryptoJS.AES.decrypt(tarjetaSeleccionada.fechaVigencia, 'secret key 123');
-        let fechaVigencia_tarjeta = bytes2.toString(CryptoJS.enc.Utf8);
-        return(
-
-        );
-    });*/
+    const [noTarjeta, setNoTarjeta] = useState('');
 
 
     function traerTarjetasServidor() {
@@ -139,7 +168,7 @@ function CrearNuevaTarjeta({ adultoSeleccionado, handleCerrarAnadirTarjeta }) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("anadirTarjeta",
-                    adultoSeleccionado._id, tarjetaSeleccionada._id, tarjetaSeleccionada.nombre,
+                    adultoSeleccionado._id, tarjetaSeleccionada._id, tarjetaSeleccionada.nombre, noTarjeta,
                     (err, res) => {
                         if (err) {
                             setAlert("error")
@@ -185,6 +214,10 @@ function CrearNuevaTarjeta({ adultoSeleccionado, handleCerrarAnadirTarjeta }) {
                                         <MenuItem value={tarjeta}>{CryptoJS.AES.decrypt(tarjeta.nombre, 'secret key 123').toString(CryptoJS.enc.Utf8)}</MenuItem>
                                     ))}
                         </Select>
+                    </Grid>
+                    <Grid item xs={6}>Número referencia</Grid>
+                    <Grid item xs={6}>
+                        <TextField id="noTarjeta" label="noTarjeta"  value={noTarjeta} onChange={(e) => setNoTarjeta(e.target.value)}/>
                     </Grid>
                     <Box />
                     <Grid item xs={6}>

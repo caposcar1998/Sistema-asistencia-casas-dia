@@ -82,7 +82,7 @@ export default function Login() {
                     
                     
                     <Grid item xs={12}>
-                      <Typography variant={xs = "h5", lg = "h3"}>Administración de casas de dia para adultos mayores</Typography>   
+                      <Typography variant={xs = "h5", lg = "h3"}>Administración de casas de día para adultos mayores</Typography>   
                     </Grid>
                     <Grid item xs={12}>
                           <Typography variant={xs = "h5", lg = "h3"}>Administrador</Typography>
@@ -106,8 +106,11 @@ export default function Login() {
                                           focused: classes.labelFocused
                                       }
                                   }}
-                                  id="contrasena" label="Contrasena" type="password" onChange={(e) => setPassword(e.target.value)} />
+                                  id="contrasena" label="Contraseña" type="password" onChange={(e) => setPassword(e.target.value)} />
                         </form>
+                        <Grid>
+                            <p>Al entrar a este sistema, estás aceptando los términos y condiciones de la Alcaldia de Tlalpan</p>
+                        </Grid>
                         </Grid>
                         <Grid item xs={12}>
                             <Button onClick={ingresarSistema} variant="contained" color="primary">Ingresar</Button>

@@ -121,15 +121,19 @@ export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayo
                         <Typography paragraph>
                             {apellidos_adulto}
                         </Typography>
-                        <Typography paragraph>Grupo Sanguieno:</Typography>
+                        <Typography paragraph>INE:</Typography>
+                        <Typography paragraph>
+                            {adulto.ine}
+                        </Typography>
+                        <Typography paragraph>Grupo Sanguíneo:</Typography>
                         <Typography paragraph>
                             {grupoSanguineo_adulto}
                         </Typography>
-                        <Typography paragraph>Direccion:</Typography>
+                        <Typography paragraph>Dirección:</Typography>
                         <Typography paragraph>
                             {direccion_adulto}
                         </Typography>
-                        <Typography paragraph>Codigo postal:</Typography>
+                        <Typography paragraph>Código postal:</Typography>
                         <Typography paragraph>
                             {codigoPostal_adulto}
                         </Typography>

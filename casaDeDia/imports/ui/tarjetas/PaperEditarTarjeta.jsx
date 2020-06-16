@@ -139,7 +139,7 @@ function EditarSalud({ tarjetasServidor, handleCerrarEditarTarjeta, tarjetaSelec
                 </Grid>
 
                 <Grid item xs={4}>
-                    <Grid item xs={12}>Fecha Vigencia</Grid>
+                    <Grid item xs={12}>Fecha vigencia</Grid>
                     <Grid item xs={12}>
                         <TextField
                             type="date"
@@ -342,7 +342,7 @@ function EditarDinero({ tarjetasServidor, handleCerrarEditarTarjeta, tarjetaSele
                             onChange={handleChangeTiempo}
                         >
                             <MenuItem value={"mes"}>Mes</MenuItem>
-                            <MenuItem value={"anio"}>Anio</MenuItem>
+                            <MenuItem value={"anio"}>Año</MenuItem>
                             <MenuItem value={"quincena"}>Quincena</MenuItem>
                         </Select>
                     </Grid>
@@ -457,7 +457,7 @@ function EditarDespensa({ tarjetasServidor, handleCerrarEditarTarjeta, tarjetaSe
                 </Grid>
 
                 <Grid item xs={4}>
-                    <Grid item xs={12}>Fecha Vigencia</Grid>
+                    <Grid item xs={12}>Fecha vigencia</Grid>
                     <Grid item xs={12}>
                         <TextField type="date" id="fechaVigencia"  value={fechaVigencia} onChange={(e) => setFechaVigencia(e.target.value)} />
                     </Grid>

@@ -8,8 +8,7 @@ import CryptoJS from "react-native-crypto-js";
 
 Meteor.methods({
 
-
-    "crearAdultoMayor"(nombre,apellidos,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,foto) {
+    "crearAdultoMayor"(nombre,apellidos,ine,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,foto) {
         // Encrypt
         let ap = CryptoJS.AES.encrypt(apellidos, 'secret key 123').toString();
         let crp = CryptoJS.AES.encrypt(curp, 'secret key 123').toString();
@@ -19,7 +18,7 @@ Meteor.methods({
         let cp = CryptoJS.AES.encrypt(codigoPostal, 'secret key 123').toString();
         let ed = CryptoJS.AES.encrypt(edad, 'secret key 123').toString();
         let sx = CryptoJS.AES.encrypt(sexo, 'secret key 123').toString();
-
+      
         new SimpleSchema({
             nombre: { type: String },
             apellidos: { type: String },
@@ -33,6 +32,7 @@ Meteor.methods({
             {
                 nombre: nom,
                 apellidos: ap,
+                ine: ine,
                 curp: crp,
                 sexo: sx,
                 edad: ed,
@@ -46,7 +46,7 @@ Meteor.methods({
         )
     },
 
-    "editarAdultoMayor"(idAdultoMayor,nombre,apellidos,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,foto) {
+    "editarAdultoMayor"(idAdultoMayor,nombre,apellidos,ine,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,foto) {
         // Encrypt
         let ap = CryptoJS.AES.encrypt(apellidos, 'secret key 123').toString();
         let crp = CryptoJS.AES.encrypt(curp, 'secret key 123').toString();
@@ -56,7 +56,7 @@ Meteor.methods({
         let cp = CryptoJS.AES.encrypt(codigoPostal, 'secret key 123').toString();
         let ed = CryptoJS.AES.encrypt(edad, 'secret key 123').toString();
         let sx = CryptoJS.AES.encrypt(sexo, 'secret key 123').toString();
-
+      
         new SimpleSchema({
             nombre: { type: String },
             apellidos: { type: String },
@@ -74,6 +74,7 @@ Meteor.methods({
                 {
                     nombre: nom,
                     apellidos: ap,
+                    ine: ine,
                     curp: crp,
                     sexo: sx,
                     edad: ed,
@@ -125,14 +126,15 @@ Meteor.methods({
         return AdultosMayores.find().fetch();
     },
 
-    "anadirTarjeta"(idUsuario, idTarjeta, nombre) {
+    "anadirTarjeta"(idUsuario, idTarjeta, nombre, noTarjeta) {
         AdultosMayores.update(
             { _id: idUsuario },
             {
                 $push: {
                     "tarjetas": {
                         idReferencia: idTarjeta,
-                        nombre: nombre
+                        nombre: nombre,
+                        noTarjeta : noTarjeta
                     }
                 }
             }
@@ -147,7 +149,16 @@ Meteor.methods({
                 false,
                 true
             )
-     }
+    },
+    
+    "editarTarjetaUsuario"(idAdultoSeleccionado, idEditar, noTarjeta, noTarjetaNueva) { 
+        AdultosMayores.update(
+            { _id: idAdultoSeleccionado, "tarjetas.idReferencia": idEditar, "tarjetas.noTarjeta": noTarjeta },
+            { $set: { "tarjetas.$.noTarjeta": noTarjetaNueva } }
+        )
+    }
+
+       
 
 
 });

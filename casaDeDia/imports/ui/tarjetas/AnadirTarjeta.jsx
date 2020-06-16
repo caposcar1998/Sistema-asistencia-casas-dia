@@ -25,7 +25,7 @@ export default function AnadirTarjeta({ tipoTarjeta,tarjetasServidor, handleClos
                             tarjetasServidor={tarjetasServidor}
                             handleCloseModal={handleCloseModal}
                         /> :
-                        <Typography>Selecciona una opcion</Typography>
+                        <Typography>Selecciona una opción</Typography>
                     }
         </>
     )
@@ -118,7 +118,7 @@ function CrearSalud({tarjetasServidor, handleCloseModal }) {
             </Grid>
 
             <Grid item xs={4}>
-                <Grid item xs={12}>Fecha Vigencia</Grid>
+                <Grid item xs={12}>Fecha vigencia</Grid>
                 <Grid item xs={12}>
                         <TextField
                             id="fechaVigencia"
@@ -290,7 +290,7 @@ function CrearDinero({ handleCloseModal, tarjetasServidor}) {
                             <MenuItem value={"Banamex"}>Banamex</MenuItem>
                             <MenuItem value={"Banxico"}>Banxico</MenuItem>
                             <MenuItem value={"Scotiabank"}>Scotiabank</MenuItem>
-                            <MenuItem value={"Banco Mexico"}>Banco Mexico</MenuItem>
+                            <MenuItem value={"Banco Mexico"}>Banco México</MenuItem>
                         </Select>
                     </Grid>
                 </Grid>
@@ -307,7 +307,7 @@ function CrearDinero({ handleCloseModal, tarjetasServidor}) {
                             onChange={handleChangeTiempo}
                         >
                             <MenuItem value={"mes"}>Mes</MenuItem>
-                            <MenuItem value={"anio"}>Anio</MenuItem>
+                            <MenuItem value={"anio"}>Año</MenuItem>
                             <MenuItem value={"quincena"}>Quincena</MenuItem>
                         </Select>
                     </Grid>
@@ -409,7 +409,7 @@ function CrearDespensa({ handleCloseModal, tarjetasServidor }) {
                 </Grid>
 
                 <Grid item xs={4}>
-                    <Grid item xs={12}>Fecha Vigencia</Grid>
+                    <Grid item xs={12}>Fecha vigencia</Grid>
                     <Grid item xs={12}>
                         <TextField type="date" id="fechaVigencia"  value={fechaVigencia} onChange={(e) => setFechaVigencia(e.target.value)} />
                     </Grid>

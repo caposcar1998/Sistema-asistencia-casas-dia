@@ -102,13 +102,21 @@ export default function TarjetasClubes({ club, handleOpenAnadirUsuario,handleOpe
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
-                        <Typography paragraph>Direccion:</Typography>
+                        <Typography paragraph>Dirección:</Typography>
                         <Typography paragraph>
                             {club.direccion}
                         </Typography>
-                        <Typography paragraph>Codigo:</Typography>
+                        <Typography paragraph>Código postal:</Typography>
                         <Typography paragraph>
                             {club.codigoPostal}
+                        </Typography>
+                        <Typography paragraph>Tipo Institución:</Typography>
+                        <Typography paragraph>
+                            {club.tipoInstitucion}
+                        </Typography>
+                        <Typography paragraph>Costo:</Typography>
+                        <Typography paragraph>
+                            {club.costo}
                         </Typography>
                         <Typography paragraph>Restricciones:</Typography>
                         <Typography paragraph>
@@ -125,7 +133,7 @@ export default function TarjetasClubes({ club, handleOpenAnadirUsuario,handleOpe
                                 }
                             </List>
                         </Typography>
-                        <Typography paragraph>CupoLimite:</Typography>
+                        <Typography paragraph>Cupo límite:</Typography>
                         <Typography paragraph>
                             {club.cupoLimite}
                         </Typography>

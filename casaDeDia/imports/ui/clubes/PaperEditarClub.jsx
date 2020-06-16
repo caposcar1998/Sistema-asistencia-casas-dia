@@ -18,8 +18,11 @@ export default function PaperEditarClub({ clubesServidor,clubSeleccionado, handl
     const [actividadesDisponibles, setActividadesDisponible] = useState([]);
     const [restriccionesDisponibles, setRestriccionesDisponible] = useState([]);
     const [message, setMessage] = useState();
-    const [image, setImage] = useState('')
-    const [loading, setLoading] = useState(false)
+    const [image, setImage] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [costo, setCosto] = useState();
+    const [tipoInstitucion, setTipoInstitucion] = useState();
+    const [openTipo, setOpenTipo] = useState(false);
 
     useEffect(() => {
         actividadesServidor();
@@ -32,6 +35,8 @@ export default function PaperEditarClub({ clubesServidor,clubSeleccionado, handl
         setCupoLimite(clubSeleccionado.cupoLimite);
         setCodigoPostal(clubSeleccionado.codigoPostal);
         setImage(clubSeleccionado.foto);
+        setCosto(clubSeleccionado.costo);
+        setTipoInstitucion(clubSeleccionado.tipoInstitucion);
     }, []);
 
 
@@ -65,6 +70,18 @@ export default function PaperEditarClub({ clubesServidor,clubSeleccionado, handl
 
     const handleOpenCupoLimite = () => {
         setOpen(true);
+    };
+
+    const handleChangeTipoInstitucion = (event) => {
+        setTipoInstitucion(event.target.value);
+    };
+
+    const handleCloseTipoInstitucion = () => {
+        setOpenTipo(false);
+    };
+
+    const handleOpenTipoInstitucion = () => {
+        setOpenTipo(true);
     };
 
     const ITEM_HEIGHT = 48;
@@ -125,12 +142,12 @@ export default function PaperEditarClub({ clubesServidor,clubSeleccionado, handl
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("editarClub",
-                    clubSeleccionado._id,nombre, direccion, actividades, restricciones, horarioApertura, horarioCierre, cupoLimite, codigoPostal, image,
+                    clubSeleccionado._id,nombre, direccion, actividades, restricciones, horarioApertura, horarioCierre, cupoLimite, codigoPostal,tipoInstitucion,costo ,image,
                     (err, res) => {
                         if (err) {
                             setAlert("error")
                             setSnackBarState(true)
-                            setMessage("Error al crear club de dia")
+                            setMessage("Error al crear club")
                             handleCerrarEditarClub()
                             reject()
                         } else {
@@ -159,7 +176,7 @@ export default function PaperEditarClub({ clubesServidor,clubSeleccionado, handl
                 </Grid>
 
                 <Grid item xs={12}>
-                    <Grid item xs={12}>Direccion</Grid>
+                    <Grid item xs={12}>Dirección</Grid>
                     <Grid item xs={12}>
                         <TextField id="direccion" value={direccion} onChange={(e) => setDireccion(e.target.value)} />
                     </Grid>
@@ -234,7 +251,7 @@ export default function PaperEditarClub({ clubesServidor,clubSeleccionado, handl
                     </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                    <Grid item xs={12}>Codigo postal</Grid>
+                    <Grid item xs={12}>Código postal</Grid>
                     <Grid item xs={12}>
                         <TextField
                             id="codigo"
@@ -245,7 +262,7 @@ export default function PaperEditarClub({ clubesServidor,clubSeleccionado, handl
                     </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                    <Grid item xs={12}>Cupo limite</Grid>
+                    <Grid item xs={12}>Cupo límite</Grid>
                     <Grid item xs={12}>
                         <Select
                             labelId="cupoLimite"
@@ -268,6 +285,37 @@ export default function PaperEditarClub({ clubesServidor,clubSeleccionado, handl
                         </Select>
                     </Grid>
                 </Grid>
+                <Grid item xs={12}>
+                    <Grid item xs={12}>Tipo institución</Grid>
+                    <Grid item xs={12}>
+                        <Select
+                            labelId="tipoInstitucion"
+                            id="tipoInstitucion"
+                            open={openTipo}
+                            onClose={handleCloseTipoInstitucion}
+                            onOpen={handleOpenTipoInstitucion}
+                            value={tipoInstitucion}
+                            onChange={handleChangeTipoInstitucion}
+                        >
+                            <MenuItem value="">
+                                <em>None</em>
+                            </MenuItem>
+                            <MenuItem value={"Público"}>Público</MenuItem>
+                            <MenuItem value={"Privado"}>Privado</MenuItem>
+                        </Select>
+                    </Grid>
+                </Grid>
+                <Grid item xs={12}>
+                    <Grid item xs={12}>Costo</Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            id="costo"
+                            type="number"
+                            value={costo}
+                            onChange={(e) => setCosto(e.target.value)}
+                        />
+                    </Grid>
+                </Grid>  
                 <Grid item xs={12}>
                     <Grid item xs={12}>Seleccionar foto</Grid>
                     <Grid item xs={12}>

@@ -106,7 +106,7 @@ export default function TablaAnadirPersonal({ asilosServidor,asiloSeleccionado, 
                         <TableCell>Eliminar</TableCell>
                         <TableCell>Editar</TableCell>
                         <TableCell align="right">Nombre</TableCell>
-                        <TableCell align="right">Funcion</TableCell>
+                        <TableCell align="right">Función</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -217,7 +217,7 @@ function CrearNuevoUsuario({ asilosServidor,asiloSeleccionado, handleCerrarAnadi
                         <Typography>Puesto</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                    <TextField id="puesto" label="puesto" value={puesto} onChange={(e) => setPuesto(e.target.value)} />
+                    <TextField id="puesto" label="Puesto" value={puesto} onChange={(e) => setPuesto(e.target.value)} />
                     </Grid>
                 <Grid item xs={6}>
                         <Button onClick={crearUsuario} variant="contained" color="primary">Crear</Button>

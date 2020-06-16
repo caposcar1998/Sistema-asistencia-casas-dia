@@ -183,7 +183,7 @@ export default function ContenidoMenuGeneral({handleCambioPagina}) {
                     <ListItemIcon>
                         <HouseIcon />
                     </ListItemIcon>
-                    <ListItemText primary={"Casas de dia"} />
+                    <ListItemText primary={"Casas de día"} />
                 </ListItem>):''}
                 {((Meteor.user() && Meteor.user().profile.visualizarClubes) === true) ? (<ListItem button key={"Clubes"} onClick={() => cambioRuta('clubes')}>
                     <ListItemIcon>

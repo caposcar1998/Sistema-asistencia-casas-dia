@@ -47,13 +47,13 @@ export default function BorrarClub({ clubesServidor,openBorrarClub, handleCerrar
                         if (err) {
                             setAlert("error")
                             setSnackBarState(true)
-                            setMessage("Error al borrar la club de dia")
+                            setMessage("Error al borrar el club")
                             handleCerrarBorrarClub()    
                             reject()
                         } else {
                             setAlert("success")
                             setSnackBarState(true)
-                            setMessage("Club de dia eliminada")
+                            setMessage("Club eliminado")
                             handleCerrarBorrarClub()
                             clubesServidor()
                             resolve()
@@ -72,9 +72,9 @@ export default function BorrarClub({ clubesServidor,openBorrarClub, handleCerrar
 
         >
             <div style={modalStyle} className={classes.paper}>
-                <h2 id="simple-modal-title">Borrar club de dia</h2>
+                <h2 id="simple-modal-title">Borrar club</h2>
                 <p id="simple-modal-description">
-                    Seguro deseas borrar esta club de dia?
+                    ¿Seguro deseas borrar este club?
                 </p>
                 <Button variant="contained" color="secondary" onClick={handleCerrarBorrarClub}>Cancelar</Button>
                 <Button variant="contained" color="primary" onClick={borrarClub}>Borrar</Button>

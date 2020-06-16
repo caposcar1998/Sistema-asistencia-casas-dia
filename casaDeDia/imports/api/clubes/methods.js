@@ -4,7 +4,7 @@ import { Clubes } from "../clubes/clubes";
 Meteor.methods({
 
 
-    "crearClub"(nombre, direccion, actividades, restricciones, horarioApertura, horarioCierre, cupoLimite, codigoPostal ,foto) {
+    "crearClub"(nombre, direccion, actividades, restricciones, horarioApertura, horarioCierre, cupoLimite, codigoPostal,tipoInstitucion,costo ,foto) {
         Clubes.insert(
             {
                 nombre: nombre,
@@ -17,13 +17,15 @@ Meteor.methods({
                 codigoPostal: codigoPostal,
                 foto: foto,
                 empleados: [],
-                usuarios: []
+                usuarios: [],
+                tipoInstitucion: tipoInstitucion,
+                costo: costo
             }
 
         )
     },
 
-    "editarClub"(idClub, nombre, direccion, actividades, restricciones, horario, horarioAtencion, cupoLimite, codigoPostal ,foto) {
+    "editarClub"(idClub, nombre, direccion, actividades, restricciones, horario, horarioAtencion, cupoLimite, codigoPostal, tipoInstitucion, costo ,foto) {
         Clubes.update(
             { _id: idClub },
             {
@@ -37,7 +39,9 @@ Meteor.methods({
                     horarioAtencion: horarioAtencion,
                     cupoLimite: cupoLimite,
                     codigoPostal: codigoPostal,
-                    foto: foto
+                    foto: foto,
+                    tipoInstitucion: tipoInstitucion,
+                    costo: costo
                 }
             }
         )
