@@ -2,23 +2,25 @@ import { Meteor } from 'meteor/meteor';
 import { Convocatorias } from "../convocatorias/convocatorias";
 
 Meteor.methods({
-    "crearConvocatoria"(nombre, fechaLanzamiento, fechaFinalizacion) {
+    "crearConvocatoria"(nombre,descripcion, fechaLanzamiento, fechaFinalizacion) {
         Convocatorias.insert(
             {
                 nombre: nombre,
+                descripcion: descripcion,
                 fechaLanzamiento: fechaLanzamiento,
                 fechaFinalizacion: fechaFinalizacion,
             }
         ) 
      },
 
-    "editarConvocatoria"(idConvocatoria, nombre, fechaLanzamiento, fechaFinalizacion) {
+    "editarConvocatoria"(idConvocatoria, nombre,descripcion, fechaLanzamiento, fechaFinalizacion) {
         Convocatorias.update(
             { _id: idConvocatoria},
             {
                 $set:
                 {
                     nombre: nombre,
+                    descripcion:descripcion,
                     fechaLanzamiento: fechaLanzamiento,
                     fechaFinalizacion: fechaFinalizacion,
                 }

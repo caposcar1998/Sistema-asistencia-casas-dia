@@ -1,7 +1,7 @@
 import React, {useEffect, useState } from 'react';
 import { Grid, Paper, TextField, Select, MenuItem, Button, Checkbox, ListItemText, Input, LinearProgress  } from '@material-ui/core';
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
-
+import CryptoJS from "react-native-crypto-js";
 
 export default function AnadirTalleres({talleresServidor,handleCloseModal}) {
         const [nombre, setNombre] = useState('');
@@ -9,6 +9,9 @@ export default function AnadirTalleres({talleresServidor,handleCloseModal}) {
         const [instructores, setInstructores] = useState([]);
         const [colectivos, setColectivos] = useState([]);
         const [cupoLimite, setCupoLimite] = useState('');
+        const [redSocial1, setRedSocial1] = useState('');
+        const [redSocial2, setRedSocial2] = useState('');
+        const [redSocial3, setRedSocial3] = useState('');
         const [alert, setAlert] = useState();
         const [snackBarState, setSnackBarState] = useState(); 
         const [open, setOpen] = useState(false);
@@ -93,7 +96,7 @@ export default function AnadirTalleres({talleresServidor,handleCloseModal}) {
                 return new Promise(
                         (resolve, reject) => {
                                 Meteor.call("crearTaller",
-                                        nombre, descripcion, instructores, colectivos, cupoLimite, image,
+                                        nombre, descripcion, instructores, colectivos, cupoLimite, image, redSocial1, redSocial2, redSocial3,
                                         (err, res) => {
                                                 if (err) {
                                                         setAlert("Error")
@@ -168,7 +171,7 @@ export default function AnadirTalleres({talleresServidor,handleCloseModal}) {
                                                 {instructoresDisponibles.map((instructor) => (
                                                         <MenuItem key={instructor.nombre} value={instructor}>
                                                                 <Checkbox checked={instructores.indexOf(instructor) > -1} />
-                                                                <ListItemText primary={instructor.nombre} />
+                                                                <ListItemText primary={CryptoJS.AES.decrypt(instructor.nombre, 'secret key 123').toString(CryptoJS.enc.Utf8)} />
                                                         </MenuItem>
                                                 ))}
                                         </Select>
@@ -242,6 +245,24 @@ export default function AnadirTalleres({talleresServidor,handleCloseModal}) {
                                                 )}
                                 </Grid>
                         </Grid>
+                    </Grid>
+                    <Grid item xs={12}>
+                            <Grid item xs={12}>Whatsapp del Taller</Grid>
+                                <Grid item xs={12}>
+                                        <TextField id="redSocial1" label="+52 1 55 xxxx xxxx" value={redSocial1} onChange={(e) => setRedSocial1(e.target.value)} />
+                                </Grid>
+                    </Grid>
+                    <Grid item xs={12}>
+                            <Grid item xs={12}>Facebook del Taller</Grid>
+                                <Grid item xs={12}>
+                                        <TextField id="redSocial2" label="https://facebook.com/colectivo" value={redSocial2} onChange={(e) => setRedSocial2(e.target.value)} />
+                                </Grid>
+                    </Grid>
+                    <Grid item xs={12}>
+                            <Grid item xs={12}>Twitter del Taller:</Grid>
+                                <Grid item xs={12}>
+                                        <TextField id="redSocial3" label="@XXXX" value={redSocial3} onChange={(e) => setRedSocial3(e.target.value)} />
+                                </Grid>
                     </Grid>
                     <Grid item xs={12} />
                     <Grid item xs={12}>

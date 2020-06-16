@@ -9,7 +9,7 @@ function TablaTutorColectivo({tutoresColectivo}) {
             return new Promise(
                 (resolve, reject) => {
                     Meteor.call("crearTutorColectivo",
-                        newData.nombre, newData.apellido, newData.fechaNacimiento, newData.direccion, newData.telefono, newData.telefonoInteligente, newData.curp,
+                        newData.nombre, newData.apellido, newData.correoElectronico, newData.fechaNacimiento, newData.direccion, newData.telefono, newData.telefonoInteligente, newData.curp,
                         (err, res) => {
                             if (err) {
                                 alert("Error al crear al tutor para colectivo")
@@ -27,7 +27,7 @@ function TablaTutorColectivo({tutoresColectivo}) {
             return new Promise(
                 (resolve, reject) => {
                 Meteor.call("editarTutorColectivo",
-                    newData._id, newData.nombre, newData.apellido, newData.fechaNacimiento, newData.direccion, newData.telefono, newData.telefonoInteligente, newData.curp,
+                    newData._id, newData.nombre, newData.apellido, newData.correoElectronico, newData.fechaNacimiento, newData.direccion, newData.telefono, newData.telefonoInteligente, newData.curp,
                     (err, res) => {
                         if (err) {
                             alert("Error al al tutor para colectivo")
@@ -67,11 +67,12 @@ function TablaTutorColectivo({tutoresColectivo}) {
                 [
                     { title: "Nombre", field: "nombre" },
                     { title: "Apellido", field: "apellido" },
+                    { title: "Correo Electrónico", field: "correoElectronico" },
                     { title: "FechaNacimiento", field: "fechaNacimiento", type: "date" },
                     { title: "direccion", field: "direccion" },
                     { title: "telefono", field: "telefono" },
                     { title: "telefono Inteligente", field: "telefonoInteligente", type: "boolean" },
-                    { title: "curp", field: "curp" }
+                    { title: "INE", field: "curp" }
                 ]
             }
             data={tutoresColectivo}

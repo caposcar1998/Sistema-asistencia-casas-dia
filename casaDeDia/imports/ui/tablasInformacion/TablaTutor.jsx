@@ -24,6 +24,7 @@ function TablaTutor({tutores}) {
             _id:tutor._id,
             nombre:nombre_tutor,
             apellido:apellidos_tutor,
+            correoElectronico:tutor.correoElectronico,
             fechaNacimiento:tutor.fechaNacimiento,
             direccion:direccion_tutor,
             telefono:tutor.telefono,
@@ -46,7 +47,7 @@ function TablaTutor({tutores}) {
             return new Promise(
                 (resolve, reject) => {
                     Meteor.call("crearTutor",
-                        newData.nombre, newData.apellido, newData.fechaNacimiento, newData.direccion, newData.telefono, newData.telefonoInteligente, newData.curp, newData.apodo,newData.contrasena,newData.visualizarTalleres,newData.visualizarConvocatorias,newData.visualizarCentros,newData.visualizarColectivos,newData.visualizarTutores,newData.editarTutores,
+                        newData.nombre, newData.apellido, newData.correoElectronico, newData.fechaNacimiento, newData.direccion, newData.telefono, newData.telefonoInteligente, newData.curp, newData.apodo,newData.contrasena,newData.visualizarTalleres,newData.visualizarConvocatorias,newData.visualizarCentros,newData.visualizarColectivos,newData.visualizarTutores,newData.editarTutores,
                         (err, res) => {
                             if (err) {
                                 alert("Error al Crear Al Tutor para Futuro Colectivo.")
@@ -64,7 +65,7 @@ function TablaTutor({tutores}) {
             return new Promise(
                 (resolve, reject) => {
                 Meteor.call("editarTutor",
-                    newData._id, newData.nombre, newData.apellido, newData.fechaNacimiento, newData.direccion, newData.telefono, newData.telefonoInteligente, newData.curp,newData.apodo,newData.contrasena,newData.idUsuario,newData.visualizarTalleres,newData.visualizarConvocatorias,newData.visualizarCentros,newData.visualizarColectivos,newData.visualizarTutores,newData.editarTutores,
+                    newData._id, newData.nombre, newData.apellido, newData.correoElectronico, newData.fechaNacimiento, newData.direccion, newData.telefono, newData.telefonoInteligente, newData.curp,newData.apodo,newData.contrasena,newData.idUsuario,newData.visualizarTalleres,newData.visualizarConvocatorias,newData.visualizarCentros,newData.visualizarColectivos,newData.visualizarTutores,newData.editarTutores,
                     (err, res) => {
                         if (err) {
                             alert("Error al Editar al Tutor para Colectivo.")
@@ -106,10 +107,11 @@ function TablaTutor({tutores}) {
                         [
                             { title: "Nombre", field: "nombre" },
                             { title: "Apellido", field: "apellido" },
+                            { title: "Correo Electrónico", field: "correoElectronico" },
                             { title: "FechaNacimiento", field: "fechaNacimiento", type: "date" },
                             { title: "direccion", field: "direccion" },
                             { title: "telefono", field: "telefono" },
-                            { title: "curp", field: "curp" },
+                            { title: "INE", field: "curp" },
                         ]
                     }
                     data={d(tutores)}
@@ -125,12 +127,13 @@ function TablaTutor({tutores}) {
                 [
                     { title: "Nombre", field: "nombre" },
                     { title: "Apellido", field: "apellido" },
+                    { title: "Correo Electrónico", field: "correoElectronico"},
                     { title: "FechaNacimiento", field: "fechaNacimiento", type: "date" },
                     { title: "direccion", field: "direccion" },
                     { title: "telefono", field: "telefono" },
                     { title: "telefono Inteligente", field: "telefonoInteligente", type: "boolean" },
-                    { title: "curp", field: "curp" },
-                    { title: "apodo", field: "apodo" },
+                    { title: "INE", field: "curp" },
+                    { title: "Nombre de Usuario", field: "apodo" },
                     { title: "contrasena", field: "contrasena" },
                     { title: "Visualizar Talleres", field: "visualizarTalleres", type:'boolean' },
                     { title: "Visualizar Colectivos", field: "visualizarColectivos" , type:'boolean'},

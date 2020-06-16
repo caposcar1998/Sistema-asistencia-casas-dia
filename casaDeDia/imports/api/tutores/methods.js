@@ -3,7 +3,7 @@ import { Tutores } from "../tutores/tutores";
 import CryptoJS from "react-native-crypto-js";
 
 Meteor.methods({
-    "crearTutor"(nombre, apellido, fechaNacimiento, direccion, telefono, telefonoInteligente, curp, apodo,contrasena,idUsuario,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos,visualizarTutores,editarTutores) {
+    "crearTutor"(nombre, apellido, correoElectronico, fechaNacimiento, direccion, telefono, telefonoInteligente, curp, apodo,contrasena,idUsuario,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos,visualizarTutores,editarTutores) {
         // Encrypt
         let nom = CryptoJS.AES.encrypt(nombre, 'secret key 123').toString();
         let ap = CryptoJS.AES.encrypt(apellido, 'secret key 123').toString();
@@ -28,6 +28,7 @@ Meteor.methods({
             {
                 nombre: nom,
                 apellido: ap,
+                correoElectronico: correoElectronico,
                 fechaNacimiento: fechaNacimiento,
                 direccion: dir,
                 telefono: telefono,
@@ -46,7 +47,7 @@ Meteor.methods({
         ) 
      },
 
-    "editarTutor"(idTutor, nombre, apellido, fechaNacimiento, direccion, telefono, telefonoInteligente, curp,apodo,contrasena,idUsuario,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos,visualizarTutores,editarTutores) { 
+    "editarTutor"(idTutor, nombre, apellido, correoElectronico, fechaNacimiento, direccion, telefono, telefonoInteligente, curp,apodo,contrasena,idUsuario,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos,visualizarTutores,editarTutores) { 
         // Encrypt
         let nom = CryptoJS.AES.encrypt(nombre, 'secret key 123').toString();
         let ap = CryptoJS.AES.encrypt(apellido, 'secret key 123').toString();
@@ -80,6 +81,7 @@ Meteor.methods({
                 {
                     nombre: nom,
                     apellido: ap,
+                    correoElectronico: correoElectronico,
                     fechaNacimiento: fechaNacimiento,
                     direccion: dir,
                     telefono: telefono,

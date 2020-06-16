@@ -1,6 +1,8 @@
 import React, {useEffect, useState } from 'react';
 import { Grid, Paper, TextField, Select, MenuItem, Button, Checkbox, ListItemText, Input, LinearProgress  } from '@material-ui/core';
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
+import { useCallback } from 'react';
+import CryptoJS from "react-native-crypto-js";
 
 
 export default function AnadirColectivos({colectivosServidor,handleCloseModal}) {
@@ -9,6 +11,9 @@ export default function AnadirColectivos({colectivosServidor,handleCloseModal}) 
         const [tutores, setTutores] = useState([]);
         const [categoria, setCategoria] = useState('');
         const [cupoLimite, setCupoLimite] = useState('');
+        const [redSocial1, setRedSocial1] = useState('');
+        const [redSocial2, setRedSocial2] = useState('');
+        const [redSocial3, setRedSocial3] = useState('');
         const [alert, setAlert] = useState();
         const [snackBarState, setSnackBarState] = useState(); 
         const [open, setOpen] = useState(false);
@@ -100,7 +105,7 @@ export default function AnadirColectivos({colectivosServidor,handleCloseModal}) 
                 return new Promise(
                         (resolve, reject) => {
                                 Meteor.call("crearColectivo",
-                                        nombre, descripcion, tutores, categoria, cupoLimite, image,
+                                        nombre, descripcion, tutores, categoria, cupoLimite, image, redSocial1, redSocial2, redSocial3,
                                         (err, res) => {
                                                 if (err) {
                                                         setAlert("Error")
@@ -155,7 +160,7 @@ export default function AnadirColectivos({colectivosServidor,handleCloseModal}) 
                                                 {tutoresDisponibles.map((tutor) => (
                                                         <MenuItem key={tutor.nombre} value={tutor}>
                                                                 <Checkbox checked={tutores.indexOf(tutor) > -1} />
-                                                                <ListItemText primary={tutor.nombre} />
+                                                                <ListItemText primary={CryptoJS.AES.decrypt(tutor.nombre, 'secret key 123').toString(CryptoJS.enc.Utf8)} />
                                                         </MenuItem>
                                                 ))}
                                         </Select>
@@ -233,6 +238,24 @@ export default function AnadirColectivos({colectivosServidor,handleCloseModal}) 
                                 ) : (
                                                 <img src={image} style={{ width: '300px' }} />
                                         )}
+                                </Grid>
+                    </Grid>
+                    <Grid item xs={12}>
+                            <Grid item xs={12}>Whatsapp del Colectivo</Grid>
+                                <Grid item xs={12}>
+                                        <TextField id="redSocial1" label="+52 1 55 xxxx xxxx" value={redSocial1} onChange={(e) => setRedSocial1(e.target.value)} />
+                                </Grid>
+                    </Grid>
+                    <Grid item xs={12}>
+                            <Grid item xs={12}>Facebook del Colectivo</Grid>
+                                <Grid item xs={12}>
+                                        <TextField id="redSocial2" label="https://facebook.com/colectivo" value={redSocial2} onChange={(e) => setRedSocial2(e.target.value)} />
+                                </Grid>
+                    </Grid>
+                    <Grid item xs={12}>
+                            <Grid item xs={12}>Twitter del Colectivo:</Grid>
+                                <Grid item xs={12}>
+                                        <TextField id="redSocial3" label="@XXXX" value={redSocial3} onChange={(e) => setRedSocial3(e.target.value)} />
                                 </Grid>
                     </Grid>
                     <Grid item xs={12} />
