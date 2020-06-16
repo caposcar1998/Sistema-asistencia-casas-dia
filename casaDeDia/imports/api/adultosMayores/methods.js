@@ -4,14 +4,21 @@ import { CasasDeDia } from '../casasDeDia/casasDeDia';
 import { Clubes } from '../clubes/clubes';
 import { Asilos } from '../asilos/asilos';
 import SimpleSchema from 'simpl-schema';
-
-
+import CryptoJS from "react-native-crypto-js";
 
 Meteor.methods({
 
-
     "crearAdultoMayor"(nombre,apellidos,ine,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,foto) {
-        
+        // Encrypt
+        let ap = CryptoJS.AES.encrypt(apellidos, 'secret key 123').toString();
+        let crp = CryptoJS.AES.encrypt(curp, 'secret key 123').toString();
+        let dir = CryptoJS.AES.encrypt(direccion, 'secret key 123').toString();
+        let gs = CryptoJS.AES.encrypt(grupoSanguineo, 'secret key 123').toString();
+        let nom = CryptoJS.AES.encrypt(nombre, 'secret key 123').toString();
+        let cp = CryptoJS.AES.encrypt(codigoPostal, 'secret key 123').toString();
+        let ed = CryptoJS.AES.encrypt(edad, 'secret key 123').toString();
+        let sx = CryptoJS.AES.encrypt(sexo, 'secret key 123').toString();
+      
         new SimpleSchema({
             nombre: { type: String },
             apellidos: { type: String },
@@ -23,15 +30,15 @@ Meteor.methods({
 
         AdultosMayores.insert(
             {
-                nombre: nombre,
-                apellidos: apellidos,
+                nombre: nom,
+                apellidos: ap,
                 ine: ine,
-                curp: curp,
-                sexo: sexo,
-                edad: edad,
-                grupoSanguineo: grupoSanguineo,
-                direccion: direccion,
-                codigoPostal: codigoPostal,
+                curp: crp,
+                sexo: sx,
+                edad: ed,
+                grupoSanguineo: gs,
+                direccion: dir,
+                codigoPostal: cp,
                 foto: foto,
                 tarjetas: []
             }
@@ -40,7 +47,16 @@ Meteor.methods({
     },
 
     "editarAdultoMayor"(idAdultoMayor,nombre,apellidos,ine,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,foto) {
-        
+        // Encrypt
+        let ap = CryptoJS.AES.encrypt(apellidos, 'secret key 123').toString();
+        let crp = CryptoJS.AES.encrypt(curp, 'secret key 123').toString();
+        let dir = CryptoJS.AES.encrypt(direccion, 'secret key 123').toString();
+        let gs = CryptoJS.AES.encrypt(grupoSanguineo, 'secret key 123').toString();
+        let nom = CryptoJS.AES.encrypt(nombre, 'secret key 123').toString();
+        let cp = CryptoJS.AES.encrypt(codigoPostal, 'secret key 123').toString();
+        let ed = CryptoJS.AES.encrypt(edad, 'secret key 123').toString();
+        let sx = CryptoJS.AES.encrypt(sexo, 'secret key 123').toString();
+      
         new SimpleSchema({
             nombre: { type: String },
             apellidos: { type: String },
@@ -56,15 +72,15 @@ Meteor.methods({
             {
                 $set:
                 {
-                    nombre: nombre,
-                    apellidos: apellidos,
+                    nombre: nom,
+                    apellidos: ap,
                     ine: ine,
-                    curp: curp,
-                    sexo: sexo,
-                    edad: edad,
-                    grupoSanguineo: grupoSanguineo,
-                    direccion: direccion,
-                    codigoPostal: codigoPostal,
+                    curp: crp,
+                    sexo: sx,
+                    edad: ed,
+                    grupoSanguineo: gs,
+                    direccion: dir,
+                    codigoPostal: cp,
                     foto: foto
                 }
             }

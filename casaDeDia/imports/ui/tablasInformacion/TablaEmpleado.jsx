@@ -4,11 +4,62 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { Empleados } from "../../api/empleados/empleados";
 import { Meteor } from 'meteor/meteor';
-import { Tracker } from 'meteor/tracker'
+import { Tracker } from 'meteor/tracker';
+import CryptoJS from "react-native-crypto-js";
 
 Tracker.autorun(()=>{
 
 function TablaEmpleado({empleados}) {
+
+    const d = (empleados) => empleados.map((empleado) =>{
+        // Decrypt
+        let bytes  = CryptoJS.AES.decrypt(empleado.nombre, 'secret key 123');
+        let nombre_empleado = bytes.toString(CryptoJS.enc.Utf8);
+        let bytes2  = CryptoJS.AES.decrypt(empleado.apellidos, 'secret key 123');
+        let apellidos_empleado = bytes2.toString(CryptoJS.enc.Utf8);
+        let bytes3  = CryptoJS.AES.decrypt(empleado.email, 'secret key 123');
+        let email_empleado = bytes3.toString(CryptoJS.enc.Utf8);
+        let bytes4  = CryptoJS.AES.decrypt(empleado.contrasena, 'secret key 123');
+        let contrsaena_empleado = bytes4.toString(CryptoJS.enc.Utf8);
+        return({
+            nombre:nombre_empleado,
+            _id:empleado._id,
+            apellidos: apellidos_empleado,
+            apodo: empleado.apodo,
+            contrasena: contrsaena_empleado,
+            email: email_empleado,
+            visualizarAdultoMayor: empleado.visualizarAdultoMayor,
+            editarAdultoMayor: empleado.editarAdultoMayor,
+            visualizarVoluntario: empleado.visualizarVoluntario,
+            editarVoluntario: empleado.editarVoluntario,
+            visualizarInstructor: empleado.visualizarInstructor,
+            editarInstructor: empleado.editarInstructor,
+            idUsuario: empleado.idUsuario,
+            visualizarAsilo: empleado.visualizarAsilo,
+            visualizarCasasDeDia: empleado.visualizarCasasDeDia,
+            visualizarClubes:empleado.visualizarClubes,
+            visualizarServicios:empleado.visualizarServicios,
+            visualizarActividades:empleado.visualizarActividades,
+            visualizarTarjetas:empleado.visualizarTarjetas,
+            visualizarEmpleados:empleado.visualizarEmpleados,
+            editarEmpleados:empleado.editarEmpleados,
+            visualizarBeneficios:empleado.visualizarBeneficios,
+            visualizarTutores:empleado.visualizarTutores,
+            editarTutores:empleado.editarTutores,
+            visualizarTalleres:empleado.visualizarTalleres,
+            visualizarConvocatorias:empleado.visualizarConvocatorias,
+            visualizarCentros:empleado.visualizarCentros,
+            visualizarColectivos:empleado.visualizarColectivos,
+            generarReportes:empleado.generarReportes,
+            visualizarRestricciones:empleado.visualizarRestricciones,
+            visualizarEstablecimiento:empleado.visualizarEstablecimiento,
+            editarEstablecimiento:empleado.editarEstablecimiento,
+            visualizarServiciosHospital:empleado.visualizarServiciosHospital,
+            editarServiciosHospital:empleado.editarServiciosHospital
+
+        });
+    });
+    
 
     function addEmpleado(newData) {
 
@@ -67,6 +118,7 @@ function TablaEmpleado({empleados}) {
     };
 
     if(Meteor.user() && Meteor.user().profile.editarEmpleados !== true){
+        
         return (
 
             <MaterialTable
@@ -81,12 +133,12 @@ function TablaEmpleado({empleados}) {
                         { title: "Email", field: "email"},
                     ]
                 }
-                data={empleados}
+                data={d(empleados)}
             />
         );
     }
 
-
+    
     return (
         
         <MaterialTable 
@@ -94,7 +146,6 @@ function TablaEmpleado({empleados}) {
             icons={tableIcons}
             columns={
                 [
-                    
                     { title: "Nombre", field: "nombre" },
                     { title: "Apellidos", field: "apellidos" },
                     { title: "Usuario", field: "apodo" },
@@ -130,7 +181,7 @@ function TablaEmpleado({empleados}) {
 
                 ]
             }
-            data={empleados}
+            data ={d(empleados)}
             editable={{
                 onRowAdd: addEmpleado,
                 onRowUpdate: editEmpleado,
