@@ -7,6 +7,7 @@ import CryptoJS from "react-native-crypto-js";
 export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSeleccionado, handleCerrarEditarAdultoMayor }) {
     const [nombre, setNombre] = useState('');
     const [apellidos, setApellidos] = useState('');
+    const [ine, setIne] = useState('');
     const [direccion, setDireccion] = useState('');
     const [grupoSanguineo, setGrupoSanguineo] = useState('');
     const [curp, setCurp] = useState('');
@@ -20,6 +21,7 @@ export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSelec
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+
         // Decrypt
         let bytes  = CryptoJS.AES.decrypt(adultoSeleccionado.apellidos, 'secret key 123');
         let apellidos_adulto = bytes.toString(CryptoJS.enc.Utf8);
@@ -40,6 +42,7 @@ export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSelec
         
         setNombre(nombre_adulto);
         setApellidos(apellidos_adulto);
+        setIne(adultoSeleccionado.ine);
         setDireccion(direccion_adulto);
         setCurp(curp_adulto);
         setSexo(sexo_adulto);
@@ -86,7 +89,7 @@ export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSelec
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("editarAdultoMayor",
-                    adultoSeleccionado._id,nombre, apellidos, curp, sexo, edad, grupoSanguineo, direccion, codigoPostal,image,
+                    adultoSeleccionado._id,nombre, apellidos,ine, curp, sexo, edad, grupoSanguineo, direccion, codigoPostal,image,
                     (err, res) => {
                         if (err) {
                             setAlert("error")
@@ -124,6 +127,13 @@ export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSelec
                     <Grid item xs={12}>Apellidos</Grid>
                     <Grid item xs={12}>
                         <TextField id="apellidos" value={apellidos} onChange={(e) => setApellidos(e.target.value)} />
+                    </Grid>
+                </Grid>
+
+                <Grid item xs={4}>
+                    <Grid item xs={12}>INE</Grid>
+                    <Grid item xs={12}>
+                        <TextField id="ine" value={ine} onChange={(e) => setIne(e.target.value)} />
                     </Grid>
                 </Grid>
 

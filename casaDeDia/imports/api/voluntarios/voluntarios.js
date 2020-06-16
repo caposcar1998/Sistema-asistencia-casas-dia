@@ -23,6 +23,7 @@ let Schema = new SimpleSchema({
     apodo: { type: String },
     contrasena: {type: String},
     email: { type: String },
+    ine: { type: String },
     visualizarAdultoMayor: { type: Boolean },
     editarAdultoMayor: { type: Boolean },
     visualizarVoluntario: { type: Boolean },

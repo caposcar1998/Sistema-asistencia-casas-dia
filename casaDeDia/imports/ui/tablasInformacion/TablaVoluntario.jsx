@@ -28,6 +28,7 @@ function TablaVoluntario({voluntarios}) {
             apodo:voluntario.apodo,
             contrasena: contrsaena_voluntario,
             email: email_voluntario,
+            ine: voluntario.ine,
             visualizarAdultoMayor:voluntario.visualizarAdultoMayor,
             editarAdultoMayor:voluntario.editarAdultoMayor,
             visualizarVoluntario:voluntario.visualizarVoluntario,
@@ -65,7 +66,7 @@ function TablaVoluntario({voluntarios}) {
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("crearVoluntario",
-                newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,newData.visualizarAsilo,newData.visualizarCasasDeDia,newData.visualizarClubes,newData.visualizarServicios,newData.visualizarActividades,newData.visualizarTarjetas,newData.visualizarEmpleados,newData.editarEmpleados,newData.visualizarBeneficios,newData.visualizarTutores,newData.editarTutores,newData.visualizarTalleres,newData.visualizarConvocatorias,newData.visualizarCentros,newData.visualizarColectivos,newData.generarReportes,newData.visualizarRestricciones,newData.visualizarEstablecimiento,newData.editarEstablecimiento,newData.visualizarServiciosHospital,newData.editarServiciosHospital,
+                newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.ine,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,newData.visualizarAsilo,newData.visualizarCasasDeDia,newData.visualizarClubes,newData.visualizarServicios,newData.visualizarActividades,newData.visualizarTarjetas,newData.visualizarEmpleados,newData.editarEmpleados,newData.visualizarBeneficios,newData.visualizarTutores,newData.editarTutores,newData.visualizarTalleres,newData.visualizarConvocatorias,newData.visualizarCentros,newData.visualizarColectivos,newData.generarReportes,newData.visualizarRestricciones,newData.visualizarEstablecimiento,newData.editarEstablecimiento,newData.visualizarServiciosHospital,newData.editarServiciosHospital,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -83,7 +84,7 @@ function TablaVoluntario({voluntarios}) {
             return new Promise(
                 (resolve, reject) => {
                     Meteor.call("editarVoluntario",
-                        newData._id, newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,newData.idUsuario,newData.visualizarAsilo,newData.visualizarCasasDeDia,newData.visualizarClubes,newData.visualizarServicios,newData.visualizarActividades,newData.visualizarTarjetas,newData.visualizarEmpleados,newData.editarEmpleados,newData.visualizarBeneficios,newData.visualizarTutores,newData.editarTutores,newData.visualizarTalleres,newData.visualizarConvocatorias,newData.visualizarCentros,newData.visualizarColectivos,newData.generarReportes,newData.visualizarRestricciones,newData.visualizarEstablecimiento,newData.editarEstablecimiento,newData.visualizarServiciosHospital,newData.editarServiciosHospital,
+                        newData._id, newData.nombre, newData.apellidos, newData.apodo, newData.contrasena, newData.email,newData.ine,newData.visualizarAdultoMayor,newData.editarAdultoMayor,newData.visualizarVoluntario,newData.editarVoluntario,newData.visualizarInstructor,newData.editarInstructor,newData.idUsuario,newData.visualizarAsilo,newData.visualizarCasasDeDia,newData.visualizarClubes,newData.visualizarServicios,newData.visualizarActividades,newData.visualizarTarjetas,newData.visualizarEmpleados,newData.editarEmpleados,newData.visualizarBeneficios,newData.visualizarTutores,newData.editarTutores,newData.visualizarTalleres,newData.visualizarConvocatorias,newData.visualizarCentros,newData.visualizarColectivos,newData.generarReportes,newData.visualizarRestricciones,newData.visualizarEstablecimiento,newData.editarEstablecimiento,newData.visualizarServiciosHospital,newData.editarServiciosHospital,
                         (err, res) => {
                             if (err) {
                                 reject()
@@ -123,9 +124,10 @@ function TablaVoluntario({voluntarios}) {
                     [
                         { title: "Nombre", field: "nombre" },
                         { title: "Apellidos", field: "apellidos" },
-                        { title: "Apodo", field: "apodo" },
+                        { title: "Usuario", field: "apodo" },
                         { title: "Contrasena", field: "contrasena" },
                         { title: "Email", field: "email"},
+                        { title: "INE", field: "ine" },
                     ]
                 }
                 data={d(voluntarios)}
@@ -142,9 +144,10 @@ function TablaVoluntario({voluntarios}) {
                 [
                     { title: "Nombre", field: "nombre" },
                     { title: "Apellidos", field: "apellidos" },
-                    { title: "Apodo", field: "apodo" },
+                    { title: "Usuario", field: "apodo" },
                     { title: "Contrasena", field: "contrasena" },
                     { title: "Email", field: "email"},
+                    { title: "INE", field: "ine" },
                     { title: "Visualizar Adulto Mayor", field: "visualizarAdultoMayor", type:'boolean'},
                     { title: "Editar Adulto Mayor", field: "editarAdultoMayor", type:'boolean'},
                     { title: "Visualizar Voluntario", field: "visualizarVoluntario", type:'boolean'},

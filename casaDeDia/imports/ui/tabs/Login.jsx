@@ -108,6 +108,9 @@ export default function Login() {
                                   }}
                                   id="contrasena" label="Contraseña" type="password" onChange={(e) => setPassword(e.target.value)} />
                         </form>
+                        <Grid>
+                            <p>Al entrar a este sistema, estás aceptando los términos y condiciones de la Alcaldia de Tlalpan</p>
+                        </Grid>
                         </Grid>
                         <Grid item xs={12}>
                             <Button onClick={ingresarSistema} variant="contained" color="primary">Ingresar</Button>
