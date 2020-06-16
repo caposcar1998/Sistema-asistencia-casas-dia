@@ -28,6 +28,7 @@ function TablaInstructor({instructores}) {
             apodo:instructor.apodo,
             contrasena: contrsaena_instructor,
             email: email_instructor,
+            ine: instructor.ine,
             visualizarAdultoMayor:instructor.visualizarAdultoMayor,
             editarAdultoMayor:instructor.editarAdultoMayor,
             visualizarVoluntario:instructor.visualizarVoluntario,
