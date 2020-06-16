@@ -4,7 +4,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import WhatsappIcon from '@material-ui/icons/Whatsapp';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import FBIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import PeopleIcon from '@material-ui/icons/People';
@@ -84,7 +84,7 @@ export default function TarjetasColectivos({colectivo, handleOpenBorrarColectivo
                     <CardContent>
                         <Typography paragraph variant="h6">Whatsapp del Colectivo:</Typography>
                         <Typography paragraph>
-                            <WhatsappIcon />
+                            <WhatsAppIcon />
                             {colectivo.redSocial1}
                         </Typography>
                         <Typography paragraph variant="h6">Facebook del Colectivo:</Typography>

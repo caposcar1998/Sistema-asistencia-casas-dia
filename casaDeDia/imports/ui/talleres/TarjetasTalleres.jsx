@@ -3,7 +3,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import DeleteIcon from '@material-ui/icons/Delete';
-import WhatsappIcon from '@material-ui/icons/Whatsapp';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import FBIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import EditIcon from '@material-ui/icons/Edit';
@@ -59,7 +59,7 @@ export default function TarjetasTalleres({taller, handleOpenBorrarTaller, handle
                 <CardContent>
                 <Typography paragraph variant="h6">Whatsapp del Taller:</Typography>
                         <Typography paragraph>
-                            <WhatsappIcon />
+                        <WhatsAppIcon />
                             {taller.redSocial1}
                         </Typography>
                         <Typography paragraph variant="h6">Facebook del Taller:</Typography>
