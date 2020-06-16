@@ -28,6 +28,7 @@ function TablaVoluntario({voluntarios}) {
             apodo:voluntario.apodo,
             contrasena: contrsaena_voluntario,
             email: email_voluntario,
+            ine: voluntario.ine,
             visualizarAdultoMayor:voluntario.visualizarAdultoMayor,
             editarAdultoMayor:voluntario.editarAdultoMayor,
             visualizarVoluntario:voluntario.visualizarVoluntario,
