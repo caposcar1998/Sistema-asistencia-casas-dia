@@ -71,7 +71,7 @@ function TablaTutorColectivo({tutoresColectivo}) {
                     { title: "direccion", field: "direccion" },
                     { title: "telefono", field: "telefono" },
                     { title: "telefono Inteligente", field: "telefonoInteligente", type: "boolean" },
-                    { title: "curp", field: "curp" }
+                    { title: "INE", field: "curp" }
                 ]
             }
             data={tutoresColectivo}
