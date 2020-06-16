@@ -1,8 +1,16 @@
 import { Meteor } from 'meteor/meteor';
 import { Tutores } from "../tutores/tutores";
+import CryptoJS from "react-native-crypto-js";
 
 Meteor.methods({
     "crearTutor"(nombre, apellido, fechaNacimiento, direccion, telefono, telefonoInteligente, curp, apodo,contrasena,idUsuario,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos,visualizarTutores,editarTutores) {
+        // Encrypt
+        let nom = CryptoJS.AES.encrypt(nombre, 'secret key 123').toString();
+        let ap = CryptoJS.AES.encrypt(apellido, 'secret key 123').toString();
+        let cont = CryptoJS.AES.encrypt(contrasena, 'secret key 123').toString();
+        let dir = CryptoJS.AES.encrypt(direccion, 'secret key 123').toString();
+        let crp = CryptoJS.AES.encrypt(curp, 'secret key 123').toString();
+
         idUsuario = Accounts.createUser({
             username: apodo,
             password: contrasena,
@@ -18,15 +26,15 @@ Meteor.methods({
         }),
         Tutores.insert(
             {
-                nombre: nombre,
-                apellido: apellido,
+                nombre: nom,
+                apellido: ap,
                 fechaNacimiento: fechaNacimiento,
-                direccion: direccion,
+                direccion: dir,
                 telefono: telefono,
                 telefonoInteligente: telefonoInteligente, 
-                curp : curp,
+                curp : crp,
                 apodo: apodo,
-                contrasena: contrasena,
+                contrasena: cont,
                 idUsuario: idUsuario,
                 visualizarTalleres:visualizarTalleres,
                 visualizarConvocatorias:visualizarConvocatorias,
@@ -39,6 +47,13 @@ Meteor.methods({
      },
 
     "editarTutor"(idTutor, nombre, apellido, fechaNacimiento, direccion, telefono, telefonoInteligente, curp,apodo,contrasena,idUsuario,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos,visualizarTutores,editarTutores) { 
+        // Encrypt
+        let nom = CryptoJS.AES.encrypt(nombre, 'secret key 123').toString();
+        let ap = CryptoJS.AES.encrypt(apellido, 'secret key 123').toString();
+        let cont = CryptoJS.AES.encrypt(contrasena, 'secret key 123').toString();
+        let dir = CryptoJS.AES.encrypt(direccion, 'secret key 123').toString();
+        let crp = CryptoJS.AES.encrypt(curp, 'secret key 123').toString();
+        
         Meteor.users.update(idUsuario,{
             $set:{
                 username: apodo,
@@ -63,15 +78,15 @@ Meteor.methods({
             {
                 $set:
                 {
-                    nombre: nombre,
-                    apellido: apellido,
+                    nombre: nom,
+                    apellido: ap,
                     fechaNacimiento: fechaNacimiento,
-                    direccion: direccion,
+                    direccion: dir,
                     telefono: telefono,
                     telefonoInteligente: telefonoInteligente,
-                    curp: curp,
+                    curp: crp,
                     apodo: apodo,
-                    contrasena: contrasena,
+                    contrasena: cont,
                     idUsuario: idUsuario,
                     visualizarTalleres:visualizarTalleres,
                     visualizarConvocatorias:visualizarConvocatorias,

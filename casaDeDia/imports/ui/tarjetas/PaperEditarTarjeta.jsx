@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, TextField, Select, Checkbox, MenuItem, Button, Input, ListItemText, Typography } from '@material-ui/core';
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
+import CryptoJS from "react-native-crypto-js";
 
 
 export default function PaperEditarTarjeta({ handleCerrarEditarTarjeta, tarjetaSeleccionada, tarjetasServidor }) {
@@ -52,10 +53,16 @@ function EditarSalud({ tarjetasServidor, handleCerrarEditarTarjeta, tarjetaSelec
     const [serviciosDisponibles, setServiciosDisponibles] = useState([]);
 
     useEffect(() => {
+        // Decrypt
+        let bytes  = CryptoJS.AES.decrypt(tarjetaSeleccionada.nombre, 'secret key 123');
+        let nombre_tarjeta = bytes.toString(CryptoJS.enc.Utf8);
+        let bytes2  = CryptoJS.AES.decrypt(tarjetaSeleccionada.fechaVigencia, 'secret key 123');
+        let fechaVigencia_tarjeta = bytes2.toString(CryptoJS.enc.Utf8);
+
         serviciosServidor();
         tarjetasServidor();
-        setNombre(tarjetaSeleccionada.nombre);
-        setFechaVigencia(tarjetaSeleccionada.fechaVigencia);
+        setNombre(nombre_tarjeta);
+        setFechaVigencia(fechaVigencia_tarjeta);
         setHospital(tarjetaSeleccionada.hospital);
         setServicios(tarjetaSeleccionada.servicios);
     }, []);
@@ -198,12 +205,23 @@ function EditarDinero({ tarjetasServidor, handleCerrarEditarTarjeta, tarjetaSele
 
 
     useEffect(() => {
+        // Decrypt
+        let bytes  = CryptoJS.AES.decrypt(tarjetaSeleccionada.nombre, 'secret key 123');
+        let nombre_tarjeta = bytes.toString(CryptoJS.enc.Utf8);
+        let bytes2  = CryptoJS.AES.decrypt(tarjetaSeleccionada.fechaVigencia, 'secret key 123');
+        let fechaVigencia_tarjeta = bytes2.toString(CryptoJS.enc.Utf8);
+        let bytes4  = CryptoJS.AES.decrypt(tarjetaSeleccionada.banco, 'secret key 123');
+        let banco_tarjeta = bytes4.toString(CryptoJS.enc.Utf8);
+        let bytes5  = CryptoJS.AES.decrypt(tarjetaSeleccionada.cantidad, 'secret key 123');
+        let cantidad_tarjeta = bytes5.toString(CryptoJS.enc.Utf8);
+        let bytes6  = CryptoJS.AES.decrypt(tarjetaSeleccionada.tiempo, 'secret key 123');
+        let tiempo_tarjeta = bytes6.toString(CryptoJS.enc.Utf8);
         tarjetasServidor();
-        setNombre(tarjetaSeleccionada.nombre);
-        setFechaVigencia(tarjetaSeleccionada.fechaVigencia);
-        setCantidad(tarjetaSeleccionada.cantidad);
-        setBanco(tarjetaSeleccionada.banco);
-        setTiempo(tarjetaSeleccionada.tiempo);
+        setNombre(nombre_tarjeta);
+        setFechaVigencia(fechaVigencia_tarjeta);
+        setCantidad(cantidad_tarjeta);
+        setBanco(banco_tarjeta);
+        setTiempo(tiempo_tarjeta);
     }, []);
 
 
@@ -355,10 +373,17 @@ function EditarDespensa({ tarjetasServidor, handleCerrarEditarTarjeta, tarjetaSe
 
 
     useEffect(() => {
+        // Decrypt
+        let bytes  = CryptoJS.AES.decrypt(tarjetaSeleccionada.nombre, 'secret key 123');
+        let nombre_tarjeta = bytes.toString(CryptoJS.enc.Utf8);
+        let bytes2  = CryptoJS.AES.decrypt(tarjetaSeleccionada.fechaVigencia, 'secret key 123');
+        let fechaVigencia_tarjeta = bytes2.toString(CryptoJS.enc.Utf8);
+        let bytes5  = CryptoJS.AES.decrypt(tarjetaSeleccionada.cantidad, 'secret key 123');
+        let cantidad_tarjeta = bytes5.toString(CryptoJS.enc.Utf8);
         tarjetasServidor();
-        setNombre(tarjetaSeleccionada.nombre);
-        setFechaVigencia(tarjetaSeleccionada.fechaVigencia);
-        setCantidad(tarjetaSeleccionada.cantidad);
+        setNombre(nombre_tarjeta);
+        setFechaVigencia(fechaVigencia_tarjeta);
+        setCantidad(cantidad_tarjeta);
         setLugaresAceptados(tarjetaSeleccionada.lugaresAceptados);
         lugaresServidorFuncion();
     }, []);

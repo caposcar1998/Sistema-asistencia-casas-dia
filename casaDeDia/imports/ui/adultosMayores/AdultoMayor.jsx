@@ -19,6 +19,7 @@ export default function AdultoMayor() {
     const classes = useStyles();
     const [openModal, setOpenModal] = useState(false);
     const [adultoMayor, setAdultoMayor] = useState([])
+    const [aux, setAux] = useState([])
     const [openEditarAdultoMayor, setOpenEditarAdultoMayor] = useState(false);
     const [openBorrarAdultoMayor, setOpenBorrarAdultoMayor] = useState(false);
     const [adultoSeleccionado, setAdultoSeleccionado] = useState();
@@ -40,7 +41,7 @@ export default function AdultoMayor() {
         setOpenBorrarAdultoMayor(true);
     };
 
-    const handleOpenEditarAdultoMayor = (adulto) => {
+    const handleOpenEditarAdultoMayor = (adulto) => { 
         setAdultoSeleccionado(adulto)
         setOpenEditarAdultoMayor(true);
     };

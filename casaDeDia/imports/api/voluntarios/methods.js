@@ -1,11 +1,18 @@
 import { Meteor } from 'meteor/meteor';
 import { Voluntarios } from "../voluntarios/voluntarios";
 import SimpleSchema from 'simpl-schema';
+import CryptoJS from "react-native-crypto-js";
 
 Meteor.methods({
 
-    "crearVoluntario"(nombre,apellidos,apodo,contrasena,email,ine, visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos,generarReportes,visualizarRestricciones,visualizarEstablecimiento,editarEstablecimiento,visualizarServiciosHospital,editarServiciosHospital) {
-        
+    "crearVoluntario"(nombre,apellidos,apodo,contrasena,email,ine,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos,generarReportes,visualizarRestricciones,visualizarEstablecimiento,editarEstablecimiento,visualizarServiciosHospital,editarServiciosHospital) {
+        // Encrypt
+        let nom = CryptoJS.AES.encrypt(nombre, 'secret key 123').toString();
+        let ap = CryptoJS.AES.encrypt(apellidos, 'secret key 123').toString();
+        //let un = CryptoJS.AES.encrypt(apodo, 'secret key 123').toString();
+        let cont = CryptoJS.AES.encrypt(contrasena, 'secret key 123').toString();
+        let em = CryptoJS.AES.encrypt(email, 'secret key 123').toString();
+
         new SimpleSchema({
             nombre: { type: String },
             apellidos: { type: String },
@@ -51,12 +58,15 @@ Meteor.methods({
         
         Voluntarios.insert(
             {
-                nombre: nombre,
-                apellidos: apellidos,
+                nombre: nom,
+                apellidos: ap,
                 apodo: apodo,
                 contrasena: contrasena,
                 email: email,
                 ine: ine,
+                contrasena: cont,
+                email: em,
+               ine: ine,
                 visualizarAdultoMayor: visualizarAdultoMayor,
                 editarAdultoMayor: editarAdultoMayor,
                 visualizarVoluntario: visualizarVoluntario,
@@ -90,8 +100,14 @@ Meteor.methods({
         )
     },
 
-    "editarVoluntario"(idVoluntario,nombre,apellidos,apodo,contrasena,email,ine, visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor, idUsuario,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos, generarReportes,visualizarRestricciones,visualizarEstablecimiento,editarEstablecimiento,visualizarServiciosHospital,editarServiciosHospital) {
-        
+    "editarVoluntario"(idVoluntario,nombre,apellidos,apodo,contrasena,email,ine,visualizarAdultoMayor,editarAdultoMayor,visualizarVoluntario,editarVoluntario,visualizarInstructor,editarInstructor, idUsuario,visualizarAsilo,visualizarCasasDeDia,visualizarClubes,visualizarServicios,visualizarActividades,visualizarTarjetas,visualizarEmpleados,editarEmpleados,visualizarBeneficios,visualizarTutores,editarTutores,visualizarTalleres,visualizarConvocatorias,visualizarCentros,visualizarColectivos, generarReportes,visualizarRestricciones,visualizarEstablecimiento,editarEstablecimiento,visualizarServiciosHospital,editarServiciosHospital) {
+        // Encrypt
+        let nom = CryptoJS.AES.encrypt(nombre, 'secret key 123').toString();
+        let ap = CryptoJS.AES.encrypt(apellidos, 'secret key 123').toString();
+        //let un = CryptoJS.AES.encrypt(apodo, 'secret key 123').toString();
+        let cont = CryptoJS.AES.encrypt(contrasena, 'secret key 123').toString();
+        let em = CryptoJS.AES.encrypt(email, 'secret key 123').toString();
+      
         new SimpleSchema({
             nombre: { type: String },
             apellidos: { type: String },
@@ -151,11 +167,11 @@ Meteor.methods({
             {
                 $set:
                 {
-                    nombre: nombre,
-                    apellidos: apellidos,
+                    nombre: nom,
+                    apellidos: ap,
                     apodo: apodo,
-                    contrasena: contrasena,
-                    email: email,
+                    contrasena: cont,
+                    email: em,
                     ine: ine,
                     visualizarAdultoMayor: visualizarAdultoMayor,
                     editarAdultoMayor: editarAdultoMayor,
