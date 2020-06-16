@@ -68,7 +68,6 @@ const names = [
   'Clubes',
   'Servicios',
   'Actividades',
-  'Tarjetas',
   'Empleados',
   'Voluntarios',
   'Instructores',
@@ -296,10 +295,17 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
 
       const datas1 = (dat,tipo,info) => dat.map((usuario)=>{
         if(tipo === 'Empleados' || tipo === 'Voluntarios' || tipo === 'Instructores'){
+          // Decrypt
+          let bytes  = CryptoJS.AES.decrypt(usuario.nombre, 'secret key 123');
+          let nombre_usuario = bytes.toString(CryptoJS.enc.Utf8);
+          let bytes2  = CryptoJS.AES.decrypt(usuario.apellidos, 'secret key 123');
+          let apellidos_usuario = bytes2.toString(CryptoJS.enc.Utf8);
+          let bytes3  = CryptoJS.AES.decrypt(usuario.email, 'secret key 123');
+          let email_usuario = bytes3.toString(CryptoJS.enc.Utf8);
           return({
-            primera:usuario.nombre,
-            segunda:usuario.apellidos,
-            tercera:usuario.email,
+            primera:nombre_usuario,
+            segunda:apellidos_usuario,
+            tercera:email_usuario,
           })
         }else if(tipo === 'Adultos Mayores'){
           // Decrypt
@@ -407,13 +413,22 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
             }).join('; ')).replace(/,/g,' y '),
           })
         }else if(tipo === 'Tutores'){
+          // Decrypt
+          let bytes  = CryptoJS.AES.decrypt(usuario.nombre, 'secret key 123');
+          let nombre_usuario = bytes.toString(CryptoJS.enc.Utf8);
+          let bytes2  = CryptoJS.AES.decrypt(usuario.apellido, 'secret key 123');
+          let apellidos_usuario = bytes2.toString(CryptoJS.enc.Utf8);
+          let bytes3  = CryptoJS.AES.decrypt(usuario.direccion, 'secret key 123');
+          let direccion_usuario = bytes3.toString(CryptoJS.enc.Utf8);
+          let bytes5  = CryptoJS.AES.decrypt(usuario.curp, 'secret key 123');
+          let curp_usuario = bytes5.toString(CryptoJS.enc.Utf8);
           return({
-            primera_tu:usuario.nombre,
-            segunda_tu:usuario.apellido,
+            primera_tu:nombre_usuario,
+            segunda_tu:apellidos_usuario,
             tercera_tu:usuario.fechaNacimiento,
             cuarta_tu:usuario.telefono,
-            quinta_tu:usuario.direccion,
-            sexta_tu:usuario.curp,
+            quinta_tu:direccion_usuario,
+            sexta_tu:curp_usuario,
           })
         }
         else if(tipo === 'Beneficios'){
