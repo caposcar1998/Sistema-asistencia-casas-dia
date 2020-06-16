@@ -4,11 +4,61 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { Instructores } from "../../api/instructores/instructores";
 import { Meteor } from 'meteor/meteor';
-import { Tracker } from 'meteor/tracker'
+import { Tracker } from 'meteor/tracker';
+import CryptoJS from "react-native-crypto-js";
 
 Tracker.autorun(()=>{
 
 function TablaInstructor({instructores}) {
+
+    const d = (instructores) => instructores.map((instructor) =>{
+        // Decrypt
+        let bytes  = CryptoJS.AES.decrypt(instructor.nombre, 'secret key 123');
+        let nombre_instructor = bytes.toString(CryptoJS.enc.Utf8);
+        let bytes2  = CryptoJS.AES.decrypt(instructor.apellidos, 'secret key 123');
+        let apellidos_instructor = bytes2.toString(CryptoJS.enc.Utf8);
+        let bytes3  = CryptoJS.AES.decrypt(instructor.email, 'secret key 123');
+        let email_instructor = bytes3.toString(CryptoJS.enc.Utf8);
+        let bytes4  = CryptoJS.AES.decrypt(instructor.contrasena, 'secret key 123');
+        let contrsaena_instructor = bytes4.toString(CryptoJS.enc.Utf8);
+        return({
+            nombre:nombre_instructor,
+            _id:instructor._id,
+            apellidos: apellidos_instructor,
+            apodo:instructor.apodo,
+            contrasena: contrsaena_instructor,
+            email: email_instructor,
+            visualizarAdultoMayor:instructor.visualizarAdultoMayor,
+            editarAdultoMayor:instructor.editarAdultoMayor,
+            visualizarVoluntario:instructor.visualizarVoluntario,
+            editarVoluntario:instructor.editarVoluntario,
+            visualizarInstructor:instructor.visualizarInstructor,
+            editarInstructor:instructor.editarInstructor,
+            idUsuario:instructor.idUsuario,
+            visualizarAsilo:instructor.visualizarAsilo,
+            visualizarCasasDeDia:instructor.visualizarCasasDeDia,
+            visualizarClubes:instructor.visualizarClubes,
+            visualizarServicios:instructor.visualizarServicios,
+            visualizarActividades:instructor.visualizarActividades,
+            visualizarTarjetas:instructor.visualizarTarjetas,
+            visualizarEmpleados:instructor.visualizarEmpleados,
+            editarEmpleados:instructor.editarEmpleados,
+            visualizarBeneficios:instructor.visualizarBeneficios,
+            visualizarTutores:instructor.visualizarTutores,
+            editarTutores:instructor.editarTutores,
+            visualizarTalleres:instructor.visualizarTalleres,
+            visualizarConvocatorias:instructor.visualizarConvocatorias,
+            visualizarCentros:instructor.visualizarCentros,
+            visualizarColectivos:instructor.visualizarColectivos,
+            generarReportes:instructor.generarReportes,
+            visualizarRestricciones:instructor.visualizarRestricciones,
+            visualizarEstablecimiento:instructor.visualizarEstablecimiento,
+            editarEstablecimiento:instructor.editarEstablecimiento,
+            visualizarServiciosHospital:instructor.visualizarServiciosHospital,
+            editarServiciosHospital:instructor.editarServiciosHospital
+
+        });
+    });
 
 
     function addInstructor(newData) {
@@ -81,7 +131,7 @@ function TablaInstructor({instructores}) {
                         { title: "Email", field: "email"},
                     ]
                 }
-                data={instructores}
+                data={d(instructores)}
             />
         );
     }
@@ -127,7 +177,7 @@ function TablaInstructor({instructores}) {
                     { title: "Editar Servicios de Hospital", field: "editarServiciosHospital", type: 'boolean'},
                 ]
             }
-            data={instructores}
+            data={d(instructores)}
             editable={{
                 onRowAdd: addInstructor,
                 onRowUpdate: editInstructor,

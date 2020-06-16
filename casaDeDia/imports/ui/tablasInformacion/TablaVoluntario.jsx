@@ -4,12 +4,61 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { tableIcons } from "../../utilities/TableIcons";
 import { Voluntarios } from "../../api/voluntarios/voluntarios";
 import { Meteor } from 'meteor/meteor';
-import { Tracker } from 'meteor/tracker'
+import { Tracker } from 'meteor/tracker';
+import CryptoJS from "react-native-crypto-js";
 
 Tracker.autorun(()=>{
 
 function TablaVoluntario({voluntarios}) {
 
+    const d = (voluntarios) => voluntarios.map((voluntario) =>{
+        // Decrypt
+        let bytes  = CryptoJS.AES.decrypt(voluntario.nombre, 'secret key 123');
+        let nombre_voluntario = bytes.toString(CryptoJS.enc.Utf8);
+        let bytes2  = CryptoJS.AES.decrypt(voluntario.apellidos, 'secret key 123');
+        let apellidos_voluntario = bytes2.toString(CryptoJS.enc.Utf8);
+        let bytes3  = CryptoJS.AES.decrypt(voluntario.email, 'secret key 123');
+        let email_voluntario = bytes3.toString(CryptoJS.enc.Utf8);
+        let bytes4  = CryptoJS.AES.decrypt(voluntario.contrasena, 'secret key 123');
+        let contrsaena_voluntario = bytes4.toString(CryptoJS.enc.Utf8);
+        return({
+            nombre:nombre_voluntario,
+            _id:voluntario._id,
+            apellidos: apellidos_voluntario,
+            apodo:voluntario.apodo,
+            contrasena: contrsaena_voluntario,
+            email: email_voluntario,
+            visualizarAdultoMayor:voluntario.visualizarAdultoMayor,
+            editarAdultoMayor:voluntario.editarAdultoMayor,
+            visualizarVoluntario:voluntario.visualizarVoluntario,
+            editarVoluntario:voluntario.editarVoluntario,
+            visualizarInstructor:voluntario.visualizarInstructor,
+            editarInstructor:voluntario.editarInstructor,
+            idUsuario:voluntario.idUsuario,
+            visualizarAsilo:voluntario.visualizarAsilo,
+            visualizarCasasDeDia:voluntario.visualizarCasasDeDia,
+            visualizarClubes:voluntario.visualizarClubes,
+            visualizarServicios:voluntario.visualizarServicios,
+            visualizarActividades:voluntario.visualizarActividades,
+            visualizarTarjetas:voluntario.visualizarTarjetas,
+            visualizarEmpleados:voluntario.visualizarEmpleados,
+            editarEmpleados:voluntario.editarEmpleados,
+            visualizarBeneficios:voluntario.visualizarBeneficios,
+            visualizarTutores:voluntario.visualizarTutores,
+            editarTutores:voluntario.editarTutores,
+            visualizarTalleres:voluntario.visualizarTalleres,
+            visualizarConvocatorias:voluntario.visualizarConvocatorias,
+            visualizarCentros:voluntario.visualizarCentros,
+            visualizarColectivos:voluntario.visualizarColectivos,
+            generarReportes:voluntario.generarReportes,
+            visualizarRestricciones:voluntario.visualizarRestricciones,
+            visualizarEstablecimiento:voluntario.visualizarEstablecimiento,
+            editarEstablecimiento:voluntario.editarEstablecimiento,
+            visualizarServiciosHospital:voluntario.visualizarServiciosHospital,
+            editarServiciosHospital:voluntario.editarServiciosHospital
+    
+        });
+    });
 
     function addVoluntario(newData) {
 
@@ -79,7 +128,7 @@ function TablaVoluntario({voluntarios}) {
                         { title: "Email", field: "email"},
                     ]
                 }
-                data={voluntarios}
+                data={d(voluntarios)}
             />
         );
     }
@@ -125,7 +174,7 @@ function TablaVoluntario({voluntarios}) {
                     { title: "Editar Servicios de Hospital", field: "editarServiciosHospital", type: 'boolean'},
                 ]
             }
-            data={voluntarios}
+            data={d(voluntarios)}
             editable={{
                 onRowAdd: addVoluntario,
                 onRowUpdate: editVoluntario,

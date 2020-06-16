@@ -30,6 +30,7 @@ import { Establecimientos } from '../../api/establecimientos/establecimientos';
 import { ServiciosHospital } from '../../api/serviciosHospital/serviciosHospital';
 import {listaRestricciones} from "../../utilities/tablasEstaticas/restricciones";
 import { Servicios } from "../../api/servicios/servicios";
+import CryptoJS from "react-native-crypto-js";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -67,7 +68,6 @@ const names = [
   'Clubes',
   'Servicios',
   'Actividades',
-  'Tarjetas',
   'Empleados',
   'Voluntarios',
   'Instructores',
@@ -295,21 +295,45 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
 
       const datas1 = (dat,tipo,info) => dat.map((usuario)=>{
         if(tipo === 'Empleados' || tipo === 'Voluntarios' || tipo === 'Instructores'){
+          // Decrypt
+          let bytes  = CryptoJS.AES.decrypt(usuario.nombre, 'secret key 123');
+          let nombre_usuario = bytes.toString(CryptoJS.enc.Utf8);
+          let bytes2  = CryptoJS.AES.decrypt(usuario.apellidos, 'secret key 123');
+          let apellidos_usuario = bytes2.toString(CryptoJS.enc.Utf8);
+          let bytes3  = CryptoJS.AES.decrypt(usuario.email, 'secret key 123');
+          let email_usuario = bytes3.toString(CryptoJS.enc.Utf8);
           return({
-            primera:usuario.nombre,
-            segunda:usuario.apellidos,
-            tercera:usuario.email,
+            primera:nombre_usuario,
+            segunda:apellidos_usuario,
+            tercera:email_usuario,
           })
         }else if(tipo === 'Adultos Mayores'){
+          // Decrypt
+          let bytes  = CryptoJS.AES.decrypt(usuario.apellidos, 'secret key 123');
+          let apellidos_adulto = bytes.toString(CryptoJS.enc.Utf8);
+          let bytes2  = CryptoJS.AES.decrypt(usuario.curp, 'secret key 123');
+          let curp_adulto = bytes2.toString(CryptoJS.enc.Utf8);
+          let bytes3  = CryptoJS.AES.decrypt(usuario.direccion, 'secret key 123');
+          let direccion_adulto = bytes3.toString(CryptoJS.enc.Utf8);
+          let bytes4  = CryptoJS.AES.decrypt(usuario.grupoSanguineo, 'secret key 123');
+          let grupoSanguineo_adulto = bytes4.toString(CryptoJS.enc.Utf8);
+          let bytes5  = CryptoJS.AES.decrypt(usuario.nombre, 'secret key 123');
+          let nombre_adulto = bytes5.toString(CryptoJS.enc.Utf8);
+          let bytes6  = CryptoJS.AES.decrypt(usuario.sexo, 'secret key 123');
+          let sexo_adulto = bytes6.toString(CryptoJS.enc.Utf8);
+          let bytes7  = CryptoJS.AES.decrypt(usuario.edad, 'secret key 123');
+          let edad_adulto = bytes7.toString(CryptoJS.enc.Utf8);
+          let bytes8  = CryptoJS.AES.decrypt(usuario.codigoPostal, 'secret key 123');
+          let codigoPostal_adulto = bytes8.toString(CryptoJS.enc.Utf8);
           return({
-            primera_am:usuario.nombre,
-            segunda_am:usuario.apellidos,
-            tercera_am:usuario.curp,
-            cuarta_am:usuario.sexo,
-            quinta_am:usuario.edad,
-            sexta_am:usuario.grupoSanguineo,
-            septima_am:usuario.direccion,
-            octava_am:usuario.codigoPostal,
+            primera_am:nombre_adulto,
+            segunda_am:apellidos_adulto,
+            tercera_am:curp_adulto,
+            cuarta_am:sexo_adulto,
+            quinta_am:edad_adulto,
+            sexta_am:grupoSanguineo_adulto,
+            septima_am:direccion_adulto.replace(/,/g,'  '),
+            octava_am:codigoPostal_adulto,
           })
         } else if (tipo === 'Servicios') {
           return ({
@@ -338,10 +362,10 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
             segunda_cd:usuario.direccion,
             tercera_cd:(usuario.actividades.map((actividad)=>{
               return(actividad.nombre)
-            }).join('; ')).replace(',',' y '),
+            }).join('; ')).replace(/,/g,' y '),
             cuarta_cd:(usuario.restricciones.map((restriccion)=>{
               return(restriccion+' ')
-            }).join('; ')).replace(',',' y '),
+            }).join('; ')).replace(/,/g,' y '),
             quinta_cd:usuario.horarioApertura,
             sexta_cd:usuario.horarioCierre,
             septima_cd:usuario.cupoLimite,
@@ -377,7 +401,7 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
             tercera_col:usuario.categoria,
             cuarta_col:(usuario.tutores.map((tutor)=>{
               return(tutor.nombre+' '+tutor.apellido+' ')
-            }).join('; ')).replace(',',' y '),
+            }).join('; ')).replace(/,/g,' y '),
           })
         }else if(tipo === 'Talleres'){
           return({
@@ -386,16 +410,25 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
             tercera_t:usuario.instructor,
             cuarta_t:(usuario.colectivos.map((col)=>{
               return(col.nombre+' ')
-            }).join('; ')).replace(',',' y '),
+            }).join('; ')).replace(/,/g,' y '),
           })
         }else if(tipo === 'Tutores'){
+          // Decrypt
+          let bytes  = CryptoJS.AES.decrypt(usuario.nombre, 'secret key 123');
+          let nombre_usuario = bytes.toString(CryptoJS.enc.Utf8);
+          let bytes2  = CryptoJS.AES.decrypt(usuario.apellido, 'secret key 123');
+          let apellidos_usuario = bytes2.toString(CryptoJS.enc.Utf8);
+          let bytes3  = CryptoJS.AES.decrypt(usuario.direccion, 'secret key 123');
+          let direccion_usuario = bytes3.toString(CryptoJS.enc.Utf8);
+          let bytes5  = CryptoJS.AES.decrypt(usuario.curp, 'secret key 123');
+          let curp_usuario = bytes5.toString(CryptoJS.enc.Utf8);
           return({
-            primera_tu:usuario.nombre,
-            segunda_tu:usuario.apellido,
+            primera_tu:nombre_usuario,
+            segunda_tu:apellidos_usuario,
             tercera_tu:usuario.fechaNacimiento,
             cuarta_tu:usuario.telefono,
-            quinta_tu:usuario.direccion,
-            sexta_tu:usuario.curp,
+            quinta_tu:direccion_usuario,
+            sexta_tu:curp_usuario,
           })
         }
         else if(tipo === 'Beneficios'){

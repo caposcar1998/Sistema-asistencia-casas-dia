@@ -1,6 +1,7 @@
 import React, {useEffect, useState } from 'react';
 import { Grid, TextField, Button, Input, LinearProgress } from '@material-ui/core';
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
+import CryptoJS from "react-native-crypto-js";
 
 
 export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSeleccionado, handleCerrarEditarAdultoMayor }) {
@@ -19,14 +20,32 @@ export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSelec
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        setNombre(adultoSeleccionado.nombre);
-        setApellidos(adultoSeleccionado.apellidos);
-        setDireccion(adultoSeleccionado.direccion);
-        setCurp(adultoSeleccionado.curp);
-        setSexo(adultoSeleccionado.sexo);
-        setEdad(adultoSeleccionado.edad);
-        setCodigoPostal(adultoSeleccionado.codigoPostal);
-        setGrupoSanguineo(adultoSeleccionado.grupoSanguineo);
+        // Decrypt
+        let bytes  = CryptoJS.AES.decrypt(adultoSeleccionado.apellidos, 'secret key 123');
+        let apellidos_adulto = bytes.toString(CryptoJS.enc.Utf8);
+        let bytes2  = CryptoJS.AES.decrypt(adultoSeleccionado.curp, 'secret key 123');
+        let curp_adulto = bytes2.toString(CryptoJS.enc.Utf8);
+        let bytes3  = CryptoJS.AES.decrypt(adultoSeleccionado.direccion, 'secret key 123');
+        let direccion_adulto = bytes3.toString(CryptoJS.enc.Utf8);
+        let bytes4  = CryptoJS.AES.decrypt(adultoSeleccionado.grupoSanguineo, 'secret key 123');
+        let grupoSanguineo_adulto = bytes4.toString(CryptoJS.enc.Utf8);
+        let bytes5  = CryptoJS.AES.decrypt(adultoSeleccionado.nombre, 'secret key 123');
+        let nombre_adulto = bytes5.toString(CryptoJS.enc.Utf8);
+        let bytes6  = CryptoJS.AES.decrypt(adultoSeleccionado.sexo, 'secret key 123');
+        let sexo_adulto = bytes6.toString(CryptoJS.enc.Utf8);
+        let bytes7  = CryptoJS.AES.decrypt(adultoSeleccionado.edad, 'secret key 123');
+        let edad_adulto = bytes7.toString(CryptoJS.enc.Utf8);
+        let bytes8  = CryptoJS.AES.decrypt(adultoSeleccionado.codigoPostal, 'secret key 123');
+        let codigoPostal_adulto = bytes8.toString(CryptoJS.enc.Utf8);
+        
+        setNombre(nombre_adulto);
+        setApellidos(apellidos_adulto);
+        setDireccion(direccion_adulto);
+        setCurp(curp_adulto);
+        setSexo(sexo_adulto);
+        setEdad(edad_adulto);
+        setCodigoPostal(codigoPostal_adulto);
+        setGrupoSanguineo(grupoSanguineo_adulto);
         setImage(adultoSeleccionado.foto);
     }, []);
 
