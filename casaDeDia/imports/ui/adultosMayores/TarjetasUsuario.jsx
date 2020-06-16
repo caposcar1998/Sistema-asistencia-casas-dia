@@ -3,6 +3,7 @@ import { TableCell, IconButton, TextField, TableRow } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import CryptoJS from "react-native-crypto-js";
 
 
 export default function TarjetasUsuario({ tarjeta, eliminarTarjeta, editable, editCampo, adultoSeleccionado, editarNoTarjeta }) {
@@ -19,13 +20,15 @@ export default function TarjetasUsuario({ tarjeta, eliminarTarjeta, editable, ed
 
     return (
 
-        <TableRow key={tarjeta.nombre}>
+        <TableRow key={CryptoJS.AES.decrypt(tarjeta.nombre, 'secret key 123').toString(CryptoJS.enc.Utf8)}>
             <TableCell>
                 <IconButton onClick={() => handleEliminarTarjeta(tarjeta.idReferencia)}>
                     <DeleteIcon />
                 </IconButton>
             </TableCell>
-            <TableCell align="right">{tarjeta.nombre}</TableCell>
+
+            <TableCell align="right">{CryptoJS.AES.decrypt(tarjeta.nombre, 'secret key 123').toString(CryptoJS.enc.Utf8)}</TableCell>
+
             <TableCell align="right">
                 {
                     editable ?
@@ -39,6 +42,7 @@ export default function TarjetasUsuario({ tarjeta, eliminarTarjeta, editable, ed
             <TableCell align="right">
                 <EditIcon onClick={editCampo} />
             </TableCell>
+
         </TableRow>
     )
 

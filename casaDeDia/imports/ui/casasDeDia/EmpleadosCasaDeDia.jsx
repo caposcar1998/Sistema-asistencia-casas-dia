@@ -3,6 +3,7 @@ import { TableCell, IconButton, TextField, TableRow } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import CryptoJS from "react-native-crypto-js";
 
 
 export default function EmpleadosCasaDeDia({ editable, editCampo, empleado, eliminarEmpleado, editarTrabajador}) {
@@ -18,7 +19,7 @@ export default function EmpleadosCasaDeDia({ editable, editCampo, empleado, elim
 
     return (
 
-        <TableRow key={empleado.nombre}>
+        <TableRow key={CryptoJS.AES.decrypt(empleado.nombre, 'secret key 123').toString(CryptoJS.enc.Utf8)}>
             <TableCell>
                 <IconButton onClick={() => handleEliminarEmpleado(empleado.idReferencia, empleado.puesto)}>
                     <DeleteIcon />
@@ -29,7 +30,7 @@ export default function EmpleadosCasaDeDia({ editable, editCampo, empleado, elim
                     <EditIcon onClick={editCampo} />
                 </IconButton>
             </TableCell>
-            <TableCell align="right">{empleado.nombre}</TableCell>
+            <TableCell align="right">{CryptoJS.AES.decrypt(empleado.nombre, 'secret key 123').toString(CryptoJS.enc.Utf8)}</TableCell>
             <TableCell align="right">
                 {
                     editable ?

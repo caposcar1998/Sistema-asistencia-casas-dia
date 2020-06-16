@@ -10,6 +10,7 @@ import { MenuItem, Box, Paper, AppBar, Toolbar, Typography, Button, Grid, Select
 
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 import TarjetasUsuario from './TarjetasUsuario';
+import CryptoJS from "react-native-crypto-js";
 
 
 
@@ -95,7 +96,7 @@ export default function TablaAnadirTarjeta({ adultoSeleccionado, handleCerrarAna
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        {adultoSeleccionado.nombre}
+                        {CryptoJS.AES.decrypt(adultoSeleccionado.nombre, 'secret key 123').toString(CryptoJS.enc.Utf8)}
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -143,7 +144,9 @@ function CrearNuevaTarjeta({ adultoSeleccionado, handleCerrarAnadirTarjeta }) {
     const [alert, setAlert] = useState();
     const [snackBarState, setSnackBarState] = useState();
     const [message, setMessage] = useState();
+
     const [noTarjeta, setNoTarjeta] = useState('');
+
 
     function traerTarjetasServidor() {
         return new Promise(
@@ -208,7 +211,7 @@ function CrearNuevaTarjeta({ adultoSeleccionado, handleCerrarAnadirTarjeta }) {
                                 tarjetas == null ?
                                     <MenuItem>Sin tarjetas</MenuItem> :
                                     tarjetas.map((tarjeta) => (
-                                        <MenuItem value={tarjeta}>{tarjeta.nombre}</MenuItem>
+                                        <MenuItem value={tarjeta}>{CryptoJS.AES.decrypt(tarjeta.nombre, 'secret key 123').toString(CryptoJS.enc.Utf8)}</MenuItem>
                                     ))}
                         </Select>
                     </Grid>

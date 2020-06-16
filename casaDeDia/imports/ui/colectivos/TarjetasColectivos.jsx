@@ -6,6 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { List, ListItem, Grid, Typography, Card, CardContent, CardActions, CardMedia, CardHeader, Collapse } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import CryptoJS from "react-native-crypto-js";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -89,7 +90,7 @@ export default function TarjetasColectivos({colectivo, handleOpenBorrarColectivo
                                         <ListItem>
                                             <Typography>
                                             <Typography paragraph>
-                                            {tutores.nombre + " " +  tutores.apellido}
+                                            {CryptoJS.AES.decrypt(tutores.nombre, 'secret key 123').toString(CryptoJS.enc.Utf8) + " " +  CryptoJS.AES.decrypt(tutores.apellido, 'secret key 123').toString(CryptoJS.enc.Utf8)}
                                             </Typography>
                                             </Typography>
                                         </ListItem>

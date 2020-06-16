@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import { Box,Paper, AppBar, Toolbar, Typography, Button, Grid, TextField, Select, MenuItem } from '@material-ui/core';
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 import EmpleadosAsilos from './EmpleadosAsilos';
-
+import CryptoJS from "react-native-crypto-js";
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -208,7 +208,7 @@ function CrearNuevoUsuario({ asilosServidor,asiloSeleccionado, handleCerrarAnadi
                             personal == null ?
                                 <MenuItem>Sin personal</MenuItem> :
                             personal.map((persona) => (
-                            <MenuItem value={persona}>{persona.nombre}</MenuItem>
+                            <MenuItem value={persona}>{CryptoJS.AES.decrypt(persona.nombre, 'secret key 123').toString(CryptoJS.enc.Utf8)}</MenuItem>
                         ))}
                     </Select>
                     </Grid>

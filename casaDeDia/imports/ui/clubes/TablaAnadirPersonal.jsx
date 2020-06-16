@@ -11,7 +11,7 @@ import { Box,Paper, AppBar, Toolbar, Typography, Button, Grid, TextField, Select
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 
 import EmpleadosClub from './EmpleadosClub';
-
+import CryptoJS from "react-native-crypto-js";
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -210,7 +210,7 @@ function CrearNuevoUsuario({ clubesServidor,clubSeleccionado, handleCerrarAnadir
                             personal == null ?
                                 <MenuItem>Sin personal</MenuItem> :
                             personal.map((persona) => (
-                            <MenuItem value={persona}>{persona.nombre}</MenuItem>
+                            <MenuItem value={persona}>{CryptoJS.AES.decrypt(persona.nombre, 'secret key 123').toString(CryptoJS.enc.Utf8)}</MenuItem>
                         ))}
                     </Select>
                     </Grid>

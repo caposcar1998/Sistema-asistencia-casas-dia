@@ -1,7 +1,7 @@
 import React, {useEffect, useState } from 'react';
 import { Grid, TextField, Select, Checkbox, MenuItem, Button, Input, ListItemText, LinearProgress } from '@material-ui/core';
 import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
-
+import CryptoJS from "react-native-crypto-js";
 export default function PaperEditarColectivo({colectivosServidor,colectivoSeleccionado, handleCerrarEditarColectivo}) {
         const [nombre, setNombre] = useState('');
         const [descripcion, setDescripcion] = useState('');
@@ -159,7 +159,7 @@ export default function PaperEditarColectivo({colectivosServidor,colectivoSelecc
                                                     {tutoresDisponibles.map((tutor) => (
                                                             <MenuItem key={tutor.nombre} value={tutor}>
                                                                     <Checkbox checked={tutores.indexOf(tutor) > -1} />
-                                                                    <ListItemText primary={tutor.nombre} />
+                                                                    <ListItemText primary={CryptoJS.AES.decrypt(tutor.nombre, 'secret key 123').toString(CryptoJS.enc.Utf8)} />
                                                             </MenuItem>
                                                     ))}
                                             </Select>
