@@ -309,15 +309,25 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
           let curp_adulto = bytes2.toString(CryptoJS.enc.Utf8);
           let bytes3  = CryptoJS.AES.decrypt(usuario.direccion, 'secret key 123');
           let direccion_adulto = bytes3.toString(CryptoJS.enc.Utf8);
+          let bytes4  = CryptoJS.AES.decrypt(usuario.grupoSanguineo, 'secret key 123');
+          let grupoSanguineo_adulto = bytes4.toString(CryptoJS.enc.Utf8);
+          let bytes5  = CryptoJS.AES.decrypt(usuario.nombre, 'secret key 123');
+          let nombre_adulto = bytes5.toString(CryptoJS.enc.Utf8);
+          let bytes6  = CryptoJS.AES.decrypt(usuario.sexo, 'secret key 123');
+          let sexo_adulto = bytes6.toString(CryptoJS.enc.Utf8);
+          let bytes7  = CryptoJS.AES.decrypt(usuario.edad, 'secret key 123');
+          let edad_adulto = bytes7.toString(CryptoJS.enc.Utf8);
+          let bytes8  = CryptoJS.AES.decrypt(usuario.codigoPostal, 'secret key 123');
+          let codigoPostal_adulto = bytes8.toString(CryptoJS.enc.Utf8);
           return({
-            primera_am:usuario.nombre,
+            primera_am:nombre_adulto,
             segunda_am:apellidos_adulto,
             tercera_am:curp_adulto,
-            cuarta_am:usuario.sexo,
-            quinta_am:usuario.edad,
-            sexta_am:usuario.grupoSanguineo,
+            cuarta_am:sexo_adulto,
+            quinta_am:edad_adulto,
+            sexta_am:grupoSanguineo_adulto,
             septima_am:direccion_adulto.replace(/,/g,'  '),
-            octava_am:usuario.codigoPostal,
+            octava_am:codigoPostal_adulto,
           })
         } else if (tipo === 'Servicios') {
           return ({
@@ -346,10 +356,10 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
             segunda_cd:usuario.direccion,
             tercera_cd:(usuario.actividades.map((actividad)=>{
               return(actividad.nombre)
-            }).join('; ')).replace(',',' y '),
+            }).join('; ')).replace(/,/g,' y '),
             cuarta_cd:(usuario.restricciones.map((restriccion)=>{
               return(restriccion+' ')
-            }).join('; ')).replace(',',' y '),
+            }).join('; ')).replace(/,/g,' y '),
             quinta_cd:usuario.horarioApertura,
             sexta_cd:usuario.horarioCierre,
             septima_cd:usuario.cupoLimite,
@@ -385,7 +395,7 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
             tercera_col:usuario.categoria,
             cuarta_col:(usuario.tutores.map((tutor)=>{
               return(tutor.nombre+' '+tutor.apellido+' ')
-            }).join('; ')).replace(',',' y '),
+            }).join('; ')).replace(/,/g,' y '),
           })
         }else if(tipo === 'Talleres'){
           return({
@@ -394,7 +404,7 @@ function MultipleSelect({empleados, instructores, voluntarios, adultosmayores, s
             tercera_t:usuario.instructor,
             cuarta_t:(usuario.colectivos.map((col)=>{
               return(col.nombre+' ')
-            }).join('; ')).replace(',',' y '),
+            }).join('; ')).replace(/,/g,' y '),
           })
         }else if(tipo === 'Tutores'){
           return({

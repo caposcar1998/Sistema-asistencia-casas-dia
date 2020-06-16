@@ -42,7 +42,17 @@ export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayo
     let curp_adulto = bytes2.toString(CryptoJS.enc.Utf8);
     let bytes3  = CryptoJS.AES.decrypt(adulto.direccion, 'secret key 123');
     let direccion_adulto = bytes3.toString(CryptoJS.enc.Utf8);
-    console.log(direccion_adulto);
+    let bytes4  = CryptoJS.AES.decrypt(adulto.grupoSanguineo, 'secret key 123');
+    let grupoSanguineo_adulto = bytes4.toString(CryptoJS.enc.Utf8);
+    let bytes5  = CryptoJS.AES.decrypt(adulto.nombre, 'secret key 123');
+    let nombre_adulto = bytes5.toString(CryptoJS.enc.Utf8);
+    let bytes6  = CryptoJS.AES.decrypt(adulto.sexo, 'secret key 123');
+    let sexo_adulto = bytes6.toString(CryptoJS.enc.Utf8);
+    let bytes7  = CryptoJS.AES.decrypt(adulto.edad, 'secret key 123');
+    let edad_adulto = bytes7.toString(CryptoJS.enc.Utf8);
+    let bytes8  = CryptoJS.AES.decrypt(adulto.codigoPostal, 'secret key 123');
+    let codigoPostal_adulto = bytes8.toString(CryptoJS.enc.Utf8);
+    //console.log(direccion_adulto);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -67,12 +77,12 @@ export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayo
         <Grid item>
             <Card className={classes.root}>
                 <CardHeader
-                    title={adulto.nombre}
+                    title={nombre_adulto}
                 />
                 <CardMedia
                     className={classes.media}
                     image={adulto.foto}
-                    title={adulto.nombre}
+                    title={nombre_adulto}
                 />
                 <CardContent>
                     <Typography variant="body2" color="textSecondary" component="p">
@@ -105,7 +115,7 @@ export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayo
                     <CardContent>
                         <Typography paragraph>Nombre:</Typography>
                         <Typography paragraph>
-                            {adulto.nombre}
+                            {nombre_adulto}
                         </Typography>
                         <Typography paragraph>Apellido:</Typography>
                         <Typography paragraph>
@@ -113,7 +123,7 @@ export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayo
                         </Typography>
                         <Typography paragraph>Grupo Sanguieno:</Typography>
                         <Typography paragraph>
-                            {adulto.grupoSanguineo}
+                            {grupoSanguineo_adulto}
                         </Typography>
                         <Typography paragraph>Direccion:</Typography>
                         <Typography paragraph>
@@ -121,7 +131,7 @@ export default function TarjetasAdultoMayor({ adulto, handleOpenBorrarAdultoMayo
                         </Typography>
                         <Typography paragraph>Codigo postal:</Typography>
                         <Typography paragraph>
-                            {adulto.codigoPostal}
+                            {codigoPostal_adulto}
                         </Typography>
                         
                     </CardContent>
