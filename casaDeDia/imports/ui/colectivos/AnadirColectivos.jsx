@@ -252,7 +252,7 @@ export default function AnadirColectivos({colectivosServidor,handleCloseModal}) 
                                 </Grid>
                     </Grid>
                     <Grid item xs={12}>
-                            <Grid item xs={12}>Intagram, Twitter u otro:</Grid>
+                            <Grid item xs={12}>Twitter del Colectivo:</Grid>
                                 <Grid item xs={12}>
                                         <TextField id="redSocial3" label="@XXXX" value={redSocial3} onChange={(e) => setRedSocial3(e.target.value)} />
                                 </Grid>

@@ -23,7 +23,10 @@ let Schema = new SimpleSchema({
     "colectivos.$": { type: Colectivos },
     colectivos: { type: Array, defaultValue: [], optional: true },
     cupoLimite: { type: Number },
-    foto: { type: String }
+    foto: { type: String },
+    redSocial1: {type: String},
+    redSocial2: {type: String},
+    redSocial3: {type: String}
 
     
 })
