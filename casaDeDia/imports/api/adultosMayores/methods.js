@@ -10,7 +10,7 @@ import SimpleSchema from 'simpl-schema';
 Meteor.methods({
 
 
-    "crearAdultoMayor"(nombre,apellidos,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,foto) {
+    "crearAdultoMayor"(nombre,apellidos,ine,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,foto) {
         
         new SimpleSchema({
             nombre: { type: String },
@@ -25,6 +25,7 @@ Meteor.methods({
             {
                 nombre: nombre,
                 apellidos: apellidos,
+                ine: ine,
                 curp: curp,
                 sexo: sexo,
                 edad: edad,
@@ -38,7 +39,7 @@ Meteor.methods({
         )
     },
 
-    "editarAdultoMayor"(idAdultoMayor,nombre,apellidos,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,foto) {
+    "editarAdultoMayor"(idAdultoMayor,nombre,apellidos,ine,curp,sexo,edad, grupoSanguineo, direccion,codigoPostal,foto) {
         
         new SimpleSchema({
             nombre: { type: String },
@@ -57,6 +58,7 @@ Meteor.methods({
                 {
                     nombre: nombre,
                     apellidos: apellidos,
+                    ine: ine,
                     curp: curp,
                     sexo: sexo,
                     edad: edad,

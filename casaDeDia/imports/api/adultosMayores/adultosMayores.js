@@ -23,6 +23,7 @@ let tarjetasUsuario = new SimpleSchema({
 let Schema = new SimpleSchema({
     nombre: { type: String },
     apellidos: { type: String },
+    ine: { type: String },
     curp: { type: String },
     sexo: {type: String},
     edad: { type: Number },

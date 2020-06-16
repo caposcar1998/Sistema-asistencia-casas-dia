@@ -6,6 +6,7 @@ import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 export default function AnadirAdultoMayor({ adultoMayorServidor,handleCloseModal}) {
         const [nombre, setNombre] = useState('');
         const [apellidos, setApellidos] = useState('');
+        const [ine, setIne] = useState('');
         const [direccion, setDireccion] = useState('');
         const [grupoSanguineo, setGrupoSanguineo] = useState('');
         const [curp, setCurp] = useState('');
@@ -35,7 +36,7 @@ export default function AnadirAdultoMayor({ adultoMayorServidor,handleCloseModal
                 return new Promise(
                         (resolve, reject) => {
                                 Meteor.call("crearAdultoMayor",
-                                        nombre, apellidos, curp, sexo, edad, grupoSanguineo, direccion, codigoPostal, image, 
+                                        nombre, apellidos, ine, curp, sexo, edad, grupoSanguineo, direccion, codigoPostal, image, 
                                         (err, res) => {
                                                 if (err) {
                                                         setAlert("error")
@@ -96,6 +97,12 @@ return (
                 </Grid>
                 </Grid>
                 
+                <Grid item xs={12}>
+                        <Grid item xs={12}>INE</Grid>
+                <Grid item xs={12}>
+                        <TextField id="ine" label="INE" value={ine} onChange={(e) => setIne(e.target.value)} />
+                </Grid>
+                </Grid>
 
                 <Grid item xs={12}>
                         <Grid item xs={12}>Dirección</Grid>

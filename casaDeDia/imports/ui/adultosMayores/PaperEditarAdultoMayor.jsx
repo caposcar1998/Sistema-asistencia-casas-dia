@@ -6,6 +6,7 @@ import CustomSnackbars from '../../utilities/snackbar/CustomSnackbars';
 export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSeleccionado, handleCerrarEditarAdultoMayor }) {
     const [nombre, setNombre] = useState('');
     const [apellidos, setApellidos] = useState('');
+    const [ine, setIne] = useState('');
     const [direccion, setDireccion] = useState('');
     const [grupoSanguineo, setGrupoSanguineo] = useState('');
     const [curp, setCurp] = useState('');
@@ -21,6 +22,7 @@ export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSelec
     useEffect(() => {
         setNombre(adultoSeleccionado.nombre);
         setApellidos(adultoSeleccionado.apellidos);
+        setIne(adultoSeleccionado.ine);
         setDireccion(adultoSeleccionado.direccion);
         setCurp(adultoSeleccionado.curp);
         setSexo(adultoSeleccionado.sexo);
@@ -67,7 +69,7 @@ export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSelec
         return new Promise(
             (resolve, reject) => {
                 Meteor.call("editarAdultoMayor",
-                    adultoSeleccionado._id,nombre, apellidos, curp, sexo, edad, grupoSanguineo, direccion, codigoPostal,image,
+                    adultoSeleccionado._id,nombre, apellidos,ine, curp, sexo, edad, grupoSanguineo, direccion, codigoPostal,image,
                     (err, res) => {
                         if (err) {
                             setAlert("error")
@@ -105,6 +107,13 @@ export default function PaperEditarAdultoMayor({ adultoMayorServidor,adultoSelec
                     <Grid item xs={12}>Apellidos</Grid>
                     <Grid item xs={12}>
                         <TextField id="apellidos" value={apellidos} onChange={(e) => setApellidos(e.target.value)} />
+                    </Grid>
+                </Grid>
+
+                <Grid item xs={4}>
+                    <Grid item xs={12}>INE</Grid>
+                    <Grid item xs={12}>
+                        <TextField id="ine" value={ine} onChange={(e) => setIne(e.target.value)} />
                     </Grid>
                 </Grid>
 
