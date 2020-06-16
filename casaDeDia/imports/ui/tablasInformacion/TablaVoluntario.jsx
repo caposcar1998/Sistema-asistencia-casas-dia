@@ -74,7 +74,7 @@ function TablaVoluntario({voluntarios}) {
                     [
                         { title: "Nombre", field: "nombre" },
                         { title: "Apellidos", field: "apellidos" },
-                        { title: "Apodo", field: "apodo" },
+                        { title: "Usuario", field: "apodo" },
                         { title: "Contrasena", field: "contrasena" },
                         { title: "Email", field: "email"},
                         { title: "INE", field: "ine" },
@@ -94,7 +94,7 @@ function TablaVoluntario({voluntarios}) {
                 [
                     { title: "Nombre", field: "nombre" },
                     { title: "Apellidos", field: "apellidos" },
-                    { title: "Apodo", field: "apodo" },
+                    { title: "Usuario", field: "apodo" },
                     { title: "Contrasena", field: "contrasena" },
                     { title: "Email", field: "email"},
                     { title: "INE", field: "ine" },

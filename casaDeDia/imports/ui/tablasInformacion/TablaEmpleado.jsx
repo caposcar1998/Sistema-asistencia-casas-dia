@@ -76,7 +76,7 @@ function TablaEmpleado({empleados}) {
                     [
                         { title: "Nombre", field: "nombre" },
                         { title: "Apellidos", field: "apellidos" },
-                        { title: "Apodo", field: "apodo" },
+                        { title: "Usuario", field: "apodo" },
                         { title: "Contrasena", field: "contrasena" },
                         { title: "Email", field: "email"},
                     ]
@@ -97,7 +97,7 @@ function TablaEmpleado({empleados}) {
                     
                     { title: "Nombre", field: "nombre" },
                     { title: "Apellidos", field: "apellidos" },
-                    { title: "Apodo", field: "apodo" },
+                    { title: "Usuario", field: "apodo" },
                     { title: "Contrasena", field: "contrasena" },
                     { title: "Email", field: "email", type:'email'},
                     { title: "Visualizar Adulto Mayor", field: "visualizarAdultoMayor", type:'boolean'},
