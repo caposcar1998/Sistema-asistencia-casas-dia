@@ -24,6 +24,7 @@ function TablaTutor({tutores}) {
             _id:tutor._id,
             nombre:nombre_tutor,
             apellido:apellidos_tutor,
+            correoElectronico:tutor.correoElectronico,
             fechaNacimiento:tutor.fechaNacimiento,
             direccion:direccion_tutor,
             telefono:tutor.telefono,
