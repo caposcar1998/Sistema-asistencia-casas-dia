@@ -6,7 +6,6 @@ import { Box, Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     fondo: {
-        backgroundColor: "#cfd8dc",
         direction: "column",
         height: "auto",
         justifyContent: "center",
@@ -21,7 +20,7 @@ export default function UsuariosPage(props) {
         <div className={classes.fondo}>
             <TabSuperior />
             {props.content}
-            <TabInferior/>
+            
         </div>
     );
 }
