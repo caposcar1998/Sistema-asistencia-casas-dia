@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1,
     },
+    tabGeneral: {
+        backgroundColor: "#1D813B"
+    }
 }));
 
 export default function TabSuperior() {
@@ -29,7 +32,7 @@ export default function TabSuperior() {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static">
+            <AppBar position="static" className={classes.tabGeneral}>
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
                         Delegacion tlalpan

@@ -155,14 +155,15 @@ export default function Index() {
                     </Grid>
                 
                 </Grid>
+                
                 </Grid>
 
             <Grid item xs={2}>
                 <Grid container
-                    direction="row"
+                    direction="column"
                     justify="center"
                     alignItems="center">
-                    
+
                     <Grid item xs={12}>
                         <Card className={classes.root}>
                             <CardContent>
@@ -178,10 +179,10 @@ export default function Index() {
                                 <Grid item xs={12}>
                                     <Button>Buscar</Button>
                                 </Grid>
-                                
-                                
+
+
                             </CardContent>
-                           
+
                         </Card>
 
                     </Grid>
@@ -190,15 +191,18 @@ export default function Index() {
 
                         <TwitterTimelineEmbed
                             sourceType="profile"
-                            screenName="caposcar" // change to your username
+                            screenName="Claudiashein"
+                            options={{ height: 500 }}
                         />
-
-                    </Grid>
 
                     </Grid>
 
                 </Grid>
 
+            </Grid>
+
         </Grid>
+
+        
     );
 }

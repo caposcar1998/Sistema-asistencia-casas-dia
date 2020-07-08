@@ -20,7 +20,7 @@ export default function UsuariosPage(props) {
         <div className={classes.fondo}>
             <TabSuperior />
             {props.content}
-            
+            <TabInferior/>
         </div>
     );
 }
