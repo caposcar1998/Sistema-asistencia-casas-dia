@@ -37,8 +37,21 @@ import CentrosTab from "../../ui/tabs/CentrosTab";
 import { Tracker } from 'meteor/tracker';
 import { Meteor } from 'meteor/meteor';
 import Descargas from '../../ui/tabs/Descargas';
+import UsuariosPage from '../../ui/InterfazUsuario/UsuariosPage';
+import Index from '../../ui/InterfazUsuario/Index';
+
 
 FlowRouter.route('/', {
+    name: 'index',
+    action() {
+        mount(UsuariosPage, {
+            content: <Index />
+        })
+    }
+})
+
+
+FlowRouter.route('/login', {
     name: 'login',
     action() {
         mount(App, {
