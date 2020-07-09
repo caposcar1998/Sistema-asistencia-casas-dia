@@ -12,10 +12,8 @@ const useStyles = makeStyles({
     },
     fotoPrincipal: {
         width: "100%",
-        height: "250px"
-    },
-    textoPrincipal: {
-        position: "absolute"
+        height: "250px",
+        backgroundImage: "url('/fotos/Fondo1.jpg')"
     }
 });
 
@@ -48,13 +46,15 @@ export default function CasasDeDiaLista() {
         
         <Grid container>
 
-            <Grid item xs={12}>
-                <img src={"/fotos/gobiernoMexico.jpeg"} className={classes.fotoPrincipal}/>
-            </Grid>
-            <Grid item xs={12}>
-                <Grid item xs={12} >
+            <Grid item xs={12} className={classes.fotoPrincipal}>
+                <Grid container
+                    direction="row"
+                    justify="center"
+                    alignItems="center">
                     <Typography variant="h1">Encuentra tu casa de dia</Typography>
                 </Grid>
+            </Grid>
+
                 <Grid item xs={12}>
                     {casasDeDia.map((casa) => (
                         <Card className={classes.root}>
@@ -77,9 +77,6 @@ export default function CasasDeDiaLista() {
                     ))}
 
                 </Grid>
-                
-            </Grid>
-
 
         </Grid>
     )
