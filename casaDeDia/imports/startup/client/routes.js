@@ -39,16 +39,10 @@ import { Meteor } from 'meteor/meteor';
 import Descargas from '../../ui/tabs/Descargas';
 import UsuariosPage from '../../ui/InterfazUsuario/UsuariosPage';
 import Index from '../../ui/InterfazUsuario/Index';
+import CasasDeDiaLista from '../../ui/InterfazUsuario/Lugares/CasasDeDiaLista';
 
 
-FlowRouter.route('/', {
-    name: 'index',
-    action() {
-        mount(UsuariosPage, {
-            content: <Index />
-        })
-    }
-})
+
 
 
 FlowRouter.route('/login', {
@@ -289,6 +283,25 @@ FlowRouter.route('/administrador/Servicios', {
     action() {
         mount(AdministradorPage, {
             content: <ServiciosTab />
+        })
+    }
+})
+
+
+FlowRouter.route('/', {
+    name: 'index',
+    action() {
+        mount(UsuariosPage, {
+            content: <Index />
+        })
+    }
+})
+
+FlowRouter.route('/listaCasaDeDia', {
+    name: 'listaCasaDeDia',
+    action() {
+        mount(UsuariosPage, {
+            content: <CasasDeDiaLista />
         })
     }
 })

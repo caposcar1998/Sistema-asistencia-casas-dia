@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Typography, Card, CardActionArea, CardMedia, makeStyles, CardContent, TextField, Button } from "@material-ui/core";
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
+import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 
 
 const useStyles = makeStyles({
@@ -15,6 +16,10 @@ const useStyles = makeStyles({
 export default function Index() {
     const classes = useStyles();
 
+
+    function entrarCasasDia() {
+        FlowRouter.go("listaCasaDeDia")
+    }
 
     return (
         <Grid container
@@ -36,7 +41,7 @@ export default function Index() {
                     
                     <Grid item xs={6}>
                         <Card className={classes.root}>
-                            <CardActionArea>
+                            <CardActionArea onClick={entrarCasasDia}>
                                 <CardMedia
                                     className={classes.media}
                                     image="/fotos/gobiernoMexico.jpeg"
