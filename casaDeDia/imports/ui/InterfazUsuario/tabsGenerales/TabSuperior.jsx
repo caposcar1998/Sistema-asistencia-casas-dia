@@ -4,8 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     },
     tabGeneral: {
         backgroundColor: "#1D813B"
+    },
+    icono: {
+        height: "100px"
     }
 }));
 
@@ -34,6 +35,7 @@ export default function TabSuperior() {
         <div className={classes.root}>
             <AppBar position="static" className={classes.tabGeneral}>
                 <Toolbar>
+                    <img src={"/fotos/tlalpanIcono.png"} className={classes.icono}/>
                     <Typography variant="h6" className={classes.title}>
                         Delegacion tlalpan
           </Typography>
