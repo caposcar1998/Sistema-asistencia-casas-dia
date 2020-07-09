@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Typography, Card, CardActionArea, CardMedia, makeStyles, CardContent } from "@material-ui/core";
+import { Grid, Typography,  makeStyles } from "@material-ui/core";
+import CasasDeDiaUsuario from "./CasaDeDiaUsuario";
 
 
 
 const useStyles = makeStyles({
-    root: {
-        maxWidth: 345,
-    },
-    media: {
-        height: 140,
-    },
+
     fotoPrincipal: {
         width: "100%",
         height: "200px",
@@ -56,24 +52,11 @@ export default function CasasDeDiaLista() {
             </Grid>
 
                 <Grid item xs={12}>
-                    {casasDeDia.map((casa) => (
-                        <Card className={classes.root}>
-                            <CardActionArea>
-                                <CardMedia
-                                    className={classes.media}
-                                    image={casa.foto}
-                                    title={casa.nombre}
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        {casa.nombre}
-                                    </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                        {casa.direccion}   
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
+                {casasDeDia.map((casa) => (
+                    <CasasDeDiaUsuario
+                        casa={casa}
+                    />
+                       
                     ))}
 
                 </Grid>
