@@ -24,17 +24,6 @@ const useStyles = makeStyles((theme) => ({
         bottom: 0,
         backgroundColor: "#1D813B"
     },
-    grow: {
-        flexGrow: 1,
-    },
-    fabButton: {
-        position: 'absolute',
-        zIndex: 1,
-        top: -30,
-        left: 0,
-        right: 0,
-        margin: '0 auto',
-    },
     foto: {
         width: "300px"
     }
@@ -45,7 +34,7 @@ export default function TabInferior() {
 
     return (
 
-            <AppBar position="absolute" color="primary" className={classes.appBar}>
+            <AppBar position="default" color="primary" className={classes.appBar}>
                 <Grid container>
                 <Grid item xs={3}>
                     <img src={"/fotos/gobiernoMexico.jpeg"} className={classes.foto} />
