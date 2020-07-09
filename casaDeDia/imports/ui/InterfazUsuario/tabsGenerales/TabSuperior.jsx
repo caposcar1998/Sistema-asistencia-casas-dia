@@ -1,28 +1,45 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Button } from "@material-ui/core";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 
 const useStyles = makeStyles((theme) => ({
-    fondo: {
-        backgroundColor: "#cfd8dc",
-        display: "flex",
-        direction: "column",
-        height: "auto",
-        justifyContent: "center",
-        alignItems: "center",
+    root: {
+        flexGrow: 1,
     },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+    title: {
+        flexGrow: 1,
+    },
+    tabGeneral: {
+        backgroundColor: "#1D813B"
+    }
 }));
 
 export default function TabSuperior() {
     const classes = useStyles();
 
     function loginAdministrador() {
-        FlowRouter.go('administrador')
-    }
+        FlowRouter.go('login')
+     }
 
     return (
-        <div className={classes.fondo}>
-            <Button onClick={loginAdministrador}>Hola</Button>
+        <div className={classes.root}>
+            <AppBar position="static" className={classes.tabGeneral}>
+                <Toolbar>
+                    <Typography variant="h6" className={classes.title}>
+                        Delegacion tlalpan
+          </Typography>
+                    <Button color="inherit" onClick={loginAdministrador}>Acceso</Button>
+                </Toolbar>
+            </AppBar>
         </div>
     );
 }
