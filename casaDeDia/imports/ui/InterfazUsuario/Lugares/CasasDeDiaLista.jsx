@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     },
     fotoPrincipal: {
         width: "100%",
-        height: "250px",
+        height: "200px",
         backgroundImage: "url('/fotos/Fondo1.jpg')"
     }
 });

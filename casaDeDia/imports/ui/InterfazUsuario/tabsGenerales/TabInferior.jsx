@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "#1D813B"
     },
     foto: {
-        width: "300px"
+        width: "200px"
     }
 }));
 
