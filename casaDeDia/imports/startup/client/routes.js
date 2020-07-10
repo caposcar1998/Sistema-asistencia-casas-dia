@@ -311,9 +311,8 @@ FlowRouter.route('/CasaDeDia/:_id', {
     name: 'CasaDeDia',
     action(params) {
         let {_id } = params
-        console.log(_id)
         mount(UsuariosPage, {
-            content: <CasasDeDiaUsuario casa={_id} />
+            content: <CasasDeDiaUsuario casaSeleccionada={_id} />
         })
     }
 })

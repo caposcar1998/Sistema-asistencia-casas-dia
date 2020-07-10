@@ -1,22 +1,39 @@
-import React from "react";
-import { Typography, Card, CardActionArea, CardMedia, CardContent, makeStyles } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
 
 
-const useStyles = makeStyles({
-    root: {
-        maxWidth: 345,
-    },
-    media: {
-        height: 140,
+
+export default function CasasDeDiaUsuario({ casaSeleccionada }) {
+    const [casasDeDia, setCasasDeDia] = useState([]);
+
+    useEffect(() => {
+        casasDeDiaServidor();
+    }, []);
+
+
+    function casasDeDiaServidor() {
+        console.log("entra")
+        return new Promise(
+            (resolve, reject) => {
+                Meteor.call("encontrarCasaDeDia",
+                    casaSeleccionada,
+                    (err, res) => {
+                        if (err) {
+                            reject()
+                        } else {
+                            console.log(res)
+                            setCasasDeDia(res)
+                            resolve()
+                        }
+                    });
+            }
+        )
     }
-});
 
 
-export default function CasasDeDiaUsuario({ casa }) {
-    const classes = useStyles();
+
 
     return (
-        <div>{casa}</div>
+        <div>{casasDeDia.nombre}</div>
     )
 
 }

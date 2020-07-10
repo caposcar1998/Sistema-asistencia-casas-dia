@@ -59,6 +59,11 @@ Meteor.methods({
         return CasasDeDia.find().fetch();
     },
 
+    "encontrarCasaDeDia"(idCasaDeDia) {
+        console.log(idCasaDeDia)
+        return CasasDeDia.findOne({_id: idCasaDeDia})
+     },
+
     "anadirAdulto"(idCasaDeDia, idUsuario, nombre, curp) {
         CasasDeDia.update(
             { _id: idCasaDeDia },
