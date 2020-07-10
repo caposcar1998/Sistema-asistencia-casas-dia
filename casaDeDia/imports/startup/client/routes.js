@@ -40,6 +40,7 @@ import Descargas from '../../ui/tabs/Descargas';
 import UsuariosPage from '../../ui/InterfazUsuario/UsuariosPage';
 import Index from '../../ui/InterfazUsuario/Index';
 import CasasDeDiaLista from '../../ui/InterfazUsuario/Lugares/CasasDeDiaLista';
+import CasasDeDiaUsuario from '../../ui/InterfazUsuario/Lugares/CasaDeDiaUsuario';
 
 
 
@@ -302,6 +303,17 @@ FlowRouter.route('/listaCasaDeDia', {
     action() {
         mount(UsuariosPage, {
             content: <CasasDeDiaLista />
+        })
+    }
+})
+
+FlowRouter.route('/CasaDeDia/:_id', {
+    name: 'CasaDeDia',
+    action(params) {
+        let {_id } = params
+        console.log(_id)
+        mount(UsuariosPage, {
+            content: <CasasDeDiaUsuario casa={_id} />
         })
     }
 })

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Grid, Typography,  makeStyles } from "@material-ui/core";
-import CasasDeDiaUsuario from "./CasaDeDiaUsuario";
+import CasasDeDiaTarjetas from "./CasaDeDiaTarjetas";
+import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 
 
 
@@ -15,12 +16,17 @@ const useStyles = makeStyles({
 
 export default function CasasDeDiaLista() {
     const classes = useStyles();
-
     const [casasDeDia, setCasasDeDia] = useState([])
 
     useEffect(() => {
         casasDeDiaServidor();
     }, []);
+
+
+    function seleccionDeCasa(casaSeleccionada) {
+        ruta = "CasaDeDia/".concat(casaSeleccionada._id)
+        FlowRouter.go(ruta)
+    }
 
     function casasDeDiaServidor() {
         return new Promise(
@@ -53,8 +59,9 @@ export default function CasasDeDiaLista() {
 
                 <Grid item xs={12}>
                 {casasDeDia.map((casa) => (
-                    <CasasDeDiaUsuario
+                    <CasasDeDiaTarjetas
                         casa={casa}
+                        seleccionDeCasa={seleccionDeCasa}
                     />
                        
                     ))}
