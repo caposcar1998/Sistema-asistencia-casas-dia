@@ -60,7 +60,6 @@ Meteor.methods({
     },
 
     "encontrarCasaDeDia"(idCasaDeDia) {
-        console.log(idCasaDeDia)
         return CasasDeDia.findOne({_id: idCasaDeDia})
      },
 
