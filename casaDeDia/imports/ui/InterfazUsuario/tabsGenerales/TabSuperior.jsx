@@ -27,6 +27,10 @@ const useStyles = makeStyles((theme) => ({
 export default function TabSuperior() {
     const classes = useStyles();
 
+    function regresarInicio() { 
+        FlowRouter.go('/')
+    }
+
     function loginAdministrador() {
         FlowRouter.go('login')
      }
@@ -35,7 +39,7 @@ export default function TabSuperior() {
         <div className={classes.root}>
             <AppBar position="static" className={classes.tabGeneral}>
                 <Toolbar>
-                    <img src={"/fotos/tlalpanIcono.png"} className={classes.icono}/>
+                    <img src={"/fotos/tlalpanIcono.png"} className={classes.icono} onClick={regresarInicio}/>
                     <Typography variant="h6" className={classes.title}>
                         Delegacion tlalpan
           </Typography>
