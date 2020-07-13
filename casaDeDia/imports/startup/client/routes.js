@@ -40,7 +40,7 @@ import Descargas from '../../ui/tabs/Descargas';
 import UsuariosPage from '../../ui/InterfazUsuario/UsuariosPage';
 import Index from '../../ui/InterfazUsuario/Index';
 import ListaLugares from '../../ui/InterfazUsuario/Lugares/ListaLugares';
-import CasasDeDiaUsuario from '../../ui/InterfazUsuario/Lugares/CasaDeDiaUsuario';
+import Lugar from '../../ui/InterfazUsuario/Lugares/Lugar';
 
 
 
@@ -313,7 +313,7 @@ FlowRouter.route('/lugarInteres/Lugar/:_id', {
     action(params) {
         let {_id } = params
         mount(UsuariosPage, {
-            content: <CasasDeDiaUsuario casaSeleccionada={_id} />
+            content: <Lugar casaSeleccionada={_id} />
         })
     }
 })
