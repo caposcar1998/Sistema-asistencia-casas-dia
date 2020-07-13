@@ -39,6 +39,8 @@ export default function CasasDeDiaUsuario({ casaSeleccionada }) {
         )
     }
 
+    
+
 
 
 
@@ -63,20 +65,20 @@ export default function CasasDeDiaUsuario({ casaSeleccionada }) {
                     <Grid item xs={12}>Actividades</Grid>
                     <Grid item xs={12}>
                     
-                    {   
+                    {    
                         casasDeDia.actividades == null ?
                             <Typography>No hay actividades registradas</Typography> :
                             casasDeDia.actividades.map((actividad) => (
-                                <Typography >{actividad}</Typography>
+                                <Typography >{actividad.nombre}</Typography>
                             ))}
 
                     </Grid>
                     <Grid item xs={12}>Restricciones</Grid>
-                        {
+                {
                             casasDeDia.restricciones == null ?
                                 <Typography>No hay restricciones registradas</Typography> :
                                 casasDeDia.restricciones.map((restriccion) => (
-                                <Typography >{restriccion}</Typography>
+                                <Typography >{restriccion.nombre}</Typography>
                                 ))}
                     <Grid item xs={12}>Costo</Grid>
                     <Grid item xs={12}>{casasDeDia.costo}</Grid>

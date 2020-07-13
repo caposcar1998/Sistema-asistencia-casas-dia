@@ -298,16 +298,17 @@ FlowRouter.route('/', {
     }
 })
 
-FlowRouter.route('/listaCasaDeDia', {
-    name: 'listaCasaDeDia',
-    action() {
+FlowRouter.route('/lugarInteres/:lugar', {
+    name: 'lugarInteres',
+    action(params) {
+        let { lugar } = params
         mount(UsuariosPage, {
-            content: <CasasDeDiaLista />
+            content: <CasasDeDiaLista lugar={lugar} />
         })
     }
 })
 
-FlowRouter.route('/CasaDeDia/:_id', {
+FlowRouter.route('/lugarInteres/CasaDeDia/:_id', {
     name: 'CasaDeDia',
     action(params) {
         let {_id } = params

@@ -17,8 +17,9 @@ export default function Index() {
     const classes = useStyles();
 
 
-    function entrarCasasDia() {
-        FlowRouter.go("listaCasaDeDia")
+    function entrarCasasDia(lugar) {
+        ruta = "lugarInteres/".concat(lugar)
+        FlowRouter.go(ruta)
     }
 
     return (
@@ -41,7 +42,7 @@ export default function Index() {
                     
                     <Grid item xs={6}>
                         <Card className={classes.root}>
-                            <CardActionArea onClick={entrarCasasDia}>
+                                <CardActionArea onClick={() => entrarCasasDia("casas")}>
                                 <CardMedia
                                     className={classes.media}
                                     image="/fotos/gobiernoMexico.jpeg"
@@ -60,7 +61,7 @@ export default function Index() {
                     <Grid item xs={6}>
 
                         <Card className={classes.root}>
-                            <CardActionArea>
+                            <CardActionArea onClick={() => entrarCasasDia("asilos")}>
                                 <CardMedia
                                     className={classes.media}
                                     image="/fotos/gobiernoMexico.jpeg"
@@ -78,7 +79,7 @@ export default function Index() {
                     <Grid item xs={6}>
 
                         <Card className={classes.root}>
-                            <CardActionArea>
+                                <CardActionArea onClick={() => entrarCasasDia("clubes")}>
                                 <CardMedia
                                     className={classes.media}
                                     image="/fotos/gobiernoMexico.jpeg"
@@ -96,7 +97,7 @@ export default function Index() {
                     <Grid item xs={6}>
 
                         <Card className={classes.root}>
-                            <CardActionArea>
+                                <CardActionArea onClick={() => entrarCasasDia("colectivos")}>
                                 <CardMedia
                                     className={classes.media}
                                     image="/fotos/gobiernoMexico.jpeg"
