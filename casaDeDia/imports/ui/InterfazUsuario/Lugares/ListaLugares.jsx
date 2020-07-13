@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Grid, Typography,  makeStyles } from "@material-ui/core";
-import CasasDeDiaTarjetas from "./CasaDeDiaTarjetas";
+import TarjetasLugares from "./TarjetasLugares";
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 
 
@@ -14,9 +14,9 @@ const useStyles = makeStyles({
     }
 });
 
-export default function CasasDeDiaLista({lugar}) {
+export default function ListaLugares({lugar}) {
     const classes = useStyles();
-    const [casasDeDia, setCasasDeDia] = useState([])
+    const [tipoLugar, seTipoLugar] = useState([])
 
     useEffect(() => {
         if (lugar == "casas") {
@@ -35,8 +35,8 @@ export default function CasasDeDiaLista({lugar}) {
     }, []);
 
 
-    function seleccionDeCasa(casaSeleccionada) {
-        ruta = "CasaDeDia/".concat(casaSeleccionada._id)
+    function seleccionDeLugar(casaSeleccionada) {
+        ruta = "Lugar/".concat(casaSeleccionada._id)
         FlowRouter.go(ruta)
     }
 
@@ -48,7 +48,7 @@ export default function CasasDeDiaLista({lugar}) {
                         if (err) {
                             reject()
                         } else {
-                            setCasasDeDia(res)
+                            seTipoLugar(res)
                             resolve()
                         }
                     });
@@ -64,7 +64,7 @@ export default function CasasDeDiaLista({lugar}) {
                         if (err) {
                             reject()
                         } else {
-                            setCasasDeDia(res)
+                            seTipoLugar(res)
                             resolve()
                         }
                     });
@@ -80,7 +80,7 @@ export default function CasasDeDiaLista({lugar}) {
                         if (err) {
                             reject()
                         } else {
-                            setCasasDeDia(res)
+                            seTipoLugar(res)
                             resolve()
                         }
                     });
@@ -96,7 +96,7 @@ export default function CasasDeDiaLista({lugar}) {
                         if (err) {
                             reject()
                         } else {
-                            setCasasDeDia(res)
+                            seTipoLugar(res)
                             resolve()
                         }
                     });
@@ -118,10 +118,10 @@ export default function CasasDeDiaLista({lugar}) {
             </Grid>
 
                 <Grid item xs={12}>
-                {casasDeDia.map((casa) => (
-                    <CasasDeDiaTarjetas
-                        casa={casa}
-                        seleccionDeCasa={seleccionDeCasa}
+                {tipoLugar.map((lugar) => (
+                    <TarjetasLugares
+                        lugar={lugar}
+                        seleccionDeLugar={seleccionDeLugar}
                     />
                        
                     ))}

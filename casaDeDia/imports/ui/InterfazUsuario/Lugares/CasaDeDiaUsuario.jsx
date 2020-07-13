@@ -24,7 +24,7 @@ export default function CasasDeDiaUsuario({ casaSeleccionada }) {
     function casasDeDiaServidor() {
         return new Promise(
             (resolve, reject) => {
-                Meteor.call("encontrarCasaDeDia",
+                Meteor.call("encontrarLugar",
                     casaSeleccionada,
                     (err, res) => {
                         if (err) {

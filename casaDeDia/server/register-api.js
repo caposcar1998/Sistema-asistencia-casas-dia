@@ -29,3 +29,4 @@ import "../imports/api/centros/methods";
 //Funciones
 
 import "../imports/api/usuarios/functions";
+import "../imports/api/generales/ubicacionesUsuario"

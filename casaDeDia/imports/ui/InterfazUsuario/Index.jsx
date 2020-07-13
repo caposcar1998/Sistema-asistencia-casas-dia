@@ -17,7 +17,7 @@ export default function Index() {
     const classes = useStyles();
 
 
-    function entrarCasasDia(lugar) {
+    function entrarLugar(lugar) {
         ruta = "lugarInteres/".concat(lugar)
         FlowRouter.go(ruta)
     }
@@ -42,7 +42,7 @@ export default function Index() {
                     
                     <Grid item xs={6}>
                         <Card className={classes.root}>
-                                <CardActionArea onClick={() => entrarCasasDia("casas")}>
+                                <CardActionArea onClick={() => entrarLugar("casas")}>
                                 <CardMedia
                                     className={classes.media}
                                     image="/fotos/gobiernoMexico.jpeg"
@@ -61,7 +61,7 @@ export default function Index() {
                     <Grid item xs={6}>
 
                         <Card className={classes.root}>
-                            <CardActionArea onClick={() => entrarCasasDia("asilos")}>
+                            <CardActionArea onClick={() => entrarLugar("asilos")}>
                                 <CardMedia
                                     className={classes.media}
                                     image="/fotos/gobiernoMexico.jpeg"
@@ -79,7 +79,7 @@ export default function Index() {
                     <Grid item xs={6}>
 
                         <Card className={classes.root}>
-                                <CardActionArea onClick={() => entrarCasasDia("clubes")}>
+                                <CardActionArea onClick={() => entrarLugar("clubes")}>
                                 <CardMedia
                                     className={classes.media}
                                     image="/fotos/gobiernoMexico.jpeg"
@@ -97,7 +97,7 @@ export default function Index() {
                     <Grid item xs={6}>
 
                         <Card className={classes.root}>
-                                <CardActionArea onClick={() => entrarCasasDia("colectivos")}>
+                                <CardActionArea onClick={() => entrarLugar("colectivos")}>
                                 <CardMedia
                                     className={classes.media}
                                     image="/fotos/gobiernoMexico.jpeg"

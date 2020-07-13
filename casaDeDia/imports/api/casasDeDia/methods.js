@@ -62,20 +62,6 @@ Meteor.methods({
         return CasasDeDia.find().fetch();
     },
 
-    "encontrarCasaDeDia"(idCasaDeDia) {
-        if (CasasDeDia.findOne({ _id: idCasaDeDia }) != null) {
-            return CasasDeDia.findOne({ _id: idCasaDeDia });
-        }
-        else if (Asilos.findOne({ _id: idCasaDeDia }) != null) {
-            return Asilos.findOne({ _id: idCasaDeDia });
-        }
-        else if (Clubes.findOne({ _id: idCasaDeDia }) != null) {
-            return Clubes.findOne({ _id: idCasaDeDia });
-        }
-        else {
-            return Colectivos.findOne({ _id: idCasaDeDia });
-         }
-     },
 
     "anadirAdulto"(idCasaDeDia, idUsuario, nombre, curp) {
         CasasDeDia.update(

@@ -39,7 +39,7 @@ import { Meteor } from 'meteor/meteor';
 import Descargas from '../../ui/tabs/Descargas';
 import UsuariosPage from '../../ui/InterfazUsuario/UsuariosPage';
 import Index from '../../ui/InterfazUsuario/Index';
-import CasasDeDiaLista from '../../ui/InterfazUsuario/Lugares/CasasDeDiaLista';
+import ListaLugares from '../../ui/InterfazUsuario/Lugares/ListaLugares';
 import CasasDeDiaUsuario from '../../ui/InterfazUsuario/Lugares/CasaDeDiaUsuario';
 
 
@@ -303,13 +303,13 @@ FlowRouter.route('/lugarInteres/:lugar', {
     action(params) {
         let { lugar } = params
         mount(UsuariosPage, {
-            content: <CasasDeDiaLista lugar={lugar} />
+            content: <ListaLugares lugar={lugar} />
         })
     }
 })
 
-FlowRouter.route('/lugarInteres/CasaDeDia/:_id', {
-    name: 'CasaDeDia',
+FlowRouter.route('/lugarInteres/Lugar/:_id', {
+    name: 'Lugar',
     action(params) {
         let {_id } = params
         mount(UsuariosPage, {

@@ -12,24 +12,24 @@ const useStyles = makeStyles({
 });
 
 
-export default function CasasDeDiaTarjetas({ casa, seleccionDeCasa }) {
+export default function TarjetasLugares({ lugar, seleccionDeLugar }) {
     const classes = useStyles();
     
 
     return (
         <Card className={classes.root}>
-            <CardActionArea onClick={() => seleccionDeCasa(casa)}>
+            <CardActionArea onClick={() => seleccionDeLugar(lugar)}>
                 <CardMedia
                     className={classes.media}
-                    image={casa.foto}
-                    title={casa.nombre}
+                    image={lugar.foto}
+                    title={lugar.nombre}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        {casa.nombre}
+                        {lugar.nombre}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        {casa.direccion}
+                        {lugar.direccion}
                     </Typography>
                 </CardContent>
             </CardActionArea>
