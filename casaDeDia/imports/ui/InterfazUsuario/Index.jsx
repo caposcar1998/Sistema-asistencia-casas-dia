@@ -1,24 +1,38 @@
 import React from "react";
 import { Grid, Typography, Card, CardActionArea, CardMedia, makeStyles, CardContent, TextField, Button } from "@material-ui/core";
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
+import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 
 
-const useStyles = makeStyles({
+
+const useStyles = makeStyles((theme) => ({
+
     root: {
         maxWidth: 345,
     },
     media: {
         height: 140,
     },
-});
+    gridGeneral: {
+        marginTop: theme.spacing(2)
+    }
+
+}));
 
 export default function Index() {
     const classes = useStyles();
 
 
+    function entrarLugar(lugar) {
+        ruta = "lugarInteres/".concat(lugar)
+        FlowRouter.go(ruta)
+    }
+
     return (
         <Grid container
-            direction="row">
+            direction="row"
+            className={classes.gridGeneral}
+            >
 
             <Grid item xs={10}>
 
@@ -36,7 +50,7 @@ export default function Index() {
                     
                     <Grid item xs={6}>
                         <Card className={classes.root}>
-                            <CardActionArea>
+                                <CardActionArea onClick={() => entrarLugar("casas")}>
                                 <CardMedia
                                     className={classes.media}
                                     image="/fotos/gobiernoMexico.jpeg"
@@ -55,7 +69,7 @@ export default function Index() {
                     <Grid item xs={6}>
 
                         <Card className={classes.root}>
-                            <CardActionArea>
+                            <CardActionArea onClick={() => entrarLugar("asilos")}>
                                 <CardMedia
                                     className={classes.media}
                                     image="/fotos/gobiernoMexico.jpeg"
@@ -73,7 +87,7 @@ export default function Index() {
                     <Grid item xs={6}>
 
                         <Card className={classes.root}>
-                            <CardActionArea>
+                                <CardActionArea onClick={() => entrarLugar("clubes")}>
                                 <CardMedia
                                     className={classes.media}
                                     image="/fotos/gobiernoMexico.jpeg"
@@ -91,7 +105,7 @@ export default function Index() {
                     <Grid item xs={6}>
 
                         <Card className={classes.root}>
-                            <CardActionArea>
+                                <CardActionArea onClick={() => entrarLugar("colectivos")}>
                                 <CardMedia
                                     className={classes.media}
                                     image="/fotos/gobiernoMexico.jpeg"

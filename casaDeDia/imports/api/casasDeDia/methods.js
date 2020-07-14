@@ -1,5 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { CasasDeDia } from "../casasDeDia/casasDeDia";
+import { Asilos } from '../asilos/asilos';
+import { Clubes } from '../clubes/clubes';
+import { Colectivos } from '../colectivos/colectivos';
 
 Meteor.methods({
 
@@ -58,6 +61,7 @@ Meteor.methods({
     "leerCasasDeDia"() {
         return CasasDeDia.find().fetch();
     },
+
 
     "anadirAdulto"(idCasaDeDia, idUsuario, nombre, curp) {
         CasasDeDia.update(

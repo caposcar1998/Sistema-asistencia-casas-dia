@@ -39,16 +39,11 @@ import { Meteor } from 'meteor/meteor';
 import Descargas from '../../ui/tabs/Descargas';
 import UsuariosPage from '../../ui/InterfazUsuario/UsuariosPage';
 import Index from '../../ui/InterfazUsuario/Index';
+import ListaLugares from '../../ui/InterfazUsuario/Lugares/ListaLugares';
+import Lugar from '../../ui/InterfazUsuario/Lugares/Lugar';
 
 
-FlowRouter.route('/', {
-    name: 'index',
-    action() {
-        mount(UsuariosPage, {
-            content: <Index />
-        })
-    }
-})
+
 
 
 FlowRouter.route('/login', {
@@ -289,6 +284,36 @@ FlowRouter.route('/administrador/Servicios', {
     action() {
         mount(AdministradorPage, {
             content: <ServiciosTab />
+        })
+    }
+})
+
+
+FlowRouter.route('/', {
+    name: 'index',
+    action() {
+        mount(UsuariosPage, {
+            content: <Index />
+        })
+    }
+})
+
+FlowRouter.route('/lugarInteres/:lugar', {
+    name: 'lugarInteres',
+    action(params) {
+        let { lugar } = params
+        mount(UsuariosPage, {
+            content: <ListaLugares lugar={lugar} />
+        })
+    }
+})
+
+FlowRouter.route('/lugarInteres/Lugar/:_id', {
+    name: 'Lugar',
+    action(params) {
+        let {_id } = params
+        mount(UsuariosPage, {
+            content: <Lugar casaSeleccionada={_id} />
         })
     }
 })

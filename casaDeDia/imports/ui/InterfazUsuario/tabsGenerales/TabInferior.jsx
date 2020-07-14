@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "#1D813B"
     },
     foto: {
-        width: "300px"
+        width: "200px"
     }
 }));
 
@@ -34,7 +34,7 @@ export default function TabInferior() {
 
     return (
 
-            <AppBar position="default" color="primary" className={classes.appBar}>
+        <AppBar position="sticky" color="primary" className={classes.appBar}>
                 <Grid container>
                 <Grid item xs={3}>
                     <img src={"/fotos/gobiernoMexico.jpeg"} className={classes.foto} />
