@@ -34,7 +34,7 @@ export default function TabInferior() {
 
     return (
 
-        <AppBar position="fixed" color="primary" className={classes.appBar}>
+        <AppBar position="sticky" color="primary" className={classes.appBar}>
                 <Grid container>
                 <Grid item xs={3}>
                     <img src={"/fotos/gobiernoMexico.jpeg"} className={classes.foto} />

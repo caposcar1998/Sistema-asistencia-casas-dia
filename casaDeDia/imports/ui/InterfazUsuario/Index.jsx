@@ -4,14 +4,20 @@ import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 
 
-const useStyles = makeStyles({
+
+const useStyles = makeStyles((theme) => ({
+
     root: {
         maxWidth: 345,
     },
     media: {
         height: 140,
     },
-});
+    gridGeneral: {
+        marginTop: theme.spacing(2)
+    }
+
+}));
 
 export default function Index() {
     const classes = useStyles();
@@ -24,7 +30,9 @@ export default function Index() {
 
     return (
         <Grid container
-            direction="row">
+            direction="row"
+            className={classes.gridGeneral}
+            >
 
             <Grid item xs={10}>
 

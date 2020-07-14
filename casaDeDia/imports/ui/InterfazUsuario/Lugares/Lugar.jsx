@@ -8,7 +8,7 @@ const useStyles = makeStyles({
 
     fotoPrincipal: {
         width: "100%",
-        height: "100%",
+        height: "100%"
     }
 });
 
@@ -32,6 +32,7 @@ export default function Lugar({ casaSeleccionada }) {
                         } else {
                             setLugar(res)
                             console.log(res)
+                            console.log(lugar.restricciones)
                             resolve()
                         }
                     });
@@ -46,48 +47,82 @@ export default function Lugar({ casaSeleccionada }) {
 
     return (
         <Grid container>
-            <Grid item xs={12}>
-                <Typography variant="h3">{lugar.nombre}</Typography>
+            <Grid item xs={12} >
+                <Grid container alignItems="center" justify="center">
+                    <Typography variant="h3">{lugar.nombre}</Typography>
+                </Grid>
+                
             </Grid>
             <Grid item xs={6}>
                 <img src={lugar.foto}  className={classes.fotoPrincipal} />
             </Grid>
             <Grid item xs={6}>
-                <Grid item xs={12}>
-                    <Grid item xs={12}>Direccion</Grid>
-                    <Grid item xs={12}>{lugar.direccion}</Grid>
-                    <Grid item xs={12}>{lugar.codigoPostal}</Grid>
-                    <Grid item xs={12}>Horario</Grid>
-                    <Grid item xs={12}>{lugar.horarioApertura}</Grid>
-                    <Grid item xs={12}>{lugar.horarioCierre}</Grid>
-                    <Grid item xs={12}>Publico/Privado</Grid></Grid>
-                <Grid item xs={12}>{lugar.tipoInstitucion}</Grid>
-                    <Grid item xs={12}>Actividades</Grid>
+                <Grid container
+                    direction="row"
+                    justify="center"
+                    alignItems="center"
+                
+                >
+                    <Grid item xs={12}>
+                        <Typography variant="h5">Direccion</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h5">{lugar.direccion} C.P: {lugar.codigoPostal}</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h5">Horario</Typography> 
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h5">{lugar.horarioApertura}-{ lugar.horarioCierre }</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h5">Tipo de institucion</Typography> 
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h5">{lugar.tipoInstitucion}</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h5">Actividades</Typography> 
+                    </Grid>
                     <Grid item xs={12}>
                     
                     {    
                         lugar.actividades == null ?
                             <Typography>No hay actividades registradas</Typography> :
                             lugar.actividades.map((actividad) => (
-                                <Typography >{actividad.nombre}</Typography>
+                                <Typography variant="h5">{actividad.nombre}</Typography>
                             ))}
 
                     </Grid>
-                    <Grid item xs={12}>Restricciones</Grid>
-                {
-                    lugar.restricciones == null ?
-                                <Typography>No hay restricciones registradas</Typography> :
+                    <Grid item xs={12}>
+                        <Typography variant="h5">Restricciones</Typography> 
+                    </Grid>
+                    {
+                        lugar.restricciones == null ?
+                            <Typography variant="h5">No hay restricciones registradas</Typography> :
                                 lugar.restricciones.map((restriccion) => (
-                                <Typography >{restriccion.nombre}</Typography>
+                                    <Typography variant="h5">{restriccion.nombre}</Typography>
                                 ))}
-                    <Grid item xs={12}>Costo</Grid>
-                    <Grid item xs={12}>{lugar.costo}</Grid>
-                    <Grid item xs={12}>Cupo limite</Grid>
-                    <Grid item xs={12}>{lugar.cupoLimite}</Grid>
-                    <Grid item xs={12}>Contacto</Grid>
-                    <Grid item xs={12}>56552749</Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h5">Costo</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h5">${lugar.costo}</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h5">Cupo limite</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h5">{lugar.cupoLimite} personas</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h5">Contacto</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="h5">Tel.56552749</Typography>
+                    </Grid>
             </Grid>
-
+            </Grid>
         </Grid>
     )
 

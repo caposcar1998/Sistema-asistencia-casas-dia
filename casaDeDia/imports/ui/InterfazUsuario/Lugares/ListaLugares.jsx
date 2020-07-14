@@ -113,7 +113,7 @@ export default function ListaLugares({lugar}) {
                     direction="row"
                     justify="center"
                     alignItems="center">
-                    <Typography variant="h1">Encuentra tu {lugar}</Typography>
+                    <Typography variant="h1">{lugar}</Typography>
                 </Grid>
             </Grid>
 
