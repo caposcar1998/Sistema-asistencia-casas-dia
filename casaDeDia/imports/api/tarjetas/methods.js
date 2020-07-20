@@ -143,8 +143,13 @@ Meteor.methods({
             )
     },
 
-    "leerTarjeta"() {
+    "leerTarjetas"() {
         return Tarjetas.find().fetch();
+    },
+
+    "leerTarjeta"(idTarjeta) {
+        let tarjeta = Tarjetas.findOne({ "_id": idTarjeta });
+        return tarjeta;
     }
 
 

@@ -1,6 +1,7 @@
 import { FlowRouter } from 'meteor/kadira:flow-router'
 import React from 'react'
 import { mount } from 'react-mounter'
+import { Meteor } from 'meteor/meteor';
 
 //Layouts and Pages
 
@@ -34,14 +35,14 @@ import ConvocatoriasTab from "../../ui/tabs/ConvocatoriasTab";
 
 import CentrosTab from "../../ui/tabs/CentrosTab";
 
-import { Tracker } from 'meteor/tracker';
-import { Meteor } from 'meteor/meteor';
 import Descargas from '../../ui/tabs/Descargas';
 import UsuariosPage from '../../ui/InterfazUsuario/UsuariosPage';
 import Index from '../../ui/InterfazUsuario/Index';
 import ListaLugares from '../../ui/InterfazUsuario/Lugares/ListaLugares';
 import Lugar from '../../ui/InterfazUsuario/Lugares/Lugar';
-
+import LugaresCercanos from '../../ui/InterfazUsuario/Lugares/LugaresCercanos';
+import ListaTarjetas from '../../ui/InterfazUsuario/Tarjetas/ListaTarjetas';
+import InformacionTarjeta from '../../ui/InterfazUsuario/Tarjetas/InformacionTarjeta';
 
 
 
@@ -314,6 +315,37 @@ FlowRouter.route('/lugarInteres/Lugar/:_id', {
         let {_id } = params
         mount(UsuariosPage, {
             content: <Lugar casaSeleccionada={_id} />
+        })
+    }
+})
+
+FlowRouter.route('/busquedaCodigoPostal/:codigoPostal', {
+    name: 'busquedaCodigoPostal',
+    action(params) {
+        let { codigoPostal } = params
+        mount(UsuariosPage, {
+            content: <LugaresCercanos codigoPostal={codigoPostal} />
+        })
+    }
+})
+
+
+FlowRouter.route('/listaTarjetas', {
+    name: 'listaTarjetas',
+    action() {
+        mount(UsuariosPage, {
+            content: <ListaTarjetas/>
+        })
+    }
+})
+
+
+FlowRouter.route('/Tarjeta/:idTarjeta', {
+    name: 'Tarjeta',
+    action(params) {
+        let { idTarjeta} = params
+        mount(UsuariosPage, {
+            content: <InformacionTarjeta idTarjeta={idTarjeta} />
         })
     }
 })
