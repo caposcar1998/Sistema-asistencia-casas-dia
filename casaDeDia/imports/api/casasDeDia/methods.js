@@ -1,8 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { CasasDeDia } from "../casasDeDia/casasDeDia";
-import { Asilos } from '../asilos/asilos';
-import { Clubes } from '../clubes/clubes';
-import { Colectivos } from '../colectivos/colectivos';
+
 
 Meteor.methods({
 
@@ -119,6 +117,20 @@ Meteor.methods({
                 true
             )
     },
+
+    "casasDiaPorCodigo"(codigoPostal) {
+        
+        
+        console.log(codigoPostal)
+
+        console.log(CasasDeDia.find(
+            {},
+            { total: { $subtract: ["$codigoPostal", codigoPostal] } },
+            { total: { $lte: 0 }
+}
+        ).fetch())
+        
+    }
 
 });
 

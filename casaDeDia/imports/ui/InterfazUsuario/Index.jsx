@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Typography, Card, CardActionArea, CardMedia, makeStyles, CardContent, TextField, Button } from "@material-ui/core";
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
+import { useState } from "react";
 
 
 
@@ -21,11 +22,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Index() {
     const classes = useStyles();
-
+    const [codigoPostal, setCodigoPostal] = useState();
 
     function entrarLugar(lugar) {
         ruta = "lugarInteres/".concat(lugar)
         FlowRouter.go(ruta)
+    }
+
+    function busquedaCodigoPostal(codigoPostal) {
+        ruta = "busquedaCodigoPostal/".concat(codigoPostal)
+        FlowRouter.go(ruta)
+    }
+    
+    function buscarTarjetas() {
+        FlowRouter.go("listaTarjetas");
     }
 
     return (
@@ -132,7 +142,7 @@ export default function Index() {
                         <Grid item xs={6}>
 
                             <Card className={classes.root}>
-                                <CardActionArea>
+                                <CardActionArea onClick={buscarTarjetas}>
                                     <CardMedia
                                         className={classes.media}
                                         image="/fotos/gobiernoMexico.jpeg"
@@ -188,10 +198,10 @@ export default function Index() {
                                     Encuentra servicios disponibles con tu codigo postal
                                 </Typography>
                                 <Grid item xs={12}>
-                                    <TextField />
+                                    <TextField id="codigoPostal" label="Codigo Postal" value={codigoPostal} onChange={(e) => setCodigoPostal(e.target.value)} />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Button>Buscar</Button>
+                                    <Button onClick={() => busquedaCodigoPostal(codigoPostal)}>Buscar</Button>
                                 </Grid>
 
 
