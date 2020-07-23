@@ -38,6 +38,10 @@ export default function Index() {
         FlowRouter.go("listaTarjetas");
     }
 
+    function buscarConvocatorias() {
+        FlowRouter.go("convocatorias");
+    }
+
     return (
         <Grid container
             direction="row"
@@ -160,7 +164,7 @@ export default function Index() {
                         <Grid item xs={6}>
 
                             <Card className={classes.root}>
-                                <CardActionArea>
+                                <CardActionArea onClick={buscarConvocatorias}>
                                     <CardMedia
                                         className={classes.media}
                                         image="/fotos/gobiernoMexico.jpeg"

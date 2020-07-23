@@ -43,6 +43,7 @@ import Lugar from '../../ui/InterfazUsuario/Lugares/Lugar';
 import LugaresCercanos from '../../ui/InterfazUsuario/Lugares/LugaresCercanos';
 import ListaTarjetas from '../../ui/InterfazUsuario/Tarjetas/ListaTarjetas';
 import InformacionTarjeta from '../../ui/InterfazUsuario/Tarjetas/InformacionTarjeta';
+import Convocatorias from '../../ui/InterfazUsuario/Convocatorias/Convocatorias';
 
 
 
@@ -346,6 +347,15 @@ FlowRouter.route('/Tarjeta/:idTarjeta', {
         let { idTarjeta} = params
         mount(UsuariosPage, {
             content: <InformacionTarjeta idTarjeta={idTarjeta} />
+        })
+    }
+})
+
+FlowRouter.route('/convocatorias', {
+    name: 'convocatorias',
+    action() {
+        mount(UsuariosPage, {
+            content: <Convocatorias />
         })
     }
 })
