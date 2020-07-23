@@ -31,6 +31,7 @@ export default function ListaLugares({lugar}) {
         if (lugar == "colectivos") {
             colectivosServidor();
         }
+
         
     }, []);
 
@@ -87,6 +88,7 @@ export default function ListaLugares({lugar}) {
             }
         )
     }
+
 
     function colectivosServidor() {
         return new Promise(

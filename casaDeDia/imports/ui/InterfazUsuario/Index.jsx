@@ -42,6 +42,12 @@ export default function Index() {
         FlowRouter.go("convocatorias");
     }
 
+    function buscarBeneficios() {
+        FlowRouter.go("beneficiosUsuario");
+    }
+
+
+
     return (
         <Grid container
             direction="row"
@@ -136,6 +142,7 @@ export default function Index() {
                     </Grid>
                     </Grid>
 
+
                     <Grid container>
                         <Grid item xs={12}>
                             <Typography variant="h2">
@@ -173,6 +180,25 @@ export default function Index() {
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="h2">
                                             Convocatorias
+                                    </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+
+                        </Grid>
+
+                        <Grid item xs={6}>
+
+                            <Card className={classes.root}>
+                                <CardActionArea onClick={buscarBeneficios}>
+                                    <CardMedia
+                                        className={classes.media}
+                                        image="/fotos/gobiernoMexico.jpeg"
+                                        title="Convocatorias"
+                                    />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            Beneficios
                                     </Typography>
                                     </CardContent>
                                 </CardActionArea>

@@ -44,6 +44,7 @@ import LugaresCercanos from '../../ui/InterfazUsuario/Lugares/LugaresCercanos';
 import ListaTarjetas from '../../ui/InterfazUsuario/Tarjetas/ListaTarjetas';
 import InformacionTarjeta from '../../ui/InterfazUsuario/Tarjetas/InformacionTarjeta';
 import Convocatorias from '../../ui/InterfazUsuario/Convocatorias/Convocatorias';
+import Beneficios from '../../ui/InterfazUsuario/Beneficios/Beneficios';
 
 
 
@@ -356,6 +357,15 @@ FlowRouter.route('/convocatorias', {
     action() {
         mount(UsuariosPage, {
             content: <Convocatorias />
+        })
+    }
+})
+
+FlowRouter.route('/beneficiosUsuario', {
+    name: 'beneficiosUsuario',
+    action() {
+        mount(UsuariosPage, {
+            content: <Beneficios />
         })
     }
 })
