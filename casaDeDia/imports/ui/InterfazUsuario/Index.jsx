@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography, Card, CardActionArea, CardMedia, makeStyles, CardContent, TextField, Button } from "@material-ui/core";
+import { Grid, Typography, Card, CardActionArea, CardMedia, makeStyles, CardContent, TextField, Button, Box } from "@material-ui/core";
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 import { useState } from "react";
@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
     },
     segundoGrid: {
         paddingRight: theme.spacing(6)
+    },
+    espaciosGenerales: {
+        marginBottom: theme.spacing(5)
     }
 
 }));
@@ -61,7 +64,7 @@ export default function Index() {
 
                 <Grid container>
 
-                <Grid item xs={12}>
+                <Grid item xs={12} className={classes.espaciosGenerales}>
                     <Typography variant="h2">
                         Lugares de interes
                 </Typography>
@@ -71,7 +74,7 @@ export default function Index() {
                     justify="center"
                     alignItems="center">
                     
-                    <Grid item xs={6}>
+                    <Grid item xs={6} className={classes.espaciosGenerales}>
                         <Card className={classes.root}>
                                 <CardActionArea onClick={() => entrarLugar("casas")}>
                                 <CardMedia
@@ -87,9 +90,9 @@ export default function Index() {
                             </CardActionArea>
                         </Card>
                     </Grid>
+                    
 
-
-                    <Grid item xs={6}>
+                    <Grid item xs={6} className={classes.espaciosGenerales}> 
 
                         <Card className={classes.root}>
                             <CardActionArea onClick={() => entrarLugar("asilos")}>
@@ -125,7 +128,7 @@ export default function Index() {
                         </Card>
 
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={6} className={classes.espaciosGenerales}>
 
                         <Card className={classes.root}>
                                 <CardActionArea onClick={() => entrarLugar("colectivos")}>
@@ -147,7 +150,7 @@ export default function Index() {
 
 
                     <Grid container>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} className={classes.espaciosGenerales}>
                             <Typography variant="h2">
                                 Apoyo al adulto mayor
                             </Typography>
@@ -243,6 +246,8 @@ export default function Index() {
                         </Card>
 
                     </Grid>
+
+                    <Box className={classes.espaciosGenerales}/>
 
                     <Grid item xs={12}>
 
