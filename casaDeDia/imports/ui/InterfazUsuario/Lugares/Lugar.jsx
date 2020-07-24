@@ -49,7 +49,7 @@ export default function Lugar({ casaSeleccionada }) {
         <Grid container>
             <Grid item xs={12} >
                 <Grid container alignItems="center" justify="center">
-                    <Typography variant="h3">{lugar.nombre}</Typography>
+                    <Typography variant="h1">{lugar.nombre}</Typography>
                 </Grid>
                 
             </Grid>
@@ -57,32 +57,33 @@ export default function Lugar({ casaSeleccionada }) {
                 <img src={lugar.foto}  className={classes.fotoPrincipal} />
             </Grid>
             <Grid item xs={6}>
+
                 <Grid container
                     direction="row"
                     justify="center"
                     alignItems="center"
                 
                 >
-                    <Grid item xs={12}>
-                        <Typography variant="h5">Direccion</Typography>
+                    <Grid item xs={6}>
+                        <Typography variant="h5">Direccion:</Typography>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={6}>
                         <Typography variant="h5">{lugar.direccion} C.P: {lugar.codigoPostal}</Typography>
                     </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">Horario</Typography> 
+                    <Grid item xs={6}>
+                        <Typography variant="h5">Horario:</Typography> 
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={6}>
                         <Typography variant="h5">{lugar.horarioApertura}-{ lugar.horarioCierre }</Typography>
                     </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">Tipo de institucion</Typography> 
+                    <Grid item xs={6}>
+                        <Typography variant="h5">Tipo de institucion:</Typography> 
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={6}>
                         <Typography variant="h5">{lugar.tipoInstitucion}</Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography variant="h5">Actividades</Typography> 
+                        <Typography variant="h5">Actividades:</Typography> 
                     </Grid>
                     <Grid item xs={12}>
                     
@@ -98,30 +99,31 @@ export default function Lugar({ casaSeleccionada }) {
                         <Typography variant="h5">Restricciones</Typography> 
                     </Grid>
                     {
-                        lugar.restricciones == null ?
+                        lugar.restricciones == undefined ?
                             <Typography variant="h5">No hay restricciones registradas</Typography> :
                                 lugar.restricciones.map((restriccion) => (
                                     <Typography variant="h5">{restriccion.nombre}</Typography>
                                 ))}
-                    <Grid item xs={12}>
-                        <Typography variant="h5">Costo</Typography>
+                    <Grid item xs={6}>
+                        <Typography variant="h5">Costo:</Typography>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={6}>
                         <Typography variant="h5">${lugar.costo}</Typography>
                     </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">Cupo limite</Typography>
+                    <Grid item xs={6}>
+                        <Typography variant="h5">Cupo limite:</Typography>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={6}>
                         <Typography variant="h5">{lugar.cupoLimite} personas</Typography>
                     </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">Contacto</Typography>
+                    <Grid item xs={6}>
+                        <Typography variant="h5">Contacto:</Typography>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={6}>
                         <Typography variant="h5">Tel.56552749</Typography>
                     </Grid>
-            </Grid>
+                    </Grid>
+
             </Grid>
         </Grid>
     )

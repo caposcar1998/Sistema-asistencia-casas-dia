@@ -11,25 +11,33 @@ const useStyles = makeStyles({
         width: "100%",
         height: "200px",
         backgroundImage: "url('/fotos/Fondo1.jpg')"
+    },
+    titulo: {
+        color: "white"
     }
 });
 
 export default function ListaLugares({lugar}) {
     const classes = useStyles();
-    const [tipoLugar, seTipoLugar] = useState([])
+    const [tipoLugar, seTipoLugar] = useState([]);
+    const [nombreLugar, setNombreLugar] = useState("");
 
     useEffect(() => {
         if (lugar == "casas") {
             casasDeDiaServidor();
+            setNombreLugar("Casas de día")
         }
         if (lugar == "asilos") {
             asilosServidor();
+            setNombreLugar("Asilos")
         }
         if (lugar == "clubes") {
             clubesServidor();
+            setNombreLugar("Clubes")
         }
         if (lugar == "colectivos") {
             colectivosServidor();
+            setNombreLugar("Colectivos")
         }
 
         
@@ -115,7 +123,7 @@ export default function ListaLugares({lugar}) {
                     direction="row"
                     justify="center"
                     alignItems="center">
-                    <Typography variant="h1">{lugar}</Typography>
+                    <Typography variant="h1" className={classes.titulo}>{nombreLugar}</Typography>
                 </Grid>
             </Grid>
 
