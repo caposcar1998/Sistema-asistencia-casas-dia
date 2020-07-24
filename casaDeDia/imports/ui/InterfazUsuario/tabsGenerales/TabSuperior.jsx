@@ -40,8 +40,8 @@ export default function TabSuperior() {
             <AppBar position="static" className={classes.tabGeneral}>
                 <Toolbar>
                     <img src={"/fotos/tlalpanIcono.png"} className={classes.icono} onClick={regresarInicio}/>
-                    <Typography variant="h6" className={classes.title}>
-                        Delegacion tlalpan
+                    <Typography variant="h3" className={classes.title}>
+                        Delegación Tlalpan
           </Typography>
                     <Button color="inherit" onClick={loginAdministrador}>Acceso</Button>
                 </Toolbar>

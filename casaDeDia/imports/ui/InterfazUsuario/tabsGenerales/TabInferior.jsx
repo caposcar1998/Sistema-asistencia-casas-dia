@@ -1,10 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, Button } from '@material-ui/core';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import InstagramIcon from '@material-ui/icons/Instagram';
+import YouTubeIcon from '@material-ui/icons/YouTube';
 
 const useStyles = makeStyles((theme) => ({
     text: {
@@ -26,11 +27,16 @@ const useStyles = makeStyles((theme) => ({
     },
     foto: {
         width: "200px"
+    },
+    links: {
+        color: "white"
     }
 }));
 
 export default function TabInferior() {
     const classes = useStyles();
+
+    
 
     return (
 
@@ -48,10 +54,14 @@ export default function TabInferior() {
                             <Typography variant="h2">Enlaces</Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant="h5">http://www.gob.com.mx</Typography>
+                            <Button href="http://www.gob.com.mx">
+                                <Typography variant="h5" className={classes.links}>www.gob.com.mx</Typography>
+                            </Button>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant="h5">http://www.tlalpan.cdmx.gob.mx/</Typography>
+                            <Button href="http://www.tlalpan.cdmx.gob.mx/">
+                                <Typography variant="h5" className={classes.links}>/www.tlalpan.cdmx.gob.mx</Typography>
+                            </Button>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -65,10 +75,10 @@ export default function TabInferior() {
                             <Typography variant="h2">Contactanos</Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant="h5">56552749</Typography>
+                            <Typography variant="h5">(55) 5483-1500 </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant="h5">tlalpan@tlalpan.mx</Typography>
+                            <Typography variant="h5">Emergencias: 911</Typography>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -86,14 +96,25 @@ export default function TabInferior() {
                         </Grid>
                         <Grid item xs={12}>
                             <Grid container>
-                                <Grid item xs={4}>
-                                    <FacebookIcon fontSize="large" />
+                                <Grid item xs={3}>
+                                    <Button href="https://www.facebook.com/TlalpanAl/">
+                                        <FacebookIcon fontSize="large" className={classes.links} />
+                                    </Button>
                                 </Grid>
-                                <Grid item xs={4}>
-                                    <TwitterIcon fontSize="large" />
+                                <Grid item xs={3}>
+                                    <Button href="https://twitter.com/TlalpanAl">
+                                        <TwitterIcon fontSize="large" className={classes.links}/>
+                                    </Button>
                                 </Grid>
-                                <Grid item xs={4}>
-                                    <InstagramIcon fontSize="large" />
+                                <Grid item xs={3}>
+                                    <Button href="https://www.instagram.com/tlalpanal/">
+                                        <InstagramIcon fontSize="large" className={classes.links}/>
+                                    </Button>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Button href="https://www.youtube.com/channel/UCZd70pbf0O1JYnq3aty_M_A/videos">
+                                        <YouTubeIcon fontSize="large" className={classes.links}/>
+                                    </Button>
                                 </Grid>
                             </Grid>
                             
