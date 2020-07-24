@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     },
     espacio: {
         marginBottom: theme.spacing(2)
+    },
+    titulo: {
+        color: "white"
     }
 }));
 
@@ -54,7 +57,7 @@ export default function Beneficios() {
                     direction="row"
                     justify="center"
                     alignItems="center">
-                    <Typography variant="h1">Promociones</Typography>
+                    <Typography variant="h1" className={classes.titulo}>Promociones</Typography>
                 </Grid>
             </Grid>
 
@@ -63,7 +66,7 @@ export default function Beneficios() {
                     <Card className={classes.root} >
                         <CardHeader
                             title={
-                                <Typography variant="h3">{promocion.nombre}</Typography>
+                                <Typography variant="h3" >{promocion.nombre}</Typography>
                             }
                         />
                         <CardContent>
@@ -71,9 +74,9 @@ export default function Beneficios() {
                                 {"Descripcion: " + promocion.descripcion}
                             </Typography>
                             <Box className={classes.espacio} />
-                            <Typography variant="h5">{"Lanzamiento: " + promocion.fechaInicio}</Typography>
+                            <Typography variant="h5">{"Lanzamiento: " + promocion.fechaInicio.getDate() + "/" + promocion.fechaInicio.getMonth() + "/" + promocion.fechaInicio.getFullYear()}</Typography>
                             <Box className={classes.espacio} />
-                            <Typography variant="h5">{"Finaliza: " + promocion.fechaFinal}</Typography>
+                            <Typography variant="h5">{"Finaliza: " + promocion.fechaFinal.getDate() + "/" + promocion.fechaFinal.getMonth() + "/" + promocion.fechaFinal.getFullYear()}</Typography>
                             <Box className={classes.espacio} />
                             <Typography variant="h6">{"Descripcion: " + promocion.descripcion}</Typography>
                             <Box className={classes.espacio} />
