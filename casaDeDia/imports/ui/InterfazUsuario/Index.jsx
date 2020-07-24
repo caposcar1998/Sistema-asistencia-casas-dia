@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     },
     gridGeneral: {
         marginTop: theme.spacing(2)
+    },
+    segundoGrid: {
+        paddingRight: theme.spacing(6)
     }
 
 }));
@@ -212,7 +215,7 @@ export default function Index() {
                 
                 </Grid>
 
-            <Grid item xs={2}>
+            <Grid item xs={2} className={classes.segundoGrid}>
                 <Grid container
                     direction="column"
                     justify="center"
