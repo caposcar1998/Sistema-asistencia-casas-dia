@@ -9,10 +9,10 @@ import { useState } from "react";
 const useStyles = makeStyles((theme) => ({
 
     root: {
-        maxWidth: 345,
+        maxWidth: 500,
     },
     media: {
-        height: 140,
+        height: 200,
     },
     gridGeneral: {
         marginTop: theme.spacing(2)
@@ -73,7 +73,7 @@ export default function Index() {
                                 <CardActionArea onClick={() => entrarLugar("casas")}>
                                 <CardMedia
                                     className={classes.media}
-                                    image="/fotos/gobiernoMexico.jpeg"
+                                    image="/fotos/FotoCasasDia.jpg"
                                     title="Casas de dia"
                                 />
                                 <CardContent>
@@ -92,7 +92,7 @@ export default function Index() {
                             <CardActionArea onClick={() => entrarLugar("asilos")}>
                                 <CardMedia
                                     className={classes.media}
-                                    image="/fotos/gobiernoMexico.jpeg"
+                                    image="/fotos/asilosFoto.jpg"
                                     title="Asilos"
                                 />
                                 <CardContent>
@@ -110,7 +110,7 @@ export default function Index() {
                                 <CardActionArea onClick={() => entrarLugar("clubes")}>
                                 <CardMedia
                                     className={classes.media}
-                                    image="/fotos/gobiernoMexico.jpeg"
+                                    image="/fotos/CLubesFOto.jpg"
                                     title="Clubes"
                                 />
                                 <CardContent>
@@ -128,7 +128,7 @@ export default function Index() {
                                 <CardActionArea onClick={() => entrarLugar("colectivos")}>
                                 <CardMedia
                                     className={classes.media}
-                                    image="/fotos/gobiernoMexico.jpeg"
+                                    image="/fotos/FotoCOlectivos.jpg"
                                     title="Colectivos"
                                 />
                                 <CardContent>
@@ -156,7 +156,7 @@ export default function Index() {
                                 <CardActionArea onClick={buscarTarjetas}>
                                     <CardMedia
                                         className={classes.media}
-                                        image="/fotos/gobiernoMexico.jpeg"
+                                        image="/fotos/tarjetasFoto.webp"
                                         title="Tarjetas"
                                     />
                                     <CardContent>
@@ -174,7 +174,7 @@ export default function Index() {
                                 <CardActionArea onClick={buscarConvocatorias}>
                                     <CardMedia
                                         className={classes.media}
-                                        image="/fotos/gobiernoMexico.jpeg"
+                                        image="/fotos/COnvocatorias.jpg"
                                         title="Convocatorias"
                                     />
                                     <CardContent>
@@ -193,8 +193,8 @@ export default function Index() {
                                 <CardActionArea onClick={buscarBeneficios}>
                                     <CardMedia
                                         className={classes.media}
-                                        image="/fotos/gobiernoMexico.jpeg"
-                                        title="Convocatorias"
+                                        image="/fotos/beneficios.jpg"
+                                        title="Beneficios"
                                     />
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="h2">
