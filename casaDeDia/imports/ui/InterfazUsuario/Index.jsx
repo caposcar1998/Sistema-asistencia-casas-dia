@@ -174,7 +174,7 @@ export default function Index() {
                             </Card>
 
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={6} className={classes.espaciosGenerales}>
 
                             <Card className={classes.root}>
                                 <CardActionArea onClick={buscarConvocatorias}>
