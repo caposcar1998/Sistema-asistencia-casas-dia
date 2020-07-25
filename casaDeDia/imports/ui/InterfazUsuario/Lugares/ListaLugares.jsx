@@ -127,15 +127,22 @@ export default function ListaLugares({lugar}) {
                 </Grid>
             </Grid>
 
-                <Grid item xs={12}>
+            <Grid item xs={12}>
+                <Grid container
+                    direction="row"
+                    justify="center"
+                    alignItems="center"
+                >
                 {tipoLugar.map((lugar) => (
+                    
+                    <Grid item xs={6}>
                     <TarjetasLugares
                         lugar={lugar}
                         seleccionDeLugar={seleccionDeLugar}
                     />
-                       
+                        </Grid> 
                     ))}
-
+                    </Grid>
                 </Grid>
 
         </Grid>
