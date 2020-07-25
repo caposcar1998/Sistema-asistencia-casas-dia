@@ -5,17 +5,19 @@ import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
 
     fotoPrincipal: {
         width: "100%",
         height: "200px",
-        backgroundImage: "url('/fotos/Fondo1.jpg')"
+        backgroundImage: "url('/fotos/Fondo1.jpg')",
+        marginBottom: theme.spacing(10)
     },
     titulo: {
         color: "white"
-    }
-});
+    },
+
+}));
 
 export default function ListaLugares({lugar}) {
     const classes = useStyles();
@@ -126,7 +128,6 @@ export default function ListaLugares({lugar}) {
                     <Typography variant="h1" className={classes.titulo}>{nombreLugar}</Typography>
                 </Grid>
             </Grid>
-
             <Grid item xs={12}>
                 <Grid container
                     direction="row"
