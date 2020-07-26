@@ -321,6 +321,16 @@ FlowRouter.route('/lugarInteres/Lugar/:_id', {
     }
 })
 
+FlowRouter.route('/busquedaCodigoPostal/LugarCodigo/:_id', {
+    name: 'LugarCodigo',
+    action(params) {
+        let { _id } = params
+        mount(UsuariosPage, {
+            content: <Lugar casaSeleccionada={_id} />
+        })
+    }
+})
+
 FlowRouter.route('/busquedaCodigoPostal/:codigoPostal', {
     name: 'busquedaCodigoPostal',
     action(params) {

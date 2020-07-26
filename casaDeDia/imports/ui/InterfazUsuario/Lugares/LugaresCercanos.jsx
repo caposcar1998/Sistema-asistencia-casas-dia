@@ -92,7 +92,7 @@ export default function LugaresCercanos({codigoPostal}) {
 
     
     function seleccionDeLugar(casaSeleccionada) {
-        ruta = "Lugar/".concat(casaSeleccionada._id)
+        ruta = "LugarCodigo/".concat(casaSeleccionada._id)
         FlowRouter.go(ruta)
     }
 
