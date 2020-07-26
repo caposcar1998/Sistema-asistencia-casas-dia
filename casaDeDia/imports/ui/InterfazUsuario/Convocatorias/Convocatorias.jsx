@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     },
     espacio: {
         marginBottom: theme.spacing(2)
+    },
+    titulo: {
+        color: "white"
     }
 }));
 
@@ -52,7 +55,7 @@ export default function Convocatorias() {
                     direction="row"
                     justify="center"
                     alignItems="center">
-                    <Typography variant="h1">Convocatorias</Typography>
+                    <Typography variant="h1" className={classes.titulo}>Convocatorias</Typography>
                 </Grid>
             </Grid>
 
@@ -66,12 +69,12 @@ export default function Convocatorias() {
                         />
                         <CardContent>
                             <Typography variant="h5" component="p">
-                                {"Descripcion: " + convocatoria.descripcion}
+                                {"Descripción: " + convocatoria.descripcion}
                             </Typography>
                             <Box className={classes.espacio}/>
-                            <Typography variant="h5">{"Lanzamiento: " + convocatoria.fechaLanzamiento}</Typography>
+                            <Typography variant="h5">{"Lanzamiento: " + convocatoria.fechaLanzamiento.getDate() + "/" + convocatoria.fechaLanzamiento.getMonth() + "/" + convocatoria.fechaLanzamiento.getFullYear()}</Typography>
                             <Box className={classes.espacio}/>
-                            <Typography variant="h5">{"Finaliza: " + convocatoria.fechaFinalizacion}</Typography>
+                            <Typography variant="h5">{"Finaliza: " + convocatoria.fechaFinalizacion.getDate() + "/" + convocatoria.fechaFinalizacion.getMonth() + "/" + convocatoria.fechaFinalizacion.getFullYear()}</Typography>
                         </CardContent>
                     </Card>
                 ))}

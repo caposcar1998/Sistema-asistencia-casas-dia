@@ -116,6 +116,26 @@ Meteor.methods({
             )
     },
 
+    "clubesPorCodigo"(codigoPostal) {
+
+        let diferenciaCodigos;
+        let clubesCercanos = [];
+        let clubesTotales = (Clubes.find().fetch());
+
+
+        clubesTotales.forEach(club => {
+            let codigoNumero = parseInt(club.codigoPostal)
+            diferenciaCodigos = codigoPostal - codigoNumero
+            if (Math.abs(diferenciaCodigos) <= 20) {
+                clubesCercanos.push(club)
+            }
+        });
+
+        return clubesCercanos
+
+
+    }
+
 });
 
 

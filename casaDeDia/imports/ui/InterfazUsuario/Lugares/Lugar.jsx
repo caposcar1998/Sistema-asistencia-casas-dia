@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Typography, makeStyles } from "@material-ui/core";
+import { Grid, Typography, makeStyles, TableContainer, Table, TableHead, TableBody, withStyles, TableCell, TableRow, Paper, List, ListItem } from "@material-ui/core";
 
 
 
@@ -9,7 +9,10 @@ const useStyles = makeStyles({
     fotoPrincipal: {
         width: "100%",
         height: "100%"
-    }
+    },
+    table: {
+    minWidth: 700,
+}
 });
 
 export default function Lugar({ casaSeleccionada }) {
@@ -40,7 +43,25 @@ export default function Lugar({ casaSeleccionada }) {
         )
     }
 
-    
+
+    const StyledTableCell = withStyles((theme) => ({
+        head: {
+            backgroundColor: theme.palette.common.black,
+            color: theme.palette.common.white,
+        },
+        body: {
+            fontSize: 14,
+        },
+    }))(TableCell);
+
+    const StyledTableRow = withStyles((theme) => ({
+        root: {
+            '&:nth-of-type(odd)': {
+                backgroundColor: theme.palette.action.hover,
+            },
+        },
+    }))(TableRow);
+
 
 
 
@@ -49,7 +70,7 @@ export default function Lugar({ casaSeleccionada }) {
         <Grid container>
             <Grid item xs={12} >
                 <Grid container alignItems="center" justify="center">
-                    <Typography variant="h3">{lugar.nombre}</Typography>
+                    <Typography variant="h1">{lugar.nombre}</Typography>
                 </Grid>
                 
             </Grid>
@@ -57,71 +78,98 @@ export default function Lugar({ casaSeleccionada }) {
                 <img src={lugar.foto}  className={classes.fotoPrincipal} />
             </Grid>
             <Grid item xs={6}>
+
                 <Grid container
-                    direction="row"
+                    direction="column"
                     justify="center"
                     alignItems="center"
                 
                 >
-                    <Grid item xs={12}>
-                        <Typography variant="h5">Direccion</Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">{lugar.direccion} C.P: {lugar.codigoPostal}</Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">Horario</Typography> 
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">{lugar.horarioApertura}-{ lugar.horarioCierre }</Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">Tipo de institucion</Typography> 
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">{lugar.tipoInstitucion}</Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">Actividades</Typography> 
-                    </Grid>
-                    <Grid item xs={12}>
-                    
-                    {    
-                        lugar.actividades == null ?
-                            <Typography>No hay actividades registradas</Typography> :
-                            lugar.actividades.map((actividad) => (
-                                <Typography variant="h5">{actividad.nombre}</Typography>
-                            ))}
 
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">Restricciones</Typography> 
-                    </Grid>
-                    {
-                        lugar.restricciones == null ?
-                            <Typography variant="h5">No hay restricciones registradas</Typography> :
-                                lugar.restricciones.map((restriccion) => (
-                                    <Typography variant="h5">{restriccion.nombre}</Typography>
-                                ))}
-                    <Grid item xs={12}>
-                        <Typography variant="h5">Costo</Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">${lugar.costo}</Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">Cupo limite</Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">{lugar.cupoLimite} personas</Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">Contacto</Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">Tel.56552749</Typography>
-                    </Grid>
-            </Grid>
+
+                    <TableContainer component={Paper}>
+                        <Table className={classes.table} aria-label="customized table">
+                            <TableHead>
+                                <TableRow>
+                                    <StyledTableCell>Información</StyledTableCell>
+                                    <StyledTableCell align="right"></StyledTableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+
+                                    <StyledTableRow >
+                                        <StyledTableCell component="th" scope="row">
+                                        Dirección
+                                        </StyledTableCell>
+                                    <StyledTableCell align="right">{lugar.direccion}</StyledTableCell>
+                                </StyledTableRow>
+                                <StyledTableRow >
+                                    <StyledTableCell component="th" scope="row">
+                                        Horario
+                                        </StyledTableCell>
+                                    <StyledTableCell align="right">{lugar.horarioApertura}-{lugar.horarioCierre}</StyledTableCell>
+                                </StyledTableRow>
+                                <StyledTableRow >
+                                    <StyledTableCell component="th" scope="row">
+                                        Tipo de institucion:
+                                        </StyledTableCell>
+                                    <StyledTableCell align="right">{lugar.tipoInstitucion}</StyledTableCell>
+                                </StyledTableRow>
+                                <StyledTableRow >
+                                    <StyledTableCell component="th" scope="row">
+                                        Actividades:
+                                        </StyledTableCell>
+                                    <StyledTableCell align="right">
+                                        <List>
+                                        {
+                                            lugar.actividades == null ?
+                                                <ListItem>No hay actividades registradas</ListItem> :
+                                                lugar.actividades.map((actividad) => (
+                                                    <ListItem variant="h5">{actividad.nombre + " Descripción: " + actividad.descripcion}</ListItem>
+                                        ))}
+                                        </List>
+                                    </StyledTableCell>
+                                </StyledTableRow>
+                            </TableBody>
+                            <StyledTableRow >
+                                <StyledTableCell component="th" scope="row">
+                                    Restricciones:
+                                        </StyledTableCell>
+                                <StyledTableCell align="right">
+                                    <List>
+                                        {
+                                            lugar.restricciones == null ?
+                                                <ListItem>No hay restricciones registradas</ListItem> :
+                                                lugar.restricciones.map((restriccion) => (
+                                                    <ListItem variant="h5">{restriccion.nombre + " Descripción: " + restriccion.descripcion}</ListItem>
+                                                ))}
+                                    </List>
+                                </StyledTableCell>
+                            </StyledTableRow>
+                            <StyledTableRow >
+                                <StyledTableCell component="th" scope="row">
+                                    Costo:
+                                        </StyledTableCell>
+                                <StyledTableCell align="right">{lugar.costo}</StyledTableCell>
+                            </StyledTableRow>
+                            <StyledTableRow >
+                                <StyledTableCell component="th" scope="row">
+                                    Cupo limite:
+                                        </StyledTableCell>
+                                <StyledTableCell align="right">{lugar.cupoLimite}</StyledTableCell>
+                            </StyledTableRow>
+                            <StyledTableRow >
+                                <StyledTableCell component="th" scope="row">
+                                    Contacto:
+                                        </StyledTableCell>
+                                <StyledTableCell align="right">56554978</StyledTableCell>
+                            </StyledTableRow>
+                        </Table>
+
+                    </TableContainer>
+
+
+                </Grid>
             </Grid>
         </Grid>
     )

@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography, Card, CardActionArea, CardMedia, makeStyles, CardContent, TextField, Button } from "@material-ui/core";
+import { Grid, Typography, Card, CardActionArea, CardMedia, makeStyles, CardContent, TextField, Button, Box } from "@material-ui/core";
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 import { useState } from "react";
@@ -9,13 +9,19 @@ import { useState } from "react";
 const useStyles = makeStyles((theme) => ({
 
     root: {
-        maxWidth: 345,
+        maxWidth: 500,
     },
     media: {
-        height: 140,
+        height: 200,
     },
     gridGeneral: {
         marginTop: theme.spacing(2)
+    },
+    segundoGrid: {
+        paddingRight: theme.spacing(6)
+    },
+    espaciosGenerales: {
+        marginBottom: theme.spacing(5)
     }
 
 }));
@@ -58,7 +64,7 @@ export default function Index() {
 
                 <Grid container>
 
-                <Grid item xs={12}>
+                <Grid item xs={12} className={classes.espaciosGenerales}>
                     <Typography variant="h2">
                         Lugares de interes
                 </Typography>
@@ -68,12 +74,12 @@ export default function Index() {
                     justify="center"
                     alignItems="center">
                     
-                    <Grid item xs={6}>
+                    <Grid item xs={6} className={classes.espaciosGenerales}>
                         <Card className={classes.root}>
                                 <CardActionArea onClick={() => entrarLugar("casas")}>
                                 <CardMedia
                                     className={classes.media}
-                                    image="/fotos/gobiernoMexico.jpeg"
+                                    image="/fotos/FotoCasasDia.jpg"
                                     title="Casas de dia"
                                 />
                                 <CardContent>
@@ -84,15 +90,15 @@ export default function Index() {
                             </CardActionArea>
                         </Card>
                     </Grid>
+                    
 
-
-                    <Grid item xs={6}>
+                    <Grid item xs={6} className={classes.espaciosGenerales}> 
 
                         <Card className={classes.root}>
                             <CardActionArea onClick={() => entrarLugar("asilos")}>
                                 <CardMedia
                                     className={classes.media}
-                                    image="/fotos/gobiernoMexico.jpeg"
+                                    image="/fotos/asilosFoto.jpg"
                                     title="Asilos"
                                 />
                                 <CardContent>
@@ -110,7 +116,7 @@ export default function Index() {
                                 <CardActionArea onClick={() => entrarLugar("clubes")}>
                                 <CardMedia
                                     className={classes.media}
-                                    image="/fotos/gobiernoMexico.jpeg"
+                                    image="/fotos/CLubesFOto.jpg"
                                     title="Clubes"
                                 />
                                 <CardContent>
@@ -122,13 +128,13 @@ export default function Index() {
                         </Card>
 
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={6} className={classes.espaciosGenerales}>
 
                         <Card className={classes.root}>
                                 <CardActionArea onClick={() => entrarLugar("colectivos")}>
                                 <CardMedia
                                     className={classes.media}
-                                    image="/fotos/gobiernoMexico.jpeg"
+                                    image="/fotos/FotoCOlectivos.jpg"
                                     title="Colectivos"
                                 />
                                 <CardContent>
@@ -144,7 +150,7 @@ export default function Index() {
 
 
                     <Grid container>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} className={classes.espaciosGenerales}>
                             <Typography variant="h2">
                                 Apoyo al adulto mayor
                             </Typography>
@@ -156,7 +162,7 @@ export default function Index() {
                                 <CardActionArea onClick={buscarTarjetas}>
                                     <CardMedia
                                         className={classes.media}
-                                        image="/fotos/gobiernoMexico.jpeg"
+                                        image="/fotos/tarjetasFoto.webp"
                                         title="Tarjetas"
                                     />
                                     <CardContent>
@@ -168,13 +174,13 @@ export default function Index() {
                             </Card>
 
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={6} className={classes.espaciosGenerales}>
 
                             <Card className={classes.root}>
                                 <CardActionArea onClick={buscarConvocatorias}>
                                     <CardMedia
                                         className={classes.media}
-                                        image="/fotos/gobiernoMexico.jpeg"
+                                        image="/fotos/COnvocatorias.jpg"
                                         title="Convocatorias"
                                     />
                                     <CardContent>
@@ -193,8 +199,8 @@ export default function Index() {
                                 <CardActionArea onClick={buscarBeneficios}>
                                     <CardMedia
                                         className={classes.media}
-                                        image="/fotos/gobiernoMexico.jpeg"
-                                        title="Convocatorias"
+                                        image="/fotos/beneficios.jpg"
+                                        title="Beneficios"
                                     />
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="h2">
@@ -212,7 +218,7 @@ export default function Index() {
                 
                 </Grid>
 
-            <Grid item xs={2}>
+            <Grid item xs={2} className={classes.segundoGrid}>
                 <Grid container
                     direction="column"
                     justify="center"
@@ -240,6 +246,8 @@ export default function Index() {
                         </Card>
 
                     </Grid>
+
+                    <Box className={classes.espaciosGenerales}/>
 
                     <Grid item xs={12}>
 

@@ -116,6 +116,25 @@ Meteor.methods({
             )
     },
 
+    "asilosPorCodigo"(codigoPostal) {
+
+        let diferenciaCodigos;
+        let asilosCercanos = [];
+        let asilosTotales = (Asilos.find().fetch());
+
+
+        asilosTotales.forEach(asilo => {
+            let codigoNumero = parseInt(asilo.codigoPostal)
+            diferenciaCodigos = codigoPostal - codigoNumero
+            if (Math.abs(diferenciaCodigos) <= 20) {
+                asilosCercanos.push(asilo)
+            }
+        });
+        return asilosCercanos
+
+
+    }
+
 });
 
 

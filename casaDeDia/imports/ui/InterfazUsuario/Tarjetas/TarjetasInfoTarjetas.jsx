@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Typography, Card, CardContent, CardHeader } from '@material-ui/core';
+import { Grid, Typography, Card, CardContent, CardHeader, CardActionArea } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CryptoJS from "react-native-crypto-js";
 
@@ -8,20 +8,9 @@ const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 345,
     },
-    media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
-    },
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-    },
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },
+    espacioTarjetas: {
+        marginBottom: theme.spacing(5)
+    }
 }));
 
 
@@ -57,15 +46,14 @@ export default function TarjetasInfoTarjetas({ tarjeta, entrarPantallaInformacio
         cant_tarjeta = bytes8.toString(CryptoJS.enc.Utf8);
     }
 
-    function entrarPantallaTarjeta(idTarjeta) {
-        entrarPantallaInformacionTarjeta(idTarjeta);
-    }
+
 
 
     return (
 
-        <Grid item>
-            <Card className={classes.root} onClick={() => entrarPantallaInformacionTarjeta(tarjeta._id)}>
+        <Grid item className={classes.espacioTarjetas}>
+            <Card className={classes.root} >
+                <CardActionArea onClick={() => entrarPantallaInformacionTarjeta(tarjeta._id)}>
                 <CardHeader
                     title={
                         tarjeta.tipo == 'salud' ?
@@ -94,7 +82,7 @@ export default function TarjetasInfoTarjetas({ tarjeta, entrarPantallaInformacio
                         }
                     </Typography>
                 </CardContent>
-               
+               </CardActionArea>
             </Card>
         </Grid >
 

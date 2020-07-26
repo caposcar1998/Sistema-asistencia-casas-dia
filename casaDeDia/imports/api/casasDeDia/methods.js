@@ -119,17 +119,23 @@ Meteor.methods({
     },
 
     "casasDiaPorCodigo"(codigoPostal) {
-        
-        
-        console.log(codigoPostal)
 
-        console.log(CasasDeDia.find(
-            {},
-            { total: { $subtract: ["$codigoPostal", codigoPostal] } },
-            { total: { $lte: 0 }
-}
-        ).fetch())
+        let diferenciaCodigos;
+        let casasCercanas = [];
+        let casasTotales = (CasasDeDia.find().fetch());
         
+
+        casasTotales.forEach(casa => {
+            let codigoNumero = parseInt(casa.codigoPostal)
+            diferenciaCodigos = codigoPostal - codigoNumero
+            if (diferenciaCodigos <= 20 && Math.abs(diferenciaCodigos) >= 0) {
+                casasCercanas.push(casa)
+            }
+        });
+
+        return casasCercanas
+
+
     }
 
 });

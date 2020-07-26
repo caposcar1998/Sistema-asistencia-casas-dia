@@ -10,6 +10,9 @@ const useStyles = makeStyles({
         width: "100%",
         height: "200px",
         backgroundImage: "url('/fotos/Fondo1.jpg')"
+    },
+    titulo: {
+        color: "white"
     }
 });
 
@@ -55,7 +58,7 @@ export default function ListaTarjetas() {
                     direction="row"
                     justify="center"
                     alignItems="center">
-                    <Typography variant="h1">Tarjetas de apoyo</Typography>
+                    <Typography variant="h1" className={classes.titulo}>Tarjetas de apoyo</Typography>
                 </Grid>
             </Grid>
 
@@ -68,7 +71,7 @@ export default function ListaTarjetas() {
                 >
                 <Grid item xs={4}>
                     <Grid item xs={12}>
-                        <Typography variant="h1">Dinero</Typography>
+                        <Typography variant="h1">Apoyo economico</Typography>
                     </Grid>
                         <Grid item xs={12}>
                             {tarjetas.map((tarjeta) => (

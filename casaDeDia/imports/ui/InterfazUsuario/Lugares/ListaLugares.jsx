@@ -5,31 +5,41 @@ import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
 
     fotoPrincipal: {
         width: "100%",
         height: "200px",
-        backgroundImage: "url('/fotos/Fondo1.jpg')"
-    }
-});
+        backgroundImage: "url('/fotos/Fondo1.jpg')",
+        marginBottom: theme.spacing(10)
+    },
+    titulo: {
+        color: "white"
+    },
+
+}));
 
 export default function ListaLugares({lugar}) {
     const classes = useStyles();
-    const [tipoLugar, seTipoLugar] = useState([])
+    const [tipoLugar, seTipoLugar] = useState([]);
+    const [nombreLugar, setNombreLugar] = useState("");
 
     useEffect(() => {
         if (lugar == "casas") {
             casasDeDiaServidor();
+            setNombreLugar("Casas de día")
         }
         if (lugar == "asilos") {
             asilosServidor();
+            setNombreLugar("Asilos")
         }
         if (lugar == "clubes") {
             clubesServidor();
+            setNombreLugar("Clubes")
         }
         if (lugar == "colectivos") {
             colectivosServidor();
+            setNombreLugar("Colectivos")
         }
 
         
@@ -115,19 +125,25 @@ export default function ListaLugares({lugar}) {
                     direction="row"
                     justify="center"
                     alignItems="center">
-                    <Typography variant="h1">{lugar}</Typography>
+                    <Typography variant="h1" className={classes.titulo}>{nombreLugar}</Typography>
                 </Grid>
             </Grid>
-
-                <Grid item xs={12}>
+            <Grid item xs={12}>
+                <Grid container
+                    direction="row"
+                    justify="center"
+                    alignItems="center"
+                >
                 {tipoLugar.map((lugar) => (
+                    
+                    <Grid item xs={6}>
                     <TarjetasLugares
                         lugar={lugar}
                         seleccionDeLugar={seleccionDeLugar}
                     />
-                       
+                        </Grid> 
                     ))}
-
+                    </Grid>
                 </Grid>
 
         </Grid>
