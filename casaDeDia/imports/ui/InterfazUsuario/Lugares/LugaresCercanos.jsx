@@ -58,6 +58,7 @@ export default function LugaresCercanos({codigoPostal}) {
             (resolve, reject) => {
                 codigoPostal,
                 Meteor.call("asilosPorCodigo",
+                    codigoPostal,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -75,6 +76,7 @@ export default function LugaresCercanos({codigoPostal}) {
             (resolve, reject) => {
                 codigoPostal,
                 Meteor.call("clubesPorCodigo",
+                    codigoPostal,
                     (err, res) => {
                         if (err) {
                             reject()
@@ -86,6 +88,8 @@ export default function LugaresCercanos({codigoPostal}) {
             }
         )
     }
+
+
     
     function seleccionDeLugar(casaSeleccionada) {
         ruta = "Lugar/".concat(casaSeleccionada._id)
@@ -126,7 +130,7 @@ export default function LugaresCercanos({codigoPostal}) {
                     <Grid item xs={12}>
                         <Typography variant="h1">Asilos</Typography>
                     </Grid>
-                    {casasDia.map((lugar) => (
+                    {asilos.map((lugar) => (
                         <Grid item xs={6}>
                             <TarjetasLugares
                                 lugar={lugar}
@@ -138,7 +142,7 @@ export default function LugaresCercanos({codigoPostal}) {
                     <Grid item xs={12}>
                         <Typography variant="h1">Clubes</Typography>
                     </Grid>
-                    {casasDia.map((lugar) => (
+                    {clubes.map((lugar) => (
                         <Grid item xs={6}>
                             <TarjetasLugares
                                 lugar={lugar}
@@ -146,18 +150,7 @@ export default function LugaresCercanos({codigoPostal}) {
                             />
                         </Grid>
                     ))}
-
-                    <Grid item xs={12}>
-                        <Typography variant="h1">Colectivos</Typography>
-                    </Grid>
-                    {casasDia.map((lugar) => (
-                        <Grid item xs={6}>
-                            <TarjetasLugares
-                                lugar={lugar}
-                                seleccionDeLugar={seleccionDeLugar}
-                            />
-                        </Grid>
-                    ))}
+                    
 
                 </Grid>
             </Grid>

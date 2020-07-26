@@ -48,5 +48,25 @@ Meteor.methods({
 
         "leerColectivos"() {
             return Colectivos.find().fetch();
-        },
+    },
+        
+    "colectivosPorCodigo"(codigoPostal) {
+
+        let diferenciaCodigos;
+        let colectivosCercanos = [];
+        let colectivosTotales = (Colectivos.find().fetch());
+
+
+        colectivosTotales.forEach(colectivo => {
+            let codigoNumero = parseInt(colectivo.codigoPostal)
+            diferenciaCodigos = codigoPostal - codigoNumero
+            if (Math.abs(diferenciaCodigos) <= 20) {
+                colectivosCercanos.push(colectivo)
+            }
+        });
+
+        return colectivosCercanos
+
+
+    }
 });
