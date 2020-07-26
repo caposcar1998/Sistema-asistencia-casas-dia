@@ -63,7 +63,7 @@ export default function CrearTarjetas() {
     function tarjetasServidor() {
         return new Promise(
             (resolve, reject) => {
-                Meteor.call("leerTarjeta",
+                Meteor.call("leerTarjetasServidor",
                     (err, res) => {
                         if (err) {
                             reject()

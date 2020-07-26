@@ -45,7 +45,7 @@ export default function Index() {
     }
 
     function buscarConvocatorias() {
-        FlowRouter.go("convocatorias");
+        FlowRouter.go("convocatoriasUsuario");
     }
 
     function buscarBeneficios() {

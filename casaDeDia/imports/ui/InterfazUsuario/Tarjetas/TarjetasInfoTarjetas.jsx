@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) => ({
     },
     espacioTarjetas: {
         marginBottom: theme.spacing(5)
+    },
+    titulo: {
+        color:"white"
     }
 }));
 
@@ -57,9 +60,9 @@ export default function TarjetasInfoTarjetas({ tarjeta, entrarPantallaInformacio
                 <CardHeader
                     title={
                         tarjeta.tipo == 'salud' ?
-                            <Typography variant="h3">{tarjeta.nombre}</Typography>
+                            <Typography variant="h3" className={classes.titulo}>{tarjeta.nombre}</Typography>
                             :
-                            <Typography variant="h3">{nombre_tarjeta}</Typography>
+                            <Typography variant="h3" className={classes.titulo}>{nombre_tarjeta}</Typography>
                             
                     }
                 />

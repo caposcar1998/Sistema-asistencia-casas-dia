@@ -362,8 +362,8 @@ FlowRouter.route('/Tarjeta/:idTarjeta', {
     }
 })
 
-FlowRouter.route('/convocatorias', {
-    name: 'convocatorias',
+FlowRouter.route('/convocatoriasUsuario', {
+    name: 'convocatoriasUsuario',
     action() {
         mount(UsuariosPage, {
             content: <Convocatorias />

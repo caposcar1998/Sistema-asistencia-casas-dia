@@ -143,7 +143,7 @@ Meteor.methods({
             )
     },
 
-    "leerTarjetas"() {
+    "leerTarjetasServidor"() {
         return Tarjetas.find().fetch();
     },
 
