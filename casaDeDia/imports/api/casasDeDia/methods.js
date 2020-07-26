@@ -126,7 +126,8 @@ Meteor.methods({
         
 
         casasTotales.forEach(casa => {
-            diferenciaCodigos = codigoPostal - casa.codigoPostal
+            let codigoNumero = parseInt(casa.codigoPostal)
+            diferenciaCodigos = codigoPostal - codigoNumero
             if (diferenciaCodigos <= 20 && Math.abs(diferenciaCodigos) >= 0) {
                 casasCercanas.push(casa)
             }
