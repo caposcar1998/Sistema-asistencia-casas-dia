@@ -55,12 +55,12 @@ export default function TabInferior() {
                         </Grid>
                         <Grid item xs={12}>
                             <Button href="http://www.gob.com.mx">
-                                <Typography variant="h5" className={classes.links}>www.gob.com.mx</Typography>
+                                <Typography variant="h5" className={classes.links}>gob.com.mx</Typography>
                             </Button>
                         </Grid>
                         <Grid item xs={12}>
                             <Button href="http://www.tlalpan.cdmx.gob.mx/">
-                                <Typography variant="h5" className={classes.links}>/www.tlalpan.cdmx.gob.mx</Typography>
+                                <Typography variant="h5" className={classes.links}>tlalpan.cdmx.gob.mx</Typography>
                             </Button>
                         </Grid>
                     </Grid>
