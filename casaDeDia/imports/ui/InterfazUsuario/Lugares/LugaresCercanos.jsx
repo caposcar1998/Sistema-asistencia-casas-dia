@@ -116,7 +116,7 @@ export default function LugaresCercanos({codigoPostal}) {
                     alignItems="center"
                 >
                     <Grid item xs={12}>
-                        <Typography variant="h1">Casas de dia</Typography>
+                        <Typography variant="h1">Casas de día</Typography>
                     </Grid>
                     {casasDia.map((lugar) => (
                         <Grid item xs={6}>
@@ -128,7 +128,7 @@ export default function LugaresCercanos({codigoPostal}) {
                     ))}
 
                     <Grid item xs={12}>
-                        <Typography variant="h1">Asilos</Typography>
+                        <Typography variant="h1">Residencias de adultos mayores</Typography>
                     </Grid>
                     {asilos.map((lugar) => (
                         <Grid item xs={6}>

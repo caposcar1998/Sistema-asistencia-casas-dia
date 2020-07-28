@@ -71,7 +71,7 @@ export default function ListaTarjetas() {
                 >
                 <Grid item xs={4}>
                     <Grid item xs={12}>
-                        <Typography variant="h1">Apoyo economico</Typography>
+                        <Typography variant="h1">Apoyo económico</Typography>
                     </Grid>
                         <Grid item xs={12}>
                             {tarjetas.map((tarjeta) => (
