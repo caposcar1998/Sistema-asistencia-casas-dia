@@ -115,18 +115,18 @@ export default function InformacionTarjeta({ idTarjeta }) {
                         <Table className={classes.table} aria-label="customized table">
                             <TableHead>
                                 <TableRow>
-                                    <StyledTableCell>Como tramitarla?</StyledTableCell>
+                                    <StyledTableCell>¿Cómo tramitarla?</StyledTableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                     <StyledTableRow >
                                         <StyledTableCell component="th" scope="row">
-                                            <Typography>Acudir a la delegacion mas cercana</Typography>
+                                        <Typography>Acudir a la delegación más cercana</Typography>
                                         </StyledTableCell>
                                 </StyledTableRow>
                                 <StyledTableRow >
                                     <StyledTableCell component="th" scope="row">
-                                        <Typography>Conctactar a tu trabajadora social para realizar el tramite desde tu hogar</Typography>
+                                        <Typography>Contactar a tu trabajadora social para realizar el trámite desde tu hogar</Typography>
                                     </StyledTableCell>
                                 </StyledTableRow>
                             </TableBody>
@@ -144,7 +144,7 @@ export default function InformacionTarjeta({ idTarjeta }) {
                             <TableHead>
                                 <TableRow>
                                     <StyledTableCell>Documento Requerido</StyledTableCell>
-                                    <StyledTableCell align="right">Presentacion</StyledTableCell>
+                                    <StyledTableCell align="right">Presentación</StyledTableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -170,7 +170,7 @@ export default function InformacionTarjeta({ idTarjeta }) {
                         <Table className={classes.table} aria-label="customized table">
                             <TableHead>
                                 <TableRow>
-                                    <StyledTableCell>Informacion de la tarjeta</StyledTableCell>
+                                    <StyledTableCell>Información de la tarjeta</StyledTableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -183,12 +183,12 @@ export default function InformacionTarjeta({ idTarjeta }) {
                                 <>
                                 <StyledTableRow >
                                     <StyledTableCell component="th" scope="row">
-                                            <Typography>{"Tiempo deposito: Cada " + tiempoDeposito}</Typography>
+                                            <Typography>{"Tiempo depósito: Cada " + tiempoDeposito}</Typography>
                                     </StyledTableCell>
                                 </StyledTableRow>
                                 <StyledTableRow >
                                     <StyledTableCell component="th" scope="row">
-                                        <Typography>{"Cantidad deposito: $" + cantidadDeposito}</Typography>
+                                            <Typography>{"Cantidad depósito: $" + cantidadDeposito}</Typography>
                                     </StyledTableCell>
                                 </StyledTableRow>
                                 <StyledTableRow >
@@ -216,7 +216,7 @@ export default function InformacionTarjeta({ idTarjeta }) {
                                     <>
                                         <StyledTableRow>
                                             <StyledTableCell component="th" scope="row">
-                                                <Typography>{"Cantidad deposito: $" + cantidadDeposito}</Typography>
+                                                <Typography>{"Cantidad depósito: $" + cantidadDeposito}</Typography>
                                             </StyledTableCell>
                                         </StyledTableRow>
                                         <StyledTableRow >
