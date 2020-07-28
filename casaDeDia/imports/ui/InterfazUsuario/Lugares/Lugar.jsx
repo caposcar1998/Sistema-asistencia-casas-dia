@@ -111,7 +111,7 @@ export default function Lugar({ casaSeleccionada }) {
                                 </StyledTableRow>
                                 <StyledTableRow >
                                     <StyledTableCell component="th" scope="row">
-                                        Tipo de institucion:
+                                        Tipo de institución:
                                         </StyledTableCell>
                                     <StyledTableCell align="right">{lugar.tipoInstitucion}</StyledTableCell>
                                 </StyledTableRow>
@@ -154,7 +154,7 @@ export default function Lugar({ casaSeleccionada }) {
                             </StyledTableRow>
                             <StyledTableRow >
                                 <StyledTableCell component="th" scope="row">
-                                    Cupo limite:
+                                    Cupo límite:
                                         </StyledTableCell>
                                 <StyledTableCell align="right">{lugar.cupoLimite}</StyledTableCell>
                             </StyledTableRow>
@@ -162,7 +162,7 @@ export default function Lugar({ casaSeleccionada }) {
                                 <StyledTableCell component="th" scope="row">
                                     Contacto:
                                         </StyledTableCell>
-                                <StyledTableCell align="right">56554978</StyledTableCell>
+                                <StyledTableCell align="right">Sin información</StyledTableCell>
                             </StyledTableRow>
                         </Table>
 

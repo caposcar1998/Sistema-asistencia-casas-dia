@@ -31,7 +31,7 @@ export default function ListaLugares({lugar}) {
         }
         if (lugar == "asilos") {
             asilosServidor();
-            setNombreLugar("Asilos")
+            setNombreLugar("Residencias de adultos mayores")
         }
         if (lugar == "clubes") {
             clubesServidor();
