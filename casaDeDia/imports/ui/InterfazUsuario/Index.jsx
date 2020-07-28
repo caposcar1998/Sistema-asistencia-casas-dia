@@ -84,7 +84,7 @@ export default function Index() {
                                 />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="h2">
-                                        Casas de dia
+                                        Casas de día
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
@@ -103,7 +103,7 @@ export default function Index() {
                                 />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="h2">
-                                        Asilos
+                                        Residencias de adultos mayores
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
@@ -228,13 +228,13 @@ export default function Index() {
                         <Card className={classes.root}>
                             <CardContent>
                                 <Typography color="textSecondary" gutterBottom>
-                                    Busqueda rapida
+                                    Búsqueda rápida
                                 </Typography>
                                 <Typography variant="h5" component="h2">
-                                    Encuentra servicios disponibles con tu codigo postal
+                                    Encuentra servicios disponibles con tu código postal
                                 </Typography>
                                 <Grid item xs={12}>
-                                    <TextField id="codigoPostal" label="Codigo Postal" value={codigoPostal} onChange={(e) => setCodigoPostal(e.target.value)} />
+                                    <TextField id="codigoPostal" label="Código Postal" value={codigoPostal} onChange={(e) => setCodigoPostal(e.target.value)} />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Button onClick={() => busquedaCodigoPostal(codigoPostal)}>Buscar</Button>
