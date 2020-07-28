@@ -71,17 +71,17 @@ export default function Beneficios() {
                         />
                         <CardContent>
                             <Typography variant="h5" component="p">
-                                {"Descripcion: " + promocion.descripcion}
+                                {"Descripción: " + promocion.descripcion}
                             </Typography>
                             <Box className={classes.espacio} />
                             <Typography variant="h5">{"Lanzamiento: " + promocion.fechaInicio.getDate() + "/" + promocion.fechaInicio.getMonth() + "/" + promocion.fechaInicio.getFullYear()}</Typography>
                             <Box className={classes.espacio} />
                             <Typography variant="h5">{"Finaliza: " + promocion.fechaFinal.getDate() + "/" + promocion.fechaFinal.getMonth() + "/" + promocion.fechaFinal.getFullYear()}</Typography>
                             <Box className={classes.espacio} />
-                            <Typography variant="h6">{"Descripcion: " + promocion.descripcion}</Typography>
+                            <Typography variant="h6">{"Descripción: " + promocion.descripcion}</Typography>
                             <Box className={classes.espacio} />
                             {promocion.acumulable == true ?
-                                <Typography variant="h6">Acumulable: Si</Typography>
+                                <Typography variant="h6">Acumulable: Sí</Typography>
                             :
                                 <Typography variant="h6">Acumulable: No</Typography>
 
