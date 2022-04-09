@@ -15,7 +15,7 @@
     "bcrypt": "^4.0.1",
     "material-table": "^1.57.2",
     "meteor-node-stubs": "^1.0.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "react": "^16.13.1",
     "react-csv-downloader": "^1.8.0",
     "react-dom": "^16.13.1",
